@@ -7,6 +7,7 @@
   - tipi.build secure vault synchronization ( supporting Github.com and Github Enterprise authentication )
   - New toolchains to target asm.js ( Provides compatibility for Webassembly builds on all browsers )
   - Node.js included now directly within the `tipi-build/tipi-ubunt` docker 
+  - Java JDK provisioning in the tipi.build distro
   - REST OpenAPI generator integration
   - Force build with CMake and package/targets name in depspec ( e.g. `{ "tipi/libgit2" : { "@" : "v1.1.0-cmake-findpackage", "u" : true, "packages": ["libgit2"], "targets": ["libgit2::git2"]  } }`
   - `.tipiignore` files behaving like `.gitignore` to exclude files from code scan and build. Rules can be passed via the command line `-x` switch too. 
