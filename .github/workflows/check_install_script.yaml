@@ -20,7 +20,7 @@ jobs:
           else 
             script_source=${GITHUB_REF#refs/heads/}
           fi
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi/tipi/${script_source}/install/install_for_macos_linux.sh)"
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
 
           # Test install succeeeded 
           test -f /usr/local/bin/tipi
@@ -40,7 +40,7 @@ jobs:
             script_source=${GITHUB_REF#refs/heads/}
           fi
           echo "Script source : ${script_source}"
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi/tipi/${script_source}/install/install_for_macos_linux.sh)"
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           
           # Test install succeeeded 
           test -f /usr/local/bin/tipi
@@ -58,7 +58,7 @@ jobs:
           } else {
             $script_source = $env:GITHUB_REF.replace('refs/heads/', '')
           }
-          . { iwr -useb https://raw.githubusercontent.com/tipi/tipi/$script_source/install/install_for_windows.ps1 } | iex 
+          . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex 
           if (!($?)) {exit 1}
           # Test install succeeeded 
           if (!(Test-Path "C:\\ProgramData\\tipi\\tipi.exe" -PathType leaf)) { exit 1; }
