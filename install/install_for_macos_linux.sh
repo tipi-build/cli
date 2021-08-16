@@ -46,5 +46,5 @@ if [ $? -eq 0 ]; then
         abort "Error while installing the dependencies"
     fi
 else
-    abort "Installation failed"
+    abort "Installation failed, please contact us on https://tipi.build : We would be happy to help you."
 fi

@@ -76,6 +76,6 @@ if ($?){
     info "tipi has been installed in $INSTALL_FOLDER. In either a new cmd of after a reboot tipi will be available on your Path."
  
 }else{
-    Abort "Installation failed, please contact us via tipi.io. We would be happy to help you."
+    Abort "Installation failed, please contact us on https://tipi.build : We would be happy to help you."
     [Environment]::Exit(1)  
 }
