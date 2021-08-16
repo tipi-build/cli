@@ -39,7 +39,7 @@ sudo unzip ~/tipi.zip -d $INSTALL_FOLDER -x LICENSE && rm ~/tipi.zip
 if [ $? -eq 0 ]; then
     info "tipi successfully installed. Installing the dependencies..."
     mkdir /tmp/install_tipi && echo "#include <iostream> int main(){return 0;}">> /tmp/install_tipi/installdeps.cpp
-    $INSTALL_FOLDER/bin/tipi /tmp/install_tipi
+    $INSTALL_FOLDER/bin/tipi --verbose /tmp/install_tipi
     if [ $? -eq 0 ]; then
         info "tipi and its dependencies have been successfully installed"
     else 

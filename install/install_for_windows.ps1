@@ -71,7 +71,7 @@ $installdeps_folder = New-TemporaryDirectory
 $installdeps_file = (Join-Path -Path $installdeps_folder -ChildPath "installdeps.cpp")[0]
 $text = $texte | Out-File -Encoding "ASCII" -FilePath "$installdeps_file"
 
-cmd.exe /c "$TIPI_EXE $installdeps_folder"   
+cmd.exe /c "$TIPI_EXE --verbose $installdeps_folder"   
 if ($?){
     info "tipi has been installed in $INSTALL_FOLDER. In either a new cmd of after a reboot tipi will be available on your Path."
  
