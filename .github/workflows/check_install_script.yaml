@@ -24,7 +24,7 @@ jobs:
 
           # Test install succeeeded 
           test -f /usr/local/bin/tipi
-          test -f ~/.tipi/05c83a7/downloads/nodejs.zip
+          test -f ~/.tipi/0ad16f8/downloads/nodejs.zip
           test -f /tmp/install_tipi/build/wasm-cxx17/bin/installdeps.js
           
 
@@ -44,7 +44,7 @@ jobs:
           
           # Test install succeeeded 
           test -f /usr/local/bin/tipi
-          test -f ~/.tipi/05c83a7/downloads/nodejs.zip
+          test -f ~/.tipi/0ad16f8/downloads/nodejs.zip
           test -f /tmp/install_tipi/build/wasm-cxx17/bin/installdeps.js
 
   install-windows-powershell:
@@ -62,5 +62,5 @@ jobs:
           if (!($?)) {exit 1}
           # Test install succeeeded 
           if (!(Test-Path "C:\\ProgramData\\tipi\\tipi.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\05c83a7\\downloads\\nodejs.zip" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0ad16f8\\downloads\\nodejs.zip" -PathType leaf)) { exit 1; }
         shell: powershell 

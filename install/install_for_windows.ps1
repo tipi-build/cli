@@ -1,5 +1,5 @@
 $INSTALL_FOLDER="C:\ProgramData\tipi"
-$TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.15/tipi-v0.0.15-windows-win64.zip"
+$TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.16/tipi-v0.0.16-windows-win64.zip"
 $TIPI_EXE="$INSTALL_FOLDER\tipi.exe"
 $texte = '#include <iostream>
 int main()

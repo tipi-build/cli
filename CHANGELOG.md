@@ -1,5 +1,14 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.16 - codename **high hopes**
+
+### Features
+  - clang 12 provided for windows, linux and macOS
+  - remote connectivity to tipi.build nodes
+
+### Bugfix
+  - authentication issues points to correct documentation
+
 ## v0.0.15 - codename **git gud**  
 
 ### Features
