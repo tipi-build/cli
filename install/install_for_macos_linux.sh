@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [ "$(uname)" == "Linux" ]; then
-  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.15/tipi-v0.0.15-linux-x86_64.zip"
+  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.16/tipi-v0.0.16-linux-x86_64.zip"
 fi
 
 if [ "$(uname)" == "Darwin" ]; then
-  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.15/tipi-v0.0.15-macOS.zip"
+  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.16/tipi-v0.0.16-macOS.zip"
 fi
 
 INSTALL_FOLDER="/usr/local"
@@ -46,5 +46,5 @@ if [ $? -eq 0 ]; then
         abort "Error while installing the dependencies"
     fi
 else
-    abort "Installation failed, please contact us on https://tipi.build : We would be happy to help you."
+    abort "Installation failed, please contact us on https://tipi.build : We are happy to help."
 fi

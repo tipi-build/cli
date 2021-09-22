@@ -1,5 +1,5 @@
 $INSTALL_FOLDER="C:\ProgramData\tipi"
-$TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.15/tipi-v0.0.15-windows-win64.zip"
+$TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.16/tipi-v0.0.16-windows-win64.zip"
 $TIPI_EXE="$INSTALL_FOLDER\tipi.exe"
 $texte = '#include <iostream>
 int main()
@@ -76,6 +76,6 @@ if ($?){
     info "tipi has been installed in $INSTALL_FOLDER. In either a new cmd of after a reboot tipi will be available on your Path."
  
 }else{
-    Abort "Installation failed, please contact us on https://tipi.build : We would be happy to help you."
+    Abort "Installation failed, please contact us on https://tipi.build : We are happy to help."
     [Environment]::Exit(1)  
 }
