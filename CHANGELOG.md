@@ -1,13 +1,24 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.16 - codename **high hopes**
+## v0.0.16 - codename **heavy hammer**
 
 ### Features
+  - Local machine and Cloud build node project files synchronization  (sources and build)
+  - remote build environment creation with Packer declarative images definitions 
+  - remote build on tipi.build cloud 
+  - remote connectivity to tipi.build nodes to .run tests
   - clang 12 provided for windows, linux and macOS
-  - remote connectivity to tipi.build nodes
+  - Automatic authentication token refreshing
+  - vault synchronization on each connection
+  - Vault protected storage server access data
+
 
 ### Bugfix
   - authentication issues points to correct documentation
+  - automatic token refreshing on any remote call 
+
+### Known Issues
+  - tipi can be used only on one project at a time ( interprocess locks led to deadlock situations )
 
 ## v0.0.15 - codename **git gud**  
 
