@@ -25,6 +25,13 @@ should_install_unzip() {
   fi
 }
 
+if [ -f "/etc/arch-release" ]; then
+pacman -Sy --noconfirm python
+pacman -Sy --noconfirm unzip
+pacman -Sy --noconfirm base-devel
+fi
+
+
 if should_install_unzip; then
     info "unzip is needed to unzip the downloaded file, we are installing unzip with your package manager"
     echo "Could you validate with your password ? 😇 "
