@@ -1,5 +1,26 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.17 - codename **intrepid increment**
+
+### Features
+  - Arch linux support (file-sync daemon and install script updated)
+  - Support to clean connection files with `tipi connect --clean`
+
+### Bugfix
+  - Fixed numerous remote build issue via a safe command escape system based on base64
+  - Fixed remote build from host linux to target linux
+  - Fixed remote build from host windows to target windows 
+  - Fixed remote build from host windows to target linux 
+  - Fixed remote build from host linux to target windows
+  - Fixed windows console presentation during remote builds
+  - Fixed windows console animations
+  - Documentation link fix regarding authentication
+  - Fixes C & C++ autocompletion in vscode due to space in target compile\_command path
+
+### Known Issues
+  - tipi can be used only on one project at a time
+  - visual studio vs- targets ( e.g. vs-16-2019-win64-cxx17 ) targets aren't supported in remote build mode
+
 ## v0.0.16 - codename **heavy hammer**
 
 ### Features
