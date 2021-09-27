@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [ "$(uname)" == "Linux" ]; then
-  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.16/tipi-v0.0.16-linux-x86_64.zip"
+  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.17/tipi-v0.0.17-linux-x86_64.zip"
 fi
 
 if [ "$(uname)" == "Darwin" ]; then
-  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.16/tipi-v0.0.16-macOS.zip"
+  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.17/tipi-v0.0.17-macOS.zip"
 fi
 
 INSTALL_FOLDER="/usr/local"
@@ -24,6 +24,13 @@ should_install_unzip() {
     return 1
   fi
 }
+
+if [ -f "/etc/arch-release" ]; then
+  pacman -Sy --noconfirm python
+  pacman -Sy --noconfirm unzip
+  pacman -Sy --noconfirm base-devel
+fi
+
 
 if should_install_unzip; then
     info "unzip is needed to unzip the downloaded file, we are installing unzip with your package manager"

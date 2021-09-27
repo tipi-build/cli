@@ -24,7 +24,7 @@ jobs:
 
           # Test install succeeeded 
           test -f /usr/local/bin/tipi
-          test -f ~/.tipi/3cafb0f/downloads/nodejs.zip
+          test -f ~/.tipi/655a466/downloads/nodejs.zip
           test -f /tmp/install_tipi/build/wasm-cxx17/bin/installdeps.js
           
 
@@ -44,7 +44,7 @@ jobs:
           
           # Test install succeeeded 
           test -f /usr/local/bin/tipi
-          test -f ~/.tipi/3cafb0f/downloads/nodejs.zip
+          test -f ~/.tipi/655a466/downloads/nodejs.zip
           test -f /tmp/install_tipi/build/wasm-cxx17/bin/installdeps.js
 
   install-windows-powershell:
@@ -62,5 +62,30 @@ jobs:
           if (!($?)) {exit 1}
           # Test install succeeeded 
           if (!(Test-Path "C:\\ProgramData\\tipi\\tipi.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\3cafb0f\\downloads\\nodejs.zip" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\655a466\\downloads\\nodejs.zip" -PathType leaf)) { exit 1; }
         shell: powershell 
+
+  install-archlinux:
+    name: install-archlinux
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME
+      GITHUB_HEAD_REF: $GITHUB_HEAD_REF
+      GITHUB_REF: $GITHUB_REF
+    container: 
+      image: archlinux
+    steps:
+      - name: test_install_on_linux
+        run: |
+          if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
+            script_source=${GITHUB_HEAD_REF}
+          else 
+            script_source=${GITHUB_REF#refs/heads/}
+          fi
+          echo "Script source : ${script_source}"
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+          
+          # Test install succeeeded 
+          test -f /usr/local/bin/tipi
+          test -f ~/.tipi/655a466/downloads/nodejs.zip
+          test -f /tmp/install_tipi/build/wasm-cxx17/bin/installdeps.js
