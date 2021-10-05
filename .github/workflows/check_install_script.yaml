@@ -3,9 +3,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
   schedule:
     - cron : '0 0 * * *' # Every midnight check the released version of default branch
-  pull_request:
   
 
 jobs:
