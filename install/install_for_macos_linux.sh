@@ -29,6 +29,7 @@ if [ -f "/etc/arch-release" ]; then
   pacman -Sy --noconfirm python
   pacman -Sy --noconfirm unzip
   pacman -Sy --noconfirm base-devel
+  pacman -Sy --noconfirm openssh
 fi
 
 
