@@ -1,5 +1,17 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.18 - codename **jolly jumper**
+
+### Features
+  - Smart auto include path computation detection to complement convention detection
+  - Eclipse project support with remote tipi build
+  - Local & remote Monorepo dependencies support
+  - Remote git subfolder dependencies support 
+
+### Bugfix
+  - Running commands in tipi environment with `tipi run command` on unixes support multiple arguments ( not only a string)
+  - Windows TLS environments supports downloading Platform libs from server with recent ciphersuites
+  
 ## v0.0.17 - codename **intrepid increment**
 
 ### Features
