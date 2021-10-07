@@ -56,10 +56,24 @@ if (!$?){
    return
 }
 
-[Environment]::SetEnvironmentVariable(
-    "Path",
-    [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";$INSTALL_FOLDER",
-    [EnvironmentVariableTarget]::Machine)
+
+# detection of admin rights for this script
+$currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+$runningWithPrivileges = $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+
+if($runningWithPrivileges) {
+  [Environment]::SetEnvironmentVariable(
+      "Path",
+      [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";$INSTALL_FOLDER",
+      [EnvironmentVariableTarget]::Machine)
+} else {
+  [Environment]::SetEnvironmentVariable(
+      "Path",
+      [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";$INSTALL_FOLDER",
+      [EnvironmentVariableTarget]::User)
+
+  info "Added tipi to your user path only. Please re-run the install script in an admin console if you need other users on your machine use tipi."
+}
 
 if (!$?){
    Abort("Could not put tipi on the Path environment variable")
