@@ -8,8 +8,8 @@ if [ "$(uname)" == "Darwin" ]; then
   TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.18/tipi-v0.0.18-macOS.zip"
 fi
 
- TIPI_URL_HASH=$(echo -n $TIPI_URL | sha1sum | cut -f 1 -d " ")
-
+RANDOM=$$
+RANDOM_DIRECTORY=$RANDOM
 INSTALL_FOLDER="/usr/local"
 
 abort() {
@@ -48,14 +48,14 @@ sudo unzip ~/tipi.zip -d $INSTALL_FOLDER -x LICENSE && rm ~/tipi.zip
 
 if [ $? -eq 0 ]; then
     info "tipi successfully installed. Installing the dependencies..."
-    mkdir -p /tmp/$TIPI_URL_HASH/install_tipi && echo "#include <iostream> int main(){return 0;}">> /tmp/$TIPI_URL_HASH/install_tipi/installdeps.cpp
+    mkdir -p /tmp/$RANDOM_DIRECTORY/install_tipi && echo "#include <iostream> int main(){return 0;}">> /tmp/$RANDOM_DIRECTORY/install_tipi/installdeps.cpp
     $INSTALL_FOLDER/bin/tipi /tmp/install_tipi
     if [ $? -eq 0 ]; then
         info "tipi and its dependencies have been successfully installed"
     else 
         abort "Error while installing the dependencies"
     fi
-    rm -r /tmp/$TIPI_URL_HASH
+    rm -r /tmp/$RANDOM_DIRECTORY
 else
     abort "Installation failed, please contact us on https://tipi.build : We are happy to help."
 fi
