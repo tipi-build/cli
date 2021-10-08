@@ -55,32 +55,32 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           
           # Test install succeeeded 
-          echo 1
+          echo "verif tipi"
           test -f /usr/local/bin/tipi
-          echo 2
+          echo "clang"
           test -f ~/.tipi/0b44dab/clang/bin/clang
-          echo 3
+          echo "cmake"
           test -f ~/.tipi/0b44dab/cmake/bin/cmake
-          echo 4
+          echo "emsdk"
           test -f ~/.tipi/0b44dab/emsdk/emsdk
-          echo 5
+          echo "envi"
           test -f ~/.tipi/0b44dab/environments/xcode.cmake
-          echo 6
+          echo "go"
           test -f ~/.tipi/0b44dab/go/bin/go
-          echo 7
+          echo "jdk"
           test -f ~/.tipi/0b44dab/jdk/bin/jar
-          echo 8
+          echo "node"
           test -f ~/.tipi/0b44dab/nodejs/bin/node
-          echo 9
+          echo "openapi gen"
           test -f ~/.tipi/0b44dab/openapi/openapi-generator-cli-5.1.1.jar
-          echo 10
+          echo "open api cli"
           test -f ~/.tipi/0b44dab/openapi-generator-script/openapi-generator-cli
-          echo 12   
+          echo "python"   
           test -f ~/.tipi/0b44dab/python/bin/python
-          echo 13
-          test -e ~/.tipi/0b44dab/file-sync/pysearpc/client.py
-          echo 11
-          test -e ~/.tipi/0b44dab/0b44dab/platform/LICENSE
+          echo "file_sync"
+          test -f ~/.tipi/0b44dab/file-sync/pysearpc/client.py
+          echo "platform"
+          test -f ~/.tipi/0b44dab/0b44dab/platform/LICENSE
 
 
 
@@ -136,30 +136,30 @@ jobs:
           echo "Script source : ${script_source}"
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           # Test install succeeeded 
-          echo 1
+          echo "verif tipi"
           test -f /usr/local/bin/tipi
-          echo 2
+          echo "clang"
           test -f ~/.tipi/0b44dab/clang/bin/clang
-          echo 3
+          echo "cmake"
           test -f ~/.tipi/0b44dab/cmake/bin/cmake
-          echo 4
+          echo "emsdk"
           test -f ~/.tipi/0b44dab/emsdk/emsdk
-          echo 5
+          echo "envi"
           test -f ~/.tipi/0b44dab/environments/xcode.cmake
-          echo 6
+          echo "go"
           test -f ~/.tipi/0b44dab/go/bin/go
-          echo 7
+          echo "jdk"
           test -f ~/.tipi/0b44dab/jdk/bin/jar
-          echo 8
+          echo "node"
           test -f ~/.tipi/0b44dab/nodejs/bin/node
-          echo 9
+          echo "openapi gen"
           test -f ~/.tipi/0b44dab/openapi/openapi-generator-cli-5.1.1.jar
-          echo 10
+          echo "open api cli"
           test -f ~/.tipi/0b44dab/openapi-generator-script/openapi-generator-cli
-          echo 12
+          echo "python"   
           test -f ~/.tipi/0b44dab/python/bin/python
-          echo 13
-          test -e ~/.tipi/0b44dab/file-sync/pysearpc/client.py
-          echo 11
-          test -e ~/.tipi/0b44dab/0b44dab/platform/docs/README.rst
+          echo "file_sync"
+          test -f ~/.tipi/0b44dab/file-sync/pysearpc/client.py
+          echo "platform"
+          test -f ~/.tipi/0b44dab/0b44dab/platform/LICENSE
 
