@@ -55,7 +55,6 @@ if [ $? -eq 0 ]; then
     else 
         abort "Error while installing the dependencies"
     fi
-    rm -r /tmp/$RANDOM_DIRECTORY
 else
     abort "Installation failed, please contact us on https://tipi.build : We are happy to help."
 fi
