@@ -44,7 +44,7 @@ jobs:
           echo 10
           test -f ~/.tipi/0b44dab/openapi-generator-script/openapi-generator-cli
           echo 11
-          test -f ~/.tipi/0b44dab/plateform/jenkins.py
+          test -f ~/.tipi/0b44dab/platform/cmake/projects/Poco/hunter.cmake
           echo 12
           test -f ~/.tipi/0b44dab/python/bin/python
           echo 13
@@ -89,7 +89,7 @@ jobs:
           echo 10
           test -f ~/.tipi/0b44dab/openapi-generator-script/openapi-generator-cli
           echo 11
-          test -f ~/.tipi/0b44dab/plateform/jenkins.py
+          test -f ~/.tipi/0b44dab/0b44dab/platform/cmake/projects/Poco/hunter.cmake
           echo 12
           test -f ~/.tipi/0b44dab/python/bin/python
           echo 13
@@ -137,7 +137,8 @@ jobs:
           echo 12
           if (!(Test-Path "C:\\.tipi\\0b44dab\\perl\\README.txt" -PathType leaf)) { exit 1; }
           echo 13
-          if (!(Test-Path "C:\\.tipi\\0b44dab\\platform\\jenkins.py" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\platform\\cmake\\projects\\Poco\\hunter.cmake" -PathType leaf)) { exit 1; }
+          platform/cmake/projects/Poco/hunter.cmake
           echo 14
           if (!(Test-Path "C:\\.tipi\\0b44dab\\python\\python.exe" -PathType leaf)) { exit 1; }
           echo 15
@@ -185,7 +186,7 @@ jobs:
           echo 10
           test -f ~/.tipi/0b44dab/openapi-generator-script/openapi-generator-cli
           echo 11
-          test -f ~/.tipi/0b44dab/plateform/jenkins.py
+          test -f ~/.tipi/0b44dab/platform/cmake/projects/Poco/hunter.cmake
           echo 12
           test -f ~/.tipi/0b44dab/python/bin/python
           echo 13
