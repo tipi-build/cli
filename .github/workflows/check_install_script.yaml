@@ -78,9 +78,9 @@ jobs:
           echo 12   
           test -f ~/.tipi/0b44dab/python/bin/python
           echo 13
-          test -f ~/.tipi/0b44dab/file-sync/pysearpc/client.py
+          test -c ~/.tipi/0b44dab/file-sync/pysearpc/client.py
           echo 11
-          test -f ~/.tipi/0b44dab/0b44dab/platform/LICENSE
+          test -c ~/.tipi/0b44dab/0b44dab/platform/LICENSE
 
 
 
@@ -159,7 +159,7 @@ jobs:
           echo 12
           test -f ~/.tipi/0b44dab/python/bin/python
           echo 13
-          test -f ~/.tipi/0b44dab/file-sync/pysearpc/client.py
+          test -c ~/.tipi/0b44dab/file-sync/pysearpc/client.py
           echo 11
-          test -f ~/.tipi/0b44dab/0b44dab/platform/docs/README.rst
+          test -c ~/.tipi/0b44dab/0b44dab/platform/docs/README.rst
 
