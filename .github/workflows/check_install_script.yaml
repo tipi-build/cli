@@ -24,8 +24,20 @@ jobs:
 
           # Test install succeeeded 
           test -f /usr/local/bin/tipi
-          test -f ~/.tipi/0b44dab/downloads/nodejs.zip
-          test -f /tmp/install_tipi/build/wasm-cxx17/bin/installdeps.js
+          test -f ~/.tipi/0b44dab/clang/bin/clang
+          test -f ~/.tipi/0b44dab/cmake/bin/cmake
+          test -f ~/.tipi/0b44dab/emsdk/emsdk
+          test -f ~/.tipi/0b44dab/environments/xcode.cmake
+          test -f ~/.tipi/0b44dab/go/bin/go
+          test -f ~/.tipi/0b44dab/jdk/Contents/Home/bin/jar
+          test -f ~/.tipi/0b44dab/nodejs/bin/node
+          test -f ~/.tipi/0b44dab/openapi/openapi-generator-cli-5.1.1.jar
+          test -f ~/.tipi/0b44dab/openapi-generator-script/openapi-generator-cli
+          test -f ~/.tipi/0b44dab/plateform/jenkins.py
+          test -f ~/.tipi/0b44dab/python/bin/python
+          test -f ~/.tipi/0b44dab/file-sync/pysearpc/client.py
+
+
           
 
   install-linux:
@@ -44,8 +56,21 @@ jobs:
           
           # Test install succeeeded 
           test -f /usr/local/bin/tipi
-          test -f ~/.tipi/0b44dab/downloads/nodejs.zip
-          test -f /tmp/install_tipi/build/wasm-cxx17/bin/installdeps.js
+          test -f ~/.tipi/0b44dab/clang/bin/clang
+          test -f ~/.tipi/0b44dab/cmake/bin/cmake
+          test -f ~/.tipi/0b44dab/emsdk/emsdk
+          test -f ~/.tipi/0b44dab/environments/xcode.cmake
+          test -f ~/.tipi/0b44dab/go/bin/go
+          test -f ~/.tipi/0b44dab/jdk/bin/jar
+          test -f ~/.tipi/0b44dab/nodejs/bin/node
+          test -f ~/.tipi/0b44dab/openapi/openapi-generator-cli-5.1.1.jar
+          test -f ~/.tipi/0b44dab/openapi-generator-script/openapi-generator-cli
+          test -f ~/.tipi/0b44dab/plateform/jenkins.py
+          test -f ~/.tipi/0b44dab/python/bin/python
+          test -f ~/.tipi/0b44dab/file-sync/pysearpc/client.py
+
+
+
 
   install-windows-powershell:
     name: install-windows-powershell
@@ -62,7 +87,20 @@ jobs:
           if (!($?)) {exit 1}
           # Test install succeeeded 
           if (!(Test-Path "C:\\ProgramData\\tipi\\tipi.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\0b44dab\\downloads\\nodejs.zip" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\clang\\bin\\clang.exe" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\cmake\\bin\\cmake.exe" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\emsdk\\emsdk.bat" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\environments\\xcode.cmake" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\go\\bin\\go.exe" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\jdk\\bin\\jar.exe" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\nodejs\\npm.bat" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\openapi\\openapi-generator-cli-5.1.1.jar" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\openapi-generator-script\\openapi-generator-cli.bat" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\openssh\\ssh.exe" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\perl\\README.txt" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\platform\\jenkins.py" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\python\\python.exe" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\0b44dab\\file-sync\\pysearpc\\client.py" -PathType leaf)) { exit 1; }
         shell: powershell 
 
   install-archlinux:
@@ -87,5 +125,16 @@ jobs:
           
           # Test install succeeeded 
           test -f /usr/local/bin/tipi
-          test -f ~/.tipi/0b44dab/downloads/nodejs.zip
-          test -f /tmp/install_tipi/build/wasm-cxx17/bin/installdeps.js
+          test -f ~/.tipi/0b44dab/clang/bin/clang
+          test -f ~/.tipi/0b44dab/cmake/bin/cmake
+          test -f ~/.tipi/0b44dab/emsdk/emsdk
+          test -f ~/.tipi/0b44dab/environments/xcode.cmake
+          test -f ~/.tipi/0b44dab/go/bin/go
+          test -f ~/.tipi/0b44dab/jdk/bin/jar
+          test -f ~/.tipi/0b44dab/nodejs/bin/node
+          test -f ~/.tipi/0b44dab/openapi/openapi-generator-cli-5.1.1.jar
+          test -f ~/.tipi/0b44dab/openapi-generator-script/openapi-generator-cli
+          test -f ~/.tipi/0b44dab/plateform/jenkins.py
+          test -f ~/.tipi/0b44dab/python/bin/python
+          test -f ~/.tipi/0b44dab/file-sync/pysearpc/client.py
+
