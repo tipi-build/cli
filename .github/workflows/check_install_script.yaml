@@ -37,9 +37,6 @@ jobs:
           test -f ~/.tipi/0b44dab/python/bin/python
           test -f ~/.tipi/0b44dab/file-sync/pysearpc/client.py
 
-
-          
-
   install-linux:
     name: install-linux
     runs-on: ubuntu-latest
@@ -57,31 +54,17 @@ jobs:
           # Test install succeeeded 
           echo "verif tipi"
           test -f /usr/local/bin/tipi
-          echo "clang"
           test -f ~/.tipi/0b44dab/clang/bin/clang
-          echo "cmake"
           test -f ~/.tipi/0b44dab/cmake/bin/cmake
-          echo "emsdk"
           test -f ~/.tipi/0b44dab/emsdk/emsdk
-          echo "envi"
           test -f ~/.tipi/0b44dab/environments/xcode.cmake
-          echo "go"
           test -f ~/.tipi/0b44dab/go/bin/go
-          echo "jdk"
           test -f ~/.tipi/0b44dab/jdk/bin/jar
-          echo "node"
           test -f ~/.tipi/0b44dab/nodejs/bin/node
-          echo "openapi gen"
           test -f ~/.tipi/0b44dab/openapi/openapi-generator-cli-5.1.1.jar
-          echo "open api cli"
           test -f ~/.tipi/0b44dab/openapi-generator-script/openapi-generator-cli
-          echo "file_sync"
           test -f ~/.tipi/0b44dab/file-sync/pysearpc/client.py
-          echo "platform"
           test -f ~/.tipi/0b44dab/platform/cmake/projects/Poco/hunter.cmake
-
-
-
 
   install-windows-powershell:
     name: install-windows-powershell
@@ -136,26 +119,15 @@ jobs:
           # Test install succeeeded 
           echo "verif tipi"
           test -f /usr/local/bin/tipi
-          echo "clang"
           test -f ~/.tipi/0b44dab/clang/bin/clang
-          echo "cmake"
           test -f ~/.tipi/0b44dab/cmake/bin/cmake
-          echo "emsdk"
           test -f ~/.tipi/0b44dab/emsdk/emsdk
-          echo "envi"
           test -f ~/.tipi/0b44dab/environments/xcode.cmake
-          echo "go"
           test -f ~/.tipi/0b44dab/go/bin/go
-          echo "jdk"
           test -f ~/.tipi/0b44dab/jdk/bin/jar
-          echo "node"
           test -f ~/.tipi/0b44dab/nodejs/bin/node
-          echo "openapi gen"
           test -f ~/.tipi/0b44dab/openapi/openapi-generator-cli-5.1.1.jar
-          echo "open api cli"
           test -f ~/.tipi/0b44dab/openapi-generator-script/openapi-generator-cli
-          echo "file_sync"
           test -f ~/.tipi/0b44dab/file-sync/pysearpc/client.py
-          echo "platform"
           test -f ~/.tipi/0b44dab/platform/cmake/projects/Poco/hunter.cmake
 
