@@ -26,10 +26,11 @@ should_install_unzip() {
 }
 
 if [ -f "/etc/arch-release" ]; then
-  pacman -Sy --noconfirm python
-  pacman -Sy --noconfirm unzip
-  pacman -Sy --noconfirm base-devel
-  pacman -Sy --noconfirm openssh
+  pacman -Sy 
+  pacman -S --needed --noconfirm python
+  pacman -S --needed --noconfirm unzip
+  pacman -S --needed --noconfirm base-devel
+  pacman -S --needed --noconfirm openssh
 fi
 
 
