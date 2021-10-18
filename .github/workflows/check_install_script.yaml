@@ -24,18 +24,18 @@ jobs:
 
           # Test install succeeeded 
           test -f /usr/local/bin/tipi
-          test -f ~/.tipi/clang/bc504cefc97234ddace75a90b20337205fe76ad7/bin/clang
-          test -f ~/.tipi/cmake/c7aeea101063fe54911519fae5427096ed557398/bin/cmake
-          test -f ~/.tipi/emsdk/f693e7f511d2d320d20a1376812321763027728e/emsdk
-          test -f ~/.tipi/environments/690be18d90ea5d264c93cea5a372dcaab64fd33d/xcode.cmake
-          test -f ~/.tipi/go/1e2561d8307eb513a23eb7c9a8b769b800db27af/bin/go
-          test -f ~/.tipi/jdk/399c189d3145c6f3d7ab8e829bfd0d61eb30a3c5/Contents/Home/bin/jar
-          test -f ~/.tipi/nodejs/71c4c7ceddafd46143832abc136c592192c70713/bin/node
-          test -f ~/.tipi/openapi/ec7cbaed034d7aaeb2a0f22619a8927c08a74894/openapi-generator-cli-5.1.1.jar
-          test -f ~/.tipi/openapi-generator-script/4fc850d4a145be49a9aa0428dcbc5c5c82f19f93/openapi-generator-cli
-          test -f ~/.tipi/platform/2a344bab73de81f19feca4fa3d724e1d9607d55e/cmake/projects/Poco/hunter.cmake
-          test -f ~/.tipi/python/54b633011cd24867662c9dbaeda596bb3261a09c/bin/python
-          test -f ~/.tipi/file-sync/d20a8c574b546801f0964780e612adb69e1f84d4/pysearpc/client.py
+          test -f ~/.tipi/clang/*/bin/clang
+          test -f ~/.tipi/cmake/*/bin/cmake
+          test -f ~/.tipi/emsdk/*/emsdk
+          test -f ~/.tipi/environments/*/xcode.cmake
+          test -f ~/.tipi/go/*/bin/go
+          test -f ~/.tipi/jdk/*/Contents/Home/bin/jar
+          test -f ~/.tipi/nodejs/*/bin/node
+          test -f ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+          test -f ~/.tipi/openapi-generator-script/*/openapi-generator-cli
+          test -f ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+          test -f ~/.tipi/python/*/bin/python
+          test -f ~/.tipi/file-sync/*/pysearpc/client.py
 
   install-linux:
     name: install-linux
@@ -54,17 +54,17 @@ jobs:
           # Test install succeeeded 
           echo "verif tipi"
           test -f /usr/local/bin/tipi
-          test -f ~/.tipi/clang/4d913c12c6ea26b34ad250f7860cabf4320783f2/bin/clang
-          test -f ~/.tipi/cmake/7e4b5225c96db5a135c034b4220925c87b4f9a5f/bin/cmake
-          test -f ~/.tipi/emsdk/f693e7f511d2d320d20a1376812321763027728e/emsdk
-          test -f ~/.tipi/environments/690be18d90ea5d264c93cea5a372dcaab64fd33d/xcode.cmake
-          test -f ~/.tipi/go/9fc8f520528b3f353b1feeb1279f241d2a5c3677/bin/go
-          test -f ~/.tipi/jdk/1946904e4d5ad74f3193d07d7c8a98136dbaff74/bin/jar
-          test -f ~/.tipi/nodejs/4472af28a2bd943fe64f4dfb9d44c5ebde152ec0/bin/node
-          test -f ~/.tipi/openapi/ec7cbaed034d7aaeb2a0f22619a8927c08a74894/openapi-generator-cli-5.1.1.jar
-          test -f ~/.tipi/openapi-generator-script/4fc850d4a145be49a9aa0428dcbc5c5c82f19f93/openapi-generator-cli
-          test -f ~/.tipi/file-sync/9b0a5c87058b68cd466a3cc8e8cfd7d9cbd89df2/pysearpc/client.py
-          test -f ~/.tipi/platform/2a344bab73de81f19feca4fa3d724e1d9607d55e/cmake/projects/Poco/hunter.cmake
+          test -f ~/.tipi/clang/*/bin/clang
+          test -f ~/.tipi/cmake/*/bin/cmake
+          test -f ~/.tipi/emsdk/*/emsdk
+          test -f ~/.tipi/environments/*/xcode.cmake
+          test -f ~/.tipi/go/*/bin/go
+          test -f ~/.tipi/jdk/*/bin/jar
+          test -f ~/.tipi/nodejs/*/bin/node
+          test -f ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+          test -f ~/.tipi/openapi-generator-script/*/openapi-generator-cli
+          test -f ~/.tipi/file-sync/*/pysearpc/client.py
+          test -f ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
 
   install-windows-powershell:
     name: install-windows-powershell
@@ -119,15 +119,15 @@ jobs:
           # Test install succeeeded 
           echo "verif tipi"
           test -f /usr/local/bin/tipi
-          test -f ~/.tipi/clang/4d913c12c6ea26b34ad250f7860cabf4320783f2/bin/clang
-          test -f ~/.tipi/cmake/7e4b5225c96db5a135c034b4220925c87b4f9a5f/bin/cmake
-          test -f ~/.tipi/emsdk/f693e7f511d2d320d20a1376812321763027728e/emsdk
-          test -f ~/.tipi/environments/690be18d90ea5d264c93cea5a372dcaab64fd33d/xcode.cmake
-          test -f ~/.tipi/go/9fc8f520528b3f353b1feeb1279f241d2a5c3677/bin/go
-          test -f ~/.tipi/jdk/1946904e4d5ad74f3193d07d7c8a98136dbaff74/bin/jar
-          test -f ~/.tipi/nodejs/4472af28a2bd943fe64f4dfb9d44c5ebde152ec0/bin/node
-          test -f ~/.tipi/openapi/ec7cbaed034d7aaeb2a0f22619a8927c08a74894/openapi-generator-cli-5.1.1.jar
-          test -f ~/.tipi/openapi-generator-script/4fc850d4a145be49a9aa0428dcbc5c5c82f19f93/openapi-generator-cli
-          test -f ~/.tipi/file-sync/9b0a5c87058b68cd466a3cc8e8cfd7d9cbd89df2/pysearpc/client.py
-          test -f ~/.tipi/platform/2a344bab73de81f19feca4fa3d724e1d9607d55e/cmake/projects/Poco/hunter.cmake
+          test -f ~/.tipi/clang/*/bin/clang
+          test -f ~/.tipi/cmake/*/bin/cmake
+          test -f ~/.tipi/emsdk/*/emsdk
+          test -f ~/.tipi/environments/*/xcode.cmake
+          test -f ~/.tipi/go/*/bin/go
+          test -f ~/.tipi/jdk/*/bin/jar
+          test -f ~/.tipi/nodejs/*/bin/node
+          test -f ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+          test -f ~/.tipi/openapi-generator-script/*/openapi-generator-cli
+          test -f ~/.tipi/file-sync/*/pysearpc/client.py
+          test -f ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
 
