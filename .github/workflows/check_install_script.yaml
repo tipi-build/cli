@@ -9,7 +9,7 @@ on:
   
 
 jobs:
-  install-macos:
+  install-macos-full:
     name: install-macos
     runs-on: macos-latest
     steps:
@@ -20,6 +20,7 @@ jobs:
           else 
             script_source=${GITHUB_REF#refs/heads/}
           fi
+          export TIPI_DISTRO_MODE=all
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
 
           # Test install succeeeded 
@@ -37,7 +38,25 @@ jobs:
           test -f ~/.tipi/python/*/bin/python
           test -f ~/.tipi/file-sync/*/pysearpc/client.py
 
-  install-linux:
+  install-macos-light:
+    name: install-macos
+    runs-on: macos-latest
+    steps:
+      - name: test_install_on_macos
+        run: |
+          if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
+            script_source=${GITHUB_HEAD_REF}
+          else 
+            script_source=${GITHUB_REF#refs/heads/}
+          fi
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+
+          # Test install succeeeded 
+          test -f /usr/local/bin/tipi
+          test -f ~/.tipi/environments/*/xcode.cmake
+          test -f ~/.tipi/file-sync/*/pysearpc/client.py
+
+  install-linux-full:
     name: install-linux
     runs-on: ubuntu-latest
     steps:
@@ -49,6 +68,7 @@ jobs:
             script_source=${GITHUB_REF#refs/heads/}
           fi
           echo "Script source : ${script_source}"
+          export TIPI_DISTRO_MODE=all
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           
           # Test install succeeeded 
@@ -66,7 +86,27 @@ jobs:
           test -f ~/.tipi/file-sync/*/pysearpc/client.py
           test -f ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
 
-  install-windows-powershell:
+  install-linux-light:
+    name: install-linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: test_install_on_linux
+        run: |
+          if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
+            script_source=${GITHUB_HEAD_REF}
+          else 
+            script_source=${GITHUB_REF#refs/heads/}
+          fi
+          echo "Script source : ${script_source}"
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+          
+          # Test install succeeeded 
+          echo "verif tipi"
+          test -f /usr/local/bin/tipi
+          test -f ~/.tipi/environments/*/xcode.cmake
+          test -f ~/.tipi/file-sync/*/pysearpc/client.py
+
+  install-windows-powershell-full:
     name: install-windows-powershell
     runs-on: windows-latest
     steps:
@@ -79,6 +119,7 @@ jobs:
           }
           . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex 
           if (!($?)) {exit 1}
+          $Env:TIPI_DISTRO_MODE=all
           # Test install succeeeded 
           if (!(Test-Path "C:\\ProgramData\\tipi\\tipi.exe" -PathType leaf)) { exit 1; }
           if (!(Test-Path "C:\\.tipi\\clang\\*\\bin\\clang.exe" -PathType leaf)) { exit 1; }
@@ -95,9 +136,64 @@ jobs:
           if (!(Test-Path "C:\\.tipi\\platform\\*\\cmake\\projects\\Poco\\hunter.cmake" -PathType leaf)) { exit 1; }
           if (!(Test-Path "C:\\.tipi\\python\\*\\python.exe" -PathType leaf)) { exit 1; }
           if (!(Test-Path "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py" -PathType leaf)) { exit 1; }
-        shell: powershell 
+        shell: powershell
 
-  install-archlinux:
+  install-windows-powershell-light:
+    name: install-windows-powershell
+    runs-on: windows-latest
+    steps:
+      - name: test_install_on_windows_powershell
+        run: |
+          if ($env:GITHUB_EVENT_NAME -eq "pull_request") {
+            $script_source = $env:GITHUB_HEAD_REF.replace('refs/heads/', '')
+          } else {
+            $script_source = $env:GITHUB_REF.replace('refs/heads/', '')
+          }
+          . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex 
+          if (!($?)) {exit 1}
+          # Test install succeeeded 
+          if (!(Test-Path "C:\\ProgramData\\tipi\\tipi.exe" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\environments\\*\\xcode.cmake" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\openssh\\*\\ssh.exe" -PathType leaf)) { exit 1; }
+          if (!(Test-Path "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py" -PathType leaf)) { exit 1; }
+        shell: powershell  
+
+  install-archlinux-full:
+    name: install-archlinux
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME
+      GITHUB_HEAD_REF: $GITHUB_HEAD_REF
+      GITHUB_REF: $GITHUB_REF
+    container: 
+      image: archlinux
+    steps:
+      - name: test_install_on_linux
+        run: |
+          if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
+            script_source=${GITHUB_HEAD_REF}
+          else 
+            script_source=${GITHUB_REF#refs/heads/}
+          fi
+          echo "Script source : ${script_source}"
+          export TIPI_DISTRO_MODE=all
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+          # Test install succeeeded 
+          echo "verif tipi"
+          test -f /usr/local/bin/tipi
+          test -f ~/.tipi/clang/*/bin/clang
+          test -f ~/.tipi/cmake/*/bin/cmake
+          test -f ~/.tipi/emsdk/*/emsdk
+          test -f ~/.tipi/environments/*/xcode.cmake
+          test -f ~/.tipi/go/*/bin/go
+          test -f ~/.tipi/jdk/*/bin/jar
+          test -f ~/.tipi/nodejs/*/bin/node
+          test -f ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+          test -f ~/.tipi/openapi-generator-script/*/openapi-generator-cli
+          test -f ~/.tipi/file-sync/*/pysearpc/client.py
+          test -f ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+
+  install-archlinux-light:
     name: install-archlinux
     runs-on: ubuntu-latest
     env:
@@ -119,15 +215,6 @@ jobs:
           # Test install succeeeded 
           echo "verif tipi"
           test -f /usr/local/bin/tipi
-          test -f ~/.tipi/clang/*/bin/clang
-          test -f ~/.tipi/cmake/*/bin/cmake
-          test -f ~/.tipi/emsdk/*/emsdk
           test -f ~/.tipi/environments/*/xcode.cmake
-          test -f ~/.tipi/go/*/bin/go
-          test -f ~/.tipi/jdk/*/bin/jar
-          test -f ~/.tipi/nodejs/*/bin/node
-          test -f ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
-          test -f ~/.tipi/openapi-generator-script/*/openapi-generator-cli
           test -f ~/.tipi/file-sync/*/pysearpc/client.py
-          test -f ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
 
