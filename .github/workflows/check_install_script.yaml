@@ -10,7 +10,7 @@ on:
 
 jobs:
   install-macos-full:
-    name: install-macos
+    name: install-macos-full
     runs-on: macos-latest
     steps:
       - name: test_install_on_macos
@@ -39,7 +39,7 @@ jobs:
           test -f ~/.tipi/file-sync/*/pysearpc/client.py
 
   install-macos-light:
-    name: install-macos
+    name: install-macos-light
     runs-on: macos-latest
     steps:
       - name: test_install_on_macos
@@ -57,7 +57,7 @@ jobs:
           test -f ~/.tipi/file-sync/*/pysearpc/client.py
 
   install-linux-full:
-    name: install-linux
+    name: install-linux-full
     runs-on: ubuntu-latest
     steps:
       - name: test_install_on_linux
@@ -87,7 +87,7 @@ jobs:
           test -f ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
 
   install-linux-light:
-    name: install-linux
+    name: install-linux-light
     runs-on: ubuntu-latest
     steps:
       - name: test_install_on_linux
@@ -107,7 +107,7 @@ jobs:
           test -f ~/.tipi/file-sync/*/pysearpc/client.py
 
   install-windows-powershell-full:
-    name: install-windows-powershell
+    name: install-windows-powershell-full
     runs-on: windows-latest
     steps:
       - name: test_install_on_windows_powershell
@@ -139,7 +139,7 @@ jobs:
         shell: powershell
 
   install-windows-powershell-light:
-    name: install-windows-powershell
+    name: install-windows-powershell-light
     runs-on: windows-latest
     steps:
       - name: test_install_on_windows_powershell
@@ -159,7 +159,7 @@ jobs:
         shell: powershell  
 
   install-archlinux-full:
-    name: install-archlinux
+    name: install-archlinux-full
     runs-on: ubuntu-latest
     env:
       GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME
@@ -194,7 +194,7 @@ jobs:
           test -f ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
 
   install-archlinux-light:
-    name: install-archlinux
+    name: install-archlinux-light
     runs-on: ubuntu-latest
     env:
       GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME
