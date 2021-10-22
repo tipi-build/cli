@@ -73,7 +73,7 @@ jobs:
               ~/.tipi/cmake/*/bin/cmake
               ~/.tipi/emsdk/*/emsdk
               ~/.tipi/go/*/bin/go
-              ~/.tipi/jdk/*/Contents/Home/bin/jar)
+              ~/.tipi/jdk/*/bin/jar)
 
           for element in "${pathsToTest_negative[@]}"
           do
@@ -104,7 +104,7 @@ jobs:
               ~/.tipi/emsdk/*/emsdk
               ~/.tipi/environments/*/xcode.cmake
               ~/.tipi/go/*/bin/go
-              ~/.tipi/jdk/*/Contents/Home/bin/jar
+              ~/.tipi/jdk/*/bin/jar
               ~/.tipi/nodejs/*/bin/node
               ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
               ~/.tipi/openapi-generator-script/*/openapi-generator-cli 
@@ -279,7 +279,7 @@ jobs:
               ~/.tipi/emsdk/*/emsdk
               ~/.tipi/environments/*/xcode.cmake
               ~/.tipi/go/*/bin/go
-              ~/.tipi/jdk/*/Contents/Home/bin/jar
+              ~/.tipi/jdk/*/bin/jar
               ~/.tipi/nodejs/*/bin/node
               ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
               ~/.tipi/openapi-generator-script/*/openapi-generator-cli 
@@ -327,7 +327,7 @@ jobs:
               ~/.tipi/cmake/*/bin/cmake
               ~/.tipi/emsdk/*/emsdk
               ~/.tipi/go/*/bin/go
-              ~/.tipi/jdk/*/Contents/Home/bin/jar)
+              ~/.tipi/jdk/*/bin/jar)
 
           for element in "${pathsToTest_negative[@]}"
           do
