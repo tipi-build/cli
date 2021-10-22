@@ -1,5 +1,18 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.19 - codename **keen kudos**
+
+### Features
+  - tipi installs a light distro by default now
+  - incremental updates to the distro installation
+  - remote environment deploy time improved
+  - `tipi help` displays the current distro revision
+
+### Bugfix
+  - Isolated configuration of tipi shipped SSH client from the system configuration
+  - Fixed `tipi.ignore` feature on windows host
+  - Fixed forwarding of all build arguments to the remote environment
+
 ## v0.0.18 - codename **jolly jumper**
 
 ### Features

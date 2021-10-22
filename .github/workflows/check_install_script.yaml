@@ -9,8 +9,43 @@ on:
   
 
 jobs:
-  install-macos:
-    name: install-macos
+  install-macos-full:
+    name: install-macos-full
+    runs-on: macos-latest
+    steps:
+      - name: test_install_on_macos
+        run: |
+          if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
+            script_source=${GITHUB_HEAD_REF}
+          else 
+            script_source=${GITHUB_REF#refs/heads/}
+          fi
+          export TIPI_DISTRO_MODE=all
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+
+          # Test install succeeeded 
+          pathsToTest=(/usr/local/bin/tipi 
+              ~/.tipi/clang/*/bin/clang
+              ~/.tipi/cmake/*/bin/cmake
+              ~/.tipi/emsdk/*/emsdk
+              ~/.tipi/environments/*/xcode.cmake
+              ~/.tipi/go/*/bin/go
+              ~/.tipi/jdk/*/Contents/Home/bin/jar
+              ~/.tipi/nodejs/*/bin/node
+              ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+              ~/.tipi/openapi-generator-script/*/openapi-generator-cli 
+              ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+              ~/.tipi/python/*/bin/python
+              ~/.tipi/file-sync/*/pysearpc/client.py)
+          
+          for element in "${pathsToTest[@]}"
+          do
+              echo "[TESTING] $element should be on disk."
+              test -f $element
+          done
+
+  install-macos-light:
+    name: install-macos-light
     runs-on: macos-latest
     steps:
       - name: test_install_on_macos
@@ -23,13 +58,67 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
 
           # Test install succeeeded 
-          test -f /usr/local/bin/tipi
-          test -f ~/.tipi/0b44dab/downloads/nodejs.zip
-          test -f /tmp/install_tipi/build/wasm-cxx17/bin/installdeps.js
-          
+          pathsToTest=(/usr/local/bin/tipi 
+              ~/.tipi/environments/*/xcode.cmake
+              ~/.tipi/python/*/bin/python
+              ~/.tipi/file-sync/*/pysearpc/client.py)
 
-  install-linux:
-    name: install-linux
+          for element in "${pathsToTest[@]}"
+          do
+              echo "[TESTING] $element should be on disk."
+              test -f $element
+          done
+    
+          pathsToTest_negative=(~/.tipi/clang/*/bin/clang
+              ~/.tipi/cmake/*/bin/cmake
+              ~/.tipi/emsdk/*/emsdk
+              ~/.tipi/go/*/bin/go
+              ~/.tipi/jdk/*/bin/jar)
+
+          for element in "${pathsToTest_negative[@]}"
+          do
+              echo "[TESTING] $element should NOT be on disk."
+              test ! -f $element
+          done
+
+  install-linux-full:
+    name: install-linux-full
+    runs-on: ubuntu-latest
+    steps:
+      - name: test_install_on_linux
+        run: |
+          if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
+            script_source=${GITHUB_HEAD_REF}
+          else 
+            script_source=${GITHUB_REF#refs/heads/}
+          fi
+          echo "Script source : ${script_source}"
+          export TIPI_DISTRO_MODE=all
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+          
+          # Test install succeeeded 
+
+          pathsToTest=(/usr/local/bin/tipi 
+              ~/.tipi/clang/*/bin/clang
+              ~/.tipi/cmake/*/bin/cmake
+              ~/.tipi/emsdk/*/emsdk
+              ~/.tipi/environments/*/xcode.cmake
+              ~/.tipi/go/*/bin/go
+              ~/.tipi/jdk/*/bin/jar
+              ~/.tipi/nodejs/*/bin/node
+              ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+              ~/.tipi/openapi-generator-script/*/openapi-generator-cli 
+              ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+              ~/.tipi/file-sync/*/pysearpc/client.py)
+          
+          for element in "${pathsToTest[@]}"
+          do
+              echo "[TESTING] $element should be on disk."
+              test -f $element
+          done
+
+  install-linux-light:
+    name: install-linux-light
     runs-on: ubuntu-latest
     steps:
       - name: test_install_on_linux
@@ -43,12 +132,76 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           
           # Test install succeeeded 
-          test -f /usr/local/bin/tipi
-          test -f ~/.tipi/0b44dab/downloads/nodejs.zip
-          test -f /tmp/install_tipi/build/wasm-cxx17/bin/installdeps.js
+          pathsToTest=(/usr/local/bin/tipi 
+              ~/.tipi/environments/*/xcode.cmake
+              ~/.tipi/file-sync/*/pysearpc/client.py)
+          
+          for element in "${pathsToTest[@]}"
+          do
+              echo "[TESTING] $element should be on disk."
+              test -f $element
+          done
 
-  install-windows-powershell:
-    name: install-windows-powershell
+          pathsToTest_negative=(~/.tipi/clang/*/bin/clang
+              ~/.tipi/cmake/*/bin/cmake
+              ~/.tipi/emsdk/*/emsdk
+              ~/.tipi/go/*/bin/go
+              ~/.tipi/jdk/*/Contents/Home/bin/jar)
+
+          for element in "${pathsToTest_negative[@]}"
+          do
+              echo "[TESTING] $element should NOT be on disk."
+              test ! -f $element
+          done
+
+  install-windows-powershell-full:
+    name: install-windows-powershell-full
+    runs-on: windows-latest
+    steps:
+      - name: test_install_on_windows_powershell
+        run: |
+          if ($env:GITHUB_EVENT_NAME -eq "pull_request") {
+            $script_source = $env:GITHUB_HEAD_REF.replace('refs/heads/', '')
+          } else {
+            $script_source = $env:GITHUB_REF.replace('refs/heads/', '')
+          }
+          $Env:TIPI_DISTRO_MODE="all"
+          . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex 
+          if (!($?)) {exit 1}
+          # Test install succeeeded 
+          $pathsToTest = @(
+            "C:\\ProgramData\\tipi\\tipi.exe"  
+            "C:\\.tipi\\clang\\*\\bin\\clang.exe"  
+            "C:\\.tipi\\cmake\\*\\bin\\cmake.exe"  
+            "C:\\.tipi\\emsdk\\*\\emsdk.bat"  
+            "C:\\.tipi\\environments\\*\\xcode.cmake"  
+            "C:\\.tipi\\go\\*\\bin\\go.exe"  
+            "C:\\.tipi\\jdk\\*\\bin\\jar.exe"  
+            "C:\\.tipi\\nodejs\\*\\node.exe"  
+            "C:\\.tipi\\openapi\\*\\openapi-generator-cli-5.1.1.jar"  
+            "C:\\.tipi\\openapi-generator-script\\*\\openapi-generator-cli.bat"  
+            "C:\\.tipi\\openssh\\*\\ssh.exe"  
+            "C:\\.tipi\\perl\\*\\README.txt"  
+            "C:\\.tipi\\platform\\*\\cmake\\projects\\Poco\\hunter.cmake"  
+            "C:\\.tipi\\python\\*\\python.exe"  
+            "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py"  
+          )
+
+          $success = $true
+
+          foreach ( $testPath in $pathsToTest )
+          {
+                if (!(Test-Path $testPath -PathType leaf)) { 
+                    echo "[FAIL] Expected <$testPath> was not found in installation."
+                    $success = $false; 
+                }
+          }
+
+          if(!$success) { exit 1; }
+        shell: powershell
+
+  install-windows-powershell-light:
+    name: install-windows-powershell-light
     runs-on: windows-latest
     steps:
       - name: test_install_on_windows_powershell
@@ -61,12 +214,86 @@ jobs:
           . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex 
           if (!($?)) {exit 1}
           # Test install succeeeded 
-          if (!(Test-Path "C:\\ProgramData\\tipi\\tipi.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\0b44dab\\downloads\\nodejs.zip" -PathType leaf)) { exit 1; }
-        shell: powershell 
 
-  install-archlinux:
-    name: install-archlinux
+          $pathsToTest = @(
+            "C:\\ProgramData\\tipi\\tipi.exe"   
+            "C:\\.tipi\\environments\\*\\xcode.cmake" 
+            "C:\\.tipi\\openssh\\*\\ssh.exe"
+            "C:\\.tipi\\python\\*\\python.exe"  
+            "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py"  
+          )
+
+          $success = $true
+
+          foreach ( $testPath in $pathsToTest )
+          {
+                if (!(Test-Path $testPath -PathType leaf)) { 
+                    echo "[FAIL] Expected <$testPath> was not found in installation."
+                    $success = $false; 
+                }
+          }
+
+          # test just a few things in the light install to make sure they are *NOT* present
+          $pathsToTest_negative = @(
+              "C:\\.tipi\\clang\\*\\bin\\clang.exe"  
+              "C:\\.tipi\\cmake\\*\\bin\\cmake.exe"  
+              "C:\\.tipi\\emsdk\\*\\emsdk.bat"              
+              "C:\\.tipi\\go\\*\\bin\\go.exe"  
+              "C:\\.tipi\\jdk\\*\\bin\\jar.exe"              
+          )
+          foreach ( $testPath in $pathsToTest_negative )
+          {
+              if (Test-Path $testPath -PathType leaf) {
+                  echo "[FAIL] Unexpected <$testPath> was found in installation."
+                  $success = $false;
+              }
+          }
+          
+          if(!$success) { exit 1; }
+        shell: powershell  
+
+  install-archlinux-full:
+    name: install-archlinux-full
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME
+      GITHUB_HEAD_REF: $GITHUB_HEAD_REF
+      GITHUB_REF: $GITHUB_REF
+    container: 
+      image: archlinux
+    steps:
+      - name: test_install_on_linux
+        run: |
+          if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
+            script_source=${GITHUB_HEAD_REF}
+          else 
+            script_source=${GITHUB_REF#refs/heads/}
+          fi
+          echo "Script source : ${script_source}"
+          export TIPI_DISTRO_MODE=all
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+          # Test install succeeeded 
+          pathsToTest=(/usr/local/bin/tipi 
+              ~/.tipi/clang/*/bin/clang
+              ~/.tipi/cmake/*/bin/cmake
+              ~/.tipi/emsdk/*/emsdk
+              ~/.tipi/environments/*/xcode.cmake
+              ~/.tipi/go/*/bin/go
+              ~/.tipi/jdk/*/bin/jar
+              ~/.tipi/nodejs/*/bin/node
+              ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+              ~/.tipi/openapi-generator-script/*/openapi-generator-cli 
+              ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+              ~/.tipi/file-sync/*/pysearpc/client.py)
+
+          for element in "${pathsToTest[@]}"
+          do
+              echo "[TESTING] $element should be on disk."
+              test -f $element
+          done
+
+  install-archlinux-light:
+    name: install-archlinux-light
     runs-on: ubuntu-latest
     env:
       GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME
@@ -86,6 +313,25 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           
           # Test install succeeeded 
-          test -f /usr/local/bin/tipi
-          test -f ~/.tipi/0b44dab/downloads/nodejs.zip
-          test -f /tmp/install_tipi/build/wasm-cxx17/bin/installdeps.js
+          pathsToTest=(/usr/local/bin/tipi 
+              ~/.tipi/environments/*/xcode.cmake
+              ~/.tipi/file-sync/*/pysearpc/client.py)
+
+          for element in "${pathsToTest[@]}"
+          do
+              echo "[TESTING] $element should be on disk."
+              test -f $element
+          done
+
+          pathsToTest_negative=(~/.tipi/clang/*/bin/clang
+              ~/.tipi/cmake/*/bin/cmake
+              ~/.tipi/emsdk/*/emsdk
+              ~/.tipi/go/*/bin/go
+              ~/.tipi/jdk/*/bin/jar)
+
+          for element in "${pathsToTest_negative[@]}"
+          do
+              echo "[TESTING] $element should be NOT on disk."
+              test ! -f $element
+          done
+

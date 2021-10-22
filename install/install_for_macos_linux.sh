@@ -1,12 +1,13 @@
 #!/bin/bash
 
 if [ "$(uname)" == "Linux" ]; then
-  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.18/tipi-v0.0.18-linux-x86_64.zip"
+  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.19/tipi-v0.0.19-linux-x86_64.zip"
 fi
 
 if [ "$(uname)" == "Darwin" ]; then
-  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.18/tipi-v0.0.18-macOS.zip"
+  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.19/tipi-v0.0.19-macOS.zip"
 fi
+
 
 INSTALL_FOLDER="/usr/local"
 
@@ -26,10 +27,11 @@ should_install_unzip() {
 }
 
 if [ -f "/etc/arch-release" ]; then
-  pacman -Sy --noconfirm python
-  pacman -Sy --noconfirm unzip
-  pacman -Sy --noconfirm base-devel
-  pacman -Sy --noconfirm openssh
+  pacman -Syu --noconfirm
+  pacman -S --needed --noconfirm python
+  pacman -S --needed --noconfirm unzip
+  pacman -S --needed --noconfirm base-devel
+  pacman -S --needed --noconfirm openssh
 fi
 
 
@@ -46,8 +48,8 @@ sudo unzip ~/tipi.zip -d $INSTALL_FOLDER -x LICENSE && rm ~/tipi.zip
 
 if [ $? -eq 0 ]; then
     info "tipi successfully installed. Installing the dependencies..."
-    mkdir /tmp/install_tipi && echo "#include <iostream> int main(){return 0;}">> /tmp/install_tipi/installdeps.cpp
-    $INSTALL_FOLDER/bin/tipi /tmp/install_tipi
+    sudo chmod +x $INSTALL_FOLDER/bin/tipi
+    $INSTALL_FOLDER/bin/tipi --help
     if [ $? -eq 0 ]; then
         info "tipi and its dependencies have been successfully installed"
     else 
