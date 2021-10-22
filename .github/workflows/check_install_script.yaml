@@ -38,19 +38,11 @@ jobs:
               ~/.tipi/python/*/bin/python
               ~/.tipi/file-sync/*/pysearpc/client.py)
           
-          SUCCESS=1
           for element in "${pathsToTest[@]}"
           do
+              echo "[TESTING] $element should be on disk."
               test -f $element
-              if [ $? -ne 0 ]; then
-                  echo "[FAIL] Expected $element was not found in installation."
-                  SUCCESS=0
-              fi
           done
-
-          if [ ${SUCCESS} -ne 1 ]; then
-              exit 1    
-          fi
 
   install-macos-light:
     name: install-macos-light
@@ -64,23 +56,17 @@ jobs:
             script_source=${GITHUB_REF#refs/heads/}
           fi
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
-      - name: checking_installation
-        continue-on-error: true
-        run: |
+
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
               ~/.tipi/environments/*/xcode.cmake
               ~/.tipi/python/*/bin/python
               ~/.tipi/file-sync/*/pysearpc/client.py)
-          
-          SUCCESS=1
+
           for element in "${pathsToTest[@]}"
           do
+              echo "[TESTING] $element should be on disk."
               test -f $element
-              if [ $? -ne 0 ]; then
-                  echo "[FAIL] Expected $element was not found in installation."
-                  SUCCESS=0
-              fi
           done
     
           pathsToTest_negative=(~/.tipi/clang/*/bin/clang
@@ -91,19 +77,9 @@ jobs:
 
           for element in "${pathsToTest_negative[@]}"
           do
-              test -f $element
-              if [ $? -eq 0 ]; then
-                  echo "[FAIL] Unexpected $element was found in installation."
-                  SUCCESS=0
-              fi
+              echo "[TESTING] $element should NOT be on disk."
+              test ! -f $element
           done
-
-          if [ ${SUCCESS} -ne 1 ]; then
-              exit 1    
-          fi
-      - name: checking_previous_step_failures
-        if: steps.checking_installation.outcome != 'success'
-        run: exit 1
 
   install-linux-full:
     name: install-linux-full
@@ -135,19 +111,11 @@ jobs:
               ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
               ~/.tipi/file-sync/*/pysearpc/client.py)
           
-          SUCCESS=1
           for element in "${pathsToTest[@]}"
           do
+              echo "[TESTING] $element should be on disk."
               test -f $element
-              if [ $? -ne 0 ]; then
-                  echo "[FAIL] Expected $element was not found in installation."
-                  SUCCESS=0
-              fi
           done
-
-          if [ ${SUCCESS} -ne 1 ]; then
-              exit 1    
-          fi
 
   install-linux-light:
     name: install-linux-light
@@ -164,20 +132,14 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           
           # Test install succeeeded 
-          echo "verif tipi"
-
           pathsToTest=(/usr/local/bin/tipi 
               ~/.tipi/environments/*/xcode.cmake
               ~/.tipi/file-sync/*/pysearpc/client.py)
           
-          SUCCESS=1
           for element in "${pathsToTest[@]}"
           do
+              echo "[TESTING] $element should be on disk."
               test -f $element
-              if [ $? -ne 0 ]; then
-                  echo "[FAIL] Expected $element was not found in installation."
-                  SUCCESS=0
-              fi
           done
 
           pathsToTest_negative=(~/.tipi/clang/*/bin/clang
@@ -188,16 +150,9 @@ jobs:
 
           for element in "${pathsToTest_negative[@]}"
           do
-              test -f $element
-              if [ $? -eq 0 ]; then
-                  echo "[FAIL] Unexpected $element was found in installation."
-                  SUCCESS=0
-              fi
+              echo "[TESTING] $element should NOT be on disk."
+              test ! -f $element
           done
-
-          if [ ${SUCCESS} -ne 1 ]; then
-              exit 1    
-          fi
 
   install-windows-powershell-full:
     name: install-windows-powershell-full
@@ -318,7 +273,6 @@ jobs:
           export TIPI_DISTRO_MODE=all
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           # Test install succeeeded 
-          echo "verif tipi"
           pathsToTest=(/usr/local/bin/tipi 
               ~/.tipi/clang/*/bin/clang
               ~/.tipi/cmake/*/bin/cmake
@@ -331,21 +285,12 @@ jobs:
               ~/.tipi/openapi-generator-script/*/openapi-generator-cli 
               ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
               ~/.tipi/file-sync/*/pysearpc/client.py)
-          
-          SUCCESS=1
+
           for element in "${pathsToTest[@]}"
           do
+              echo "[TESTING] $element should be on disk."
               test -f $element
-              if [ $? -ne 0 ]; then
-                  echo "[FAIL] Expected $element was not found in installation."
-                  SUCCESS=0
-              fi
           done
-
-          if [ ${SUCCESS} -ne 1 ]; then
-              exit 1    
-          fi
-
 
   install-archlinux-light:
     name: install-archlinux-light
@@ -366,20 +311,16 @@ jobs:
           fi
           echo "Script source : ${script_source}"
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+          
           # Test install succeeeded 
-          echo "verif tipi"
           pathsToTest=(/usr/local/bin/tipi 
               ~/.tipi/environments/*/xcode.cmake
               ~/.tipi/file-sync/*/pysearpc/client.py)
-          
-          SUCCESS=1
+
           for element in "${pathsToTest[@]}"
           do
+              echo "[TESTING] $element should be on disk."
               test -f $element
-              if [ $? -ne 0 ]; then
-                  echo "[FAIL] Expected $element was not found in installation."
-                  SUCCESS=0
-              fi
           done
 
           pathsToTest_negative=(~/.tipi/clang/*/bin/clang
@@ -390,16 +331,7 @@ jobs:
 
           for element in "${pathsToTest_negative[@]}"
           do
-              test -f $element
-              if [ $? -eq 0 ]; then
-                  echo "[FAIL] Unexpected $element was found in installation."
-                  SUCCESS=0
-              fi
+              echo "[TESTING] $element should be NOT on disk."
+              test ! -f $element
           done
-
-          if [ ${SUCCESS} -ne 1 ]; then
-              exit 1    
-          fi
-
-
 
