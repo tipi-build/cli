@@ -121,21 +121,35 @@ jobs:
           . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex 
           if (!($?)) {exit 1}
           # Test install succeeeded 
-          if (!(Test-Path "C:\\ProgramData\\tipi\\tipi.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\clang\\*\\bin\\clang.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\cmake\\*\\bin\\cmake.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\emsdk\\*\\emsdk.bat" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\environments\\*\\xcode.cmake" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\go\\*\\bin\\go.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\jdk\\*\\bin\\jar.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\nodejs\\*\\node.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\openapi\\*\\openapi-generator-cli-5.1.1.jar" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\openapi-generator-script\\*\\openapi-generator-cli.bat" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\openssh\\*\\ssh.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\perl\\*\\README.txt" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\platform\\*\\cmake\\projects\\Poco\\hunter.cmake" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\python\\*\\python.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py" -PathType leaf)) { exit 1; }
+          $pathsToTest = @(
+            "C:\\ProgramData\\tipi\\tipi.exe"  
+            "C:\\.tipi\\clang\\*\\bin\\clang.exe"  
+            "C:\\.tipi\\cmake\\*\\bin\\cmake.exe"  
+            "C:\\.tipi\\emsdk\\*\\emsdk.bat"  
+            "C:\\.tipi\\environments\\*\\xcode.cmake"  
+            "C:\\.tipi\\go\\*\\bin\\go.exe"  
+            "C:\\.tipi\\jdk\\*\\bin\\jar.exe"  
+            "C:\\.tipi\\nodejs\\*\\node.exe"  
+            "C:\\.tipi\\openapi\\*\\openapi-generator-cli-5.1.1.jar"  
+            "C:\\.tipi\\openapi-generator-script\\*\\openapi-generator-cli.bat"  
+            "C:\\.tipi\\openssh\\*\\ssh.exe"  
+            "C:\\.tipi\\perl\\*\\README.txt"  
+            "C:\\.tipi\\platform\\*\\cmake\\projects\\Poco\\hunter.cmake"  
+            "C:\\.tipi\\python\\*\\python.exe"  
+            "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py"  
+          )
+
+          $success = $true
+
+          foreach ( $testPath in $pathsToTest )
+          {
+                if (!(Test-Path $testPath -PathType leaf)) { 
+                    echo "[FAIL] Expected <$testPath> was not found in installation."
+                    $success = $false; 
+                }
+          }
+
+          if(!$success) { exit 1; }
         shell: powershell
 
   install-windows-powershell-light:
@@ -152,10 +166,26 @@ jobs:
           . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex 
           if (!($?)) {exit 1}
           # Test install succeeeded 
-          if (!(Test-Path "C:\\ProgramData\\tipi\\tipi.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\environments\\*\\xcode.cmake" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\openssh\\*\\ssh.exe" -PathType leaf)) { exit 1; }
-          if (!(Test-Path "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py" -PathType leaf)) { exit 1; }
+
+          $pathsToTest = @(
+            "C:\\ProgramData\\tipi\\tipi.exe"   
+            "C:\\.tipi\\environments\\*\\xcode.cmake" 
+            "C:\\.tipi\\openssh\\*\\ssh.exe"
+            "C:\\.tipi\\python\\*\\python.exe"  
+            "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py"  
+          )
+
+          $success = $true
+
+          foreach ( $testPath in $pathsToTest )
+          {
+                if (!(Test-Path $testPath -PathType leaf)) { 
+                    echo "[FAIL] Expected <$testPath> was not found in installation."
+                    $success = $false; 
+                }
+          }
+
+          if(!$success) { exit 1; }
         shell: powershell  
 
   install-archlinux-full:
