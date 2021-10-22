@@ -64,7 +64,9 @@ jobs:
             script_source=${GITHUB_REF#refs/heads/}
           fi
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
-
+      - name: checking_installation
+        continue-on-error: true
+        run: |
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
               ~/.tipi/environments/*/xcode.cmake
@@ -99,6 +101,9 @@ jobs:
           if [ ${SUCCESS} -ne 1 ]; then
               exit 1    
           fi
+      - name: checking_previous_step_failures
+        if: steps.checking_installation.outcome != 'success'
+        run: exit 1
 
   install-linux-full:
     name: install-linux-full
