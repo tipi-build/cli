@@ -24,19 +24,33 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
 
           # Test install succeeeded 
-          test -f /usr/local/bin/tipi
-          test -f ~/.tipi/clang/*/bin/clang
-          test -f ~/.tipi/cmake/*/bin/cmake
-          test -f ~/.tipi/emsdk/*/emsdk
-          test -f ~/.tipi/environments/*/xcode.cmake
-          test -f ~/.tipi/go/*/bin/go
-          test -f ~/.tipi/jdk/*/Contents/Home/bin/jar
-          test -f ~/.tipi/nodejs/*/bin/node
-          test -f ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
-          test -f ~/.tipi/openapi-generator-script/*/openapi-generator-cli
-          test -f ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
-          test -f ~/.tipi/python/*/bin/python
-          test -f ~/.tipi/file-sync/*/pysearpc/client.py
+          pathsToTest=(/usr/local/bin/tipi 
+              ~/.tipi/clang/*/bin/clang
+              ~/.tipi/cmake/*/bin/cmake
+              ~/.tipi/emsdk/*/emsdk
+              ~/.tipi/environments/*/xcode.cmake
+              ~/.tipi/go/*/bin/go
+              ~/.tipi/jdk/*/Contents/Home/bin/jar
+              ~/.tipi/nodejs/*/bin/node
+              ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+              ~/.tipi/openapi-generator-script/*/openapi-generator-cli 
+              ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+              ~/.tipi/python/*/bin/python
+              ~/.tipi/file-sync/*/pysearpc/client.py)
+          
+          SUCCESS=1
+          for element in "${pathsToTest[@]}"
+          do
+              test -f $element
+              if [ $? -ne 0 ]; then
+                  echo "[FAIL] Expected $element was not found in installation."
+                  SUCCESS=0
+              fi
+          done
+
+          if [ ${SUCCESS} -ne 1 ]; then
+              exit 1    
+          fi
 
   install-macos-light:
     name: install-macos-light
@@ -52,9 +66,24 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
 
           # Test install succeeeded 
-          test -f /usr/local/bin/tipi
-          test -f ~/.tipi/environments/*/xcode.cmake
-          test -f ~/.tipi/file-sync/*/pysearpc/client.py
+          pathsToTest=(/usr/local/bin/tipi 
+              ~/.tipi/environments/*/xcode.cmake
+              ~/.tipi/python/*/bin/python
+              ~/.tipi/file-sync/*/pysearpc/client.py)
+          
+          SUCCESS=1
+          for element in "${pathsToTest[@]}"
+          do
+              test -f $element
+              if [ $? -ne 0 ]; then
+                  echo "[FAIL] Expected $element was not found in installation."
+                  SUCCESS=0
+              fi
+          done
+
+          if [ ${SUCCESS} -ne 1 ]; then
+              exit 1    
+          fi
 
   install-linux-full:
     name: install-linux-full
@@ -72,19 +101,33 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           
           # Test install succeeeded 
-          echo "verif tipi"
-          test -f /usr/local/bin/tipi
-          test -f ~/.tipi/clang/*/bin/clang
-          test -f ~/.tipi/cmake/*/bin/cmake
-          test -f ~/.tipi/emsdk/*/emsdk
-          test -f ~/.tipi/environments/*/xcode.cmake
-          test -f ~/.tipi/go/*/bin/go
-          test -f ~/.tipi/jdk/*/bin/jar
-          test -f ~/.tipi/nodejs/*/bin/node
-          test -f ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
-          test -f ~/.tipi/openapi-generator-script/*/openapi-generator-cli
-          test -f ~/.tipi/file-sync/*/pysearpc/client.py
-          test -f ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+
+          pathsToTest=(/usr/local/bin/tipi 
+              ~/.tipi/clang/*/bin/clang
+              ~/.tipi/cmake/*/bin/cmake
+              ~/.tipi/emsdk/*/emsdk
+              ~/.tipi/environments/*/xcode.cmake
+              ~/.tipi/go/*/bin/go
+              ~/.tipi/jdk/*/Contents/Home/bin/jar
+              ~/.tipi/nodejs/*/bin/node
+              ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+              ~/.tipi/openapi-generator-script/*/openapi-generator-cli 
+              ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+              ~/.tipi/file-sync/*/pysearpc/client.py)
+          
+          SUCCESS=1
+          for element in "${pathsToTest[@]}"
+          do
+              test -f $element
+              if [ $? -ne 0 ]; then
+                  echo "[FAIL] Expected $element was not found in installation."
+                  SUCCESS=0
+              fi
+          done
+
+          if [ ${SUCCESS} -ne 1 ]; then
+              exit 1    
+          fi
 
   install-linux-light:
     name: install-linux-light
@@ -102,9 +145,24 @@ jobs:
           
           # Test install succeeeded 
           echo "verif tipi"
-          test -f /usr/local/bin/tipi
-          test -f ~/.tipi/environments/*/xcode.cmake
-          test -f ~/.tipi/file-sync/*/pysearpc/client.py
+
+          pathsToTest=(/usr/local/bin/tipi 
+              ~/.tipi/environments/*/xcode.cmake
+              ~/.tipi/file-sync/*/pysearpc/client.py)
+          
+          SUCCESS=1
+          for element in "${pathsToTest[@]}"
+          do
+              test -f $element
+              if [ $? -ne 0 ]; then
+                  echo "[FAIL] Expected $element was not found in installation."
+                  SUCCESS=0
+              fi
+          done
+
+          if [ ${SUCCESS} -ne 1 ]; then
+              exit 1    
+          fi
 
   install-windows-powershell-full:
     name: install-windows-powershell-full
@@ -210,18 +268,33 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           # Test install succeeeded 
           echo "verif tipi"
-          test -f /usr/local/bin/tipi
-          test -f ~/.tipi/clang/*/bin/clang
-          test -f ~/.tipi/cmake/*/bin/cmake
-          test -f ~/.tipi/emsdk/*/emsdk
-          test -f ~/.tipi/environments/*/xcode.cmake
-          test -f ~/.tipi/go/*/bin/go
-          test -f ~/.tipi/jdk/*/bin/jar
-          test -f ~/.tipi/nodejs/*/bin/node
-          test -f ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
-          test -f ~/.tipi/openapi-generator-script/*/openapi-generator-cli
-          test -f ~/.tipi/file-sync/*/pysearpc/client.py
-          test -f ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+          pathsToTest=(/usr/local/bin/tipi 
+              ~/.tipi/clang/*/bin/clang
+              ~/.tipi/cmake/*/bin/cmake
+              ~/.tipi/emsdk/*/emsdk
+              ~/.tipi/environments/*/xcode.cmake
+              ~/.tipi/go/*/bin/go
+              ~/.tipi/jdk/*/Contents/Home/bin/jar
+              ~/.tipi/nodejs/*/bin/node
+              ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+              ~/.tipi/openapi-generator-script/*/openapi-generator-cli 
+              ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+              ~/.tipi/file-sync/*/pysearpc/client.py)
+          
+          SUCCESS=1
+          for element in "${pathsToTest[@]}"
+          do
+              test -f $element
+              if [ $? -ne 0 ]; then
+                  echo "[FAIL] Expected $element was not found in installation."
+                  SUCCESS=0
+              fi
+          done
+
+          if [ ${SUCCESS} -ne 1 ]; then
+              exit 1    
+          fi
+
 
   install-archlinux-light:
     name: install-archlinux-light
@@ -244,7 +317,23 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           # Test install succeeeded 
           echo "verif tipi"
-          test -f /usr/local/bin/tipi
-          test -f ~/.tipi/environments/*/xcode.cmake
-          test -f ~/.tipi/file-sync/*/pysearpc/client.py
+          pathsToTest=(/usr/local/bin/tipi 
+              ~/.tipi/environments/*/xcode.cmake
+              ~/.tipi/file-sync/*/pysearpc/client.py)
+          
+          SUCCESS=1
+          for element in "${pathsToTest[@]}"
+          do
+              test -f $element
+              if [ $? -ne 0 ]; then
+                  echo "[FAIL] Expected $element was not found in installation."
+                  SUCCESS=0
+              fi
+          done
+
+          if [ ${SUCCESS} -ne 1 ]; then
+              exit 1    
+          fi
+
+
 
