@@ -80,6 +80,22 @@ jobs:
                   SUCCESS=0
               fi
           done
+    
+          pathsToTest_negative=(
+              ~/.tipi/clang/*/bin/clang
+              ~/.tipi/cmake/*/bin/cmake
+              ~/.tipi/emsdk/*/emsdk
+              ~/.tipi/go/*/bin/go
+              ~/.tipi/jdk/*/Contents/Home/bin/jar)
+
+          for element in "${pathsToTest_negative[@]}"
+          do
+              test -f $element
+              if [ $? -eq 0 ]; then
+                  echo "[FAIL] Unexpected $element was found in installation."
+                  SUCCESS=0
+              fi
+          done
 
           if [ ${SUCCESS} -ne 1 ]; then
               exit 1    
@@ -156,6 +172,22 @@ jobs:
               test -f $element
               if [ $? -ne 0 ]; then
                   echo "[FAIL] Expected $element was not found in installation."
+                  SUCCESS=0
+              fi
+          done
+
+          pathsToTest_negative=(
+              ~/.tipi/clang/*/bin/clang
+              ~/.tipi/cmake/*/bin/cmake
+              ~/.tipi/emsdk/*/emsdk
+              ~/.tipi/go/*/bin/go
+              ~/.tipi/jdk/*/Contents/Home/bin/jar)
+
+          for element in "${pathsToTest_negative[@]}"
+          do
+              test -f $element
+              if [ $? -eq 0 ]; then
+                  echo "[FAIL] Unexpected $element was found in installation."
                   SUCCESS=0
               fi
           done
@@ -243,6 +275,23 @@ jobs:
                 }
           }
 
+          # test just a few things in the light install to make sure they are *NOT* present
+          $pathsToTest_negative = @(
+              "C:\\ProgramData\\tipi\\tipi.exe"  
+              "C:\\.tipi\\clang\\*\\bin\\clang.exe"  
+              "C:\\.tipi\\cmake\\*\\bin\\cmake.exe"  
+              "C:\\.tipi\\emsdk\\*\\emsdk.bat"              
+              "C:\\.tipi\\go\\*\\bin\\go.exe"  
+              "C:\\.tipi\\jdk\\*\\bin\\jar.exe"              
+          )
+          foreach ( $testPath in $pathsToTest_negative )
+          {
+              if (Test-Path $testPath -PathType leaf) {
+                  echo "[FAIL] Unexpected <$testPath> was found in installation."
+                  $success = $false;
+              }
+          }
+          
           if(!$success) { exit 1; }
         shell: powershell  
 
@@ -327,6 +376,22 @@ jobs:
               test -f $element
               if [ $? -ne 0 ]; then
                   echo "[FAIL] Expected $element was not found in installation."
+                  SUCCESS=0
+              fi
+          done
+
+          pathsToTest_negative=(
+              ~/.tipi/clang/*/bin/clang
+              ~/.tipi/cmake/*/bin/cmake
+              ~/.tipi/emsdk/*/emsdk
+              ~/.tipi/go/*/bin/go
+              ~/.tipi/jdk/*/Contents/Home/bin/jar)
+
+          for element in "${pathsToTest_negative[@]}"
+          do
+              test -f $element
+              if [ $? -eq 0 ]; then
+                  echo "[FAIL] Unexpected $element was found in installation."
                   SUCCESS=0
               fi
           done
