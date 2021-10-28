@@ -1,6 +1,9 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.20 - codename
+## v0.0.20 - codename ****
+
+### Bugfix
+  - Fix python in the light distro for windows
 
 ## v0.0.19 - codename **keen kudos**
 
