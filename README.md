@@ -17,7 +17,7 @@ Available as command line tool or vscode plugin !
 
 ### Add to vscode
 
-[Click Here to add tipi.build to vscode](vscode:extension/tipi.tipi-build)
+[Click Here to add tipi.build to vscode](https://marketplace.visualstudio.com/items?itemName=tipi.tipi-build)
 
 ![add to vscode](./tipi-build-plugin.png)
 
@@ -43,8 +43,4 @@ Open-source projects like Boost, CMake, Emscripten, Hunter and thousands of othe
 
 Open-source lets us take part in building the future. Let’s do it together.
 
-Therefore here the opensource components, release as opensource code developed by tipi.build : 
-  * [nxxm/gh](https://github.com/nxxm/gh)
-  * [nxxm/htmlpp](https://github.com/nxxm/htmlpp)
-  * [nxxm/cli\_widgets](https://github.com/nxxm/cli_widgets)
-  * [xxhr : HTTP at your fingertips](https://github.com/tipi-build/xxhr)
+Therefore in this Github organization you will find alot for tipi.build opensource contributions !
