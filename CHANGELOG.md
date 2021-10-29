@@ -1,5 +1,11 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.21 - codename **modern magic**
+
+### Features
+  - Change clang from v12.0.0 to v13.0.0
+  - Support c++20 for clang v13.0.0
+
 ## v0.0.20 - codename **lucky luc**
 
 ### Bugfix
