@@ -12,7 +12,7 @@ Please head up to [our website](https://tipi.build)
 Available as command line tool or vscode plugin !
 
 ## Support
-* [Ask us on Github Issues](https://github.com/tipi-build/cli)
+* [Ask us on Github Issues](https://github.com/tipi-build/cli/issues)
 * [Contact via our Website](https://tipi.build)
 
 ### Add to vscode
