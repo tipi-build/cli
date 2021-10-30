@@ -1,18 +1,34 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.21 - codename **modern magic**
+## v0.0.21 - codename **modern magic** ✨
 
 ### Features
-  - Change clang from v12.0.0 to v13.0.0
-  - Support c++20 for clang v13.0.0
+  - C++20 support
+  - Clang v13.0.0
 
-## v0.0.20 - codename **lucky luc**
+tipi-src 3cd6f370c9980f24e4b1e7bf1325fc2c8ee2cb3e cc3724bb740174b15a8b06b6f9d2db8fbefd8607
+
+##### Archives Checksums
+tipi-v0.0.21-windows-win64.zip:2F162CEB41395E1D07B7FD0905D9B39AAE35526F
+tipi-v0.0.21-linux-x86_64.zip:B1CCFC0D5EC80972E063E364A9D4439FA5D92DF4
+tipi-v0.0.21-macOS.zip:1C3F8F38751E253A13340E41BE80D0C1A141F19C
+
+
+## v0.0.20 - codename **lucky luc**  
 
 ### Bugfix
   - Fix python in the light distro for windows
-  - Fix tipi ci template
+  - Fix tipi ci template 
+  
+tipi src 52b3597e66be0d0cc2eaa7f66836d18b644d4129
 
-## v0.0.19 - codename **keen kudos**
+##### Archives Checksums
+tipi-v0.0.20-windows-win64.zip:C405D56D16374CB217A452E876C8D6EE8ECAFAAF
+tipi-v0.0.20-linux-x86_64.zip:8728285DC7A54ACB244545E93BB8447BD7BDC45A
+tipi-v0.0.20-macOS.zip:663EF18428266F8B23E6BE341535E6F0CEA71D9A
+
+
+## v0.0.19 - codename **keen kudos** 🥇 
 
 ### Features
   - tipi installs a light distro by default now
@@ -24,8 +40,18 @@
   - Isolated configuration of tipi shipped SSH client from the system configuration
   - Fixed `tipi.ignore` feature on windows host
   - Fixed forwarding of all build arguments to the remote environment
+  - Correct installation of packages on Arch Linux (i.e. the install script doesn't override existing packages)
+  - Regressions to run build and remote build on Arch Linux have been fixed
+ 
+tipi src e258d90a666880e6f8edb1bcc0db30d22c4b2199
 
-## v0.0.18 - codename **jolly jumper**
+##### Archives Checksums
+tipi-v0.0.19-windows-win64.zip:E33239F36A7F071DC6901754CD0DC69BF1D60F55
+tipi-v0.0.19-linux-x86_64.zip:B0D2B5AC5F089BC259EFBA81A85D9D5C3817FFB2
+tipi-v0.0.19-macOS.zip:4798B8AFF290EFFBB3861F1DEF9D802200749017
+
+
+## v0.0.18 - codename **jolly jumper** 🏇
 
 ### Features
   - Smart auto include path computation detection to complement convention detection
@@ -36,6 +62,14 @@
 ### Bugfix
   - Running commands in tipi environment with `tipi run command` on unixes support multiple arguments ( not only a string)
   - Windows TLS environments supports downloading Platform libs from server with recent ciphersuites
+
+tipi src 04004311e7222447601b1f1aacfac84eff995049
+
+##### Archives Checksums
+tipi-v0.0.18-linux-x86_64.zip:675EA708D860C08F819732BE8D755D0E2C3AF5FB
+tipi-v0.0.18-macOS.zip:894A8BD104DB01DDD141C2F258EEB919B98F839D
+tipi-v0.0.18-windows-win64.zip:A2853892D10B83F131578C11B46FEE51195B70CD
+
   
 ## v0.0.17 - codename **intrepid increment**
 
@@ -57,8 +91,16 @@
 ### Known Issues
   - tipi can be used only on one project at a time
   - visual studio vs- targets ( e.g. vs-16-2019-win64-cxx17 ) targets aren't supported in remote build mode
+  - windows remote builds still have a small issue when it comes to tls download from CMake
 
-## v0.0.16 - codename **heavy hammer**
+tipi cli : 0229254d5627956d4aaf65df813e3c191fe5973c eda26ee303b601e6dfd954b837495fdf56fb43b6
+
+##### Archives Checksums
+tipi-v0.0.17-linux-x86_64.zip:A7AC809E4B69B558FBCD608E4EE3CFA4709C1411
+tipi-v0.0.17-macOS.zip:692F5722939EA277EF51A6142B06692622FA3879
+tipi-v0.0.17-windows-win64.zip:C37D649D4F328773FDC1B38505BD70951ACAE5C8
+
+## v0.0.16  - codename **heavy hammer** 🔨
 
 ### Features
   - Local machine and Cloud build node project files synchronization  (sources and build)
@@ -77,6 +119,13 @@
 
 ### Known Issues
   - tipi can be used only on one project at a time ( interprocess locks led to deadlock situations )
+
+tipi cli : 88e3506018647c64ef686d9c4004f31a1f1126dc
+
+##### Archives Checksums
+tipi-v0.0.16-linux-x86_64.zip:5B0D0493EFC689E41153B8EE27DC1C892CBF2DB0
+tipi-v0.0.16-macOS.zip:684FB45325DD8F5052EF7467EAE8A46C4B3205D5
+tipi-v0.0.16-windows-win64.zip:67DB580E92D8C13277C0A5C5A68BDF05D77C147C
 
 ## v0.0.15 - codename **git gud**  
 
