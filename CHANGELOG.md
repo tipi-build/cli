@@ -1,5 +1,19 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.22 - codename **native narwhal** 🐉
+
+### Features
+  - Update to CMake 3.21.4
+  - The build folder is no longer automatically synchronized
+  - New option to forward all arguments to Cmake 
+
+tipi-src to complete
+
+##### Archives Checksums
+tipi-v0.0.22-windows-win64.zip:to complete
+tipi-v0.0.22-linux-x86_64.zip:to complete
+tipi-v0.0.22-macOS.zip:to complete
+
 ## v0.0.21 - codename **modern magic** ✨
 
 ### Features
