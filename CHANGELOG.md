@@ -1,6 +1,6 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.23 - codename **original octopus** 🐙
+## v0.0.23 - codename **outstanding octopus** 🐙
 
 ### Bugfix
   - fix windows image creation for tipi-build
@@ -8,9 +8,9 @@
 tipi-src e09ac83a6426a7ec37b18d3f88fcd26483eda372 
 
 ##### Archives Checksums
-tipi-v0.0.22-windows-win64.zip:5A07D53877382DACF69AE432EEECE3C9F10D0CBA
-tipi-v0.0.22-linux-x86_64.zip:882B66490C484AD174D6873D3ED8477E4FF684B9
-tipi-v0.0.22-macOS.zip:95FEDC71B7324C3A23CE5797CB0B4347B5DA6A03
+tipi-v0.0.23-windows-win64.zip:5A07D53877382DACF69AE432EEECE3C9F10D0CBA
+tipi-v0.0.23-linux-x86_64.zip:882B66490C484AD174D6873D3ED8477E4FF684B9
+tipi-v0.0.23-macOS.zip:95FEDC71B7324C3A23CE5797CB0B4347B5DA6A03
 
 ## v0.0.22 - codename **native narwhal** 🐋 + 🦄
 
