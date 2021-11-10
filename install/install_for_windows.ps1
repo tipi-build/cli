@@ -1,5 +1,5 @@
 $INSTALL_FOLDER="C:\ProgramData\tipi"
-$TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.21/tipi-v0.0.21-windows-win64.zip"
+$TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.22/tipi-v0.0.22-windows-win64.zip"
 $TIPI_EXE="$INSTALL_FOLDER\tipi.exe"
 
 
@@ -76,7 +76,7 @@ if (!$?){
 }
 
 info "tipi is installed, downloading included tools."
-cmd.exe /c "$TIPI_EXE --help"   
+cmd.exe /c "$TIPI_EXE --help --verbose"   
 if ($?){
     info "tipi has been installed in $INSTALL_FOLDER. In either a new cmd of after a reboot tipi will be available on your Path."
  

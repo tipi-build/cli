@@ -1,5 +1,23 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.22 - codename **native narwhal** 🐋 + 🦄
+
+### Features
+  - HTTP Proxy Support ( e.g. Setting ALL_PROXY or http_proxy variables )
+  - Update to CMake 3.21.4
+  - CMake Remote Compiler : New options to forward all arguments to CMake 
+  - Introduced `--sync-build` to selectively synchronize the build folder
+
+### Bugfix
+  - Exclusive use of Port 443 for remote builds
+
+tipi-src 03a4e9433c9b91c6b3813acad9efdaaee0f9fd6f
+
+##### Archives Checksums
+tipi-v0.0.22-windows-win64.zip:43CFEBBA6143DA2B035C205AAC99E19984EF4F7A
+tipi-v0.0.22-linux-x86_64.zip:FCB40D2A33528243A7B61C9C9CAE373D3D69C8DF
+tipi-v0.0.22-macOS.zip:267B4F88386CC720FF73A018692F3F7CE2A383E4
+
 ## v0.0.21 - codename **modern magic** ✨
 
 ### Features
