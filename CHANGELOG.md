@@ -1,5 +1,17 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.24 - codename **playful pony** 🐴
+
+### Bugfix
+  - fix the compilation of a program in the docker tipibuild/tipi-ubuntu
+
+tipi-src 820397fd1b99453d3e614a6e3899653bf573541e
+
+##### Archives Checksums
+tipi-v0.0.24-windows-win64.zip:89EDF18524EE5B9DADF0A096F3F7CA7BB945F18F
+tipi-v0.0.24-linux-x86_64.zip:52461AF25B3D1049142080A7757E7B9889BB3474
+tipi-v0.0.24-macOS.zip:2DA01D657591A3A221E49301E89931BF4893C620
+
 ## v0.0.23 - codename **outstanding octopus** 🐙
 
 ### Bugfix
