@@ -1,5 +1,16 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.25 - codename **quantum quality** 💫
+
+## Bugfix
+  - Fixed no build folder synchronization by default.
+  - Fixed almost-infinite waiting on synchronization after build.
+
+##### Archives Checksums
+tipi-v0.0.25-windows-win64.zip:95DCA10764447139FAF5AA0AA3B477A1AE3CF004
+tipi-v0.0.25-linux-x86_64.zip:FE1CFC2A28EE8A582EDC9FED0FF252E6D8912193
+tipi-v0.0.25-macOS.zip:197234EB0A09AB73712519C68C679B83878DFAAB
+
 ## v0.0.24 - codename **playful pony** 🐴
 
 ### Bugfix
