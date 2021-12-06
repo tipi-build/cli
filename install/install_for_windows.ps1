@@ -1,6 +1,14 @@
+$version_to_use=$args[0]
 $INSTALL_FOLDER="C:\ProgramData\tipi"
-$TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.25/tipi-v0.0.25-windows-win64.zip"
 $TIPI_EXE="$INSTALL_FOLDER\tipi.exe"
+
+if ([string]::IsNullOrEmpty($version_to_use)) {
+$TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.25/tipi-v0.0.25-windows-win64.zip"
+} else {
+$TIPI_URL="https://github.com/tipi-build/cli/releases/download/$version_to_use/tipi-$version_to_use-windows-win64.zip"
+}
+
+echo $TIPI_URL
 
 
 function Abort {
