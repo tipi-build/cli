@@ -1,11 +1,17 @@
 #!/bin/bash
 
-if [ "$(uname)" == "Linux" ]; then
-  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.25/tipi-v0.0.25-linux-x86_64.zip"
-fi
-
-if [ "$(uname)" == "Darwin" ]; then
-  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.25/tipi-v0.0.25-macOS.zip"
+if [ -z "$1" ]; then
+  if [ "$(uname)" == "Linux" ]; then
+    TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.25/tipi-v0.0.25-linux-x86_64.zip" 
+  elif [ "$(uname)" == "Darwin" ]; then
+    TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.25/tipi-v0.0.25-macOS.zip"
+  fi
+else 
+  if [ "$(uname)" == "Linux" ]; then
+    TIPI_URL="https://github.com/tipi-build/cli/releases/download/$1/tipi-$1-linux-x86_64.zip" 
+  elif [ "$(uname)" == "Darwin" ]; then
+    TIPI_URL="https://github.com/tipi-build/cli/releases/download/$1/tipi-$1-macOS.zip"
+  fi
 fi
 
 
