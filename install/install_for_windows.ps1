@@ -8,9 +8,6 @@ $TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.25/tipi-v0.0
 $TIPI_URL="https://github.com/tipi-build/cli/releases/download/$version_to_use/tipi-$version_to_use-windows-win64.zip"
 }
 
-echo $TIPI_URL
-
-
 function Abort {
     param (
         $Message

@@ -14,8 +14,6 @@ else
   fi
 fi
 
-echo $TIPI_URL
-
 INSTALL_FOLDER="/usr/local"
 
 abort() {
