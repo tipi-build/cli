@@ -82,7 +82,7 @@ if (!$?){
 
 info "tipi is installed, downloading included tools."
 if ([string]::IsNullOrEmpty($version_to_use)) {
-    cmd.exe /c "$TIPI_EXE --help --verbose --dont-upgrade"   
+    cmd.exe /c "$TIPI_EXE --dont-upgrade --help --verbose"   
 } else {
     cmd.exe /c "$TIPI_EXE --help --verbose"
 }

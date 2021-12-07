@@ -55,7 +55,7 @@ if [ $? -eq 0 ]; then
     info "tipi successfully installed. Installing the dependencies..."
     sudo chmod +x $INSTALL_FOLDER/bin/tipi
     if [ -z "$1" ]; then
-      $INSTALL_FOLDER/bin/tipi --help --dont-upgrade
+      $INSTALL_FOLDER/bin/tipi --dont-upgrade --help 
     else 
       $INSTALL_FOLDER/bin/tipi --help
     fi
