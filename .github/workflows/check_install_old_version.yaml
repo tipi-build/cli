@@ -23,8 +23,8 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)" && /bin/bash -c "chmod +x install_tipi.sh && ./install.sh v0.0.24 && rm install_tipi.sh"
           
 
-  install-linux-full:
-    name: install-linux-full
+  install-linux-version-24:
+    name: install-linux-version-24
     runs-on: ubuntu-latest
     steps:
       - name: test_install_on_linux
@@ -38,8 +38,8 @@ jobs:
           export TIPI_DISTRO_MODE=all
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)" && /bin/bash -c "chmod +x install_tipi.sh && ./install.sh v0.0.24 && rm install_tipi.sh"
           
-  install-windows-powershell-full:
-    name: install-windows-powershell-full
+  install-windows-powershell-version-24:
+    name: install-windows-powershell-version-24
     runs-on: windows-latest
     steps:
       - name: test_install_on_windows_powershell
