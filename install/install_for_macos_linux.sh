@@ -54,7 +54,7 @@ sudo unzip ~/tipi.zip -d $INSTALL_FOLDER -x LICENSE && rm ~/tipi.zip
 if [ $? -eq 0 ]; then
     info "tipi successfully installed. Installing the dependencies..."
     sudo chmod +x $INSTALL_FOLDER/bin/tipi
-    bash -c '$INSTALL_FOLDER/bin/tipi --help --dont-upgrade'
+    $INSTALL_FOLDER/bin/tipi --help --dont-upgrade
     if [ $? -eq 0 ]; then
         info "tipi and its dependencies have been successfully installed"
     else 
