@@ -38,7 +38,7 @@ Paste that in a Powershell (run as Administartor).
 ### Install an old version 
 
 #### Install on Linux / macOS 
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/master/install/install_for_macos_linux.sh)" && /bin/bash -c "chmod +x install_tipi.sh && ./install.sh vx.x.x && rm install_tipi.sh"`
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/master/install/install_for_macos_linux.sh > install_tipi.sh)" && /bin/bash -c "chmod +x install_tipi.sh && ./install.sh vx.x.x && rm install_tipi.sh"`
 
 Paste that in a Linux shell prompt or in a macOS Terminal.
 
