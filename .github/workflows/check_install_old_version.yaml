@@ -50,7 +50,7 @@ jobs:
             $script_source = $env:GITHUB_REF.replace('refs/heads/', '')
           }
           $Env:TIPI_DISTRO_MODE="all"
-          . {(iwr -useb https://raw.githubusercontent.com/tipi-build/cli/master/install/install_for_windows.ps1).content > install_tipi.ps1} | iex ; . {".\install_tipi.ps1 v0.0.24"} | iex ; . {"rm .\install_tipi.ps1"} | iex 
+          . {(iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1).content > install_tipi.ps1} | iex ; . {".\install_tipi.ps1 v0.0.24"} | iex ; . {"rm .\install_tipi.ps1"} | iex 
         shell: powershell
 
 
