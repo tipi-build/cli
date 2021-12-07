@@ -36,8 +36,8 @@ jobs:
           fi
           echo "Script source : ${script_source}"
           export TIPI_DISTRO_MODE=all
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh > install_tipi.sh)" && /bin/bash -c "chmod +x install_tipi.sh && ./install_tipi.sh v0.0.24 && rm install_tipi.sh"
-
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh > install_tipi.sh)" && /bin/bash -c "chmod +x install_tipi.sh && ./install_tipi.sh
+          
   install-windows-powershell-version-24:
     name: install-windows-powershell-version-24
     runs-on: windows-latest

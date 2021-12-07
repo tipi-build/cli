@@ -81,7 +81,11 @@ if (!$?){
 }
 
 info "tipi is installed, downloading included tools."
-cmd.exe /c "$TIPI_EXE --help --verbose"   
+if ([string]::IsNullOrEmpty($version_to_use)) {
+    cmd.exe /c "$TIPI_EXE --help --verbose --dont-upgrade"   
+} else {
+    cmd.exe /c "$TIPI_EXE --help --verbose"
+}
 if ($?){
     info "tipi has been installed in $INSTALL_FOLDER. In either a new cmd of after a reboot tipi will be available on your Path."
  
