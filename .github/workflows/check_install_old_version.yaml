@@ -59,7 +59,7 @@ jobs:
           }
           $Env:TIPI_DISTRO_MODE="all"
           . {(iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1).content > install_tipi.ps1} | iex ; . {".\install_tipi.ps1 v0.0.24"} | iex ; . {"rm .\install_tipi.ps1"} | iex
-          if (-NOT (C:\ProgramData\tipi --help --dont-upgrade | Select-String v0.0.24 -Quiet)){exit 1;}
+          if (C:\ProgramData\tipi\tipi.exe --help --dont-upgrade | Select-String v0.0.24 -Quiet){exit 1;}
         shell: powershell
 
 
