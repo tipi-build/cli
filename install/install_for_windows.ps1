@@ -1,4 +1,4 @@
-$version_to_use=$args[0]
+$version_to_use=$env:TIPI_INSTALL_VERSION
 $INSTALL_FOLDER="C:\ProgramData\tipi"
 $TIPI_EXE="$INSTALL_FOLDER\tipi.exe"
 

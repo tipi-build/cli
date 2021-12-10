@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
+VERSION=$TIPI_INSTALL_VERSION
+
+if [  -z "$TIPI_INSTALL_VERSION" ]; then
   if [ "$(uname)" == "Linux" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.25/tipi-v0.0.25-linux-x86_64.zip" 
   elif [ "$(uname)" == "Darwin" ]; then
@@ -8,9 +10,9 @@ if [ -z "$1" ]; then
   fi
 else 
   if [ "$(uname)" == "Linux" ]; then
-    TIPI_URL="https://github.com/tipi-build/cli/releases/download/$1/tipi-$1-linux-x86_64.zip" 
+    TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-linux-x86_64.zip" 
   elif [ "$(uname)" == "Darwin" ]; then
-    TIPI_URL="https://github.com/tipi-build/cli/releases/download/$1/tipi-$1-macOS.zip"
+    TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-macOS.zip"
   fi
 fi
 
