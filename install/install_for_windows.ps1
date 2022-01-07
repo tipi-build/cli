@@ -1,7 +1,11 @@
-$INSTALL_FOLDER="C:\ProgramData\tipi"
-$TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.25/tipi-v0.0.25-windows-win64.zip"
-$TIPI_EXE="$INSTALL_FOLDER\tipi.exe"
+$version_to_use=$env:TIPI_INSTALL_VERSION
 
+if ([string]::IsNullOrEmpty($version_to_use)) {
+$version_to_use="v0.0.25"
+}
+$INSTALL_FOLDER="C:\ProgramData\tipi"
+$TIPI_EXE="$INSTALL_FOLDER\tipi.exe"
+$TIPI_URL="https://github.com/tipi-build/cli/releases/download/$version_to_use/tipi-$version_to_use-windows-win64.zip"
 
 function Abort {
     param (
@@ -76,7 +80,7 @@ if (!$?){
 }
 
 info "tipi is installed, downloading included tools."
-cmd.exe /c "$TIPI_EXE --help --verbose"   
+    cmd.exe /c "$TIPI_EXE  --help --dont-upgrade"   
 if ($?){
     info "tipi has been installed in $INSTALL_FOLDER. In either a new cmd of after a reboot tipi will be available on your Path."
  

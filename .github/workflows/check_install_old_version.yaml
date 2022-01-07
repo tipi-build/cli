@@ -1,0 +1,66 @@
+name: check_install_old_version
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  schedule:
+    - cron : '0 0 * * *' # Every midnight check the released version of default branch
+
+jobs:
+  install-macos-version-24:
+    name: install-macos-version-24
+    runs-on: macos-latest
+    steps:
+      - name: test_install_on_macos
+        run: |
+          if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
+            script_source=${GITHUB_HEAD_REF}
+          else 
+            script_source=${GITHUB_REF#refs/heads/}
+          fi
+          export TIPI_DISTRO_MODE=all
+          export TIPI_INSTALL_VERSION=v0.0.24 && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh )"
+          tipi --help --dont-upgrade | grep "v0.0.24"
+          if [ $? -ne 0 ]; then
+          exit 1
+          fi
+          
+
+  install-linux-version-24:
+    name: install-linux-version-24
+    runs-on: ubuntu-latest
+    steps:
+      - name: test_install_on_linux
+        run: |
+          if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
+            script_source=${GITHUB_HEAD_REF}
+          else 
+            script_source=${GITHUB_REF#refs/heads/}
+          fi
+          echo "Script source : ${script_source}"
+          export TIPI_DISTRO_MODE=all
+          export TIPI_INSTALL_VERSION=v0.0.24 && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh )"
+          tipi --help --dont-upgrade | grep "v0.0.24"
+          if [ $? -ne 0 ]; then
+          exit 1
+          fi
+          
+  install-windows-powershell-version-24:
+    name: install-windows-powershell-version-24
+    runs-on: windows-latest
+    steps:
+      - name: test_install_on_windows_powershell
+        run: |
+          if ($env:GITHUB_EVENT_NAME -eq "pull_request") {
+            $script_source = $env:GITHUB_HEAD_REF.replace('refs/heads/', '')
+          } else {
+            $script_source = $env:GITHUB_REF.replace('refs/heads/', '')
+          }
+          $Env:TIPI_DISTRO_MODE="all"
+          $env:TIPI_INSTALL_VERSION ='v0.0.24'; . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex
+          if (-NOT (C:\ProgramData\tipi\tipi.exe --help --dont-upgrade | Select-String v0.0.24 -Quiet)){exit 1;}
+        shell: powershell
+
+
+

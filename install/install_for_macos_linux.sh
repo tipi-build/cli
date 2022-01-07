@@ -1,13 +1,11 @@
 #!/bin/bash
 
-if [ "$(uname)" == "Linux" ]; then
-  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.25/tipi-v0.0.25-linux-x86_64.zip"
-fi
-
-if [ "$(uname)" == "Darwin" ]; then
-  TIPI_URL="https://github.com/tipi-build/cli/releases/download/v0.0.25/tipi-v0.0.25-macOS.zip"
-fi
-
+VERSION="${TIPI_INSTALL_VERSION:-v0.0.25}"
+ if [ "$(uname)" == "Linux" ]; then
+    TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-linux-x86_64.zip" 
+  elif [ "$(uname)" == "Darwin" ]; then
+    TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-macOS.zip"
+  fi
 
 INSTALL_FOLDER="/usr/local"
 
@@ -49,7 +47,7 @@ sudo unzip ~/tipi.zip -d $INSTALL_FOLDER -x LICENSE && rm ~/tipi.zip
 if [ $? -eq 0 ]; then
     info "tipi successfully installed. Installing the dependencies..."
     sudo chmod +x $INSTALL_FOLDER/bin/tipi
-    $INSTALL_FOLDER/bin/tipi --help
+    $INSTALL_FOLDER/bin/tipi --help --dont-upgrade
     if [ $? -eq 0 ]; then
         info "tipi and its dependencies have been successfully installed"
     else 
