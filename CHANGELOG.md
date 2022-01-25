@@ -1,5 +1,20 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.26 - codename **radiant rocket**  🚀
+
+### Features
+  - Support duplicate file name in a project
+
+## Bugfix
+  - Support of a passphrase for the vault 
+  - Support for multiple access token from the same source  
+  - Fix some locale problem
+
+##### Archives Checksums
+tipi-v0.0.26-windows-win64.zip:014FDF5045715C403F0271F8F07463099B413B8C
+tipi-v0.0.26-linux-x86_64.zip:3138A81B96A9E322A3BEBC3A157672DB4DFF3E7D
+tipi-v0.0.26-macOS.zip:84741DA29B77B261D70B3B9FA79B76D37184F9C9
+
 ## v0.0.25 - codename **quantum quality** 💫
 
 ## Bugfix
