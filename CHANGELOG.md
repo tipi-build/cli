@@ -5,7 +5,7 @@
 ### Features
   - Support duplicate file name in a project
 
-## Bugfix
+### Bugfix
   - Support of a passphrase for the vault 
   - Support for multiple access token from the same source  
   - Fix some locale problem
