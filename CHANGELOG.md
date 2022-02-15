@@ -4,7 +4,10 @@
 ## Features
   - :new: **Live build**: automatically build your changes as you type and save, both watching your remote and local builds
     - Enable via `tipi . --monitor`
+
 ## Bugfix
+  - tipi doesn't create any empty .git folder anymore ( i.e. instead a build/.tipistore )
+  - Building from local windows on remote windows doesn't fail on path issues
   - Using multiple authentication data for the same endpoint ( e.g. combinining multiple Github.com accounts ) is now possible
   - Locales enforced to sane default when not set on the system (fix remote build crashes)
   - C and C++ entrypoints with duplicate names are handled correctly now
