@@ -1,19 +1,17 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.26 - codename **radiant rocket**  🚀
-
-### Features
-  - Support duplicate file name in a project
-
-### Bugfix
-  - Support of a passphrase for the vault 
-  - Support for multiple access token from the same source  
-  - Fix some locale problem
-
-##### Archives Checksums
-tipi-v0.0.26-windows-win64.zip:014FDF5045715C403F0271F8F07463099B413B8C
-tipi-v0.0.26-linux-x86_64.zip:3138A81B96A9E322A3BEBC3A157672DB4DFF3E7D
-tipi-v0.0.26-macOS.zip:84741DA29B77B261D70B3B9FA79B76D37184F9C9
+## v0.0.26 - codename **rapid roadrunner** a.k.a meep meep 🐦
+## Features
+  - :new: **Live build**: automatically build your changes as you type and save, both watching your remote and local builds
+    - Enable via `tipi . --monitor`
+## Bugfix
+  - Using multiple authentication data for the same endpoint ( e.g. combinining multiple Github.com accounts ) is now possible
+  - Locales enforced to sane default when not set on the system (fix remote build crashes)
+  - C and C++ entrypoints with duplicate names are handled correctly now
+  - Multiline main function signatures are now correclty detected as app entrypoints
+  - Passphrases for the vault with spaces characters are now supported
+  - Introduction of env:TIPI_UPGRADE_REMOTE to ensure remote tipi isn't upgraded unless wanted
+  - Small warning if the build/ location is already used by another file
 
 ## v0.0.25 - codename **quantum quality** 💫
 
@@ -209,6 +207,13 @@ tipi-v0.0.16-windows-win64.zip:67DB580E92D8C13277C0A5C5A68BDF05D77C147C
 
 ### Bug fixes
   - URL download error fixes to download from proper Boost releases server
+
+tipi-src: 8aeda733ecb57cb647087e48a3577f95ea40e0bb
+
+##### Archives Checksums
+tipi-v0.0.15-linux-x86_64.zip:8A1E24E073F34743907BFC269E6C95C9C05D1237
+tipi-v0.0.15-macOS.zip:F59233F9B9CFF3E3AF9F636169C995C53583EDF2
+tipi-v0.0.15-windows-win64.zip:90E555E0481D1C55F55503CC6B9599A20D00289C
 
 ## v0.0.14 - codename **fast forward**
 
