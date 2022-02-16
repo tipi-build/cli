@@ -1,5 +1,12 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.27 - codename **rapid roadrunner** a.k.a meep meep 🐦
+Bugfix release over v0.0.26.
+
+## Bugfix
+  - Building on windows remote environment works again
+  - Remote monitored live build with tests enabled works as expected
+
 ## v0.0.26 - codename **rapid roadrunner** a.k.a meep meep 🐦
 ## Features
   - :new: **Live build**: automatically build your changes as you type and save, both watching your remote and local builds + running unit tests

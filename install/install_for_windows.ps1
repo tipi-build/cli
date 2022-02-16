@@ -1,7 +1,7 @@
 $version_to_use=$env:TIPI_INSTALL_VERSION
 
 if ([string]::IsNullOrEmpty($version_to_use)) {
-$version_to_use="v0.0.26"
+$version_to_use="v0.0.27"
 }
 $INSTALL_FOLDER="C:\ProgramData\tipi"
 $TIPI_EXE="$INSTALL_FOLDER\tipi.exe"
