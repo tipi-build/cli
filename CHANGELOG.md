@@ -2,9 +2,10 @@
 
 ## v0.0.26 - codename **rapid roadrunner** a.k.a meep meep 🐦
 ## Features
-  - :new: **Live build**: automatically build your changes as you type and save, both watching your remote and local builds
+  - :new: **Live build**: automatically build your changes as you type and save, both watching your remote and local builds + running unit tests
     * `tipi . --monitor`
-  - 15x faster remote build file sync
+    * `tipi . --monitor --test all`
+  - :zap: **15x faster file sync** for remote builds
 
 ## Bugfix
   - tipi doesn't create any empty .git folder anymore ( i.e. instead a build/.tipistore )
@@ -16,6 +17,14 @@
   - Passphrases for the vault with spaces characters are now supported
   - Introduction of env:TIPI_UPGRADE_REMOTE to ensure remote tipi isn't upgraded unless wanted
   - Small warning if the build/ location is already used by another file
+
+
+tipi-src 1b18ea8ff9c69c80eb4bc53d79adecd2490bed8b
+
+##### Archives Checksums
+tipi-v0.0.26-windows-win64.zip:BAAAEB7A3B1D0892C51CAAADA5799E58BCBF8FE6
+tipi-v0.0.26-linux-x86_64.zip:37424C23BFF36E803B60341F2CB5572FB31FF933
+tipi-v0.0.26-macOS.zip:AF3C32C9F361A1C9F8CDB527393AF9B1FAE85F10
 
 ## v0.0.25 - codename **quantum quality** 💫
 
