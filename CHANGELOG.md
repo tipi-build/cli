@@ -3,7 +3,8 @@
 ## v0.0.26 - codename **rapid roadrunner** a.k.a meep meep 🐦
 ## Features
   - :new: **Live build**: automatically build your changes as you type and save, both watching your remote and local builds
-    - Enable via `tipi . --monitor`
+    * `tipi . --monitor`
+  - 15x faster remote build file sync
 
 ## Bugfix
   - tipi doesn't create any empty .git folder anymore ( i.e. instead a build/.tipistore )
