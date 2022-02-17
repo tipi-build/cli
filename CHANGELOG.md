@@ -1,11 +1,21 @@
 # tipi.build cli : CHANGELOG
 
 ## v0.0.27 - codename **rapid roadrunner** a.k.a meep meep 🐦
-Bugfix release over v0.0.26.
 
 ## Bugfix
   - Building on windows remote environment works again
   - Remote monitored live build with tests enabled works as expected
+
+## Know issues
+  - Local live build with monitor on windows seems to have some issues on some windows setup ( related to project with many dependencies ).
+
+tipi-src 73df8fd03f210721c1b82ff7512775c263c9491e
+
+##### Archives Checksums
+tipi-v0.0.27-windows-win64.zip:06F6885262E21A22655630621224B60C8E408619
+tipi-v0.0.27-linux-x86_64.zip:C01EDE5FF2B2525F25B54DA74DA0E652EEB78EE3
+tipi-v0.0.27-macOS.zip:3ADC81369A2CCFAF472801AE6669E2ACF04886E7
+
 
 ## v0.0.26 - codename **rapid roadrunner** a.k.a meep meep 🐦
 ## Features
