@@ -1,16 +1,17 @@
 # tipi.build cli : CHANGELOG
 
-# v0.0.28 - codename **rapid roadrunner** a.k.a meep meep 🐦
+## v0.0.28 - hotfix - codename **rapid roadrunner** a.k.a meep meep 🐦
 
 ## Bugfix
-  - fix local live build on windows ( related to project with many dependencies).
+  - fix live build on local + remote windows ( related to project with many changes ).
 
-tipi-src xxx
+tipi-src bc48f551bbf88b09a655b200081ebf20eacb5e91
 
 ##### Archives Checksums
-tipi-v0.0.28-windows-win64.zip:xxx
-tipi-v0.0.28-linux-x86_64.zip:xxx
-tipi-v0.0.28-macOS.zip:xxx
+tipi-v0.0.28-windows-win64.zip:D38E967E169DB0CEFCE4769BA95E3B3C03B69786
+tipi-v0.0.28-linux-x86_64.zip:5DEF0F7A0EE4249FF4470D81913E9C7468622079
+tipi-v0.0.28-macOS.zip:47ED6E09A58E2FFD6C2469F04DFC32A0C0965398
+
 
 ## v0.0.27 - codename **rapid roadrunner** a.k.a meep meep 🐦
 
