@@ -1,5 +1,17 @@
 # tipi.build cli : CHANGELOG
 
+# v0.0.28 - codename **rapid roadrunner** a.k.a meep meep 🐦
+
+## Bugfix
+  - fix local live build on windows ( related to project with many dependencies).
+
+tipi-src xxx
+
+##### Archives Checksums
+tipi-v0.0.28-windows-win64.zip:xxx
+tipi-v0.0.28-linux-x86_64.zip:xxx
+tipi-v0.0.28-macOS.zip:xxx
+
 ## v0.0.27 - codename **rapid roadrunner** a.k.a meep meep 🐦
 
 ## Bugfix
