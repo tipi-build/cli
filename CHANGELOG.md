@@ -1,5 +1,20 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.28 - hotfix - codename **rapid roadrunner** a.k.a meep meep 🐦
+
+## Bugfix
+  - fix live build on local + remote windows ( related to project with many changes ).
+  - first pass include source scanner handles comments better now
+  - first pass include source scanner relative inclusions more robust
+
+tipi-src 0260722f7648f4587984564614d161fe02f430b3
+
+##### Archives Checksums
+tipi-v0.0.28-windows-win64.zip:E1687153C6DAD628EE6D266A4AE796BC67C369A9
+tipi-v0.0.28-linux-x86_64.zip:B7382003C1FD59F77E41E00AE7FE9FB98A91D8B1
+tipi-v0.0.28-macOS.zip:744CC91CDEB1FD7EF38A230937E2D248EC3C7746
+
+
 ## v0.0.27 - codename **rapid roadrunner** a.k.a meep meep 🐦
 
 ## Bugfix
