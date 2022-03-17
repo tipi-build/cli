@@ -12,6 +12,12 @@ info() {
   printf "\e[1;32m ---> \e[0m $1 \n"
 }
 
+should_install_unzip() {
+  if [[ $(command -v unzip) ]]; then
+    return 1
+  fi
+}
+
  if [ "$(uname)" == "Linux" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-linux-x86_64.zip" 
     AVAIABLE_SIZE_FS=$(df -H /dev/sda1  |  awk '{ print $4}' | cut -d'G' -f1 | cut -d'e' -f2)
@@ -32,12 +38,6 @@ then
 fi
   
 INSTALL_FOLDER="/usr/local"
-
-should_install_unzip() {
-  if [[ $(command -v unzip) ]]; then
-    return 1
-  fi
-}
 
 if [ "$AVAIABLE_SIZE_FS" -le 10 ];then
  info "Warning : you will run out of space for a successful tipi installation "
