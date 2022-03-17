@@ -3,11 +3,22 @@
 VERSION="${TIPI_INSTALL_VERSION:-v0.0.28}"
 CURRENT_USER=$(whoami)
 
+abort() {
+  printf " \e[91m $1 \n"
+  exit 1
+}
+
+info() {
+  printf "\e[1;32m ---> \e[0m $1 \n"
+}
 
  if [ "$(uname)" == "Linux" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-linux-x86_64.zip" 
     AVAIABLE_SIZE_FS=$(df -H /dev/sda1  |  awk '{ print $4}' | cut -d'G' -f1 | cut -d'e' -f2)
     UBUNTU_VERSION=$(lsb_release -r | sed 's@^[^0-9]*\([0-9]\+\).*@\1@')
+    if [ "$UBUNTU_VERSION" -lt 20 ];then
+      abort "Minimum version supported by tipi is ubuntu 20.04"
+    fi
   elif [ "$(uname)" == "Darwin" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-macOS.zip"
     AVAIABLE_SIZE_FS=$(df -g /System/Volumes/Data |  awk '{ print $4}' | cut -d'e' -f2 )
@@ -22,25 +33,11 @@ fi
   
 INSTALL_FOLDER="/usr/local"
 
-abort() {
-  printf " \e[91m $1 \n"
-  exit 1
-}
-
-info() {
-  printf "\e[1;32m ---> \e[0m $1 \n"
-}
-
 should_install_unzip() {
   if [[ $(command -v unzip) ]]; then
     return 1
   fi
 }
-
-if [ "$UBUNTU_VERSION" -le 18 ];then
- abort "Minimum version supported by tipi is ubuntu 20.04"
-fi
- 
 
 if [ "$AVAIABLE_SIZE_FS" -le 10 ];then
  info "Warning : you will run out of space for a successful tipi installation "
