@@ -28,6 +28,10 @@ function New-TemporaryDirectory {
   New-Item -ItemType Directory -Path $path
   return $path
 }
+$AVAIABLE_SIZE_FS=(Get-Volume -DriveLetter C).SizeRemaining/1GB
+if($AVAIABLE_SIZE_FS -le 10) {
+    info "Warning : you will run out of space for a successful tipi installation "
+}
 
 info "Downloading tipi..."
 
