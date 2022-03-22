@@ -12,10 +12,8 @@ info() {
   printf "\e[1;32m ---> \e[0m $1 \n"
 }
 
-should_install_unzip() {
-  if [[ $(command -v unzip) ]]; then
-    return 1
-  fi
+warning() {
+  printf "\e[1;33m ---> \e[0m $1 \n"
 }
 
  if [ "$(uname)" == "Linux" ]; then
@@ -40,7 +38,7 @@ fi
 INSTALL_FOLDER="/usr/local"
 
 if [ "$AVAIABLE_SIZE_FS" -le 10 ];then
- info "Warning : you will run out of space for a successful tipi installation "
+ warning "you will run out of space for a successful tipi installation "
 fi
 
 if [ -f "/etc/arch-release" ]; then
@@ -51,6 +49,11 @@ if [ -f "/etc/arch-release" ]; then
   pacman -S --needed --noconfirm openssh
 fi
 
+should_install_unzip() {
+  if [[ $(command -v unzip) ]]; then
+    return 1
+  fi
+}
 
 if should_install_unzip; then
     info "unzip is needed to unzip the downloaded file, we are installing unzip with your package manager"
