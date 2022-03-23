@@ -24,7 +24,11 @@ info() {
 }
 
 warning() {
-  printf "\e[1;33m ---> \e[1;33m $1  \e[0m \n"
+  printf "\e[1;33m ---> $1 \e[0m \n"
+}
+
+sucess() {
+  printf "\e[1;32m ---> $1 \e[0m \n"
 }
 
 if [[ -n "$UBUNTU_VERSION" ]] && [ "$UBUNTU_VERSION" -lt 20 ] ; then
@@ -75,7 +79,7 @@ if [ $? -eq 0 ]; then
     $SUDO_COMMAND chown $CURRENT_USER $INSTALL_FOLDER/bin/tipi
     $INSTALL_FOLDER/bin/tipi --help --dont-upgrade
     if [ $? -eq 0 ]; then
-        info "tipi and its dependencies have been successfully installed"
+        sucess "tipi and its dependencies have been successfully installed"
     else 
         abort "Error while installing the dependencies"
     fi
