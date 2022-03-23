@@ -14,7 +14,6 @@ VERSION="${TIPI_INSTALL_VERSION:-v0.0.28}"
     AVAIABLE_SIZE_FS=$(df -g /System/Volumes/Data |  awk '{ print $4}' | cut -d'e' -f2 )
   fi
 
-
 abort() {
   printf " \e[91m $1 \n"
   exit 1
@@ -25,7 +24,7 @@ info() {
 }
 
 warning() {
-  printf "\e[1;33m ---> \e[0m $1 \n"
+  printf "\e[1;33m ---> \e[1;33m $1  \e[0m \n"
 }
 
 if [[ -n "$UBUNTU_VERSION" ]] && [ "$UBUNTU_VERSION" -lt 20 ] ; then
