@@ -1,20 +1,6 @@
 #!/bin/bash
 
 VERSION="${TIPI_INSTALL_VERSION:-v0.0.28}"
-CURRENT_USER=$(whoami)
-
-abort() {
-  printf " \e[91m $1 \n"
-  exit 1
-}
-
-info() {
-  printf "\e[1;32m ---> \e[0m $1 \n"
-}
-
-warning() {
-  printf "\e[1;33m ---> \e[0m $1 \n"
-}
 
  if [ "$(uname)" == "Linux" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-linux-x86_64.zip" 
@@ -29,13 +15,23 @@ warning() {
   fi
 
 
-SUDO_COMMAND=''
-if  command -v sudo &> /dev/null
-then
-    SUDO_COMMAND='sudo'
+abort() {
+  printf " \e[91m $1 \n"
+  exit 1
+}
+
+info() {
+  printf "\e[1;32m ---> \e[0m $1 \n"
+}
+
+warning() {
+  printf "\e[1;33m ---> \e[0m $1 \n"
+}
+
+if [[ -n "$UBUNTU_VERSION" ]] && [ "$UBUNTU_VERSION" -lt 20 ] ; then
+  abort "Minimum version supported by tipi is ubuntu 20.04"
 fi
-  
-INSTALL_FOLDER="/usr/local"
+
 
 if [ "$AVAIABLE_SIZE_FS" -le 10 ];then
  warning "you will run out of space for a successful tipi installation "
@@ -55,12 +51,20 @@ should_install_unzip() {
   fi
 }
 
+CURRENT_USER=$(whoami)
+SUDO_COMMAND=''
+if  command -v sudo &> /dev/null
+then
+    SUDO_COMMAND='sudo'
+fi
+
 if should_install_unzip; then
     info "unzip is needed to unzip the downloaded file, we are installing unzip with your package manager"
     echo "Could you validate with your password ? 😇 "
     $SUDO_COMMAND apt-get install unzip -y || abort "Error while installing unzip"
 fi
 
+INSTALL_FOLDER="/usr/local"
 info "Downloading tipi..."
 curl -fSL $TIPI_URL --output ~/tipi.zip || wget -q $TIPI_URL -O ~/tipi.zip || abort "Could not download tipi"
 info "Installing tipi in $INSTALL_FOLDER/bin"
