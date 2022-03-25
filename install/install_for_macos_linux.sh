@@ -2,16 +2,24 @@
 
 VERSION="${TIPI_INSTALL_VERSION:-v0.0.28}"
 
+warning() {
+  printf "\e[1;33m ---> $1 \e[0m \n"
+}
+
  if [ "$(uname)" == "Linux" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-linux-x86_64.zip" 
-    AVAIABLE_SIZE_FS=$(df -H /dev/sda1  |  awk '{ print $4}' | cut -d'G' -f1 | cut -d'e' -f2)
-    UBUNTU_VERSION=$(lsb_release -r | sed 's@^[^0-9]*\([0-9]\+\).*@\1@')
-    if [ "$UBUNTU_VERSION" -lt 20 ];then
-      abort "Minimum version supported by tipi is ubuntu 20.04"
+    DISTRO_NAME=$(cat /etc/*elease | grep DISTRIB_ID | cut -d '=' -f2)
+    DISTRO_VERSION=$(cat /etc/*elease | grep DISTRIB_RELEASE | cut -d '=' -f2 | sed 's@^[^0-9]*\([0-9]\+\).*@\1@')
+    if [[ -z "$DISTRO_VERSION" ]] || [[ -z "$DISTRO_NAME" ]] || ( [ "$DISTRO_VERSION" -lt 20 ] && [ "$DISTRO_NAME" != "Ubuntu" ]);then
+      warning "tipi is designed to work with at least Ubuntu 20.04"
+      warning "But would you still like to try to install tipi (y/n) ?"
+      read answer
+      if [ "$answer" == "${answer#[Yy]}" ] ;then 
+       exit 1
+      fi
     fi
   elif [ "$(uname)" == "Darwin" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-macOS.zip"
-    AVAIABLE_SIZE_FS=$(df -g /System/Volumes/Data |  awk '{ print $4}' | cut -d'e' -f2 )
   fi
 
 abort() {
@@ -23,22 +31,9 @@ info() {
   printf "\e[1;32m ---> \e[0m $1 \n"
 }
 
-warning() {
-  printf "\e[1;33m ---> $1 \e[0m \n"
-}
-
 sucess() {
   printf "\e[1;32m ---> $1 \e[0m \n"
 }
-
-if [[ -n "$UBUNTU_VERSION" ]] && [ "$UBUNTU_VERSION" -lt 20 ] ; then
-  abort "Minimum version supported by tipi is ubuntu 20.04"
-fi
-
-
-if [ "$AVAIABLE_SIZE_FS" -le 10 ];then
- warning "you will run out of space for a successful tipi installation "
-fi
 
 if [ -f "/etc/arch-release" ]; then
   pacman -Syu --noconfirm
