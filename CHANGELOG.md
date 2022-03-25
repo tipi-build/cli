@@ -1,5 +1,18 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.29 - codename **solid snake** 🐍
+## Features
+  - added the ability to configure your project in the deps file 
+## Bugfix
+  - user's timezone does not influence the hash of the environment zip 
+
+tipi-src xxx
+
+##### Archives Checksums
+tipi-v0.0.29-windows-win64.zip:xxx
+tipi-v0.0.29-linux-x86_64.zip:xxx
+tipi-v0.0.29-macOS.zip:xxx
+
 ## v0.0.28 - hotfix - codename **rapid roadrunner** a.k.a meep meep 🐦
 
 ## Bugfix
