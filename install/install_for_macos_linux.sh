@@ -1,6 +1,8 @@
 #!/bin/bash
 
 VERSION="${TIPI_INSTALL_VERSION:-v0.0.28}"
+HOME_DIR="${TIPI_HOME_DIR:-$HOME}"
+
 
 warning() {
   printf "\e[1;33m ---> $1 \e[0m \n"
@@ -8,6 +10,7 @@ warning() {
 
  if [ "$(uname)" == "Linux" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-linux-x86_64.zip" 
+    AVAIABLE_SIZE_FS=$(df -H $HOME_DIR | awk '{ print $4}'  | cut -d'G' -f1 | cut -d'l' -f2 | tr -d '\n' )
     DISTRO_NAME=$(cat /etc/*elease | grep DISTRIB_ID | cut -d '=' -f2)
     DISTRO_VERSION=$(cat /etc/*elease | grep DISTRIB_RELEASE | cut -d '=' -f2 | sed 's@^[^0-9]*\([0-9]\+\).*@\1@')
     if [[ -z "$DISTRO_VERSION" ]] || [[ -z "$DISTRO_NAME" ]] || ( [ "$DISTRO_VERSION" -lt 20 ] && [ "$DISTRO_NAME" != "Ubuntu" ]);then
@@ -20,6 +23,7 @@ warning() {
     fi
   elif [ "$(uname)" == "Darwin" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-macOS.zip"
+    AVAIABLE_SIZE_FS=$(df -g $HOME_DIR |  awk '{ print $4}' | cut -d'e' -f2 | tr -d '\n' )
   fi
 
 abort() {
@@ -34,6 +38,10 @@ info() {
 sucess() {
   printf "\e[1;32m ---> $1 \e[0m \n"
 }
+
+if [ "$AVAIABLE_SIZE_FS" -le 10 ];then
+ warning "You may run out of space as you have only $AVAIABLE_SIZE_FS gb left on your tipi installation drive. A tipi installation typically requires between 2 and 10 gb of disk space depending on installation mode. You may change the installation location by setting the TIPI_HOME_DIR environment variable"
+fi
 
 if [ -f "/etc/arch-release" ]; then
   pacman -Syu --noconfirm

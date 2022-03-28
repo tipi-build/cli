@@ -1,8 +1,10 @@
 $version_to_use=$env:TIPI_INSTALL_VERSION
+$tipi_home_dir=$env:TIPI_HOME_DIR
 
 if ([string]::IsNullOrEmpty($version_to_use)) {
 $version_to_use="v0.0.28"
 }
+
 $INSTALL_FOLDER="C:\ProgramData\tipi"
 $TIPI_EXE="$INSTALL_FOLDER\tipi.exe"
 $TIPI_URL="https://github.com/tipi-build/cli/releases/download/$version_to_use/tipi-$version_to_use-windows-win64.zip"
@@ -19,6 +21,18 @@ function Info {
         $Message
     )
   Write-Output "---> $Message "
+}
+
+if ([string]::IsNullOrEmpty($tipi_home_dir)) {
+$tipi_home_dir="C"
+}else {
+$tipi_home_dir=$tipi_home_dir.SubString(0,1)
+}
+
+$AVAIABLE_SIZE_FS=(Get-Volume -DriveLetter $tipi_home_dir).SizeRemaining/1GB
+if($AVAIABLE_SIZE_FS -le 10) {
+  $AVAIABLE_SIZE_FS_ROUND=[math]::Round($AVAIABLE_SIZE_FS,2)
+  info "You may run out of space as you have only $AVAIABLE_SIZE_FS_ROUND gb left on your tipi installation drive. A tipi installation typically requires between 2 and 10 gb of disk space depending on installation mode. You may change the installation location by setting the TIPI_HOME_DIR environment variable"
 }
 
 function New-TemporaryDirectory {
