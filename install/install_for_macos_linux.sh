@@ -14,8 +14,8 @@ warning() {
     DISTRO_NAME=$(cat /etc/*elease | grep DISTRIB_ID | cut -d '=' -f2)
     DISTRO_VERSION=$(cat /etc/*elease | grep DISTRIB_RELEASE | cut -d '=' -f2 | sed 's@^[^0-9]*\([0-9]\+\).*@\1@')
     if [[ -z "$DISTRO_VERSION" ]] || [[ -z "$DISTRO_NAME" ]] || ( [ "$DISTRO_VERSION" -lt 20 ] && [ "$DISTRO_NAME" != "Ubuntu" ]);then
-      warning "tipi is designed to work with at least Ubuntu 20.04"
-      warning "But would you still like to try to install tipi (y/n) ?"
+      warning "tipi is currently supported on Ubuntu 20.04 or later only. You are running an unsuported distribution."
+      warning "Do you want to install tipi anyway? (y/n)"
       read answer
       if [ "$answer" == "${answer#[Yy]}" ] ;then 
        exit 1
