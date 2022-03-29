@@ -1,11 +1,11 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.29 - codename **solid snake** 🐍
+## v0.0.29 - codename **systematic squirrel** 🐿️
 ## Features
   - added the ability to configure your project in the deps file 
 ## Bugfix
   - user's timezone does not influence the hash of the environment zip 
-  - it's now possible to override default ignore rule.
+  - it's now possible to override default ignore rule with target specific .tipiignore.
 
 tipi-src xxx
 
