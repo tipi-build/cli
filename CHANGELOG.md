@@ -5,6 +5,7 @@
   - added the ability to configure your project in the deps file 
 ## Bugfix
   - user's timezone does not influence the hash of the environment zip 
+  - it's now possible to override default ignore rule.
 
 tipi-src xxx
 
