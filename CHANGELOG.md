@@ -1,5 +1,19 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.29 - codename **systematic squirrel** 🐿️
+## Features
+  - added the ability to configure your project in the deps file 
+## Bugfix
+  - user's timezone does not influence the hash of the environment zip 
+  - it's now possible to override default ignore rule with target specific .tipiignore.
+
+tipi-src d17a788b73b2ea3058ef312571011b8b78f3eeae
+
+##### Archives Checksums
+tipi-v0.0.29-windows-win64.zip:8CD21044CF8DECE30DEFBE7D2FBFED767E33373E
+tipi-v0.0.29-linux-x86_64.zip:7B1A073E6F10AF9EF44453E87AC8C3AED1D219EB
+tipi-v0.0.29-macOS.zip:084B4A0F7D2D7A915C35B03E30C50FBA8913A5F1
+
 ## v0.0.28 - hotfix - codename **rapid roadrunner** a.k.a meep meep 🐦
 
 ## Bugfix
