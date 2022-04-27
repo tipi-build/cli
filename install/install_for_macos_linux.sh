@@ -7,20 +7,18 @@ HOME_DIR="${TIPI_HOME_DIR:-$HOME}"
 warning() {
   printf "\e[1;33m ---> $1 \e[0m \n"
 }
-
  if [ "$(uname)" == "Linux" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-linux-x86_64.zip" 
     AVAIABLE_SIZE_FS=$(df -H $HOME_DIR | awk '{ print $4}'  | cut -d'G' -f1 | cut -d'l' -f2 | tr -d '\n' )
     DISTRO_NAME=$(cat /etc/*elease | grep DISTRIB_ID | cut -d '=' -f2)
     DISTRO_VERSION=$(cat /etc/*elease | grep DISTRIB_RELEASE | cut -d '=' -f2 | sed 's@^[^0-9]*\([0-9]\+\).*@\1@')
-    if [[ -z "$DISTRO_VERSION" ]] || [[ -z "$DISTRO_NAME" ]] || ( [ "$DISTRO_VERSION" -lt 20 ] && [ "$DISTRO_NAME" != "Ubuntu" ]);then
-      if [ ! -f "/etc/arch-release" ]; then
-        warning "tipi is currently supported on Ubuntu 20.04 or later only. You are running an unsuported distribution."
-        warning "Do you want to install tipi anyway? (y/n)"
-        read answer
-        if [ "$answer" == "${answer#[Yy]}" ] ;then 
+    ID_NAME = $(cat /etc/*elease | grep ^ID | cut -d '=' -f2)
+    if ([[ -z "$DISTRO_VERSION" ]] || [[ -z "$DISTRO_NAME" ]] || ( [ "$DISTRO_VERSION" -lt 20 ] || [ "$DISTRO_NAME" != "Ubuntu" ])) && ([[ -z "$ID_NAME" ]] || [ "$ID_NAME" != "arch" ] ); then
+      warning "tipi is currently supported on Ubuntu 20.04 or later only or on arch linux. You are running an unsuported distribution."
+      warning "Do you want to install tipi anyway? (y/n)"
+      read answer
+      if [ "$answer" == "${answer#[Yy]}" ] ;then 
         exit 1
-        fi
       fi
     fi
   elif [ "$(uname)" == "Darwin" ]; then
