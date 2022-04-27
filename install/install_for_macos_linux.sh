@@ -40,7 +40,7 @@ sucess() {
 }
 
 if [ "$AVAIABLE_SIZE_FS" -le 10 ];then
- warning "You may run out of space as you have only $AVAIABLE_SIZE_FS gb left on your tipi installation drive. A tipi installation typically requires between 2 and 10 gb of disk space depending on installation mode. You may change the installation location by setting the TIPI_HOME_DIR environment variable"
+ warning "You may run out of space as you have only $AVAIABLE_SIZE_FS GB left on your tipi installation drive. A tipi installation typically requires between 2 and 10 gb of disk space depending on installation mode. You may change the installation location by setting the TIPI_HOME_DIR environment variable"
 fi
 
 if [ -f "/etc/arch-release" ]; then
