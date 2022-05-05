@@ -1,8 +1,8 @@
 # tipi.build cli : CHANGELOG
 
 ## v0.0.30 - codename **transcendent tayen** 🌑
- ## Bugfix
-   - `tipi connect` on windows with number separator settings properly working again 
+## Bugfix
+  - `tipi connect` working again on windows / fixed a number formatting error
 
 tipi-src  2f80b4df7ca7c50249788ff726363f798ec0f4b9
 
