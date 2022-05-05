@@ -4,12 +4,12 @@
  ## Bugfix
    - `tipi connect` on windows with number separator settings properly working again 
 
-tipi-src  9ef52d07de2fa04cbac44cc783f8f419e465e29d
+tipi-src  2f80b4df7ca7c50249788ff726363f798ec0f4b9
 
 ##### Archives Checksums
-tipi-v0.0.30-windows-win64.zip:14D8247816CAB83A2699EC2817E415D3CEE46CF3
-tipi-v0.0.30-linux-x86_64.zip:F82B10F55171BDCBA6DBCC8D7ACEF5C48B3EFB37
-tipi-v0.0.30-macOS.zip:41DE1C9CFE8AE7D9F8A02158191DABB29E8962DF
+tipi-v0.0.30-windows-win64.zip:4479DE2902B3511A91F2EFE764917F7FC8A23B08
+tipi-v0.0.30-linux-x86_64.zip:9F930E1D4B13098C99B9F6E971C1ED741EDE4DC5
+tipi-v0.0.30-macOS.zip:D34C28E52E21DEEF7C967DD1C0FD48B2E13F161D
 
 ## v0.0.29 - codename **systematic squirrel** 🐿️
 ## Features
