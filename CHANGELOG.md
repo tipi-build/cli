@@ -1,5 +1,18 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.30 - codename **transcendent tayen** 🌑
+ ## Bugfix
+   - Objects needed by executables are directly linked instead of linked through the project static / dynamic library 
+     * This ensures that static global memory space are linked in the final binary ( e.g. Fixes Google Test case registration )
+   - `tipi connect` on windows with number separator settings properly working again 
+
+tipi-src  9ef52d07de2fa04cbac44cc783f8f419e465e29d
+
+##### Archives Checksums
+tipi-v0.0.30-windows-win64.zip:14D8247816CAB83A2699EC2817E415D3CEE46CF3
+tipi-v0.0.30-linux-x86_64.zip:F82B10F55171BDCBA6DBCC8D7ACEF5C48B3EFB37
+tipi-v0.0.30-macOS.zip:41DE1C9CFE8AE7D9F8A02158191DABB29E8962DF
+
 ## v0.0.29 - codename **systematic squirrel** 🐿️
 ## Features
   - added the ability to configure your project in the deps file 
