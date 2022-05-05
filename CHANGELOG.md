@@ -2,8 +2,6 @@
 
 ## v0.0.30 - codename **transcendent tayen** 🌑
  ## Bugfix
-   - Objects needed by executables are directly linked instead of linked through the project static / dynamic library 
-     * This ensures that static global memory space are linked in the final binary ( e.g. Fixes Google Test case registration )
    - `tipi connect` on windows with number separator settings properly working again 
 
 tipi-src  9ef52d07de2fa04cbac44cc783f8f419e465e29d
