@@ -1,5 +1,16 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.30 - codename **transcendent tayen** 🌑
+## Bugfix
+  - `tipi connect` working again on windows / fixed a number formatting error
+
+tipi-src  2f80b4df7ca7c50249788ff726363f798ec0f4b9
+
+##### Archives Checksums
+tipi-v0.0.30-windows-win64.zip:4479DE2902B3511A91F2EFE764917F7FC8A23B08
+tipi-v0.0.30-linux-x86_64.zip:9F930E1D4B13098C99B9F6E971C1ED741EDE4DC5
+tipi-v0.0.30-macOS.zip:D34C28E52E21DEEF7C967DD1C0FD48B2E13F161D
+
 ## v0.0.29 - codename **systematic squirrel** 🐿️
 ## Features
   - added the ability to configure your project in the deps file 

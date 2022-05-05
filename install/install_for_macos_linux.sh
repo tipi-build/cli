@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="${TIPI_INSTALL_VERSION:-v0.0.29}"
+VERSION="${TIPI_INSTALL_VERSION:-v0.0.30}"
  if [ "$(uname)" == "Linux" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-linux-x86_64.zip" 
   elif [ "$(uname)" == "Darwin" ]; then
