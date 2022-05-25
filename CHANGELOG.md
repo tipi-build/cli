@@ -4,12 +4,12 @@
 ## Bugfix
   - Building on macOs remote environment works again
 
-tipi-src : x
+tipi-src : dc1ec6118e41830059b2ab7cecf74aedb6323902
 
 ##### Archives Checksums
-tipi-v0.0.31-windows-win64.zip:x
-tipi-v0.0.31-linux-x86_64.zip:x
-tipi-v0.0.31-macOS.zip:x
+tipi-v0.0.31-windows-win64.zip:B5458BBC0DAB2F6C41FA4E31E2814F466C07BFFE
+tipi-v0.0.31-linux-x86_64.zip:1D9EEAADB9A7D5D15F3D23DAC52D4ED400A6F605
+tipi-v0.0.31-macOS.zip:67F589D003A2326BF8462BA41068592E9E4D4A73
 
 ## v0.0.30 - codename **transcendent tayen** 🌑
 ## Bugfix
