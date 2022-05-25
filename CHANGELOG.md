@@ -1,6 +1,6 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.31 - codename **unique Unicornfish** 🐟
+## v0.0.31 - codename **unique unicornfish** 🐟
 ## Bugfix
   - Building on macOs remote environment works again
 
