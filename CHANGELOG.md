@@ -1,5 +1,16 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.31 - codename **Ultra Uranus** 🪐
+## Bugfix
+  - Building on macOs remote environment works again
+
+tipi-src : x
+
+##### Archives Checksums
+tipi-v0.0.31-windows-win64.zip:x
+tipi-v0.0.31-linux-x86_64.zip:x
+tipi-v0.0.31-macOS.zip:x
+
 ## v0.0.30 - codename **transcendent tayen** 🌑
 ## Bugfix
   - `tipi connect` working again on windows / fixed a number formatting error
