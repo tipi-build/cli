@@ -1,15 +1,18 @@
 # tipi.build cli : CHANGELOG
 
 ## v0.0.31 - codename **unique unicornfish** 🐟
+## Feature
+  - Limited official support for ubuntu 16.04
 ## Bugfix
   - Building on macOs remote environment works again
-
-tipi-src : dc1ec6118e41830059b2ab7cecf74aedb6323902
+ 
+tipi-src 6e74e70152174a509968d0d33e517527f30d49eb
 
 ##### Archives Checksums
-tipi-v0.0.31-windows-win64.zip:B5458BBC0DAB2F6C41FA4E31E2814F466C07BFFE
-tipi-v0.0.31-linux-x86_64.zip:1D9EEAADB9A7D5D15F3D23DAC52D4ED400A6F605
-tipi-v0.0.31-macOS.zip:67F589D003A2326BF8462BA41068592E9E4D4A73
+tipi-v0.0.31-windows-win64.zip:AA54BC0EF43701252BC3CF5DB6E153C79BD18A51
+tipi-v0.0.31-linux-x86_64.zip:CE101029F9ED9F2135010606F53D942715E4A426
+tipi-v0.0.31-macOS.zip:7D0D885891DBA7541DD5AE5AA13BAE19D8107AEC
+
 
 ## v0.0.30 - codename **transcendent tayen** 🌑
 ## Bugfix
