@@ -40,7 +40,7 @@ Paste that in a Powershell (run as Administartor).
 ### Install an old version 
 
 #### Install on Linux / macOS 
-`
+```
 export TIPI_INSTALL_VERSION=vx.x.x && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/master/install/install_for_macos_linux.sh )"
 ```
 
