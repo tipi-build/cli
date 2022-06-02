@@ -1,9 +1,11 @@
 # tipi.build cli : CHANGELOG
 
 ## v0.0.31 - codename **unique unicornfish** 🐟
-## Feature
-  - Limited official support for ubuntu 16.04
-## Bugfix
+
+### Feature
+  - Limited official support for Ubuntu 16.04 ext LTS + Ubuntu 18.04 (use remote builds from your legacy Ubuntu 16+)
+
+### Bugfix
   - Building on macOs remote environment works again
  
 tipi-src 6e74e70152174a509968d0d33e517527f30d49eb
