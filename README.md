@@ -22,7 +22,9 @@ Available as command line tool or vscode plugin !
 ![add to vscode](./tipi-build-plugin.png)
 
 ### Install on Linux / macOS 
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/master/install/install_for_macos_linux.sh)"`
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/master/install/install_for_macos_linux.sh)"
+```
 
 Paste that in a Linux shell prompt or in a macOS Terminal.
 

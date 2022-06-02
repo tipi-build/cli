@@ -1,5 +1,21 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.31 - codename **unique unicornfish** 🐟
+
+### Feature
+  - Limited official support for Ubuntu 16.04 ext LTS + Ubuntu 18.04 (use remote builds from your legacy Ubuntu 16+)
+
+### Bugfix
+  - Building on macOs remote environment works again
+ 
+tipi-src 6e74e70152174a509968d0d33e517527f30d49eb
+
+##### Archives Checksums
+tipi-v0.0.31-windows-win64.zip:AA54BC0EF43701252BC3CF5DB6E153C79BD18A51
+tipi-v0.0.31-linux-x86_64.zip:CE101029F9ED9F2135010606F53D942715E4A426
+tipi-v0.0.31-macOS.zip:7D0D885891DBA7541DD5AE5AA13BAE19D8107AEC
+
+
 ## v0.0.30 - codename **transcendent tayen** 🌑
 ## Bugfix
   - `tipi connect` working again on windows / fixed a number formatting error
