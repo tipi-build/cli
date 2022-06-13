@@ -65,8 +65,11 @@ if (!$?){
 $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
 $runningWithPrivileges = $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
-# this checks if the path to tipi is contained in the %Path%
-if([Environment]::GetEnvironmentVariable("Path").Contains($INSTALL_FOLDER)) {
+# this checks if the path to tipi is contained in the %Path% 
+# note: we read out of context so we get the value that was used - no matter the code path on
+# the last installation
+$INSTALL_FOLDER_regex_escaped = $INSTALL_FOLDER.replace("\", "\\")
+if([Environment]::GetEnvironmentVariable("Path") -match "(^|;)$INSTALL_FOLDER_regex_escaped(;|$)") {
     Info "Install folder already on your PATH - skipping"
 } else {
     $context = [EnvironmentVariableTarget]::User;
@@ -77,8 +80,8 @@ if([Environment]::GetEnvironmentVariable("Path").Contains($INSTALL_FOLDER)) {
 
     $PATH_orig = [Environment]::GetEnvironmentVariable("Path", $context)
 
-    $PATH_new = $PATH_orig + ";" + $INSTALL_FOLDER
-    $PATH_new = $PATH_new -replace ';{2,}',';'
+    $PATH_new = $PATH_orig + ";$INSTALL_FOLDER;"
+    $PATH_new = $PATH_new -replace ';{2,}',';'  # clean the path of eventual double ;; entries
 
     [Environment]::SetEnvironmentVariable("Path", $PATH_new, $context)
 
