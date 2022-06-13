@@ -16,7 +16,7 @@ function Abort {
     )
     $color_before = $host.ui.RawUI.ForegroundColor
     $host.ui.RawUI.ForegroundColor = 'Red'
-    Write-Output "[x] $Message"
+    Write-Warning "[x] $Message"
     $host.ui.RawUI.ForegroundColor = $color_before
 }
 
@@ -45,6 +45,13 @@ Invoke-WebRequest -Uri $TIPI_URL -OutFile $downloaded_tipi_zip
 
 if(!$?) {
     Abort "Could not download tipi"
+    return
+}
+
+# test if the user can write to $TIPI_EXE
+Try { [io.file]::OpenWrite($TIPI_EXE).close() }
+Catch { 
+    Write-Warning "Unable to write to $TIPI_EXE - please re-run this script with appropriate privileges (or delete the file manually)" 
     return
 }
 
