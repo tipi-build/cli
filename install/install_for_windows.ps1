@@ -49,7 +49,11 @@ if(!$?) {
 }
 
 # test if the user can write to $TIPI_EXE
-Try { [io.file]::OpenWrite($TIPI_EXE).close() }
+Try { 
+    if([System.IO.File]::Exists($TIPI_EXE)) {
+        [System.IO.File]::OpenWrite($TIPI_EXE).close()
+    }
+}
 Catch { 
     Write-Warning "Unable to write to $TIPI_EXE - please re-run this script with appropriate privileges (or delete the file manually)" 
     return
