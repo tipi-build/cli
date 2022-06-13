@@ -112,7 +112,7 @@ $host.ui.RawUI.ForegroundColor = $color_before
 if ($?){
     Info "tipi has been installed in $INSTALL_FOLDER and can be used now. You may have to start a new terminal / command window."
     Write-Output "----------------------------"
-    Info "If you are new to tipi you can explore how to use it at: https://tipi.build/explore or follow the getting started guide in the onboarding wizzard on your https://tipi.build/dashboard"
+    Info "If you are new to tipi you can explore how to use it at: https://tipi.build/explore. If you are currently following the onboarding guide it is now time to get back to your browser: https://tipi.build/onboarding/step4"
 }else{
     Abort "Installation failed, please contact us on https://tipi.build : We are happy to help."
     [Environment]::Exit(1)  

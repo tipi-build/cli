@@ -1,11 +1,11 @@
 #!/bin/bash
 
 VERSION="${TIPI_INSTALL_VERSION:-v0.0.31}"
- if [ "$(uname)" == "Linux" ]; then
+if [ "$(uname)" == "Linux" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-linux-x86_64.zip" 
-  elif [ "$(uname)" == "Darwin" ]; then
+elif [ "$(uname)" == "Darwin" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-macOS.zip"
-  fi
+fi
 
 INSTALL_FOLDER="/usr/local"
 
@@ -34,7 +34,7 @@ fi
 
 
 if should_install_unzip; then
-    info "unzip is needed to unzip the downloaded file, we are installing unzip with your package manager"
+    info "The 'unzip' is required unzip the downloaded file, we are installing unzip with your package manager"
     echo "Could you validate with your password ? 😇 "
     sudo apt-get install unzip -y || abort "Error while installing unzip"
 fi
@@ -47,9 +47,11 @@ sudo unzip ~/tipi.zip -d $INSTALL_FOLDER -x LICENSE && rm ~/tipi.zip
 if [ $? -eq 0 ]; then
     info "tipi successfully installed. Installing the dependencies..."
     sudo chmod +x $INSTALL_FOLDER/bin/tipi
-    $INSTALL_FOLDER/bin/tipi --help --dont-upgrade
+    $INSTALL_FOLDER/bin/tipi --dont-upgrade run echo "Done"
     if [ $? -eq 0 ]; then
-        info "tipi and its dependencies have been successfully installed"
+        info "tipi has been successfully installed"
+        info "---------------------------"
+        info "If you are new to tipi you can explore how to use it at: https://tipi.build/explore. If you are currently following the onboarding guide it is now time to get back to your browser: https://tipi.build/onboarding/step4"
     else 
         abort "Error while installing the dependencies"
     fi
