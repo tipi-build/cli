@@ -168,29 +168,31 @@ jobs:
           $Env:TIPI_DISTRO_MODE="all"
           . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex 
           if (!($?)) {exit 1}
+
           # Test install succeeeded 
+          $expected_install_folder = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi"
+
           $pathsToTest = @(
-            "C:\\ProgramData\\tipi\\tipi.exe"  
-            "C:\\.tipi\\clang\\*\\bin\\clang.exe"  
-            "C:\\.tipi\\cmake\\*\\bin\\cmake.exe"  
-            "C:\\.tipi\\emsdk\\*\\emsdk.bat"  
-            "C:\\.tipi\\environments\\*\\xcode.cmake"  
-            "C:\\.tipi\\go\\*\\bin\\go.exe"  
-            "C:\\.tipi\\jdk\\*\\bin\\jar.exe"  
-            "C:\\.tipi\\nodejs\\*\\node.exe"  
-            "C:\\.tipi\\openapi\\*\\openapi-generator-cli-5.1.1.jar"  
-            "C:\\.tipi\\openapi-generator-script\\*\\openapi-generator-cli.bat"  
-            "C:\\.tipi\\openssh\\*\\ssh.exe"  
-            "C:\\.tipi\\perl\\*\\README.txt"  
-            "C:\\.tipi\\platform\\*\\cmake\\projects\\Poco\\hunter.cmake"  
-            "C:\\.tipi\\python\\*\\python.exe"  
-            "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py"  
+            $expected_install_folder
+            "C:\.tipi\clang\*\bin\clang.exe"  
+            "C:\.tipi\cmake\*\bin\cmake.exe"  
+            "C:\.tipi\emsdk\*\emsdk.bat"  
+            "C:\.tipi\environments\*\xcode.cmake"  
+            "C:\.tipi\go\*\bin\go.exe"  
+            "C:\.tipi\jdk\*\bin\jar.exe"  
+            "C:\.tipi\nodejs\*\node.exe"  
+            "C:\.tipi\openapi\*\openapi-generator-cli-5.1.1.jar"  
+            "C:\.tipi\openapi-generator-script\*\openapi-generator-cli.bat"  
+            "C:\.tipi\openssh\*\ssh.exe"  
+            "C:\.tipi\perl\*\README.txt"  
+            "C:\.tipi\platform\*\cmake\projects\Poco\hunter.cmake"  
+            "C:\.tipi\python\*\python.exe"  
+            "C:\.tipi\file-sync\*\pysearpc\client.py"  
           )
 
           $success = $true
 
           # this checks that tipi is on PATH and that it's where we expect it to be.
-          $expected_install_folder = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi"
           $success = (get-command tipi).Path -eq $expected_install_folder
 
           foreach ( $testPath in $pathsToTest )
@@ -205,7 +207,7 @@ jobs:
         shell: powershell
 
   system-install-windows-powershell-light:
-    name: install-windows-powershell-light
+    name: system-install-windows-powershell-light
     runs-on: windows-latest
     steps:
       - name: test_install_on_windows_powershell
@@ -220,20 +222,22 @@ jobs:
           }
           . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex 
           if (!($?)) {exit 1}
+
           # Test install succeeeded 
+          $expected_install_folder = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi"
 
           $pathsToTest = @(
-            "C:\\ProgramData\\tipi\\tipi.exe"   
-            "C:\\.tipi\\environments\\*\\xcode.cmake" 
-            "C:\\.tipi\\openssh\\*\\ssh.exe"
-            "C:\\.tipi\\python\\*\\python.exe"  
-            "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py"  
+            $expected_install_folder
+            "C:\.tipi\environments\*\xcode.cmake" 
+            "C:\.tipi\openssh\*\ssh.exe"
+            "C:\.tipi\python\*\python.exe"  
+            "C:\.tipi\file-sync\*\pysearpc\client.py"  
           )
 
           $success = $true
           
           # this checks that tipi is on PATH and that it's where we expect it to be.
-          $expected_install_folder = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi"
+          
           $success = (get-command tipi).Path -eq $expected_install_folder
 
           foreach ( $testPath in $pathsToTest )
@@ -246,11 +250,11 @@ jobs:
 
           # test just a few things in the light install to make sure they are *NOT* present
           $pathsToTest_negative = @(
-              "C:\\.tipi\\clang\\*\\bin\\clang.exe"  
-              "C:\\.tipi\\cmake\\*\\bin\\cmake.exe"  
-              "C:\\.tipi\\emsdk\\*\\emsdk.bat"              
-              "C:\\.tipi\\go\\*\\bin\\go.exe"  
-              "C:\\.tipi\\jdk\\*\\bin\\jar.exe"              
+              "C:\.tipi\clang\*\bin\clang.exe"  
+              "C:\.tipi\cmake\*\bin\cmake.exe"  
+              "C:\.tipi\emsdk\*\emsdk.bat"              
+              "C:\.tipi\go\*\bin\go.exe"  
+              "C:\.tipi\jdk\*\bin\jar.exe"              
           )
           foreach ( $testPath in $pathsToTest_negative )
           {
@@ -278,18 +282,19 @@ jobs:
           if (!($?)) {exit 1}
           # Test install succeeeded 
 
+          $expected_install_folder = "C:\ProgramData\tipi\tipi.exe"   
+
           $pathsToTest = @(
-            "C:\\ProgramData\\tipi\\tipi.exe"   
-            "C:\\.tipi\\environments\\*\\xcode.cmake" 
-            "C:\\.tipi\\openssh\\*\\ssh.exe"
-            "C:\\.tipi\\python\\*\\python.exe"  
-            "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py"  
+             $expected_install_folder
+            "C:\.tipi\environments\*\xcode.cmake" 
+            "C:\.tipi\openssh\*\ssh.exe"
+            "C:\.tipi\python\*\python.exe"  
+            "C:\.tipi\file-sync\*\pysearpc\client.py"  
           )
 
           $success = $true
 
-          # this checks that tipi is on PATH and that it's where we expect it to be.
-          $expected_install_folder = "C:\\ProgramData\\tipi\\tipi.exe"   
+          # this checks that tipi is on PATH and that it's where we expect it to be.         
           $success = (get-command tipi).Path -eq $expected_install_folder
 
           foreach ( $testPath in $pathsToTest )
@@ -302,11 +307,11 @@ jobs:
 
           # test just a few things in the light install to make sure they are *NOT* present
           $pathsToTest_negative = @(
-              "C:\\.tipi\\clang\\*\\bin\\clang.exe"  
-              "C:\\.tipi\\cmake\\*\\bin\\cmake.exe"  
-              "C:\\.tipi\\emsdk\\*\\emsdk.bat"              
-              "C:\\.tipi\\go\\*\\bin\\go.exe"  
-              "C:\\.tipi\\jdk\\*\\bin\\jar.exe"              
+              "C:\.tipi\clang\*\bin\clang.exe"  
+              "C:\.tipi\cmake\*\bin\cmake.exe"  
+              "C:\.tipi\emsdk\*\emsdk.bat"              
+              "C:\.tipi\go\*\bin\go.exe"  
+              "C:\.tipi\jdk\*\bin\jar.exe"              
           )
           foreach ( $testPath in $pathsToTest_negative )
           {
