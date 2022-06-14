@@ -170,7 +170,7 @@ jobs:
           if (!($?)) {exit 1}
 
           # Test install succeeeded 
-          $expected_install_folder = "C:\ProgramData\tipi\tipi.exe"
+          $expected_install_folder = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi\tipi.exe"
 
           $pathsToTest = @(
             $expected_install_folder
@@ -224,7 +224,7 @@ jobs:
           if (!($?)) {exit 1}
 
           # Test install succeeeded 
-          $expected_install_folder = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi\tipi.exe"
+          $expected_install_folder = "C:\ProgramData\tipi\tipi.exe"
 
           $pathsToTest = @(
             $expected_install_folder
