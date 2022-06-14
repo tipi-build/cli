@@ -1,12 +1,25 @@
 
 
-$version_to_use=$env:TIPI_INSTALL_VERSION
+$version_to_use = $env:TIPI_INSTALL_VERSION
+$INSTALL_FOLDER = $env:TIPI_INSTALL_DEST
+
+$system_install = $false
+if([bool]::TryParse($env:TIPI_INSTALL_SYSTEM, [ref]$system_install)) {
+    Write-Output "INFO: TIPI_INSTALL_DEST set, intepreted as boolean '$system_install'"
+}
 
 if ([string]::IsNullOrEmpty($version_to_use)) {
     $version_to_use="v0.0.31"
 }
 
-$INSTALL_FOLDER = "C:\ProgramData\tipi"
+if ([string]::IsNullOrEmpty($INSTALL_FOLDER)) {
+    $INSTALL_FOLDER = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi"
+}
+
+if($system_install) {
+    $INSTALL_FOLDER = "C:\ProgramData\tipi"
+}
+
 $TIPI_EXE = "$INSTALL_FOLDER\tipi.exe"
 $TIPI_URL = "https://github.com/tipi-build/cli/releases/download/$version_to_use/tipi-$version_to_use-windows-win64.zip"
 
@@ -76,22 +89,28 @@ if (!$?){
 $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
 $runningWithPrivileges = $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
+if($system_install -and -not $runningWithPrivileges) {
+    Write-Warning "System install required administrative priviledges to add tipi to the system PATH."
+    Write-Warning "Please re-run this script in an elevated promt if you need all users to be able to use tipi."
+    Write-Warning "-> Proceeding to add tipi to the current user's PATH."
+}
+
 # this checks if the path to tipi is contained in the %Path% 
 # note: we read out of context so we get the value that was used - no matter the code path on
 # the last installation
 $INSTALL_FOLDER_regex_escaped = $INSTALL_FOLDER.replace("\", "\\")
 if([Environment]::GetEnvironmentVariable("Path") -match "(^|;)$INSTALL_FOLDER_regex_escaped(;|$)") {
-    Info "Install folder already on your PATH - skipping"
+    Info "Install folder already on your PATH - done"
 } else {
     $context = [EnvironmentVariableTarget]::User;
 
-    if($runningWithPrivileges) {
+    if($runningWithPrivileges -and $system_install) {
         $context = [EnvironmentVariableTarget]::Machine
     }
 
     $PATH_orig = [Environment]::GetEnvironmentVariable("Path", $context)
 
-    $PATH_new = $PATH_orig + ";$INSTALL_FOLDER;"
+    $PATH_new = "$INSTALL_FOLDER;" + $PATH_orig # prepending so the latest install wins the path race
     $PATH_new = $PATH_new -replace ';{2,}',';'  # clean the path of eventual double ;; entries
 
     [Environment]::SetEnvironmentVariable("Path", $PATH_new, $context)
@@ -101,7 +120,11 @@ if([Environment]::GetEnvironmentVariable("Path") -match "(^|;)$INSTALL_FOLDER_re
         return
     }
 
-    Info "Added tipi to your user path only. Please re-run the install script in an admin console if you need other users on your machine use tipi."
+    Info "Added tipi to your user path only."
+    Info 'NOTE: Please set $Env:TIPI_INSTALL_SYSTEM="True" and re-run the install script in an admin console if you need other users on your machine use tipi.'
+
+    # "refresh" then current console session PATH
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 }
 
 Info "Cleaning up temporary download folder"
@@ -110,7 +133,7 @@ Get-ChildItem -Path $download_dir -Recurse | Remove-Item -force -recurse
 
 Info "Provisioning included tools."
 $color_before = $host.ui.RawUI.ForegroundColor
-cmd.exe /c "$TIPI_EXE --dont-upgrade run echo done"
+cmd.exe /c "$TIPI_EXE -v --dont-upgrade run echo ""[INFO] Shipping tools done"""
 $host.ui.RawUI.ForegroundColor = $color_before
 
 if ($?){
@@ -121,3 +144,4 @@ if ($?){
     Abort "Installation failed, please contact us on https://tipi.build : We are happy to help."
     [Environment]::Exit(1)  
 }
+
