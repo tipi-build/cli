@@ -353,8 +353,7 @@ jobs:
           
           if(!$success) { exit 1; }
       - name: Test TIPI_INSTALL_SOURCE feature
-        shell: powershell  
-        continue-on-error: true
+        shell: powershell
         run: |
          
           echo "[TESTING] TIPI_INSTALL_SOURCE feature"
@@ -375,7 +374,8 @@ jobs:
           $Env:INSTALL_SRC_TEST_OUTFILE=$downloaded_tipi_zip
 
           $ProgressPreference = 'SilentlyContinue'
-          Invoke-WebRequest -ContentType "application/octet-stream" -Uri "https://github.com/tipi-build/cli/releases/download/v0.0.30/tipi-v0.0.30-linux-x86_64.zip" -OutFile $downloaded_tipi_zip
+          Invoke-WebRequest -ContentType "application/octet-stream" -Uri "https://github.com/tipi-build/cli/releases/download/v0.0.30/
+tipi-v0.0.30-windows-win64.zip" -OutFile $downloaded_tipi_zip
 
           $Env:TIPI_INSTALL_SOURCE = "file://$downloaded_tipi_zip"
           echo $Env:TIPI_INSTALL_SOURCE
@@ -397,7 +397,6 @@ jobs:
 
       - name: Neg test TIPI_INSTALL_SOURCE feature
         shell: powershell  
-        continue-on-error: true
         run: |
           echo "[TESTING] Negative test for TIPI_INSTALL_SOURCE"
 
