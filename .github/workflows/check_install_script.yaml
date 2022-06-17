@@ -163,6 +163,7 @@ jobs:
           done
       - name: Test TIPI_INSTALL_SOURCE feature
         run: |
+          set +e
 
           ###
           # testing the install from TIPI_INSTALL_SOURCE path
@@ -174,6 +175,7 @@ jobs:
           if [ $? -ne 1 ]; then
             echo "[FAILED] tipi still found on path"
             echo ::set-output name=exit_status::$?
+            exit 1
           fi
 
           export INSTALL_SRC_TEST_OUTFILE=tipiv0.0.30.zip
@@ -184,12 +186,14 @@ jobs:
 
           if [ $? -ne 0 ]; then
             echo "[FAILED] didn't find expected string '$TIPI_INSTALL_SOURCE' in the output of the install script"
+            echo ::set-output name=exit_status::$?
             exit 1
           fi
 
           tipi --help --dont-upgrade | grep "v0.0.30"
           if [ $? -ne 0 ]; then
             echo "[FAILED] Expected to find tipi 'v0.0.30'"
+            echo ::set-output name=exit_status::$?
             exit 1
           fi
       - name: Neg test TIPI_INSTALL_SOURCE feature
