@@ -376,16 +376,18 @@ jobs:
           $ProgressPreference = 'SilentlyContinue'
           Invoke-WebRequest -ContentType "application/octet-stream" -Uri "https://github.com/tipi-build/cli/releases/download/v0.0.30/tipi-v0.0.30-windows-win64.zip" -OutFile $downloaded_tipi_zip
 
-          $Env:TIPI_INSTALL_SOURCE = "file://$downloaded_tipi_zip"
-          echo $Env:TIPI_INSTALL_SOURCE
+          $install_source_l = "file://$downloaded_tipi_zip"
+          $Env:TIPI_INSTALL_SOURCE = $install_source_l
+          
+          echo $install_source_l
 
           $output = . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
 
           echo $output
 
-          if (!($?) -or $output -notcontains $Env:TIPI_INSTALL_SOURCE) {
+          if (!($?) -or $output -notcontains $install_source_l) {
             echo "::set-output name=exit_status::$?"
-            echo "[FAILED] didn't find expected string '$Env:$TIPI_INSTALL_SOURCE' in the output of the install script"
+            echo "[FAILED] didn't find expected string '$install_source_l' in the output of the install script"
             exit 1
           }
 
