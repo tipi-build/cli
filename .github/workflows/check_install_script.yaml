@@ -355,6 +355,10 @@ jobs:
       - name: Test TIPI_INSTALL_SOURCE feature
         shell: powershell
         run: |
+          # force system install to "C:\ProgramData\tipi\tipi.exe"
+          # NOTE: we do this here too so the next install step will - again - be pretty sure to 
+          # be able to find and delete a tipi.exe in the expected path...
+          $env:TIPI_INSTALL_SYSTEM="True"
          
           echo "[TESTING] TIPI_INSTALL_SOURCE feature"
 
