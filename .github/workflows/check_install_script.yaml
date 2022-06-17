@@ -378,14 +378,14 @@ jobs:
 
           $output = . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
 
-          if (!($?) -or $output -not -contains $Env:TIPI_INSTALL_SOURCE) {
+          if (!($?) -or $output -notcontains $Env:TIPI_INSTALL_SOURCE) {
             echo "::set-output name=exit_status::$?"
             echo "[FAILED] didn't find expected string '$TIPI_INSTALL_SOURCE' in the output of the install script"
             exit 1
           }
 
           $output = tipi --help --dont-upgrade
-          if (!($?) -or $output -not -contains "v0.0.30") {
+          if (!($?) -or $output -notcontains "v0.0.30") {
             echo "::set-output name=exit_status::$?"
             echo "[FAILED] Expected to find tipi 'v0.0.30'"            
             exit 1
