@@ -170,6 +170,12 @@ jobs:
 
           rm $(which tipi)
 
+          which tipi
+          if [ $? -ne 1 ]; then
+            echo "[FAILED] tipi still found on path"
+            echo ::set-output name=exit_status::$?
+          fi
+
           export INSTALL_SRC_TEST_OUTFILE=tipiv0.0.30.zip
           wget https://github.com/tipi-build/cli/releases/download/v0.0.30/tipi-v0.0.30-linux-x86_64.zip -O $INSTALL_SRC_TEST_OUTFILE
 
@@ -194,7 +200,14 @@ jobs:
           ###
           # negative test / install from TIPI_INSTALL_SOURCE should fail if path doesn't exist
           echo "[TESTING] Negative test for TIPI_INSTALL_SOURCE"
+          
           rm $(which tipi)
+
+          which tipi
+          if [ $? -ne 1 ]; then
+            echo "[FAILED] tipi still found on path"
+            echo ::set-output name=exit_status::$?
+          fi
 
           export TIPI_INSTALL_SOURCE=file:///tmp/rAnDoMfiLe.noknownext
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_macos_linux.sh)"
