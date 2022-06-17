@@ -381,9 +381,11 @@ jobs:
 
           $output = . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
 
+          echo $output
+
           if (!($?) -or $output -notcontains $Env:TIPI_INSTALL_SOURCE) {
             echo "::set-output name=exit_status::$?"
-            echo "[FAILED] didn't find expected string '$TIPI_INSTALL_SOURCE' in the output of the install script"
+            echo "[FAILED] didn't find expected string '$Env:$TIPI_INSTALL_SOURCE' in the output of the install script"
             exit 1
           }
 
