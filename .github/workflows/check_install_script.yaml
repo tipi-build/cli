@@ -374,8 +374,7 @@ jobs:
           $Env:INSTALL_SRC_TEST_OUTFILE=$downloaded_tipi_zip
 
           $ProgressPreference = 'SilentlyContinue'
-          Invoke-WebRequest -ContentType "application/octet-stream" -Uri "https://github.com/tipi-build/cli/releases/download/v0.0.30/
-tipi-v0.0.30-windows-win64.zip" -OutFile $downloaded_tipi_zip
+          Invoke-WebRequest -ContentType "application/octet-stream" -Uri "https://github.com/tipi-build/cli/releases/download/v0.0.30/tipi-v0.0.30-windows-win64.zip" -OutFile $downloaded_tipi_zip
 
           $Env:TIPI_INSTALL_SOURCE = "file://$downloaded_tipi_zip"
           echo $Env:TIPI_INSTALL_SOURCE
