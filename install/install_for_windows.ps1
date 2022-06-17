@@ -1,28 +1,24 @@
+# tipi CLI windows installer script
+# Copyright 2020 - () tipi technologies Ltd (Zürich)
+#
+# Environment variables
+#
+# - TIPI_INSTALL_VERSION:   overrides release to install - must match release tag 
+# - TIPI_INSTALL_DEST:      overrides the default installation destination
+# - TIPI_INSTALL_SOURCE:    override the source path of the release zip
+#                           -> a file:// url can be used to install from a locally present zip
+# - TIPI_INSTALL_SYSTEM:    set to "True" to proceed to a system-wide install of tipi
+#                           ->  depending on the value of TIPI_INSTALL_DEST tipi will be installed
+#                               in %TIPI_INSTALL_DEST% or "%CommonApplicationData%\tipi\" (on most
+#                               systems that interpolates to C:\ApplicationData\tipi)
+#                           ->  if run in an elevated promt the installation path witll be 
+#                               preprended to the SYSTEM::PATH instead of the USER_PROFILE::PATH
+#                               which places tipi.exe on the path of all users of the system
+#
 
-
-$version_to_use = $env:TIPI_INSTALL_VERSION
-$INSTALL_FOLDER = $env:TIPI_INSTALL_DEST
-
-$system_install = $false
-if([bool]::TryParse($env:TIPI_INSTALL_SYSTEM, [ref]$system_install)) {
-    Write-Output "INFO: TIPI_INSTALL_DEST set, intepreted as boolean '$system_install'"
-}
-
-if ([string]::IsNullOrEmpty($version_to_use)) {
-    $version_to_use="v0.0.31"
-}
-
-if ([string]::IsNullOrEmpty($INSTALL_FOLDER)) {
-    if($system_install) {
-        $INSTALL_FOLDER = Join-Path -Path ([Environment]::GetFolderPath('CommonApplicationData')) -ChildPath "\tipi"
-    }
-    else {
-        $INSTALL_FOLDER = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi"
-    }    
-}
-
-$TIPI_EXE = "$INSTALL_FOLDER\tipi.exe"
-$TIPI_URL = "https://github.com/tipi-build/cli/releases/download/$version_to_use/tipi-$version_to_use-windows-win64.zip"
+###
+# Helper functions
+###
 
 function Abort {
     param (
@@ -49,13 +45,54 @@ function New-TemporaryDirectory() {
     return $path
 }
 
-Info "Downloading tipi..."
+###
+# Impl.
+###
+
+$version_to_use = $env:TIPI_INSTALL_VERSION
+$INSTALL_FOLDER = $env:TIPI_INSTALL_DEST
+
+$system_install = $false
+if([bool]::TryParse($env:TIPI_INSTALL_SYSTEM, [ref]$system_install)) {
+    Write-Output "INFO: TIPI_INSTALL_DEST set, intepreted as boolean '$system_install'"
+}
+
+if ([string]::IsNullOrEmpty($version_to_use)) {
+    $version_to_use="v0.0.31"
+}
+
+if ([string]::IsNullOrEmpty($INSTALL_FOLDER)) {
+    if($system_install) {
+        $INSTALL_FOLDER = Join-Path -Path ([Environment]::GetFolderPath('CommonApplicationData')) -ChildPath "\tipi"
+    }
+    else {
+        $INSTALL_FOLDER = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi"
+    }    
+}
+
+
+$TIPI_URL = $env:TIPI_INSTALL_SOURCE
+
+if ([string]::IsNullOrEmpty($TIPI_URL)) {
+    $TIPI_URL = "https://github.com/tipi-build/cli/releases/download/$version_to_use/tipi-$version_to_use-windows-win64.zip"
+}
+
+$TIPI_EXE = "$INSTALL_FOLDER\tipi.exe"
+
+
+Info "Downloading tipi from: $TIPI_URL"
 
 $download_dir = New-TemporaryDirectory
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $downloaded_tipi_zip = (Join-Path -Path $download_dir -ChildPath "tipi.zip")[0]
-Info "Dowloading tipi archive in $downloaded_tipi_zip"
-Invoke-WebRequest -Uri $TIPI_URL -OutFile $downloaded_tipi_zip
+Info "Saving archive to: $downloaded_tipi_zip"
+
+# note: disabling the progress bar of the invoke-webrequest using the "magic" global
+# accelerates the download by ~10x 
+# (+) setting the content type to octet-stream prevents the web client behind 
+# invoke-webrequest to try and parse the response at each received chunk
+$ProgressPreference = 'SilentlyContinue'
+Invoke-WebRequest -ContentType "application/octet-stream" -Uri $TIPI_URL -OutFile $downloaded_tipi_zip
 
 if(!$?) {
     Abort "Could not download tipi"
@@ -73,7 +110,7 @@ Catch {
     return
 }
 
-Info "Installing tipi in $INSTALL_FOLDER"
+Info "Installing tipi in: $INSTALL_FOLDER"
 $tipi_source_exe = $download_dir[0]
 $tipi_source_exe = "$tipi_source_exe\bin\tipi.exe"
 
