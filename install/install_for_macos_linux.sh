@@ -15,7 +15,7 @@ abort() {
 }
 
 info() {
-  printf "\e[1;32m ---> \e[0m $1 \n"
+  printf "\e[1;32m -> \e[0m $1 \n"
 }
 
 should_install_unzip() {
@@ -44,7 +44,12 @@ curl -fSL $TIPI_URL --output ~/tipi.zip || wget -q $TIPI_URL -O ~/tipi.zip || ab
 info "Installing tipi in $INSTALL_FOLDER/bin"
 sudo unzip ~/tipi.zip -d $INSTALL_FOLDER -x LICENSE && rm ~/tipi.zip
 
+
 if [ $? -eq 0 ]; then
+    tipi_full_path=$INSTALL_FOLDER/bin/tipi
+    sudo chown ${USER:=$(/usr/bin/id -run)}:$USER $tipi_full_path
+    sudo chmod a+x,u+w $tipi_full_path
+
     info "tipi successfully installed. Installing the dependencies..."
     sudo chmod +x $INSTALL_FOLDER/bin/tipi
     $INSTALL_FOLDER/bin/tipi --dont-upgrade run echo "Done"
