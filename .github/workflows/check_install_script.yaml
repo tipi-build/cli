@@ -288,9 +288,6 @@ jobs:
         shell: powershell  
         id: compute-script-source
         run: |
-          # force system install to "C:\ProgramData\tipi\tipi.exe"
-          $env:TIPI_INSTALL_SYSTEM="True"
-
           if ($env:GITHUB_EVENT_NAME -eq "pull_request") {
             $script_source = $env:GITHUB_HEAD_REF.replace('refs/heads/', '')
           } else {
@@ -303,6 +300,9 @@ jobs:
         id: base_sys_install
         shell: powershell  
         run: |         
+          # force system install to "C:\ProgramData\tipi\tipi.exe"
+          $env:TIPI_INSTALL_SYSTEM="True"
+
           . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
           if (!($?)) {
             echo "[FAILED] install script issued a nonzero return"
