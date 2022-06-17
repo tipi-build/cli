@@ -284,9 +284,11 @@ jobs:
     name: system-install-windows-powershell-light
     runs-on: windows-latest
     steps:
-      - name: test_install_on_windows_powershell
+      - name: compute script source
+        shell: powershell  
+        id: compute-script-source
         run: |
-          # force system install to "C:\ProgramData\tipi\tipi.exe"
+           # force system install to "C:\ProgramData\tipi\tipi.exe"
           $env:TIPI_INSTALL_SYSTEM="True"
 
           if ($env:GITHUB_EVENT_NAME -eq "pull_request") {
@@ -294,11 +296,19 @@ jobs:
           } else {
             $script_source = $env:GITHUB_REF.replace('refs/heads/', '')
           }
-          . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex 
+
+          echo "::set-output name=SCRIPT_SOURCE::$script_source"
+      - name: test_install_on_windows_powershell
+        id: base_sys_install
+        shell: powershell  
+        run: |
+         
+          . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
           if (!($?)) {exit 1}
 
           # Test install succeeeded 
           $expected_install_folder = "C:\ProgramData\tipi\tipi.exe"
+          echo "::set-output name=EXPECTED_INSTALL_FOLDER::$expected_install_folder"
 
           $pathsToTest = @(
             $expected_install_folder
@@ -339,7 +349,76 @@ jobs:
           }
           
           if(!$success) { exit 1; }
+      - name: Test TIPI_INSTALL_SOURCE feature
         shell: powershell  
+        continue-on-error: true
+        run: |
+         
+          echo "[TESTING] TIPI_INSTALL_SOURCE feature"
+
+          del ${{ steps.base_sys_install.EXPECTED_INSTALL_FOLDER }}
+
+          get-command tipi
+          if($?) { 
+            echo "[FAILED] tipi still found on path"
+            exit 1
+          }
+          
+          $downloaded_tipi_zip = Join-Path -Path $env:TEMP -ChildPath "tipiv0.0.30.zip"
+          $Env:INSTALL_SRC_TEST_OUTFILE=$downloaded_tipi_zip
+
+          $ProgressPreference = 'SilentlyContinue'
+          Invoke-WebRequest -ContentType "application/octet-stream" -Uri "https://github.com/tipi-build/cli/releases/download/v0.0.30/tipi-v0.0.30-linux-x86_64.zip" -OutFile $downloaded_tipi_zip
+
+          $Env:TIPI_INSTALL_SOURCE = "file://$downloaded_tipi_zip"
+          echo $Env:TIPI_INSTALL_SOURCE
+
+          $output = . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
+
+          if (!($?) -or $output -not -contains $Env:TIPI_INSTALL_SOURCE) {
+            echo "::set-output name=exit_status::$?"
+            echo "[FAILED] didn't find expected string '$TIPI_INSTALL_SOURCE' in the output of the install script"
+            exit 1
+          }
+
+          $output = tipi --help --dont-upgrade
+          if (!($?) -or $output -not -contains "v0.0.30") {
+            echo "::set-output name=exit_status::$?"
+            echo "[FAILED] Expected to find tipi 'v0.0.30'"            
+            exit 1
+          }
+
+      - name: Neg test TIPI_INSTALL_SOURCE feature
+        shell: powershell  
+        continue-on-error: true
+        run: |
+
+          echo "[TESTING] Negative test for TIPI_INSTALL_SOURCE"
+
+          del ${{ steps.base_sys_install.EXPECTED_INSTALL_FOLDER }}
+
+          get-command tipi
+          if($?) { 
+            echo "[FAILED] tipi still found on path"
+            exit 1
+          }
+          
+          $Env:TIPI_INSTALL_SOURCE = "file://c:/temp/doesMostProbablyNote.exist"
+
+          $output = . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
+
+          if ($?) {
+            echo "::set-output name=exit_status::$?"
+            echo "[FAILED] Unexpected success return code: install script did not fail as expected"
+            exit 1
+          }
+
+          get-command tipi
+          if ($?) {
+            echo "::set-output name=exit_status::$?"
+            echo "[FAILED] tipi still found on path"
+            exit 1
+          }        
 
   install-windows-powershell-light:
     name: install-windows-powershell-light
