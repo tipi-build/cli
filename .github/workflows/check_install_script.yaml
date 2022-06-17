@@ -359,7 +359,7 @@ jobs:
          
           echo "[TESTING] TIPI_INSTALL_SOURCE feature"
 
-          del ${{ steps.base_sys_install.EXPECTED_INSTALL_FOLDER }}
+          del ${{ steps.base_sys_install.outputs.EXPECTED_INSTALL_FOLDER }}
 
           get-command tipi
           if($?) { 
@@ -397,7 +397,7 @@ jobs:
         run: |
           echo "[TESTING] Negative test for TIPI_INSTALL_SOURCE"
 
-          del ${{ steps.base_sys_install.EXPECTED_INSTALL_FOLDER }}
+          del ${{ steps.base_sys_install.outputs.EXPECTED_INSTALL_FOLDER }}
 
           get-command tipi
           if($?) { 
