@@ -34,7 +34,7 @@ fi
 
 
 if should_install_unzip; then
-    info "unzip is needed to unzip the downloaded file, we are installing unzip with your package manager"
+    info "The 'unzip' is required unzip the downloaded file, we are installing unzip with your package manager"
     echo "Could you validate with your password ? 😇 "
     sudo apt-get install unzip -y || abort "Error while installing unzip"
 fi
@@ -51,7 +51,7 @@ if [ $? -eq 0 ]; then
     sudo chmod a+x,u+w $tipi_full_path
 
     info "tipi successfully installed. Installing the dependencies..."
-    
+    sudo chmod +x $INSTALL_FOLDER/bin/tipi
     $INSTALL_FOLDER/bin/tipi --dont-upgrade run echo "Done"
     if [ $? -eq 0 ]; then
         info "tipi has been successfully installed"
