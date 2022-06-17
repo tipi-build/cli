@@ -19,11 +19,10 @@ jobs:
           else 
             script_source=${GITHUB_REF#refs/heads/}
           fi
-          export TIPI_DISTRO_MODE=all
           export TIPI_INSTALL_VERSION=v0.0.24 && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh )"
           tipi --help --dont-upgrade | grep "v0.0.24"
           if [ $? -ne 0 ]; then
-          exit 1
+            exit 1
           fi
           
 
@@ -39,11 +38,10 @@ jobs:
             script_source=${GITHUB_REF#refs/heads/}
           fi
           echo "Script source : ${script_source}"
-          export TIPI_DISTRO_MODE=all
           export TIPI_INSTALL_VERSION=v0.0.24 && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh )"
           tipi --help --dont-upgrade | grep "v0.0.24"
           if [ $? -ne 0 ]; then
-          exit 1
+            exit 1
           fi
           
   install-windows-powershell-version-24:
@@ -57,7 +55,6 @@ jobs:
           } else {
             $script_source = $env:GITHUB_REF.replace('refs/heads/', '')
           }
-          $Env:TIPI_DISTRO_MODE="all"
           $env:TIPI_INSTALL_VERSION ='v0.0.24'; . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex
 
           if (-NOT (tipi.exe --help --dont-upgrade | Select-String v0.0.24 -Quiet)){exit 1;}
