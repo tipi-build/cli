@@ -153,6 +153,8 @@ jobs:
               echo "[TESTING] $element should NOT be on disk."
               test ! -f $element
           done
+      - name: Test TIPI_INSTALL_SOURCE feature
+        run: |
 
           ###
           # testing the install from TIPI_INSTALL_SOURCE path
@@ -176,6 +178,10 @@ jobs:
             echo "[FAILED] Expected to find tipi 'v0.0.30'"
             exit 1
           fi
+      - name: Neg test TIPI_INSTALL_SOURCE feature
+        run: |
+          # do not stop on nonzero return codes
+          set +e
 
           ###
           # negative test / install from TIPI_INSTALL_SOURCE should fail if path doesn't exist
@@ -186,13 +192,13 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           if [ $? -ne 1 ]; then
             echo "[FAILED] Unexpected success return code: install script did not fail as expected"
-            exit 1
+            echo ::set-output name=exit_status::$?
           fi
 
           which tipi
           if [ $? -ne 1 ]; then
             echo "[FAILED] tipi still found on path"
-            exit 1
+            echo ::set-output name=exit_status::$?
           fi
 
 
