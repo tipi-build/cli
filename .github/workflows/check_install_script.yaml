@@ -385,14 +385,16 @@ jobs:
 
           echo $output
 
-          if ($output -notlike "*$install_source_l*") {
+          if (!($output -like "*$install_source_l*")) {
             echo "::set-output name=exit_status::$?"
             echo "[FAILED] didn't find expected string '$install_source_l' in the output of the install script"
             exit 1
           }
 
           $output = tipi --help --dont-upgrade
-          if ($output -notlike "*v0.0.30*") {
+          echo $output
+          
+          if (!($output -like "*v0.0.30*")) {
             echo "::set-output name=exit_status::$?"
             echo "[FAILED] Expected to find tipi 'v0.0.30'"            
             exit 1
