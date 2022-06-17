@@ -13,11 +13,12 @@ if ([string]::IsNullOrEmpty($version_to_use)) {
 }
 
 if ([string]::IsNullOrEmpty($INSTALL_FOLDER)) {
-    $INSTALL_FOLDER = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi"
-}
-
-if($system_install) {
-    $INSTALL_FOLDER = "C:\ProgramData\tipi"
+    if($system_install) {
+        $INSTALL_FOLDER = Join-Path -Path ([Environment]::GetFolderPath('CommonApplicationData')) -ChildPath "\tipi"
+    }
+    else {
+        $INSTALL_FOLDER = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi"
+    }    
 }
 
 $TIPI_EXE = "$INSTALL_FOLDER\tipi.exe"
