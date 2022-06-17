@@ -121,15 +121,23 @@ jobs:
     name: install-linux-light
     runs-on: ubuntu-latest
     steps:
-      - name: test_install_on_linux
+      - name: compute script source
+        id: compute-script-source
         run: |
           if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
             script_source=${GITHUB_HEAD_REF}
           else 
             script_source=${GITHUB_REF#refs/heads/}
           fi
+
           echo "Script source : ${script_source}"
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+
+          echo "::set-output name=SCRIPT_SOURCE::$script_source"
+
+      - name: test_install_on_linux
+        run: |
+          
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_macos_linux.sh)"
           
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
@@ -165,8 +173,8 @@ jobs:
           export INSTALL_SRC_TEST_OUTFILE=tipiv0.0.30.zip
           wget https://github.com/tipi-build/cli/releases/download/v0.0.30/tipi-v0.0.30-linux-x86_64.zip -O $INSTALL_SRC_TEST_OUTFILE
 
-          export TIPI_INSTALL_SOURCE="file://$(realpath $INSTALL_SRC_TEST_OUTFILE)"
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)" | grep "$TIPI_INSTALL_SOURCE"
+          export TIPI_INSTALL_SOURCE=file://$(realpath $INSTALL_SRC_TEST_OUTFILE)
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_macos_linux.sh)" | grep "$TIPI_INSTALL_SOURCE"
 
           if [ $? -ne 0 ]; then
             echo "[FAILED] didn't find expected string '$TIPI_INSTALL_SOURCE' in the output of the install script"
@@ -188,8 +196,8 @@ jobs:
           echo "[TESTING] Negative test for TIPI_INSTALL_SOURCE"
           rm $(which tipi)
 
-          export TIPI_INSTALL_SOURCE="file:///tmp/rAnDoMfiLe.noknownext"
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+          export TIPI_INSTALL_SOURCE=file:///tmp/rAnDoMfiLe.noknownext
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_macos_linux.sh)"
           if [ $? -ne 1 ]; then
             echo "[FAILED] Unexpected success return code: install script did not fail as expected"
             echo ::set-output name=exit_status::$?
