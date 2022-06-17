@@ -288,7 +288,7 @@ jobs:
         shell: powershell  
         id: compute-script-source
         run: |
-           # force system install to "C:\ProgramData\tipi\tipi.exe"
+          # force system install to "C:\ProgramData\tipi\tipi.exe"
           $env:TIPI_INSTALL_SYSTEM="True"
 
           if ($env:GITHUB_EVENT_NAME -eq "pull_request") {
@@ -298,13 +298,16 @@ jobs:
           }
 
           echo "::set-output name=SCRIPT_SOURCE::$script_source"
+
       - name: test_install_on_windows_powershell
         id: base_sys_install
         shell: powershell  
-        run: |
-         
+        run: |         
           . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
-          if (!($?)) {exit 1}
+          if (!($?)) {
+            echo "[FAILED] install script issued a nonzero return"
+            exit 1
+          }
 
           # Test install succeeeded 
           $expected_install_folder = "C:\ProgramData\tipi\tipi.exe"
@@ -392,7 +395,6 @@ jobs:
         shell: powershell  
         continue-on-error: true
         run: |
-
           echo "[TESTING] Negative test for TIPI_INSTALL_SOURCE"
 
           del ${{ steps.base_sys_install.EXPECTED_INSTALL_FOLDER }}
