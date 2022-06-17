@@ -361,11 +361,15 @@ jobs:
 
           del ${{ steps.base_sys_install.outputs.EXPECTED_INSTALL_FOLDER }}
 
-          get-command tipi
-          if($?) { 
+          try {
+            get-command tipi
             echo "[FAILED] tipi still found on path"
             exit 1
           }
+          catch { 
+            echo "[SUCCES] tipi forcefully removed from the system"
+          }
+          
           
           $downloaded_tipi_zip = Join-Path -Path $env:TEMP -ChildPath "tipiv0.0.30.zip"
           $Env:INSTALL_SRC_TEST_OUTFILE=$downloaded_tipi_zip
@@ -399,29 +403,32 @@ jobs:
 
           del ${{ steps.base_sys_install.outputs.EXPECTED_INSTALL_FOLDER }}
 
-          get-command tipi
-          if($?) { 
+          try {
+            get-command tipi
             echo "[FAILED] tipi still found on path"
             exit 1
+          }
+          catch { 
+            echo "[SUCCES] tipi forcefully removed from the system"
           }
           
           $Env:TIPI_INSTALL_SOURCE = "file://c:/temp/doesMostProbablyNote.exist"
 
-          $output = . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
-
-          if ($?) {
-            echo "::set-output name=exit_status::$?"
-            echo "[FAILED] Unexpected success return code: install script did not fail as expected"
-            exit 1
+          try {
+            . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
+          }
+          catch { 
+            echo "[SUCCES] installer failed on erroneous path"
           }
 
-          get-command tipi
-          if ($?) {
-            echo "::set-output name=exit_status::$?"
+          try {
+            get-command tipi
             echo "[FAILED] tipi still found on path"
             exit 1
-          }        
-
+          }
+          catch { 
+            echo "[SUCCES] tipi forcefully removed from the system"
+          }
   install-windows-powershell-light:
     name: install-windows-powershell-light
     runs-on: windows-latest
