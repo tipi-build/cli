@@ -156,36 +156,42 @@ jobs:
 
           ###
           # testing the install from TIPI_INSTALL_SOURCE path
+          echo "[TESTING] TIPI_INSTALL_SOURCE feature"
 
           rm $(which tipi)
 
           export INSTALL_SRC_TEST_OUTFILE=tipiv0.0.30.zip
           wget https://github.com/tipi-build/cli/releases/download/v0.0.30/tipi-v0.0.30-linux-x86_64.zip -O $INSTALL_SRC_TEST_OUTFILE
 
-          export TIPI_INSTALL_SOURCE=$(realpath file://$INSTALL_SRC_TEST_OUTFILE)
+          export TIPI_INSTALL_SOURCE="file://$(realpath $INSTALL_SRC_TEST_OUTFILE)"
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)" | grep "$TIPI_INSTALL_SOURCE"
 
           if [ $? -ne 0 ]; then
+            echo "[FAILED] didn't find expected string '$TIPI_INSTALL_SOURCE' in the output of the install script"
             exit 1
           fi
 
           tipi --help --dont-upgrade | grep "v0.0.30"
           if [ $? -ne 0 ]; then
+            echo "[FAILED] Expected to find tipi 'v0.0.30'"
             exit 1
           fi
 
           ###
           # negative test / install from TIPI_INSTALL_SOURCE should fail if path doesn't exist
+          echo "[TESTING] Negative test for TIPI_INSTALL_SOURCE"
           rm $(which tipi)
 
-          export TIPI_INSTALL_SOURCE=/tmp/rAnDoMfiLe.noknownext
+          export TIPI_INSTALL_SOURCE="file:///tmp/rAnDoMfiLe.noknownext"
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           if [ $? -ne 1 ]; then
+            echo "[FAILED] Unexpected success return code: install script did not fail as expected"
             exit 1
           fi
 
           which tipi
           if [ $? -ne 1 ]; then
+            echo "[FAILED] tipi still found on path"
             exit 1
           fi
 
