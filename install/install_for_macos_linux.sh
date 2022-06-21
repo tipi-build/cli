@@ -45,6 +45,16 @@ else
   TIPI_URL="${TIPI_INSTALL_SOURCE}"
 fi
 
+PRIV_ELEV_CMD=''
+if  command -v sudo &> /dev/null; then
+  info "Note: using 'sudo' as priviledge elevation method if required during installation"
+  PRIV_ELEV_CMD='sudo'
+elif command -v doas &> /dev/null; then
+  info "Note: using 'doas' as priviledge elevation method if required during installation"
+  PRIV_ELEV_CMD='doas'
+else
+  info "Note: no supported priviledge elevation method (sudo or doas) found, trying to install without asking for elevation"
+fi
 
 if [ -f "/etc/arch-release" ]; then
   pacman -Syu --noconfirm
@@ -57,7 +67,7 @@ fi
 if should_install_unzip; then
     info "The 'unzip' command is required to extract the downloaded file, we are installing unzip with your package manager"
     echo "Could you validate with your password ? 😇 "
-    sudo apt-get install unzip -y || abort "Error while installing unzip"
+    $PRIV_ELEV_CMD apt-get install unzip -y || abort "Error while installing unzip"
 fi
 
 TMP_DOWNLOAD_PATH=~/tipi-$VERSION.zip
@@ -67,12 +77,12 @@ info "Saving archive to: $TMP_DOWNLOAD_PATH"
 curl -fSL $TIPI_URL --output $TMP_DOWNLOAD_PATH || wget -q $TIPI_URL -O $TMP_DOWNLOAD_PATH || abort "Could not download tipi"
 
 info "Installing tipi in $INSTALL_FOLDER"
-sudo unzip -o $TMP_DOWNLOAD_PATH -d $INSTALL_FOLDER -x LICENSE
+$PRIV_ELEV_CMD unzip -o $TMP_DOWNLOAD_PATH -d $INSTALL_FOLDER -x LICENSE
 
 if [ $? -eq 0 ]; then
     tipi_full_path=$INSTALL_FOLDER/bin/tipi
-    sudo chown ${USER:=$(/usr/bin/id -run)}:$USER $tipi_full_path
-    sudo chmod a+x,u+w $tipi_full_path
+    $PRIV_ELEV_CMD chown ${USER:=$(/usr/bin/id -run)}:$USER $tipi_full_path
+    $PRIV_ELEV_CMD chmod a+x,u+w $tipi_full_path
 
     info "Cleaning up temporary download"
     rm $TMP_DOWNLOAD_PATH
