@@ -2,7 +2,7 @@
 
 ## v0.0.32 - codename Velvety Vicugna 🦙
 
-### Feature
+### Feature
   - 🆕 ✨ more glam for the CLI
 	  - listing of executables and tests (fixed #26 - thank you @sandordargo)
 	  - improved dialog / user input handling with default answers
@@ -13,7 +13,7 @@
   - Improved support Ubuntu 16.04 ext LTS + Ubuntu 18.04
   - Improved upgrade installation experience
 
-### Bugfix
+### Bugfix
   - Fixed bug in the include scanner and inclusion root detection
   - Windows installer script improved: 
 	  - installation into the User's Local AppData by default to enable installation and upgrades in non-elevated environments / without administrative rights (fixes #31)
