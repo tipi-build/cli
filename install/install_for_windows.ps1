@@ -54,7 +54,7 @@ $INSTALL_FOLDER = $env:TIPI_INSTALL_DEST
 
 $system_install = $false
 if([bool]::TryParse($env:TIPI_INSTALL_SYSTEM, [ref]$system_install)) {
-    Write-Output "INFO: TIPI_INSTALL_DEST set, intepreted as boolean '$system_install'"
+    Write-Output "INFO: TIPI_INSTALL_DEST set, interpreted as boolean '$system_install'"
 }
 
 if ([string]::IsNullOrEmpty($version_to_use)) {
