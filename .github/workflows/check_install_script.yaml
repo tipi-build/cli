@@ -121,15 +121,23 @@ jobs:
     name: install-linux-light
     runs-on: ubuntu-latest
     steps:
-      - name: test_install_on_linux
+      - name: compute script source
+        id: compute-script-source
         run: |
           if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
             script_source=${GITHUB_HEAD_REF}
           else 
             script_source=${GITHUB_REF#refs/heads/}
           fi
+
           echo "Script source : ${script_source}"
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+
+          echo "::set-output name=SCRIPT_SOURCE::$script_source"
+
+      - name: test_install_on_linux
+        run: |
+          
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_macos_linux.sh)"
           
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
@@ -153,6 +161,72 @@ jobs:
               echo "[TESTING] $element should NOT be on disk."
               test ! -f $element
           done
+      - name: Test TIPI_INSTALL_SOURCE feature
+        run: |
+          set +e
+
+          ###
+          # testing the install from TIPI_INSTALL_SOURCE path
+          echo "[TESTING] TIPI_INSTALL_SOURCE feature"
+
+          rm $(which tipi)
+
+          which tipi
+          if [ $? -ne 1 ]; then
+            echo "[FAILED] tipi still found on path"
+            echo ::set-output name=exit_status::$?
+            exit 1
+          fi
+
+          export INSTALL_SRC_TEST_OUTFILE=tipiv0.0.30.zip
+          wget https://github.com/tipi-build/cli/releases/download/v0.0.30/tipi-v0.0.30-linux-x86_64.zip -O $INSTALL_SRC_TEST_OUTFILE
+
+          export TIPI_INSTALL_SOURCE=file://$(realpath $INSTALL_SRC_TEST_OUTFILE)
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_macos_linux.sh)" | grep "$TIPI_INSTALL_SOURCE"
+
+          if [ $? -ne 0 ]; then
+            echo "[FAILED] didn't find expected string '$TIPI_INSTALL_SOURCE' in the output of the install script"
+            echo ::set-output name=exit_status::$?
+            exit 1
+          fi
+
+          tipi --help --dont-upgrade | grep "v0.0.30"
+          if [ $? -ne 0 ]; then
+            echo "[FAILED] Expected to find tipi 'v0.0.30'"
+            echo ::set-output name=exit_status::$?
+            exit 1
+          fi
+      - name: Neg test TIPI_INSTALL_SOURCE feature
+        run: |
+          # do not stop on nonzero return codes
+          set +e
+
+          ###
+          # negative test / install from TIPI_INSTALL_SOURCE should fail if path doesn't exist
+          echo "[TESTING] Negative test for TIPI_INSTALL_SOURCE"
+          
+          rm $(which tipi)
+
+          which tipi
+          if [ $? -ne 1 ]; then
+            echo "[FAILED] tipi still found on path"
+            echo ::set-output name=exit_status::$?
+          fi
+
+          export TIPI_INSTALL_SOURCE=file:///tmp/rAnDoMfiLe.noknownext
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_macos_linux.sh)"
+          if [ $? -ne 1 ]; then
+            echo "[FAILED] Unexpected success return code: install script did not fail as expected"
+            echo ::set-output name=exit_status::$?
+          fi
+
+          which tipi
+          if [ $? -ne 1 ]; then
+            echo "[FAILED] tipi still found on path"
+            echo ::set-output name=exit_status::$?
+          fi
+
+
 
   install-windows-powershell-full:
     name: install-windows-powershell-full
@@ -168,26 +242,32 @@ jobs:
           $Env:TIPI_DISTRO_MODE="all"
           . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/$script_source/install/install_for_windows.ps1 } | iex 
           if (!($?)) {exit 1}
+
           # Test install succeeeded 
+          $expected_install_folder = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi\tipi.exe"
+
           $pathsToTest = @(
-            "C:\\ProgramData\\tipi\\tipi.exe"  
-            "C:\\.tipi\\clang\\*\\bin\\clang.exe"  
-            "C:\\.tipi\\cmake\\*\\bin\\cmake.exe"  
-            "C:\\.tipi\\emsdk\\*\\emsdk.bat"  
-            "C:\\.tipi\\environments\\*\\xcode.cmake"  
-            "C:\\.tipi\\go\\*\\bin\\go.exe"  
-            "C:\\.tipi\\jdk\\*\\bin\\jar.exe"  
-            "C:\\.tipi\\nodejs\\*\\node.exe"  
-            "C:\\.tipi\\openapi\\*\\openapi-generator-cli-5.1.1.jar"  
-            "C:\\.tipi\\openapi-generator-script\\*\\openapi-generator-cli.bat"  
-            "C:\\.tipi\\openssh\\*\\ssh.exe"  
-            "C:\\.tipi\\perl\\*\\README.txt"  
-            "C:\\.tipi\\platform\\*\\cmake\\projects\\Poco\\hunter.cmake"  
-            "C:\\.tipi\\python\\*\\python.exe"  
-            "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py"  
+            $expected_install_folder
+            "C:\.tipi\clang\*\bin\clang.exe"  
+            "C:\.tipi\cmake\*\bin\cmake.exe"  
+            "C:\.tipi\emsdk\*\emsdk.bat"  
+            "C:\.tipi\environments\*\xcode.cmake"  
+            "C:\.tipi\go\*\bin\go.exe"  
+            "C:\.tipi\jdk\*\bin\jar.exe"  
+            "C:\.tipi\nodejs\*\node.exe"  
+            "C:\.tipi\openapi\*\openapi-generator-cli-5.1.1.jar"  
+            "C:\.tipi\openapi-generator-script\*\openapi-generator-cli.bat"  
+            "C:\.tipi\openssh\*\ssh.exe"  
+            "C:\.tipi\perl\*\README.txt"  
+            "C:\.tipi\platform\*\cmake\projects\Poco\hunter.cmake"  
+            "C:\.tipi\python\*\python.exe"  
+            "C:\.tipi\file-sync\*\pysearpc\client.py"  
           )
 
           $success = $true
+
+          # this checks that tipi is on PATH and that it's where we expect it to be.
+          $success = (get-command tipi).Path -eq $expected_install_folder
 
           foreach ( $testPath in $pathsToTest )
           {
@@ -200,6 +280,163 @@ jobs:
           if(!$success) { exit 1; }
         shell: powershell
 
+  system-install-windows-powershell-light:
+    name: system-install-windows-powershell-light
+    runs-on: windows-latest
+    steps:
+      - name: compute script source
+        shell: powershell  
+        id: compute-script-source
+        run: |
+          if ($env:GITHUB_EVENT_NAME -eq "pull_request") {
+            $script_source = $env:GITHUB_HEAD_REF.replace('refs/heads/', '')
+          } else {
+            $script_source = $env:GITHUB_REF.replace('refs/heads/', '')
+          }
+
+          echo "::set-output name=SCRIPT_SOURCE::$script_source"
+
+      - name: test_install_on_windows_powershell
+        id: base_sys_install
+        shell: powershell  
+        run: |         
+          # force system install to "C:\ProgramData\tipi\tipi.exe"
+          $env:TIPI_INSTALL_SYSTEM="True"
+
+          . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
+          if (!($?)) {
+            echo "[FAILED] install script issued a nonzero return"
+            exit 1
+          }
+
+          # Test install succeeeded 
+          $expected_install_folder = "C:\ProgramData\tipi\tipi.exe"
+          echo "::set-output name=EXPECTED_INSTALL_FOLDER::$expected_install_folder"
+
+          $pathsToTest = @(
+            $expected_install_folder
+            "C:\.tipi\environments\*\xcode.cmake" 
+            "C:\.tipi\openssh\*\ssh.exe"
+            "C:\.tipi\python\*\python.exe"  
+            "C:\.tipi\file-sync\*\pysearpc\client.py"  
+          )
+
+          $success = $true
+          
+          # this checks that tipi is on PATH and that it's where we expect it to be.
+          
+          $success = (get-command tipi).Path -eq $expected_install_folder
+
+          foreach ( $testPath in $pathsToTest )
+          {
+                if (!(Test-Path $testPath -PathType leaf)) { 
+                    echo "[FAIL] Expected <$testPath> was not found in installation."
+                    $success = $false; 
+                }
+          }
+
+          # test just a few things in the light install to make sure they are *NOT* present
+          $pathsToTest_negative = @(
+              "C:\.tipi\clang\*\bin\clang.exe"  
+              "C:\.tipi\cmake\*\bin\cmake.exe"  
+              "C:\.tipi\emsdk\*\emsdk.bat"              
+              "C:\.tipi\go\*\bin\go.exe"  
+              "C:\.tipi\jdk\*\bin\jar.exe"              
+          )
+          foreach ( $testPath in $pathsToTest_negative )
+          {
+              if (Test-Path $testPath -PathType leaf) {
+                  echo "[FAIL] Unexpected <$testPath> was found in installation."
+                  $success = $false;
+              }
+          }
+          
+          if(!$success) { exit 1; }
+      - name: Test TIPI_INSTALL_SOURCE feature
+        shell: powershell
+        run: |
+          # force system install to "C:\ProgramData\tipi\tipi.exe"
+          # NOTE: we do this here too so the next install step will - again - be pretty sure to 
+          # be able to find and delete a tipi.exe in the expected path...
+          $env:TIPI_INSTALL_SYSTEM="True"
+         
+          echo "[TESTING] TIPI_INSTALL_SOURCE feature"
+
+          del ${{ steps.base_sys_install.outputs.EXPECTED_INSTALL_FOLDER }}
+
+          try {
+            get-command tipi
+            echo "[FAILED] tipi still found on path"
+            exit 1
+          }
+          catch { 
+            echo "[SUCCES] tipi forcefully removed from the system"
+          }
+          
+          
+          $downloaded_tipi_zip = Join-Path -Path $env:TEMP -ChildPath "tipiv0.0.30.zip"
+          $Env:INSTALL_SRC_TEST_OUTFILE=$downloaded_tipi_zip
+
+          $ProgressPreference = 'SilentlyContinue'
+          Invoke-WebRequest -ContentType "application/octet-stream" -Uri "https://github.com/tipi-build/cli/releases/download/v0.0.30/tipi-v0.0.30-windows-win64.zip" -OutFile $downloaded_tipi_zip
+
+          $install_source_l = "file://$downloaded_tipi_zip"
+          $Env:TIPI_INSTALL_SOURCE = $install_source_l
+          
+          echo "[INFO] Expecting installer to 'download' from path $install_source_l"
+
+          $output = . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
+
+          echo $output
+
+          if (!($output -like "*$install_source_l*")) {
+            echo "::set-output name=exit_status::$?"
+            echo "[FAILED] didn't find expected string '$install_source_l' in the output of the install script"
+            exit 1
+          }
+
+          $output = tipi --help --dont-upgrade
+          echo $output
+          
+          if (!($output -like "*v0.0.30*")) {
+            echo "::set-output name=exit_status::$?"
+            echo "[FAILED] Expected to find tipi 'v0.0.30'"            
+            exit 1
+          }
+
+      - name: Neg test TIPI_INSTALL_SOURCE feature
+        shell: powershell  
+        run: |
+          echo "[TESTING] Negative test for TIPI_INSTALL_SOURCE"
+
+          del ${{ steps.base_sys_install.outputs.EXPECTED_INSTALL_FOLDER }}
+
+          try {
+            get-command tipi
+            echo "[FAILED] tipi still found on path"
+            exit 1
+          }
+          catch { 
+            echo "[SUCCES] tipi forcefully removed from the system"
+          }
+          
+          $Env:TIPI_INSTALL_SOURCE = "file://c:/temp/doesMostProbablyNote.exist"
+
+          try {
+            . { iwr -useb https://raw.githubusercontent.com/tipi-build/cli/${{ steps.compute-script-source.outputs.SCRIPT_SOURCE }}/install/install_for_windows.ps1 } | iex 
+          }
+          catch { 
+            echo "[SUCCES] installer failed on erroneous path"
+          }
+
+          try {
+            get-command tipi
+            echo "[FAILED] tipi still found on path"
+            exit 1
+          }
+          catch { 
+            echo "[SUCCES] tipi forcefully removed from the system"
+          }
   install-windows-powershell-light:
     name: install-windows-powershell-light
     runs-on: windows-latest
@@ -215,15 +452,20 @@ jobs:
           if (!($?)) {exit 1}
           # Test install succeeeded 
 
+          $expected_install_folder = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi\tipi.exe"
+
           $pathsToTest = @(
-            "C:\\ProgramData\\tipi\\tipi.exe"   
-            "C:\\.tipi\\environments\\*\\xcode.cmake" 
-            "C:\\.tipi\\openssh\\*\\ssh.exe"
-            "C:\\.tipi\\python\\*\\python.exe"  
-            "C:\\.tipi\\file-sync\\*\\pysearpc\\client.py"  
+             $expected_install_folder
+            "C:\.tipi\environments\*\xcode.cmake" 
+            "C:\.tipi\openssh\*\ssh.exe"
+            "C:\.tipi\python\*\python.exe"  
+            "C:\.tipi\file-sync\*\pysearpc\client.py"  
           )
 
           $success = $true
+
+          # this checks that tipi is on PATH and that it's where we expect it to be.         
+          $success = (get-command tipi).Path -eq $expected_install_folder
 
           foreach ( $testPath in $pathsToTest )
           {
@@ -235,11 +477,11 @@ jobs:
 
           # test just a few things in the light install to make sure they are *NOT* present
           $pathsToTest_negative = @(
-              "C:\\.tipi\\clang\\*\\bin\\clang.exe"  
-              "C:\\.tipi\\cmake\\*\\bin\\cmake.exe"  
-              "C:\\.tipi\\emsdk\\*\\emsdk.bat"              
-              "C:\\.tipi\\go\\*\\bin\\go.exe"  
-              "C:\\.tipi\\jdk\\*\\bin\\jar.exe"              
+              "C:\.tipi\clang\*\bin\clang.exe"  
+              "C:\.tipi\cmake\*\bin\cmake.exe"  
+              "C:\.tipi\emsdk\*\emsdk.bat"              
+              "C:\.tipi\go\*\bin\go.exe"  
+              "C:\.tipi\jdk\*\bin\jar.exe"              
           )
           foreach ( $testPath in $pathsToTest_negative )
           {
