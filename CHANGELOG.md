@@ -30,6 +30,11 @@
 ⚠️ Upgrading by answering yes below won't work. 
 Use the install scripts oneliner to upgrade tipi : https://tipi.build/onboarding/step3
 
+##### Archives Checksums
+tipi-v0.0.32-windows-win64.zip:A061E65CEAC3729D12A354FC26B7A569A9D292DE
+tipi-v0.0.32-linux-x86_64.zip:8F8171D71DD11F7C75EEBA66BFF9A7ECB0CBC922
+tipi-v0.0.32-macOS.zip:9CC73AE51B7B53790180E946148C8C514CA83B25
+
 ## v0.0.31 - codename **unique unicornfish** 🐟
 
 ### Feature
