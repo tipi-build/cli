@@ -1,5 +1,35 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.32 - codename Velvety Vicugna 🦙
+
+### Feature
+  - 🆕 ✨ more glam for the CLI
+	  - listing of executables and tests (fixed #26 - thank you @sandordargo)
+	  - improved dialog / user input handling with default answers
+	  - coloring and newline consistency fixed (#27 and many more - thank you again @sandordargo)
+	  - coloring of remote machine output
+	  - more control over log verbosity (`-v` to `-vvv` for most detail)
+	  - generally better and more helpful messages 
+  - Improved support Ubuntu 16.04 ext LTS + Ubuntu 18.04
+  - Improved upgrade installation experience
+
+### Bugfix
+  - Fixed bug in the include scanner and inclusion root detection
+  - Windows installer script improved: 
+	  - installation into the User's Local AppData by default to enable installation and upgrades in non-elevated environments / without administrative rights (fixes #31)
+	  - the installer checks for the install path being on PATH to avoid multiple insersions
+	  - insersion into system / user PATH doesn't mix up sources (fixes #34)
+	  - generally better textual output
+  - Linux installer:
+	  - setting the file access rights and ownership to allow in-place upgrading without priviledge elevation / `sudo`
+	  - generally better textual output
+  - PATH manipulation in tipi are now case insensitive (fixes tipi-build/cli#33 - thank you @stefanofiorentino)
+  - Remote environment specification is now stable and reproducible accross supported hosts
+
+### ⚠️ Upgrade process ⚠️ 
+⚠️ Upgrading by answering yes below won't work. 
+Use the install scripts oneliner to upgrade tipi : https://tipi.build/onboarding/step3
+
 ## v0.0.31 - codename **unique unicornfish** 🐟
 
 ### Feature
