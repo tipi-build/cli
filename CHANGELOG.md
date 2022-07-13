@@ -5,6 +5,8 @@
 ### Bugfix
   - Fix wasm builds on linux `Failed to fetch compiler version information with command "'/.tipi/emsdk/f693e7f/upstream/emscripten/emcc' -v"`
   - Fix remote builds that were always verbose even without `--verbose` 
+  - Native modules for python on linux are all packaged with now thanks to tipi upcoming bundle utilities
+  - Explicit fail when installing tipi on Apple Sillicon (Mac M1 & M2) until we support the architecture.
 
 ##### Archives Checksums
 tipi-v0.0.33-windows-win64.zip:F2CBF42ED69C2C569F9379525FC769BBB972EE95
