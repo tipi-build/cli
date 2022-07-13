@@ -1,5 +1,17 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.33 - codename Wonderful Wallaby 🦘
+
+### Bugfix
+  - Fix wasm builds on linux `Failed to fetch compiler version information with command "'/.tipi/emsdk/f693e7f/upstream/emscripten/emcc' -v"`
+  - Fix remote builds that were always verbose even without `--verbose` 
+
+##### Archives Checksums
+tipi-v0.0.33-windows-win64.zip:F2CBF42ED69C2C569F9379525FC769BBB972EE95
+tipi-v0.0.33-linux-x86_64.zip:83359EF97E00442CF4DC906D8E35D41D23D606A3
+tipi-v0.0.33-macOS.zip:662063103AB96391E95E96EF81E2848176EB6ABA
+
+
 ## v0.0.32 - codename Velvety Vicugna 🦙
 
 ### Feature
