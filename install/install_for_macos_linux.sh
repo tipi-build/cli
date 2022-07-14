@@ -32,13 +32,20 @@ should_install_unzip() {
 # impl.
 ### 
 
-VERSION="${TIPI_INSTALL_VERSION:-v0.0.32}"
+VERSION="${TIPI_INSTALL_VERSION:-v0.0.33}"
 INSTALL_FOLDER=/usr/local
 
 if [[ -z "${TIPI_INSTALL_SOURCE}" ]]; then
   if [ "$(uname)" == "Linux" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-linux-x86_64.zip" 
   elif [ "$(uname)" == "Darwin" ]; then
+
+    # test for M1/M2 
+    arch="$(sysctl -n machdep.cpu.brand_string)" # should output "Apple M(1|2).*" 
+    if [[ $(uname -m) == 'arm64' ]]; then
+      abort "Tipi does currently not support Apple Silicon. We're working hard on changing this asap. Stay tuned!"
+    fi
+
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-macOS.zip"
   fi
 else
