@@ -1,5 +1,17 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.34 - codename Xenodochial Xoloitzcuintli 🐶
+
+### Feature
+  - Build for legacy Ubuntu 16.04 in remote builds with the command :  `tipi build . -t linux-ubuntu-16.04[-cxx14|-cxx17]`
+ 
+tipi-src : 2ba5d05093e0e5caab1e8aed7a7436e99af9cb66
+
+##### Archives Checksums
+tipi-v0.0.34-windows-win64.zip:4DDFA5AA5C49315D7746FE6265AF7B0C117BE2EC
+tipi-v0.0.34-linux-x86_64.zip:1CAEE4DA8177F6CCDC29F86599CE9A7619DFA56F
+tipi-v0.0.34-macOS.zip:440735998EFBDE53D2A22A8814A67671A4617E93
+
 ## v0.0.33 - codename Wonderful Wallaby 🦘
 
 ### Bugfix
