@@ -1,9 +1,11 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.34 - codename xenodochial Xoloitzcuintli 🐶
+## v0.0.34 - codename Xenodochial Xoloitzcuintli 🐶
 
 ### Feature
-  - Improved support Ubuntu 16.04 ext LTS  : Now the environment is available in remote
+  - Build for legacy Ubuntu 16.04 in remote builds with the command :  `tipi build . -t linux-ubuntu-16.04[-cxx14|-cxx17]`
+ 
+tipi-src : 2ba5d05093e0e5caab1e8aed7a7436e99af9cb66
 
 ##### Archives Checksums
 tipi-v0.0.34-windows-win64.zip:4DDFA5AA5C49315D7746FE6265AF7B0C117BE2EC
