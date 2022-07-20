@@ -1,17 +1,14 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.34 - codename Wonderful Wallaby 🦘
+## v0.0.34 - codename xenodochial Xoloitzcuintli 🐶
 
-### Bugfix
-  - Fix wasm builds on linux `Failed to fetch compiler version information with command "'/.tipi/emsdk/f693e7f/upstream/emscripten/emcc' -v"`
-  - Fix remote builds that were always verbose even without `--verbose` 
-  - Native modules for python on linux are all packaged with now thanks to tipi upcoming bundle utilities
-  - Explicit fail when installing tipi on Apple Sillicon (Mac M1 & M2) until we support the architecture.
+### Feature
+  - Improved support Ubuntu 16.04 ext LTS  : Now the environment is available in remote
 
 ##### Archives Checksums
-tipi-v0.0.33-windows-win64.zip:F2CBF42ED69C2C569F9379525FC769BBB972EE95
-tipi-v0.0.33-linux-x86_64.zip:83359EF97E00442CF4DC906D8E35D41D23D606A3
-tipi-v0.0.33-macOS.zip:662063103AB96391E95E96EF81E2848176EB6ABA
+tipi-v0.0.34-windows-win64.zip:4DDFA5AA5C49315D7746FE6265AF7B0C117BE2EC
+tipi-v0.0.34-linux-x86_64.zip:1CAEE4DA8177F6CCDC29F86599CE9A7619DFA56F
+tipi-v0.0.34-macOS.zip:440735998EFBDE53D2A22A8814A67671A4617E93
 
 ## v0.0.33 - codename Wonderful Wallaby 🦘
 
