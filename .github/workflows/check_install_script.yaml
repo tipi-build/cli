@@ -25,18 +25,18 @@ jobs:
 
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
-              ~/.tipi/clang/*/bin/clang
-              ~/.tipi/cmake/*/bin/cmake
-              ~/.tipi/emsdk/*/emsdk
-              ~/.tipi/environments/*/xcode.cmake
-              ~/.tipi/go/*/bin/go
-              ~/.tipi/jdk/*/Contents/Home/bin/jar
-              ~/.tipi/nodejs/*/bin/node
-              ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
-              ~/.tipi/openapi-generator-script/*/openapi-generator-cli 
-              ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
-              ~/.tipi/python/*/bin/python
-              ~/.tipi/file-sync/*/pysearpc/client.py)
+             /usr/local/share/.tipi/clang/*/bin/clang
+             /usr/local/share/.tipi/cmake/*/bin/cmake
+             /usr/local/share/.tipi/emsdk/*/emsdk
+             /usr/local/share/.tipi/environments/*/xcode.cmake
+             /usr/local/share/.tipi/go/*/bin/go
+             /usr/local/share/.tipi/jdk/*/Contents/Home/bin/jar
+             /usr/local/share/.tipi/nodejs/*/bin/node
+             /usr/local/share/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+             /usr/local/share/.tipi/openapi-generator-script/*/openapi-generator-cli 
+             /usr/local/share/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+             /usr/local/share/.tipi/python/*/bin/python
+             /usr/local/share/.tipi/elfshaker/*/elfshaker)
           
           for element in "${pathsToTest[@]}"
           do
@@ -59,9 +59,9 @@ jobs:
 
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
-              ~/.tipi/environments/*/xcode.cmake
-              ~/.tipi/python/*/bin/python
-              ~/.tipi/file-sync/*/pysearpc/client.py)
+             /usr/local/share/.tipi/environments/*/xcode.cmake
+             /usr/local/share/.tipi/python/*/bin/python
+            /usr/local/share/.tipi/elfshaker/*/elfshaker)
 
           for element in "${pathsToTest[@]}"
           do
@@ -70,10 +70,10 @@ jobs:
           done
     
           pathsToTest_negative=(~/.tipi/clang/*/bin/clang
-              ~/.tipi/cmake/*/bin/cmake
-              ~/.tipi/emsdk/*/emsdk
-              ~/.tipi/go/*/bin/go
-              ~/.tipi/jdk/*/bin/jar)
+             /usr/local/share/.tipi/cmake/*/bin/cmake
+             /usr/local/share/.tipi/emsdk/*/emsdk
+             /usr/local/share/.tipi/go/*/bin/go
+             /usr/local/share/.tipi/jdk/*/bin/jar)
 
           for element in "${pathsToTest_negative[@]}"
           do
@@ -99,17 +99,17 @@ jobs:
           # Test install succeeeded 
 
           pathsToTest=(/usr/local/bin/tipi 
-              ~/.tipi/clang/*/bin/clang
-              ~/.tipi/cmake/*/bin/cmake
-              ~/.tipi/emsdk/*/emsdk
-              ~/.tipi/environments/*/xcode.cmake
-              ~/.tipi/go/*/bin/go
-              ~/.tipi/jdk/*/bin/jar
-              ~/.tipi/nodejs/*/bin/node
-              ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
-              ~/.tipi/openapi-generator-script/*/openapi-generator-cli 
-              ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
-              ~/.tipi/file-sync/*/pysearpc/client.py)
+             /usr/local/share/.tipi/clang/*/bin/clang
+             /usr/local/share/.tipi/cmake/*/bin/cmake
+             /usr/local/share/.tipi/emsdk/*/emsdk
+             /usr/local/share/.tipi/environments/*/xcode.cmake
+             /usr/local/share/.tipi/go/*/bin/go
+             /usr/local/share/.tipi/jdk/*/bin/jar
+             /usr/local/share/.tipi/nodejs/*/bin/node
+             /usr/local/share/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+             /usr/local/share/.tipi/openapi-generator-script/*/openapi-generator-cli 
+             /usr/local/share/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+             /usr/local/share/.tipi/elfshaker/*/elfshaker)
           
           for element in "${pathsToTest[@]}"
           do
@@ -141,8 +141,8 @@ jobs:
           
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
-              ~/.tipi/environments/*/xcode.cmake
-              ~/.tipi/file-sync/*/pysearpc/client.py)
+             /usr/local/share/.tipi/environments/*/xcode.cmake
+             /usr/local/share/.tipi/elfshaker/*/elfshaker)
           
           for element in "${pathsToTest[@]}"
           do
@@ -151,10 +151,10 @@ jobs:
           done
 
           pathsToTest_negative=(~/.tipi/clang/*/bin/clang
-              ~/.tipi/cmake/*/bin/cmake
-              ~/.tipi/emsdk/*/emsdk
-              ~/.tipi/go/*/bin/go
-              ~/.tipi/jdk/*/Contents/Home/bin/jar)
+             /usr/local/share/.tipi/cmake/*/bin/cmake
+             /usr/local/share/.tipi/emsdk/*/emsdk
+             /usr/local/share/.tipi/go/*/bin/go
+             /usr/local/share/.tipi/jdk/*/Contents/Home/bin/jar)
 
           for element in "${pathsToTest_negative[@]}"
           do
@@ -261,7 +261,7 @@ jobs:
             "C:\.tipi\perl\*\README.txt"  
             "C:\.tipi\platform\*\cmake\projects\Poco\hunter.cmake"  
             "C:\.tipi\python\*\python.exe"  
-            "C:\.tipi\file-sync\*\pysearpc\client.py"  
+            "C:\.tipi\elfshaker\*\elfshaker.exe"  
           )
 
           $success = $true
@@ -318,7 +318,7 @@ jobs:
             "C:\.tipi\environments\*\xcode.cmake" 
             "C:\.tipi\openssh\*\ssh.exe"
             "C:\.tipi\python\*\python.exe"  
-            "C:\.tipi\file-sync\*\pysearpc\client.py"  
+            "C:\.tipi\elfshaker\*\elfshaker.exe"  
           )
 
           $success = $true
@@ -459,7 +459,7 @@ jobs:
             "C:\.tipi\environments\*\xcode.cmake" 
             "C:\.tipi\openssh\*\ssh.exe"
             "C:\.tipi\python\*\python.exe"  
-            "C:\.tipi\file-sync\*\pysearpc\client.py"  
+            "C:\.tipi\elfshaker\*\elfshaker.exe"  
           )
 
           $success = $true
@@ -516,17 +516,17 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
-              ~/.tipi/clang/*/bin/clang
-              ~/.tipi/cmake/*/bin/cmake
-              ~/.tipi/emsdk/*/emsdk
-              ~/.tipi/environments/*/xcode.cmake
-              ~/.tipi/go/*/bin/go
-              ~/.tipi/jdk/*/bin/jar
-              ~/.tipi/nodejs/*/bin/node
-              ~/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
-              ~/.tipi/openapi-generator-script/*/openapi-generator-cli 
-              ~/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
-              ~/.tipi/file-sync/*/pysearpc/client.py)
+             /usr/local/share/.tipi/clang/*/bin/clang
+             /usr/local/share/.tipi/cmake/*/bin/cmake
+             /usr/local/share/.tipi/emsdk/*/emsdk
+             /usr/local/share/.tipi/environments/*/xcode.cmake
+             /usr/local/share/.tipi/go/*/bin/go
+             /usr/local/share/.tipi/jdk/*/bin/jar
+             /usr/local/share/.tipi/nodejs/*/bin/node
+             /usr/local/share/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+             /usr/local/share/.tipi/openapi-generator-script/*/openapi-generator-cli 
+             /usr/local/share/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+             /usr/local/share/.tipi/elfshaker/*/elfshaker)
 
           for element in "${pathsToTest[@]}"
           do
@@ -556,8 +556,8 @@ jobs:
           
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
-              ~/.tipi/environments/*/xcode.cmake
-              ~/.tipi/file-sync/*/pysearpc/client.py)
+             /usr/local/share/.tipi/environments/*/xcode.cmake
+             /usr/local/share/.tipi/elfshaker/*/elfshaker)
 
           for element in "${pathsToTest[@]}"
           do
@@ -566,10 +566,10 @@ jobs:
           done
 
           pathsToTest_negative=(~/.tipi/clang/*/bin/clang
-              ~/.tipi/cmake/*/bin/cmake
-              ~/.tipi/emsdk/*/emsdk
-              ~/.tipi/go/*/bin/go
-              ~/.tipi/jdk/*/bin/jar)
+             /usr/local/share/.tipi/cmake/*/bin/cmake
+             /usr/local/share/.tipi/emsdk/*/emsdk
+             /usr/local/share/.tipi/go/*/bin/go
+             /usr/local/share/.tipi/jdk/*/bin/jar)
 
           for element in "${pathsToTest_negative[@]}"
           do

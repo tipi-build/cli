@@ -32,7 +32,7 @@ should_install_unzip() {
 # impl.
 ### 
 
-VERSION="${TIPI_INSTALL_VERSION:-v0.0.34}"
+VERSION="${TIPI_INSTALL_VERSION:-v0.0.35}"
 INSTALL_FOLDER=/usr/local
 
 if [[ -z "${TIPI_INSTALL_SOURCE}" ]]; then
@@ -93,6 +93,11 @@ if [ $? -eq 0 ]; then
 
     info "Cleaning up temporary download"
     rm $TMP_DOWNLOAD_PATH
+
+    TIPI_DATA_DIR=/usr/local/share/.tipi
+    info "Setting up tipi's local storage in $TIPI_DATA_DIR"
+    $PRIV_ELEV_CMD mkdir -p $TIPI_DATA_DIR
+    $PRIV_ELEV_CMD chown -R ${USER:=$(/usr/bin/id -run)} $TIPI_DATA_DIR
 
     info "Provisioning included tools."
     $INSTALL_FOLDER/bin/tipi -v --dont-upgrade run echo "[INFO] Shipping tools done"
