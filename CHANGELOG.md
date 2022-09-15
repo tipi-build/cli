@@ -3,11 +3,23 @@
 ## v0.0.35 - codename Yodeling Yak @ CppCon 🤠 
 
 ### Feature
-  - Remote build file synchronization fully rewritten
-  - Introducing the gitpiler 
-  - Global Build Cache
-  - Self hosted runners
-  - live build 
+  - Full rewrite of the file synchronization system
+  - (PREVIEW) Tipi.build Cache (requires tipi.build account & link to Github.com)
+    - Private dependency snapshots
+  - Highly improved isolation between dependencies
+  - (PREVIEW) Support for self-hosted remote nodes
+
+### Bugfix
+  - `--sync-build` now synchronizes build trees as whole snapshots for improved consistency
+  - Some `.tipiignore` rules could not be overwritten
+
+### Breaking changes & known bugs:
+
+  - `TIPI_HOME_DIR` now obsolete / ignored
+  - Location of `.tipi/` moved to `/usr/local/share/.tipi` (Linux and macOS) and `C:\.tipi` (Windows)
+    - **NOTE:** you may have to re-run the installer to fix up the permissions depending on your setup
+    - **RATIONALE:** minimizes the need for path rewriting on build cache hits     
+  - `--sync-build` is broken on some Windows installs especially when used in conjunction with `--monitor`
 
 ##### Archives Checksums
 tipi-v0.0.35-windows-win64.zip:86EC51AB365C8D686DF87F77809706AE171421E3
