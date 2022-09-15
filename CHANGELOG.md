@@ -1,5 +1,19 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.35 - codename Yodeling Yak @ CppCon 🤠 
+
+### Feature
+  - Remote build file synchronization fully rewritten
+  - Introducing the gitpiler 
+  - Global Build Cache
+  - Self hosted runners
+  - live build 
+
+##### Archives Checksums
+tipi-v0.0.35-windows-win64.zip:86EC51AB365C8D686DF87F77809706AE171421E3
+tipi-v0.0.35-linux-x86_64.zip:DF5FC190EBA8C5E8A418107984072DD1AB082F72
+tipi-v0.0.35-macOS.zip:B620BD356DEEDE35144B9AD5A0D480726C24AAA8
+
 ## v0.0.34 - codename Xenodochial Xoloitzcuintli 🐶
 
 ### Feature
