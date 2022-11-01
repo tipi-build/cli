@@ -1,5 +1,29 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.36 - codename Zealful Zebra @ CppCon 🦓
+
+### Feature
+  - Re-write the compiler output to match the main project 
+  - Improvement of the speed of use of the cache 
+
+### Bugfix
+ - `--sync-build` now synchronizes build between the different platforms
+ - Live build works in remote on windows 
+ - Live build works detects all changes in the cacheon linux 
+ - The usage of boost on windows is functional again 
+ - Tipi does not fail if there are no paths on the disk 
+ - If all the commits are not present in the git folder do not fail anymore 
+ - Cmake export names are again based on your project 
+
+
+### Breaking changes & known bugs:
+ - During the extraction of the cache, the files lose their permissions bits 
+
+##### Archives Checksums
+tipi-v0.0.36-windows-win64.zip:xxx
+tipi-v0.0.36-linux-x86_64.zip:xxx
+tipi-v0.0.36-macOS.zip:xxx
+
 ## v0.0.35 - codename Yodeling Yak @ CppCon 🤠 
 
 ### Feature
