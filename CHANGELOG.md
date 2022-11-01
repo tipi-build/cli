@@ -18,6 +18,7 @@
 
 ### Breaking changes & known bugs:
  - During the extraction of the cache, the files lose their permissions bits 
+ - Change of the name of folders in `.tipi/`, you should probably delete the folder `d` (`/usr/local/share/.tipi/d` (Linux and macOS) and `C:\.tipi\d` (Windows))
 
 ##### Archives Checksums
 tipi-v0.0.36-windows-win64.zip:xxx
