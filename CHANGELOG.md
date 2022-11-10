@@ -1,6 +1,6 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.36 - codename Zealful Zebra @ CppCon 🦓
+## v0.0.36 - codename Zealful Zebra 🦓
 
 ### Feature
   - Re-write the compiler output to match the main project 
