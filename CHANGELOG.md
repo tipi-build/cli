@@ -8,8 +8,8 @@
 
 ### Bugfix
  - `--sync-build` now synchronizes build between the different platforms
- - Live build works in remote on windows 
- - Live build works detects all changes in the cacheon linux 
+ - Live build works remotely on windows 
+ - Live build works detects all changes in the cache on Linux 
  - The usage of boost on windows is functional again 
  - Tipi does not fail if there are no paths on the disk 
  - If all the commits are not present in the git folder do not fail anymore 
@@ -18,7 +18,7 @@
 
 ### Breaking changes & known bugs:
  - During the extraction of the cache, the files lose their permissions bits 
- - Change of the name of folders in `.tipi/`, you should probably delete the folder `d` (`/usr/local/share/.tipi/d` (Linux and macOS) and `C:\.tipi\d` (Windows))
+ - Change the name of folders in `.tipi/`, you should probably delete the folder `d` (`/usr/local/share/.tipi/d` (Linux and macOS) and `C:\.tipi\d` (Windows))
 
 ##### Archives Checksums
 tipi-v0.0.36-windows-win64.zip:01B2E808DF0E4216F3CC1E43080FDBFFE5DC048C
