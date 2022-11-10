@@ -3,22 +3,21 @@
 ## v0.0.36 - codename Zealful Zebra 🦓
 
 ### Feature
-  - Re-write the compiler output to match the main project 
-  - Improvement of the speed of use of the cache 
+  - 🆕 ✨ Compiler output rewriting for better usability and legible paths
+  - 🚀 Improved cache performance
 
 ### Bugfix
- - `--sync-build` now synchronizes build between the different platforms
- - Live build works remotely on windows 
- - Live build works detects all changes in the cache on Linux 
- - The usage of boost on windows is functional again 
- - Tipi does not fail if there are no paths on the disk 
- - If all the commits are not present in the git folder do not fail anymore 
- - Cmake export names are again based on your project 
+ - Cross platform remote `--sync-build` works again
+ - Fixed remote Windows live builds
+ - Fixed live build change detection on Linux 
+ - Improved path lengths of local source mirroring to reduce risk of MAX_PATH_LENGHT issues on Windows
+ - Fixed shallow clone crash (root commit detection failures)
+ - Human-readable CMake export names
 
 
 ### Breaking changes & known bugs:
- - During the extraction of the cache, the files lose their permissions bits 
- - Change the name of folders in `.tipi/`, you should probably delete the folder `d` (`/usr/local/share/.tipi/d` (Linux and macOS) and `C:\.tipi\d` (Windows))
+ - File permission incorrectly set during cache restore
+ - Changes in the `.tipi/` folder structure. You should probably clear the `.tipi/d` folder (`/usr/local/share/.tipi/d` in Linux and macOS and `C:\.tipi\d` for Windows users)
 
 ##### Archives Checksums
 tipi-v0.0.36-windows-win64.zip:01B2E808DF0E4216F3CC1E43080FDBFFE5DC048C
