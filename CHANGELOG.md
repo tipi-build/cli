@@ -21,9 +21,9 @@
  - Change of the name of folders in `.tipi/`, you should probably delete the folder `d` (`/usr/local/share/.tipi/d` (Linux and macOS) and `C:\.tipi\d` (Windows))
 
 ##### Archives Checksums
-tipi-v0.0.36-windows-win64.zip:xxx
-tipi-v0.0.36-linux-x86_64.zip:xxx
-tipi-v0.0.36-macOS.zip:xxx
+tipi-v0.0.36-windows-win64.zip:01B2E808DF0E4216F3CC1E43080FDBFFE5DC048C
+tipi-v0.0.36-linux-x86_64.zip:2CCBC5E9381C96D339C12FBE2960515ACCA1AC1E
+tipi-v0.0.36-macOS.zip:33F5F510655D5126321E11DA35F13DE42FAEDA31
 
 ## v0.0.35 - codename Yodeling Yak @ CppCon 🤠 
 
