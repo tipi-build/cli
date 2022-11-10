@@ -1,5 +1,29 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.36 - codename Zealful Zebra 🦓
+
+### Feature
+  - 🆕 ✨ Compiler output rewriting for better usability and legible paths
+  - 🚀 Improved cache performance
+
+### Bugfix
+ - Cross platform remote `--sync-build` works again
+ - Fixed remote Windows live builds
+ - Fixed live build change detection on Linux 
+ - Improved path lengths of local source mirroring to reduce risk of MAX_PATH_LENGHT issues on Windows
+ - Fixed shallow clone crash (root commit detection failures)
+ - Human-readable CMake export names
+
+
+### Breaking changes & known bugs:
+ - File permission incorrectly set during cache restore
+ - Changes in the `.tipi/` folder structure. You should probably clear the `.tipi/d` folder (`/usr/local/share/.tipi/d` in Linux and macOS and `C:\.tipi\d` for Windows users)
+
+##### Archives Checksums
+tipi-v0.0.36-windows-win64.zip:01B2E808DF0E4216F3CC1E43080FDBFFE5DC048C
+tipi-v0.0.36-linux-x86_64.zip:2CCBC5E9381C96D339C12FBE2960515ACCA1AC1E
+tipi-v0.0.36-macOS.zip:33F5F510655D5126321E11DA35F13DE42FAEDA31
+
 ## v0.0.35 - codename Yodeling Yak @ CppCon 🤠 
 
 ### Feature
