@@ -1,5 +1,17 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.37 - codename Angelic Anteater 🐾
+
+### Bugfix
+ - tipi build cache stores and restores permission bits
+ - tipi build cache stores and restores execution bits  
+ - tipi build cache stores and restores symlinks
+
+##### Archives Checksums
+tipi-v0.0.37-windows-win64.zip:xxx
+tipi-v0.0.37-linux-x86_64.zip:xxx
+tipi-v0.0.37-macOS.zip:xxx
+
 ## v0.0.36 - codename Zealful Zebra 🦓
 
 ### Feature
