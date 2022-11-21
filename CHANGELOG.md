@@ -3,9 +3,8 @@
 ## v0.0.37 - codename Angelic Anteater 🐾
 
 ### Bugfix
- - tipi build cache stores and restores permission bits
- - tipi build cache stores and restores execution bits  
- - tipi build cache stores and restores symlinks
+ - tipi cache stores and restores correclty permission bits, execution bits and symlinks
+ - Optimized cache HIT check on projects that had cache entries but none related to any commit of the current branch ( on bigger project it could be stuck for hours )
 
 ##### Archives Checksums
 tipi-v0.0.37-windows-win64.zip:377F167CC6ED7FEF65D07A88CB0C84BFB29DF224
