@@ -1,5 +1,16 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.37 - codename Angelic Anteater 🐾
+
+### Bugfix
+ - tipi cache stores and restores correclty permission bits, execution bits and symlinks
+ - Optimized cache HIT check on projects that had cache entries but none related to any commit of the current branch ( on bigger project it could be stuck for hours )
+
+##### Archives Checksums
+tipi-v0.0.37-windows-win64.zip:377F167CC6ED7FEF65D07A88CB0C84BFB29DF224
+tipi-v0.0.37-linux-x86_64.zip:A84573E0E1E691F6FF77B5D5CD1BDC14E08CBDAD
+tipi-v0.0.37-macOS.zip:BEC661DD4C5F55807572C381E538FF69FFF5AC04
+
 ## v0.0.36 - codename Zealful Zebra 🦓
 
 ### Feature
