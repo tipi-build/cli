@@ -1,5 +1,17 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.38 - codename Blissful Buffalo 🐾
+
+### Bugfix
+ - `tipi .run` broken build path symlinks on remote (fixes thttps://github.com/tipi-build/community-support/issues/1 - thank you @Bjoe for reporting)
+ - tipi cache extraction would fail on missing target (symlink pointing to non-existent target)
+
+##### Archives Checksums
+tipi-v0.0.37-windows-win64.zip:
+tipi-v0.0.37-linux-x86_64.zip:
+tipi-v0.0.37-macOS.zip:
+
+
 ## v0.0.37 - codename Angelic Anteater 🐾
 
 ### Bugfix
