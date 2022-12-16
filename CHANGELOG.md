@@ -1,5 +1,30 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.38 - codename Blissful Buffalo 🐃
+
+### Feature
+ - 🚀 Drastically improved cache retrieval as only the binary tree is fetched and only required pieces on partial cache hit
+ - 🚀 Drastically improved cache performance : no user side repacking
+ - 🚀 Proper support with caching for local+remote subfolder dependencies
+ - 🚀 Full remote build and caching support to build subfolders ( e.g. monorepos build scenarii ) 
+ - 🚀 Faster remote build sources prefetching with faster hardlinking from central intermediate repository to cache pushes
+ - 💄 Cleaned up output and Added spinners for IO Bound tasks like cache fetch, updload
+
+
+### Bugfix
+ - tipi cache multithreaded 🧵 symlinks extraction bug resolved
+ - tipi cache extraction works now with missing symlink target (symlink pointing to non-existent target)
+ - Removed possible infinite loop hanging the output in the rewriter for mirrored file paths 
+ - `tipi .run` works as expected (symlinks on remote run get maintained) (fixes thttps://github.com/tipi-build/community-support/issues/1 - thank you @Bjoe for reporting)
+ - Support remotely prefetching repo cloned locally with SSH
+ - Dropped aging Eclipse Project support
+
+##### Archives Checksums
+ tipi-v0.0.38-windows-win64.zip:0F1D7D386648681BFCAF8BC55029D86E5D8C7D05
+ tipi-v0.0.38-linux-x86_64.zip:BBE51A2C98788569A5A9BE0B348DCFB4F2793DC6
+ tipi-v0.0.38-macOS.zip:0FC6B02440DA9B06F4500876DDA42B9F840B0492
+
+
 ## v0.0.37 - codename Angelic Anteater 🐾
 
 ### Bugfix
