@@ -20,9 +20,9 @@
  - Dropped aging Eclipse Project support
 
 ##### Archives Checksums
-tipi-v0.0.37-windows-win64.zip:
-tipi-v0.0.37-linux-x86_64.zip:
-tipi-v0.0.37-macOS.zip:
+ tipi-v0.0.38-windows-win64.zip:0F1D7D386648681BFCAF8BC55029D86E5D8C7D05
+ tipi-v0.0.38-linux-x86_64.zip:BBE51A2C98788569A5A9BE0B348DCFB4F2793DC6
+ tipi-v0.0.38-macOS.zip:0FC6B02440DA9B06F4500876DDA42B9F840B0492
 
 
 ## v0.0.37 - codename Angelic Anteater 🐾
