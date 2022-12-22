@@ -1,5 +1,10 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.39 - codename California Condor 🦅
+
+### Bugfix
+ - Cache creation or unchanged build files after commit doesn't result in needless rebuilds on cache extraction.
+
 ## v0.0.38 - codename Blissful Buffalo 🐃
 
 ### Feature
