@@ -2,8 +2,25 @@
 
 ## v0.0.39 - codename California Condor 🦅
 
+### Feature 
+ - 🚀 60% faster cache extraction on incremental builds ( extracts only changed files across revisions )
+ - 🚀 2 times faster mirroring of sources on exact cache hit
+ - 🚀 3 time fasters incremental builds for CMakeLists based build ( { "u" : true } builds), the configure step is done only when strictly required.
+ - Platform Library now built and packed only if needed by the `.tipi/deps`
+ - Dependencies built by a project also populate the build packs caches (Allows to benefit from incremental builds  when a dependency is frequently updated)
+
 ### Bugfix
- - Cache creation or unchanged build files after commit doesn't result in needless rebuilds on cache extraction.
+ - Cache creation of unchanged build files after commit doesn't result in needless rebuilds on cache extraction.
+ - transitive dependencies on cache restore works ( More than 1 level of dependencies ) 
+ - Switching between CMakeList and build by conventions works seamlessly ( Fix tipi-build/community-support#3, thanks @stefanofiorentino, thanks @Bjoe)
+ - HTTP Proxy support for remote builds fixed
+
+tipi-src: d8feb61111d63245abd7b6d9dfa6a957545d2367
+
+##### Archives Checksums
+tipi-v0.0.39-windows-win64.zip:ED248C4D375E00F805515445D18441F4E289272D
+tipi-v0.0.39-linux-x86_64.zip:37E9894864B9AEE3A5E498CC04B9F9CA0ABC0364
+tipi-v0.0.39-macOS.zip:A0369556D1DCA8197B0FC33D99DAA83BFCDEAE65
 
 ## v0.0.38 - codename Blissful Buffalo 🐃
 
