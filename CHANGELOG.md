@@ -1,5 +1,40 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.41 - codename Decisive Dolphin 🐬
+
+## Feature
+ 
+### Remote build
+ - Improved reliability of remote Job machine underlying SSH connection (also automatically using different ports if already in-use )
+
+### Test Driven Development monitor mode
+ - 🚀 Monitor mode fully overhauled with debouncing and discard of running build
+ - Support passing command line arguments to test executables and control test via `<projdir>/.tipi.test-args`
+
+### Package Management
+ - 🚀 Speedup for dependencies install : even on first build the dependencies are properly resolved from the cache.
+ - Correct setup of CMake package configuration find directories when a project is built from cache a second time
+ - Dependencies now stay a dependencies of the proper level and are no more added recursively to all parent levels
+ - Possibility to specify the `.tipi/id`  cache id key directly in `.tipi/deps` ( useful when it differs from github origin )
+ - `{ "opts" : "set(CMAKE_VAR ON)" }` can be specified in `.tipi/deps`.
+ - `TIPI_CACHE_CONSUME_ONLY=ON` in the environment allows use of the cache without populating it.
+
+## Bugfix
+ - `--sync-build` of remotely built project returns the binary built and doesn't generate an infinitely expanding archive anymore.
+ - Remote build of incremental changes on already built files are not ignored anymore (modification time correctly set up to the nanosecond)
+ - Remote Build doesn't hang anymore in remote subprocesses builds on windows until `<Enter>` is pressed.
+ - Properly detect what changes in build by convention mode, by regenerating cmakelists when they actually change
+ - Projects opts files in dependency chain are inlined to the CMake toolchain file in proper order, so that dependent  project can override toolchain specific settings for their dependencies
+ - symlinks are properly stored and extracted on windows build caches 
+ - `tipi . --test <filter-regex>` now properly forwards it to CMake-CTest on windows.
+
+tipi-src: 9231ede55a3a24b2755d3311dfa12d63203d159e
+
+##### Archives Checksums
+tipi-v0.0.41-windows-win64.zip:A0E8DF4CA67F87238A01894CB75B82453207D6A0
+tipi-v0.0.41-linux-x86_64.zip:FA72E1620EE9949C13B58139CB027861A1A2BAFB
+tipi-v0.0.41-macOS.zip:EAF1B13D04D3D8F320409D1D0B7775078C70BAD0
+
 ## v0.0.39 - codename California Condor 🦅
 
 ### Feature 
