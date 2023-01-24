@@ -6,12 +6,12 @@
 
  - fix tipi crash when a test fail in quiet mode
 
-tipi-src: x
+tipi-src: fe1dff44985608ca9f80041945e7bbfd6aca5f17
 
 ##### Archives Checksums
-tipi-v0.0.42-windows-win64.zip:x
-tipi-v0.0.42-linux-x86_64.zip:x
-tipi-v0.0.42-macOS.zip:x
+tipi-v0.0.42-windows-win64.zip:DB79C2279EF9E353F1E212E67A6A17C194C1DBFA
+tipi-v0.0.42-linux-x86_64.zip:E8BE7A26F216C8AED848C11775FEB7C626D89B20
+tipi-v0.0.42-macOS.zip:DF100428ACE210AD4025EAD2E3DBD26C5A4A0772
 
 
 ## v0.0.41 - codename Decisive Dolphin 🐬
