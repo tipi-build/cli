@@ -1,5 +1,19 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.43 - codename Flamboyant Fox 🦊
+
+## Features
+ - Git Submodules support : local and remote build of main project as well as for dependencies
+ - 🔥 BEHAVIOUR CHANGE : `.tipi/opts` files are now only propagated to the current project built, while `.tipi/opts.toolchain` extends the toolchain and impacts the abi-hash of all dependencies.
+ - Added gcovr in standard tipi linux images for Code Coverage reports
+ - Coverage support with llvm-lcov (gcov compatible) on all platforms
+ - Support for iptables and raw networking added in linux remote jobs ( i.e. useful for test executions )
+ 
+##### Archives Checksums
+tipi-v0.0.43-windows-win64.zip:794C5DEE5DA55BB81CAFBD51F13605376B03C123
+tipi-v0.0.43-linux-x86_64.zip:D1486F74396FADF8DBD9D7A4955ABBD483028A71
+tipi-v0.0.43-macOS.zip:AA0C3C836BA1A9370F57BA0E66403FB596E77B73
+
 ## v0.0.42 - codename Electric Elk ⚡🦌
 
 ## Bugfix
