@@ -1,5 +1,22 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.44 - Glorious Goldfish 🐟
+
+### Feature
+  - `--test-jobs <NUMBER>` allows to specify a different test execution parallelity level than the provided `--jobs / -j` flag
+
+### Bugfix
+  - Code in submodules is rebuilt only when changed 
+  - Fix crash when building a subfolder of a project with submodules
+  - Subfolder builds of project with submodule are correctly mirrored (only submodules within the built subfolder are mirrored)
+  - Dependencies fetched via a Git annotated tag reference in `{ "@" : "vX.X.X" }`  are now properly authenticated
+  - Remote `tipi .run` command properly synchronizes sources up and allow using subfolder paths.
+
+##### Archives Checksums
+tipi-v0.0.44-windows-win64.zip:E87E3A9C443FC051EDA77124A17C3D6CEB5B92F8
+tipi-v0.0.44-linux-x86_64.zip:ACA531A447001FCF38101A5B20A581C0055641D4
+tipi-v0.0.44-macOS.zip:05B1E172CD8B4C46A982D35E59BF17ED0754F595
+
 ## v0.0.43 - codename Flamboyant Fox 🦊
 
 ## Features
