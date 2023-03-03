@@ -1,5 +1,14 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.45 - Hastened Hamster 🐹
+### Bugfixes
+* Fix `--sync-build` when proxy settings are in use
+* `.gitignore`d files are properly mirrored
+* Fix last state file synchronization when running remote command with `tipi .run` 
+
+##### Archives Checksums
+
+
 ## v0.0.44 - Glorious Goldfish 🐟
 
 ### Feature
