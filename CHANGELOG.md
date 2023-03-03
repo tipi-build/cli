@@ -1,12 +1,18 @@
 # tipi.build cli : CHANGELOG
 
 ## v0.0.45 - Hastened Hamster 🐹
-### Bugfixes
-* Fix `--sync-build` when proxy settings are in use
-* `.gitignore`d files are properly mirrored
-* Fix last state file synchronization when running remote command with `tipi .run` 
+
+### Bugfix
+  - Fix `--sync-build` when proxy settings are in use
+  - `.gitignore`d files are properly mirrored
+  - Fix last state file synchronization when running remote command with `tipi .run` 
+
+tipi-src : afbd584f60e0eadb4772dee27cda7e7d348e0f0f
 
 ##### Archives Checksums
+tipi-v0.0.45-windows-win64.zip:6C3841156C13F2230CF6B746DDC180E9BC13885A
+tipi-v0.0.45-linux-x86_64.zip:A699C69EFFCED994CD318353BFD7EA0CAB34CEF9
+tipi-v0.0.45-macOS.zip:E08258A1D2C0DE9FCC1D7CC107795E86D689D65A
 
 
 ## v0.0.44 - Glorious Goldfish 🐟
