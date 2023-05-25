@@ -1,6 +1,6 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.46 - Iconic Iguana
+## v0.0.46 - Iconic Iguana 🦎
 
 ### Features
 
