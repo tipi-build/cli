@@ -1,5 +1,22 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.47 - Jazzy Jackrabbit 🐰
+
+### Features
+
+#### Remote Builds
+- Large repositories like llvm can now be built remotely with fast remote startup time thanks to the support of shallow repository clones and delta pushes. 
+
+### Bug Fixes
+- tipi build secure vault properly initialized on first remote build 
+
+tipi-src: 31be27a6b84b552b502208d5dcd2075c788eca70
+
+##### Archives Checksums
+tipi-v0.0.47-windows-win64.zip:A79708738F0783BDF050BD37D76FE4489E1ECF11
+tipi-v0.0.47-linux-x86_64.zip:2DDC43E84B0D6497206835C7B6A94B4205203C80
+tipi-v0.0.47-macOS.zip:0EC359D2651F2DE888CE06907C0478DF442BB492
+
 ## v0.0.46 - Iconic Iguana 🦎
 
 ### Features
