@@ -1,5 +1,50 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.47 - Jazzy Jackrabbit 🐰
+
+### Features
+
+#### Remote Builds
+- Large repositories like llvm can now be built remotely with fast remote startup time thanks to the support of shallow repository clones and delta pushes. 
+
+### Bug Fixes
+- tipi build secure vault properly initialized on first remote build 
+
+tipi-src: 31be27a6b84b552b502208d5dcd2075c788eca70
+
+##### Archives Checksums
+tipi-v0.0.47-windows-win64.zip:A79708738F0783BDF050BD37D76FE4489E1ECF11
+tipi-v0.0.47-linux-x86_64.zip:2DDC43E84B0D6497206835C7B6A94B4205203C80
+tipi-v0.0.47-macOS.zip:0EC359D2651F2DE888CE06907C0478DF442BB492
+
+## v0.0.46 - Iconic Iguana 🦎
+
+### Features
+
+#### Extensibility 
+- Tools from Source: Added support for using dependency-provided tools built from source in the build process.
+- Host private tools distribution via `distro.json`: Introduced the ability to host a private `distro.json` file in a repository of your choice.
+- Runtime environment configuration: Enabled the persistence of build and test runtime environment configuration using the `.tipi/env` (in `dotenv` notation) files.
+
+#### Dependency Management 
+* tipi now warns the user when a dependency tree uses two different version of the same library and identifies which library is cause
+* Optimized `find_package` in generated build scripts to search only once for a given dependency in complex dependency trees.
+
+### Bug Fixes
+- Fixed various bugs related to git submodule handling.
+- Enhanced error handling for failed deployment: better error messages and early abort in case of failed deployment of remote build machines.
+- Improved error messages when attempting `--sync-build` to a Windows host when synchronized file paths would exceed Windows' maximum supported path length.
+- Fixed handling of failing distro downloads: Resolved the issue where failing distro downloads were ignored.
+
+tipi-src : fa163ff06e8d829c6f1862a2ef67ca46414b068a
+
+##### Archives Checksums
+tipi-v0.0.46-windows-win64.zip:EC0B904F2C51ED8A4025A3548BC2E2DEC81F8F89
+tipi-v0.0.46-linux-x86_64.zip:F76616A3C96749174981127706BA232DEDCA80D5
+tipi-v0.0.46-macOS.zip:F02BF888C33F74D2A68C0B0015BD56C61293845B
+
+
+
 ## v0.0.45 - Hastened Hamster 🐹
 
 ### Bugfix
