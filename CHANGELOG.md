@@ -5,12 +5,14 @@
 ### Features
 
 #### Remote Builds
-- Added ability to compile with msvc on the cloud with the target `linux-wine-msvc`
+- :new: preview of new MSVC on Wine target for cloud build `-t linux-wine-msvc`
+
+#### General improvements
+- improved log outputs for synchronization activities to reduce the log noise especially in verbose and trace level logs
 
 ### Bug Fixes
-- Improving tipi logs
-- If the environement variable TIPI_DISABLE_SET_MTIME RBE is present, your changes are taken into account.
-- Remote build checkout enhancement 
+- Large repository checkout workaround using `TIPI_DISABLE_SET_MTIME` is now more resilient
+- Remote build checkout was erroneously checking for branch names 
 
 tipi-src: xxxx
 
