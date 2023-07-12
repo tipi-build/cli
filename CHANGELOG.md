@@ -1,5 +1,24 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.48 - Kooky Kinkajou
+
+### Features
+
+#### Remote Builds
+- Added ability to compile with msvc on the cloud with the target `linux-wine-msvc`
+
+### Bug Fixes
+- Improving tipi logs
+- If the environement variable TIPI_DISABLE_SET_MTIME RBE is present, your changes are taken into account.
+- Remote build checkout enhancement 
+
+tipi-src: xxxx
+
+##### Archives Checksums
+tipi-v0.0.48-windows-win64.zip:xxxx
+tipi-v0.0.48-linux-x86_64.zip:xxxx
+tipi-v0.0.48-macOS.zip:xxxx
+
 ## v0.0.47 - Jazzy Jackrabbit 🐰
 
 ### Features
