@@ -1,5 +1,27 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.48 - Krusty Krab 🧽🦀
+
+### Features
+
+#### Remote Builds
+- :new: preview of new MSVC on Wine target for cloud build `-t linux-wine-msvc`
+
+#### General improvements
+- improved log outputs for synchronization activities to reduce the log noise especially in verbose and trace level logs
+
+### Bug Fixes
+- Large repository checkout workaround using `TIPI_DISABLE_SET_MTIME` is now more resilient
+- Remote build checkout was erroneously checking for branch names 
+
+tipi-src: e4153cb3a9472edf4790a62ffab1f230c8078198
+
+##### Archives Checksums
+
+tipi-v0.0.48-windows-win64.zip:F211EE7AB699D7F9D148F60737FC3536E34CBC38
+tipi-v0.0.48-linux-x86_64.zip:7D35939FF08A63FA6747D7B07AC87F52281EBF29
+tipi-v0.0.48-macOS.zip:EA00297A6D14FB20F8BDB26CB1FA7C1C4C721CD3
+
 ## v0.0.47 - Jazzy Jackrabbit 🐰
 
 ### Features
