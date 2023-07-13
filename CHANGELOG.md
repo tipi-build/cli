@@ -1,6 +1,6 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.48 - Knightly Kinkajou 🐒
+## v0.0.48 - Krusty Krab 🧽🦀
 
 ### Features
 
