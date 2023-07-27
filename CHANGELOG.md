@@ -1,5 +1,37 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.50 - Meditative Moose 🦌
+
+### Bug Fixes
+
+- Resolving cache issue 
+
+tipi-src: 87be24b623b467d5737c631be553e9b7e3adb681
+
+##### Archives Checksums
+
+tipi-v0.0.50-windows-win64.zip:38F13DCA256A33123AB647CB02980B9C851C10AB
+tipi-v0.0.50-linux-x86_64.zip:4987E15BD7339E17C58025644CAFEB702AAA055B
+tipi-v0.0.50-macOS.zip:C455543E8E2EE5F48BBF2B38D81F3EFD6CB935C7
+
+## v0.0.49 - Legit Leopard 🐆
+
+### Features
+
+- ✨Improved support for CMake build dependency files generation in MSVC on Wine target for cloud builds `tipi build . -t linux-wine-msvc`
+
+### Bug Fixes
+
+- Fixed startup hangs when launching MSVC on Wine for the first time on a freshly provisioned machine
+
+tipi-src: ad3222b973e2db4d8bcc2ffc0b16ba8a6f41457f
+
+##### Archives Checksums
+
+tipi-v0.0.49-windows-win64.zip:B324B441D8941975CA2A2C32D47E557562131575
+tipi-v0.0.49-linux-x86_64.zip:784E336213DD948D47651F2A0FD89E1C57A5F738
+tipi-v0.0.49-macOS.zip:79B7E893BA776DE391C7B4D81232406E38B92A33
+
 ## v0.0.48 - Krusty Krab 🧽🦀
 
 ### Features
