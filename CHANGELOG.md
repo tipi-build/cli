@@ -1,5 +1,18 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.50 - Meditative Moose 🦌
+
+### Bug Fixes
+
+- Resolving cache issue 
+
+tipi-src: xxxxx
+
+##### Archives Checksums
+
+tipi-v0.0.50-windows-win64.zip:xxxx
+tipi-v0.0.50-linux-x86_64.zip:xxxx
+tipi-v0.0.50-macOS.zip:xxxx
 
 ## v0.0.49 - Legit Leopard 🐆
 
