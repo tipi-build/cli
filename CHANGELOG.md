@@ -1,13 +1,15 @@
 # tipi.build cli : CHANGELOG
 
 
-## v0.0.49 - Lionhearted Llamas 🦁🦙
+## v0.0.49 - Legit Leopard 🐆
 
 ### Features
 
+- ✨Improved support for CMake build dependency files generation in MSVC on Wine target for cloud builds `tipi build . -t linux-wine-msvc`
 
 ### Bug Fixes
 
+- Fixed startup hangs when launching MSVC on Wine for the first time on a freshly provisioned machine
 
 tipi-src: ad3222b973e2db4d8bcc2ffc0b16ba8a6f41457f
 
