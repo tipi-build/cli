@@ -6,13 +6,13 @@
 
 - Resolving cache issue 
 
-tipi-src: xxxxx
+tipi-src: 2c7a10e2a607665ca2114eb139b3014a3394f251
 
 ##### Archives Checksums
 
-tipi-v0.0.50-windows-win64.zip:xxxx
-tipi-v0.0.50-linux-x86_64.zip:xxxx
-tipi-v0.0.50-macOS.zip:xxxx
+tipi-v0.0.50-windows-win64.zip:8DAD293D53104C49B1D97D66BF60792DBD30D9F9
+tipi-v0.0.50-linux-x86_64.zip:D9CE25F90D920AC82727520E68F2E55FC4E6ED5C
+tipi-v0.0.50-macOS.zip:B98A54DEAB30097FBCC04933FE525C099C085364
 
 ## v0.0.49 - Legit Leopard 🐆
 
