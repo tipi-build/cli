@@ -1,5 +1,22 @@
 # tipi.build cli : CHANGELOG
 
+
+## v0.0.49 - Lionhearted Llamas 🦁🦙
+
+### Features
+
+
+### Bug Fixes
+
+
+tipi-src: ad3222b973e2db4d8bcc2ffc0b16ba8a6f41457f
+
+##### Archives Checksums
+
+tipi-v0.0.49-windows-win64.zip:B324B441D8941975CA2A2C32D47E557562131575
+tipi-v0.0.49-linux-x86_64.zip:784E336213DD948D47651F2A0FD89E1C57A5F738
+tipi-v0.0.49-macOS.zip:79B7E893BA776DE391C7B4D81232406E38B92A33
+
 ## v0.0.48 - Krusty Krab 🧽🦀
 
 ### Features
