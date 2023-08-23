@@ -1,5 +1,104 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.50 - Meditative Moose 🦌
+
+### Bug Fixes
+
+- Resolving cache issue 
+
+tipi-src: 87be24b623b467d5737c631be553e9b7e3adb681
+
+##### Archives Checksums
+
+tipi-v0.0.50-windows-win64.zip:38F13DCA256A33123AB647CB02980B9C851C10AB
+tipi-v0.0.50-linux-x86_64.zip:4987E15BD7339E17C58025644CAFEB702AAA055B
+tipi-v0.0.50-macOS.zip:C455543E8E2EE5F48BBF2B38D81F3EFD6CB935C7
+
+## v0.0.49 - Legit Leopard 🐆
+
+### Features
+
+- ✨Improved support for CMake build dependency files generation in MSVC on Wine target for cloud builds `tipi build . -t linux-wine-msvc`
+
+### Bug Fixes
+
+- Fixed startup hangs when launching MSVC on Wine for the first time on a freshly provisioned machine
+
+tipi-src: ad3222b973e2db4d8bcc2ffc0b16ba8a6f41457f
+
+##### Archives Checksums
+
+tipi-v0.0.49-windows-win64.zip:B324B441D8941975CA2A2C32D47E557562131575
+tipi-v0.0.49-linux-x86_64.zip:784E336213DD948D47651F2A0FD89E1C57A5F738
+tipi-v0.0.49-macOS.zip:79B7E893BA776DE391C7B4D81232406E38B92A33
+
+## v0.0.48 - Krusty Krab 🧽🦀
+
+### Features
+
+#### Remote Builds
+- :new: preview of new MSVC on Wine target for cloud build `-t linux-wine-msvc`
+
+#### General improvements
+- improved log outputs for synchronization activities to reduce the log noise especially in verbose and trace level logs
+
+### Bug Fixes
+- Large repository checkout workaround using `TIPI_DISABLE_SET_MTIME` is now more resilient
+- Remote build checkout was erroneously checking for branch names 
+
+tipi-src: e4153cb3a9472edf4790a62ffab1f230c8078198
+
+##### Archives Checksums
+
+tipi-v0.0.48-windows-win64.zip:F211EE7AB699D7F9D148F60737FC3536E34CBC38
+tipi-v0.0.48-linux-x86_64.zip:7D35939FF08A63FA6747D7B07AC87F52281EBF29
+tipi-v0.0.48-macOS.zip:EA00297A6D14FB20F8BDB26CB1FA7C1C4C721CD3
+
+## v0.0.47 - Jazzy Jackrabbit 🐰
+
+### Features
+
+#### Remote Builds
+- Large repositories like llvm can now be built remotely with fast remote startup time thanks to the support of shallow repository clones and delta pushes. 
+
+### Bug Fixes
+- tipi build secure vault properly initialized on first remote build 
+
+tipi-src: 31be27a6b84b552b502208d5dcd2075c788eca70
+
+##### Archives Checksums
+tipi-v0.0.47-windows-win64.zip:A79708738F0783BDF050BD37D76FE4489E1ECF11
+tipi-v0.0.47-linux-x86_64.zip:2DDC43E84B0D6497206835C7B6A94B4205203C80
+tipi-v0.0.47-macOS.zip:0EC359D2651F2DE888CE06907C0478DF442BB492
+
+## v0.0.46 - Iconic Iguana 🦎
+
+### Features
+
+#### Extensibility 
+- Tools from Source: Added support for using dependency-provided tools built from source in the build process.
+- Host private tools distribution via `distro.json`: Introduced the ability to host a private `distro.json` file in a repository of your choice.
+- Runtime environment configuration: Enabled the persistence of build and test runtime environment configuration using the `.tipi/env` (in `dotenv` notation) files.
+
+#### Dependency Management 
+* tipi now warns the user when a dependency tree uses two different version of the same library and identifies which library is cause
+* Optimized `find_package` in generated build scripts to search only once for a given dependency in complex dependency trees.
+
+### Bug Fixes
+- Fixed various bugs related to git submodule handling.
+- Enhanced error handling for failed deployment: better error messages and early abort in case of failed deployment of remote build machines.
+- Improved error messages when attempting `--sync-build` to a Windows host when synchronized file paths would exceed Windows' maximum supported path length.
+- Fixed handling of failing distro downloads: Resolved the issue where failing distro downloads were ignored.
+
+tipi-src : fa163ff06e8d829c6f1862a2ef67ca46414b068a
+
+##### Archives Checksums
+tipi-v0.0.46-windows-win64.zip:EC0B904F2C51ED8A4025A3548BC2E2DEC81F8F89
+tipi-v0.0.46-linux-x86_64.zip:F76616A3C96749174981127706BA232DEDCA80D5
+tipi-v0.0.46-macOS.zip:F02BF888C33F74D2A68C0B0015BD56C61293845B
+
+
+
 ## v0.0.45 - Hastened Hamster 🐹
 
 ### Bugfix
