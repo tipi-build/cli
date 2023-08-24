@@ -43,7 +43,7 @@ if [[ -z "${TIPI_INSTALL_SOURCE}" ]]; then
 
     # test for M1/M2 
     if [[ $(uname -m) == 'arm64' ]]; then
-      info "Tipi requires rosetta to run on Apple ARM Silicon. Please confirm the Apple License Agreement." 
+      info "Tipi requires rosetta to run on Apple ARM Silicon. Launching installation, if you disagree with the Apple Rosetta license press Ctrl-C." 
       $PRIV_ELEV_CMD softwareupdate --install-rosetta --agree-to-license
     fi
 
