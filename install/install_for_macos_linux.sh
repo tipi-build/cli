@@ -40,6 +40,13 @@ if [[ -z "${TIPI_INSTALL_SOURCE}" ]]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-linux-x86_64.zip" 
   elif [ "$(uname)" == "Darwin" ]; then
     TIPI_URL="https://github.com/tipi-build/cli/releases/download/$VERSION/tipi-$VERSION-macOS.zip"
+
+    # test for M1/M2 
+    if [[ $(uname -m) == 'arm64' ]]; then
+      info "Tipi requires rosetta to run on Apple ARM Silicon. Please confirm the Apple License Agreement." 
+      softwareupdate --install-rosetta
+    fi
+
   fi
 else
   TIPI_URL="${TIPI_INSTALL_SOURCE}"
