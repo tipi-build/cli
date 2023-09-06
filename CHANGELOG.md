@@ -8,13 +8,13 @@
 - 🔥 switching from `make` to `ninja` on many targets for improved build speed
 - 🆕 new `tipi download` feature enabling to selectively download build artifacts from the remote build machine
 
-tipi-src: **placeholder**
+tipi-src: ab5617f1eb1019299ff38fcee89b957570b9bc4e
 
 ##### Archives Checksums
 
-tipi-v0.0.51-windows-win64.zip:**placeholder**
-tipi-v0.0.51-linux-x86_64.zip:**placeholder**
-tipi-v0.0.51-macOS.zip:**placeholder**
+tipi-v0.0.51-windows-win64.zip:FDE3CBBEF8201E6BBE1ABBC9DEA15CFBC65EFF69
+tipi-v0.0.51-linux-x86_64.zip:6B7F004A6049B00C4218F401F38E0E56085594EA
+tipi-v0.0.51-macOS.zip:B0FDCE04902B563790F477AAF0EB86ECC4987B54
 
 ## v0.0.50 - Meditative Moose 🦌
 
