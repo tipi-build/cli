@@ -1,5 +1,21 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.51 - Nitfy Nautilus 🐚
+
+### Features
+
+- 🆕 Support for Apple Silicon M1/M2 processors
+- 🔥 switching from `make` to `ninja` on many targets for improved build speed
+- 🆕 new `tipi download` feature enabling to selectively download build artifacts from the remote build machine
+
+tipi-src: **placeholder**
+
+##### Archives Checksums
+
+tipi-v0.0.51-windows-win64.zip:**placeholder**
+tipi-v0.0.51-linux-x86_64.zip:**placeholder**
+tipi-v0.0.51-macOS.zip:**placeholder**
+
 ## v0.0.50 - Meditative Moose 🦌
 
 ### Bug Fixes
