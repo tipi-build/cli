@@ -4,8 +4,8 @@
 
 ### Bug Fixes
 
-- Support for `ninja` on a remote `ubuntu 16.04` machine
-- Fix issue for remote machine use `ubuntu 16.04`
+- ✨Support for `ninja` on remote `ubuntu 16.04` machines
+- Fixing remote execution environment configuration issue on `ubuntu 16.04` targets
 
 tipi-src:d0cb24feb8e065e7b8138c60ac40a9cedae8e248
 
