@@ -1,5 +1,20 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.52 - Obliging Ocelot 🐆
+
+### Bug Fixes
+
+- Support for `ninja` on a remote `ubuntu 16.04` machine
+- Fix issue for remote machine use `ubuntu 16.04`
+
+tipi-src:x**placeholder**
+
+##### Archives Checksums
+
+tipi-v0.0.52-windows-win64.zip:**placeholder**
+tipi-v0.0.52-linux-x86_64.zip:**placeholder**
+tipi-v0.0.52-macOS.zip:**placeholder**
+
 ## v0.0.51 - Nitfy Nautilus 🐚
 
 ### Features
