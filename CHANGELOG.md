@@ -7,13 +7,13 @@
 - Support for `ninja` on a remote `ubuntu 16.04` machine
 - Fix issue for remote machine use `ubuntu 16.04`
 
-tipi-src:x**placeholder**
+tipi-src:d0cb24feb8e065e7b8138c60ac40a9cedae8e248
 
 ##### Archives Checksums
 
-tipi-v0.0.52-windows-win64.zip:**placeholder**
-tipi-v0.0.52-linux-x86_64.zip:**placeholder**
-tipi-v0.0.52-macOS.zip:**placeholder**
+tipi-v0.0.52-windows-win64.zip:3E82559D63F8A30A55B89C34AB91FE8092EAC93F
+tipi-v0.0.52-linux-x86_64.zip:4B0C9004D72BDD298EC76750E33B4DC0266BB3C7
+tipi-v0.0.52-macOS.zip:789E9ADF5A0FBBA2F6013E7360C80C1D2379B21E
 
 ## v0.0.51 - Nitfy Nautilus 🐚
 
