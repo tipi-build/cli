@@ -35,7 +35,7 @@ jobs:
              /usr/local/share/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
              /usr/local/share/.tipi/openapi-generator-script/*/openapi-generator-cli 
              /usr/local/share/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
-             /usr/local/share/.tipi/python/*/bin/python
+             /usr/local/share/.tipi/python/*/bin/python3
              /usr/local/share/.tipi/elfshaker/*/elfshaker)
           
           for element in "${pathsToTest[@]}"
@@ -60,7 +60,7 @@ jobs:
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
              /usr/local/share/.tipi/environments/*/xcode.cmake
-             /usr/local/share/.tipi/python/*/bin/python
+             /usr/local/share/.tipi/python/*/bin/python3
             /usr/local/share/.tipi/elfshaker/*/elfshaker)
 
           for element in "${pathsToTest[@]}"
