@@ -1,5 +1,19 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.53 - Prolific Pronghorn 🐐
+
+### Bug Fixes
+
+- fixed handling of submodule that have partial name collisions 
+
+tipi-src:61fbf431fc07604a86faa362a6a56aa4934ebcc6
+
+##### Archives Checksums
+
+tipi-v0.0.53-windows-win64.zip:9902A0DCA49AB1F2479A7D9E65C6C7E4148DF356
+tipi-v0.0.53-linux-x86_64.zip:BC9585C24511395FCA9F8EAE44C54B312B6C62D1
+tipi-v0.0.53-macOS.zip:A69A35E7B06FBCFC4020BA659860DE8DF065DF2C
+
 ## v0.0.52 - Obliging Ocelot 🐆
 
 ### Bug Fixes
