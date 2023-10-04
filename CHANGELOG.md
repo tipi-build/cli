@@ -1,5 +1,24 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.54 - Quality Quetzal 🐐
+
+### Features
+
+- Submodules are checkout in parallel 
+- add file support `.tipi/build-cache-extra-locations` to hide files generated during compilation
+
+### Bug Fixes
+
+- Submodules are no longer checkout if they have already been checkout and have not been modified. 
+
+tipi-src:**placeholder**
+
+##### Archives Checksums
+
+tipi-v0.0.54-windows-win64.zip:**placeholder**
+tipi-v0.0.54-linux-x86_64.zip:**placeholder**
+tipi-v0.0.54-macOS.zip:**placeholder**
+
 ## v0.0.53 - Prolific Pronghorn 🐐
 
 ### Bug Fixes
