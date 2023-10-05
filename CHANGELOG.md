@@ -1,23 +1,20 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.54 - Quality Quetzal 🐐
+
+## v0.0.54 - Quality Quetzal 🦜
 
 ### Features
+- Optimization for submodules heavy projects :
+  - paralelization of submodule source tree mirroring
+  - fine granular submodules files mirroring
+- 🆕`.tipi/build-cache-extra-locations` to cache additional folders in the build cache thar aren't in the CMAKE_BINARY_DIR
 
-- Submodules are checkout in parallel 
-- add file support `.tipi/build-cache-extra-locations` to hide files generated during compilation
-
-### Bug Fixes
-
-- Submodules are no longer checkout if they have already been checkout and have not been modified. 
-
-tipi-src:**placeholder**
+tipi-src: 309577b2800b81950da54da56a2412f1b0bc04a9
 
 ##### Archives Checksums
-
-tipi-v0.0.54-windows-win64.zip:**placeholder**
-tipi-v0.0.54-linux-x86_64.zip:**placeholder**
-tipi-v0.0.54-macOS.zip:**placeholder**
+tipi-v0.0.54-windows-win64.zip:1897D011152079D624C7522FD2B0595FBE84CBD2
+tipi-v0.0.54-linux-x86_64.zip:5AEF0D54C71EE81D5BBD9C87ECE360858A711F99
+tipi-v0.0.54-macOS.zip:8A832CC9F8B3B9DB3A21DBE4A3863A9A77CCE318
 
 ## v0.0.53 - Prolific Pronghorn 🐐
 
