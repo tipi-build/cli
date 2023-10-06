@@ -1,6 +1,6 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.55 - Sagacious Salamander 🦎
+## v0.0.55 - Rocket Rabbit 🚀🐇
 
 ### Features
   * :new: [tipi build cache for native CMake FetchContent](https://github.com/tipi-build/cmake-tipi-provider)
