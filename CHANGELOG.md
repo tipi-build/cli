@@ -1,5 +1,24 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.55 - Sagacious Salamander 🦎
+
+### Features
+  * :new: [tipi build cache for native CMake FetchContent](https://github.com/tipi-build/cmake-tipi-provider)
+  * Introduction of the cache `restore` command that restores the build or install cache entry with a source URI and revision `tipi -t linux restore https://github.com/catchorg/Catch2.git 766541d12d64845f5232a1ce4e34a85e83506b09`
+  * `--install` switch to populate the install cache on new builds ( previously only done for dependencies )
+  * `.tipi/id` won't be generated anymore as in dependencies builds ( if available it is read )
+  * An environment variable CURRENT_TIPI_BINARY is set so that underlying cmake scripts can refer to the tipi currently running the build
+
+
+
+tipi-src: ad20968cddcf5b83e2be4438a3ac97033c74e9f6
+
+##### Archives Checksums
+
+tipi-v0.0.55-windows-win64.zip:225F2A71CF6822DFF16D4BC6CB5AC633A6576ACC
+tipi-v0.0.55-linux-x86_64.zip:AD47F4FD482E52C50125A0CE3EDEB09BF68E010C
+tipi-v0.0.55-macOS.zip:9C36C7AB885327607D146D3340CA5554F2F79627
+
 ## v0.0.54 - Quality Quetzal 🦜
 
 ### Features
