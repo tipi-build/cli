@@ -9,8 +9,6 @@
   * `.tipi/id` won't be generated anymore as in dependencies builds ( if available it is read )
   * An environment variable CURRENT_TIPI_BINARY is set so that underlying cmake scripts can refer to the tipi currently running the build
 
-
-
 tipi-src: ad20968cddcf5b83e2be4438a3ac97033c74e9f6
 
 ##### Archives Checksums
