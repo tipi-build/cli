@@ -3,14 +3,17 @@
 ## v0.0.56 -  Snowy Salamander ❄️🦎
 
 ### Features
-- The different build caches are generated at each compilation. 
-- Dependency build folders will now be symlinked in a project build folder.
-- Extend the tipi `restore` command to restore a project dependencies as well.
+- 🚀 Build caching parallelized, happening even on partly failed configure or compile enabling faster collaboration
+- Dependencies `installed/` folders are now listed under `build/dependencies` to simplify packaging of runtime dependencies ( e.g. dependencies dynamic libraries )
+- Manual `tipi restore` command now restores full dependency trees recursively
+- Monitor mode cleans the terminal between compilations and only show current compilation output.
 
 ### Bug Fixes
-- In `cmake-tipi-provider` : users that don't want to generate SBOM can use the automatic cache.
-- Entrypoints that are not in a `test` or `example` folder no longer generate a test by cmake.
-- In monitor mode, the terminal is cleaned between compilations.
+- [`cmake-tipi-provider`](https://github.com/tipi-build/cmake-tipi-provider) :
+  - SBOM generation isn't mandatory anymore if the user only wants `FetchContent` caching
+  - `$ENV{CURRENT_TIPI_BINARY}` always contains the valid full path to the tipi binary
+- Fixes tipi-build/cli#75 [tipi . -t linux-cxx17 --test all runs non-test executables]( https://github.com/tipi-build/cli/issues/75 )
+
 
 tipi-src: **placeholder**
 
