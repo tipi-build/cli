@@ -1,5 +1,26 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.56 -  Snowy Salamander ❄️🦎
+
+### Features
+- The different build caches are generated at each compilation. 
+- Dependency build folders will now be symlinked in a project build folder. 
+- Extend the tipi `restore` command to restore a project dependencies as well
+
+### Bug Fixes
+- in `cmake-tipi-provider` : users that don't want to generate SBOM can use the automatic cache
+- entrypoints that are not in a `test` or `example` folder no longer generate a test by cmake 
+- in monitor mode, the terminal is cleaned between compilations
+
+tipi-src: **placeholder**
+
+##### Archives Checksums
+
+tipi-v0.0.56-windows-win64.zip:**placeholder**
+tipi-v0.0.56-linux-x86_64.zip:**placeholder**
+tipi-v0.0.56-macOS.zip:**placeholder**
+
+
 ## v0.0.55 - Rocket Rabbit 🚀🐇
 
 ### Features
