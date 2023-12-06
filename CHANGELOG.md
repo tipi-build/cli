@@ -14,14 +14,13 @@
   - `$ENV{CURRENT_TIPI_BINARY}` always contains the valid full path to the tipi binary
 - Fixes tipi-build/cli#75 [tipi . -t linux-cxx17 --test all runs non-test executables]( https://github.com/tipi-build/cli/issues/75 )
 
-
-tipi-src: **placeholder**
+tipi-src: 6a7f8c84083f69f9400df003217b70c0e6066484
 
 ##### Archives Checksums
 
-tipi-v0.0.56-windows-win64.zip:**placeholder**
-tipi-v0.0.56-linux-x86_64.zip:**placeholder**
-tipi-v0.0.56-macOS.zip:**placeholder**
+tipi-v0.0.56-windows-win64.zip:7904EE8BF3C3D3BF16646ACA63F77B0E626997EC
+tipi-v0.0.56-linux-x86_64.zip:14A8347A3E919CCC8FE20C71632F7D2B7EDF6CE9
+tipi-v0.0.56-macOS.zip:A379D622BC1FA564609E98ED7F7A6612B387C0C4
 
 
 ## v0.0.55 - Rocket Rabbit 🚀🐇
