@@ -4,13 +4,13 @@
 
 ### Features
 - The different build caches are generated at each compilation. 
-- Dependency build folders will now be symlinked in a project build folder. 
-- Extend the tipi `restore` command to restore a project dependencies as well
+- Dependency build folders will now be symlinked in a project build folder.
+- Extend the tipi `restore` command to restore a project dependencies as well.
 
 ### Bug Fixes
-- in `cmake-tipi-provider` : users that don't want to generate SBOM can use the automatic cache
-- entrypoints that are not in a `test` or `example` folder no longer generate a test by cmake 
-- in monitor mode, the terminal is cleaned between compilations
+- In `cmake-tipi-provider` : users that don't want to generate SBOM can use the automatic cache.
+- Entrypoints that are not in a `test` or `example` folder no longer generate a test by cmake.
+- In monitor mode, the terminal is cleaned between compilations.
 
 tipi-src: **placeholder**
 
