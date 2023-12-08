@@ -64,3 +64,4 @@ Open-source projects like Boost, CMake, Emscripten, Hunter and thousands of othe
 Open-source lets us take part in building the future. Let’s do it together.
 
 Therefore in this Github organization you will find alot for tipi.build opensource contributions !
+
