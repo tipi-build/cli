@@ -1,5 +1,45 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.56 -  Snowy Salamander ❄️🦎
+
+### Features
+- 🚀 Build caching parallelized, happening even on partly failed configure or compile enabling faster collaboration
+- Dependencies `installed/` folders are now listed under `build/dependencies` to simplify packaging of runtime dependencies ( e.g. dependencies dynamic libraries )
+- Manual `tipi restore` command now restores full dependency trees recursively
+- Monitor mode cleans the terminal between compilations and only show current compilation output.
+
+### Bug Fixes
+- [`cmake-tipi-provider`](https://github.com/tipi-build/cmake-tipi-provider) :
+  - SBOM generation isn't mandatory anymore if the user only wants `FetchContent` caching
+  - `$ENV{CURRENT_TIPI_BINARY}` always contains the valid full path to the tipi binary
+- Fixes tipi-build/cli#75 [tipi . -t linux-cxx17 --test all runs non-test executables]( https://github.com/tipi-build/cli/issues/75 )
+
+tipi-src: 6a7f8c84083f69f9400df003217b70c0e6066484
+
+##### Archives Checksums
+
+tipi-v0.0.56-windows-win64.zip:7904EE8BF3C3D3BF16646ACA63F77B0E626997EC
+tipi-v0.0.56-linux-x86_64.zip:14A8347A3E919CCC8FE20C71632F7D2B7EDF6CE9
+tipi-v0.0.56-macOS.zip:A379D622BC1FA564609E98ED7F7A6612B387C0C4
+
+
+## v0.0.55 - Rocket Rabbit 🚀🐇
+
+### Features
+  * :new: [tipi build cache for native CMake FetchContent](https://github.com/tipi-build/cmake-tipi-provider)
+  * Introduction of the cache `restore` command that restores the build or install cache entry with a source URI and revision `tipi -t linux restore https://github.com/catchorg/Catch2.git 766541d12d64845f5232a1ce4e34a85e83506b09`
+  * `--install` switch to populate the install cache on new builds ( previously only done for dependencies )
+  * `.tipi/id` won't be generated anymore as in dependencies builds ( if available it is read )
+  * An environment variable CURRENT_TIPI_BINARY is set so that underlying cmake scripts can refer to the tipi currently running the build
+
+tipi-src: ad20968cddcf5b83e2be4438a3ac97033c74e9f6
+
+##### Archives Checksums
+
+tipi-v0.0.55-windows-win64.zip:225F2A71CF6822DFF16D4BC6CB5AC633A6576ACC
+tipi-v0.0.55-linux-x86_64.zip:AD47F4FD482E52C50125A0CE3EDEB09BF68E010C
+tipi-v0.0.55-macOS.zip:9C36C7AB885327607D146D3340CA5554F2F79627
+
 ## v0.0.54 - Quality Quetzal 🦜
 
 ### Features
