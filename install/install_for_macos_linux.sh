@@ -74,7 +74,7 @@ fi
 if should_install_unzip; then
     info "The 'unzip' command is required to extract the downloaded file, we are installing unzip with your package manager"
     echo "Could you validate with your password ? 😇 "
-    $PRIV_ELEV_CMD apt-get install unzip -y || abort "Error while installing unzip"
+    $PRIV_ELEV_CMD apt-get update -y && apt-get install unzip -y || abort "Error while installing unzip"
 fi
 
 TMP_DOWNLOAD_PATH=~/tipi-$VERSION.zip
