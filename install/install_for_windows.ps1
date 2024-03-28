@@ -78,7 +78,6 @@ if ([string]::IsNullOrEmpty($TIPI_URL)) {
 }
 
 $TIPI_EXE = "$INSTALL_FOLDER\tipi.exe"
-$CMAKE_EXE = "$INSTALL_FOLDER\cmake-re.exe"
 
 
 Info "Downloading tipi from: $TIPI_URL"
@@ -111,17 +110,19 @@ Catch {
     return
 }
 
+
+$download_dir_bin = $download_dir[0]
+$download_dir_bin = "$download_dir_bin\bin"
+
 Info "Installing tipi in: $INSTALL_FOLDER"
-$tipi_source_exe = $download_dir[0]
-$cmake_source_exe = $download_dir[0]
-$tipi_source_exe = "$tipi_source_exe\bin\tipi.exe"
-$cmake_source_exe = "$cmake_source_exe\bin\cmake-re.exe"
-
-
 New-Item -Force -ItemType Directory -Path $INSTALL_FOLDER | Out-Null
 Expand-Archive -Force -path $downloaded_tipi_zip -destinationpath $download_dir[0] | Out-Null
-Copy-Item -Force $tipi_source_exe -Destination $TIPI_EXE | Out-Null
-Copy-Item -Force $cmake_source_exe -Destination $CMAKE_EXE | Out-Null
+$files = Get-ChildItem -Path $download_dir_bin -File
+
+foreach ($file in $files) {
+    $destinationFilePath = Join-Path -Path $INSTALL_FOLDER -ChildPath $file.Name
+    Copy-Item -Path $file.FullName -Destination $destinationFilePath -Force | Out-Null
+}
 
 
 if (!$?){
