@@ -88,8 +88,13 @@ $PRIV_ELEV_CMD unzip -o $TMP_DOWNLOAD_PATH -d $INSTALL_FOLDER -x LICENSE
 
 if [ $? -eq 0 ]; then
     tipi_full_path=$INSTALL_FOLDER/bin/tipi
+    cmake_full_path=$INSTALL_FOLDER/bin/cmake-re
+
     $PRIV_ELEV_CMD chown ${USER:=$(/usr/bin/id -run)} $tipi_full_path
     $PRIV_ELEV_CMD chmod a+x,u+w $tipi_full_path
+
+    $PRIV_ELEV_CMD chown ${USER:=$(/usr/bin/id -run)} $cmake_full_path
+    $PRIV_ELEV_CMD chmod a+x,u+w $cmake_full_path
 
     info "Cleaning up temporary download"
     rm $TMP_DOWNLOAD_PATH
