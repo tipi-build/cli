@@ -58,7 +58,7 @@ if([bool]::TryParse($env:TIPI_INSTALL_SYSTEM, [ref]$system_install)) {
 }
 
 if ([string]::IsNullOrEmpty($version_to_use)) {
-    $version_to_use="v0.0.56"
+    $version_to_use="v0.0.58"
 }
 
 if ([string]::IsNullOrEmpty($INSTALL_FOLDER)) {
@@ -110,13 +110,20 @@ Catch {
     return
 }
 
-Info "Installing tipi in: $INSTALL_FOLDER"
-$tipi_source_exe = $download_dir[0]
-$tipi_source_exe = "$tipi_source_exe\bin\tipi.exe"
 
+$download_dir_bin = $download_dir[0]
+$download_dir_bin = "$download_dir_bin\bin"
+
+Info "Installing tipi in: $INSTALL_FOLDER"
 New-Item -Force -ItemType Directory -Path $INSTALL_FOLDER | Out-Null
 Expand-Archive -Force -path $downloaded_tipi_zip -destinationpath $download_dir[0] | Out-Null
-Copy-Item -Force $tipi_source_exe -Destination $TIPI_EXE | Out-Null
+$files = Get-ChildItem -Path $download_dir_bin -File
+
+foreach ($file in $files) {
+    $destinationFilePath = Join-Path -Path $INSTALL_FOLDER -ChildPath $file.Name
+    Copy-Item -Path $file.FullName -Destination $destinationFilePath -Force | Out-Null
+}
+
 
 if (!$?){
     Abort "Could not install tipi"

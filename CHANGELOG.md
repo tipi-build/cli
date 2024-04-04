@@ -1,5 +1,68 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.58 - Urgent Update 2 🐿️
+
+### Features
+
+- 🆕 **`cmake-re`** command with `--remote` build capabilities 
+  - CURRENT_TIPI_BINARY, CURRENT_CMAKE_RE_BINARY allows retrieving current tipi or cmake-re process in use for reuse in CMake scripts  
+  - `--only-mirror` mirrors sources and prepare invariant build tree paths for later use ( particularly useful to combine with external package manager )
+  - 🆕 Low level cache population command to use in scripts : `cmake-re --cache populate` 
+- 🆕 setting `TIPI_LOCAL_CONTAINER_RUNNER=ON` allows full hermetic builds in locally deployed containers
+- 🆕 Generalizable custom hermetic CMake environments
+  - Allow for in-source-tree custom environments ( no need to override the tipi-build/environments )
+  - Combines CMAKE_TOOLCHAIN_FILE + Docker or virtual machine definition
+  - Can be tied to a specific hardware machine by adding a SELFHOSTED_RUNNER json file aside the environment description.
+- ⚙️ mirroring doesn't overwrite .gitignored files in mirror
+  - Behaviour to support in-source-tree generated files
+- 🔄 Neighbour folders are now mirrored by default in case of subfolder builds ( allows build scripts to refer to any other parts in a monorepo )
+
+### Bug Fixes
+
+- Fix spurious remote build cancellation due to an uninitialized atomic flag
+- Properly handles remote machine user rights on remote source synchronization ( previously failed source push could block further execution with _permission denied_ issues. )
+- ✅ remote builds instant cancellation : cancel + relaunch on long compilation processes doesn't block anymore until previous compiler processes terminates
+- cache restore doesn't mirror potentially unexisting sources needlessly
+
+### Known Issues
+- linux-wine-msvc builds are currently broken by release v0.0.58
+- subfolder remote builds are currently non-working, it always remote build from the root of the repository
+
+#### Archives Checksums
+tipi-v0.0.58-windows-win64.zip:86056339C9869BC03F1822437B5E5F10FCFF1518
+tipi-v0.0.58-linux-x86_64.zip:28CCCA322B1AC899C34C833CD840B6F19EC435B5
+tipi-v0.0.58-macOS.zip:6797FFFEBAD03BE390012BB3BDB828631C155413
+
+## v0.0.57 -  Tropical Toucan 🌴🐦
+
+### Features
+
+- 🚀 faster and generally improved source synchronization mechanism
+  - single deterministic location source mirror per machine/node (instead of up-to 3)
+  - now using a highly parallelized data transfer mechanism
+  - robust handling of submodules (especially in case of nested submodules)
+  - efficient mirroring of uncommitted changes in user workspace
+- 🔥 improved protocol efficiency in remote builds
+  - `--monitor` mode builds with more immediate feedback and better state control
+  - Improved cancellation of remote builds when exiting a running build
+  - More efficient secure channel handling
+- 🆕 **(beta)** Use `--wait-build-queue` in remote builds on the CI in order to share tipi remote jobs without interfering
+
+### Bug Fixes
+
+- fixed a variety of issues in the child process handling resulting in leaked processes
+- (temporarily) disabled remote output rewriting to reduce buffering related output lag
+- fixed bug resulting in `--sync-build` downloading irrelevant data (effectively halving transfer time)
+- fixed issues in cross-platform path lookups on remote nodes in `tipi build ... --sync-build` and `tipi download` commands
+- fixed issues with project subfolder builds
+
+#### Archives Checksums
+
+tipi-v0.0.57-windows-win64.zip:9BE36BD2CE33EF7B41051482B8D931A02EA63BAF
+tipi-v0.0.57-linux-x86_64.zip:7A35436D4A943909176258A087896ACA6E1940CF
+tipi-v0.0.57-macOS.zip:53F9B9C0C8B81F6C0E7ECDC7A8CF0A10E51B1DAC
+
+
 ## v0.0.56 -  Snowy Salamander ❄️🦎
 
 ### Features

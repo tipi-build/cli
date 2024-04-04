@@ -32,7 +32,7 @@ should_install_unzip() {
 # impl.
 ### 
 
-VERSION="${TIPI_INSTALL_VERSION:-v0.0.56}"
+VERSION="${TIPI_INSTALL_VERSION:-v0.0.58}"
 INSTALL_FOLDER=/usr/local
 
 if [[ -z "${TIPI_INSTALL_SOURCE}" ]]; then
@@ -88,8 +88,14 @@ $PRIV_ELEV_CMD unzip -o $TMP_DOWNLOAD_PATH -d $INSTALL_FOLDER -x LICENSE
 
 if [ $? -eq 0 ]; then
     tipi_full_path=$INSTALL_FOLDER/bin/tipi
-    $PRIV_ELEV_CMD chown ${USER:=$(/usr/bin/id -run)} $tipi_full_path
-    $PRIV_ELEV_CMD chmod a+x,u+w $tipi_full_path
+    cmake_full_path=$INSTALL_FOLDER/bin/cmake-re
+
+    for file in $INSTALL_FOLDER/bin/*; do
+      if [ -f "$file" ]; then
+        $PRIV_ELEV_CMD chown "${USER:=$(id -run)}" "$file"
+        $PRIV_ELEV_CMD chmod a+x,u+w "$file"
+      fi
+    done
 
     info "Cleaning up temporary download"
     rm $TMP_DOWNLOAD_PATH
