@@ -1,5 +1,38 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.58 - Urgent Update 2 🐿️
+
+### Features
+
+- 🔄 By default neighbouring folders are now mirrored by default in case of subfolder builds ( allows build scripts to refer to any other parts in a monorepo )
+- 🆕 cmake-re command with `--remote` build capabilities 
+  - CURRENT_TIPI_BINARY, CURRENT_CMAKE_RE_BINARY allows retrieving current tipi or cmake-re process in use for reuse in CMake scripts  
+  - `--only-mirror` mirrors sources and prepare invariant build tree paths for later use ( particularly useful to combine with external package manager )
+  - 🆕 Low level cache population command to use in scripts : `cmake-re --cache populate` 
+- 🆕 setting `TIPI_LOCAL_CONTAINER_RUNNER=ON` allows full hermetic builds in locally deployed containers
+- 🆕 Generalizable custom hermetic CMake environments
+  - Allow for in-source-tree custom environments ( no need to override the tipi-build/environments )
+  - Combines CMAKE_TOOLCHAIN_FILE + Docker or virtual machine definition
+  - Can be tied to a specific hardware machine by adding a SELFHOSTED_RUNNER json file aside the environment description.
+- ⚙️ mirroring doesn't overwrite .gitignored files in mirror
+  - Behaviour to support in-source-tree generated files
+
+### Bug Fixes
+
+- Fix spurious remote build cancellation due to an uninitialized atomic flag
+- Properly handles remote machine user rights on remote source synchronization ( previously failed source push could block further execution with _permission denied_ issues. )
+- ✅ remote builds instant cancellation : cancel + relaunch on long compilation processes doesn't block anymore until previous compiler processes terminates
+- cache restore doesn't mirror potentially unexisting sources needlessly
+
+### Known Issues
+- linux-wine-msvc builds are currently broken by release v0.0.58
+- subfolder remote builds are currently non-working, it always remote build from the root of the repository
+
+#### Archives Checksums
+tipi-v0.0.58-windows-win64.zip:86056339C9869BC03F1822437B5E5F10FCFF1518
+tipi-v0.0.58-linux-x86_64.zip:28CCCA322B1AC899C34C833CD840B6F19EC435B5
+tipi-v0.0.58-macOS.zip:6797FFFEBAD03BE390012BB3BDB828631C155413
+
 ## v0.0.57 -  Tropical Toucan 🌴🐦
 
 ### Features
