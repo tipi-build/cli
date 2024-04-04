@@ -4,8 +4,7 @@
 
 ### Features
 
-- 🔄 By default neighbouring folders are now mirrored by default in case of subfolder builds ( allows build scripts to refer to any other parts in a monorepo )
-- 🆕 cmake-re command with `--remote` build capabilities 
+- 🆕 **`cmake-re`** command with `--remote` build capabilities 
   - CURRENT_TIPI_BINARY, CURRENT_CMAKE_RE_BINARY allows retrieving current tipi or cmake-re process in use for reuse in CMake scripts  
   - `--only-mirror` mirrors sources and prepare invariant build tree paths for later use ( particularly useful to combine with external package manager )
   - 🆕 Low level cache population command to use in scripts : `cmake-re --cache populate` 
@@ -16,6 +15,7 @@
   - Can be tied to a specific hardware machine by adding a SELFHOSTED_RUNNER json file aside the environment description.
 - ⚙️ mirroring doesn't overwrite .gitignored files in mirror
   - Behaviour to support in-source-tree generated files
+- 🔄 Neighbour folders are now mirrored by default in case of subfolder builds ( allows build scripts to refer to any other parts in a monorepo )
 
 ### Bug Fixes
 
