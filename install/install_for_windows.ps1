@@ -58,7 +58,7 @@ if([bool]::TryParse($env:TIPI_INSTALL_SYSTEM, [ref]$system_install)) {
 }
 
 if ([string]::IsNullOrEmpty($version_to_use)) {
-    $version_to_use="v0.0.58"
+    $version_to_use="v0.0.59"
 }
 
 if ([string]::IsNullOrEmpty($INSTALL_FOLDER)) {
