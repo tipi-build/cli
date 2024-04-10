@@ -1,5 +1,11 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.60 - Wobbling Woodpecker 🌳
+
+### Bug Fixes
+- Fix remote build and remote action in non-verbose mode
+
+
 ## v0.0.59 - Vivid Vole 🐁
 
 ### Features
@@ -176,17 +182,17 @@ tipi-v0.0.52-macOS.zip:789E9ADF5A0FBBA2F6013E7360C80C1D2379B21E
 
 ### Features
 
-- 🆕 Support for Apple Silicon M1/M2 processors
-- 🔥 switching from `make` to `ninja` on many targets for improved build speed
-- 🆕 new `tipi download` feature enabling to selectively download build artifacts from the remote build machine
+ - 🆕 Support for Apple Silicon M1/M2 processors
+ - 🔥 switching from `make` to `ninja` on many targets for improved build speed
+ - 🆕 new `tipi download` feature enabling to selectively download build artifacts from the remote build machine
 
-tipi-src: ab5617f1eb1019299ff38fcee89b957570b9bc4e
+ tipi-src: ab5617f1eb1019299ff38fcee89b957570b9bc4e
 
 ##### Archives Checksums
 
-tipi-v0.0.51-windows-win64.zip:FDE3CBBEF8201E6BBE1ABBC9DEA15CFBC65EFF69
-tipi-v0.0.51-linux-x86_64.zip:6B7F004A6049B00C4218F401F38E0E56085594EA
-tipi-v0.0.51-macOS.zip:B0FDCE04902B563790F477AAF0EB86ECC4987B54
+ tipi-v0.0.51-windows-win64.zip:FDE3CBBEF8201E6BBE1ABBC9DEA15CFBC65EFF69
+ tipi-v0.0.51-linux-x86_64.zip:6B7F004A6049B00C4218F401F38E0E56085594EA
+ tipi-v0.0.51-macOS.zip:B0FDCE04902B563790F477AAF0EB86ECC4987B54
 
 ## v0.0.50 - Meditative Moose 🦌
 
