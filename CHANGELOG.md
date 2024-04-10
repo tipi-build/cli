@@ -1,9 +1,16 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.60 - Wobbling Woodpecker 🌳
+## v0.0.60 - Witty Woodpecker 🌳
 
 ### Bug Fixes
 - Fix remote build and remote action in non-verbose mode
+
+tipi-src: 7df59bf2e98ef06d96005a86136b30d1f3145285
+
+### Archives Checksums
+tipi-v0.0.60-windows-win64.zip:8CBA64EE559BA1AE0AD94C2EA09E07E065DE1783
+tipi-v0.0.60-linux-x86_64.zip:4D884CEC102125346543DC18B27617F62ABAD7AD
+tipi-v0.0.60-macOS.zip:5CB512C4D4230BC66413BE60480F899F1D9746F3
 
 
 ## v0.0.59 - Vivid Vole 🐁
