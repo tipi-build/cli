@@ -1,6 +1,26 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.58 - Urgent Update 2 🐿️
+## v0.0.59 - Vivid Vole 🐁
+
+### Features
+- Support resuming build session based on CMake build folder ( before cmake-re required passing all configure time arguments also at build time )
+
+### Bug Fixes
+- Fixed syncrhonization of submodules in submodule configurations where submodule name doesn't match the submodule path.  
+- Sources synchronization properly detects .gitignored changes in submodules
+- Subfolders remote builds are working now. 
+- Remote linux-wine-msvc builds are working ( wine environment is correctly loaded in remote builkds )
+- Remote build doesn't spin endlessly anymore asking for an upgrade confirmation when a new tipi version is published
+
+tipi-src: d3d8a9f1f359e000ea29c3f992084538e8e9af57
+
+### Archives Checksums
+tipi-v0.0.59-windows-win64.zip:978AAF4064CE608F19F493353D29D9C93C56DCB4
+tipi-v0.0.59-linux-x86_64.zip:F996D51C95F6E6F2A0CF35038FC547BC5A55AAB8
+tipi-v0.0.59-macOS.zip:65CBDD1FF9C20DCF7B2A6FC48A66FA66AE1E858E
+
+
+## v0.0.58 -  Urgent Update 2 :shipit: 
 
 ### Features
 
@@ -16,7 +36,7 @@
 - ⚙️ mirroring doesn't overwrite .gitignored files in mirror
   - Behaviour to support in-source-tree generated files
 - 🔄 Neighbour folders are now mirrored by default in case of subfolder builds ( allows build scripts to refer to any other parts in a monorepo )
-
+  
 ### Bug Fixes
 
 - Fix spurious remote build cancellation due to an uninitialized atomic flag
@@ -27,6 +47,8 @@
 ### Known Issues
 - linux-wine-msvc builds are currently broken by release v0.0.58
 - subfolder remote builds are currently non-working, it always remote build from the root of the repository
+
+tipi-src:  200a8ec0a92e331a8afe93fd24febb596e6d5e0c
 
 #### Archives Checksums
 tipi-v0.0.58-windows-win64.zip:86056339C9869BC03F1822437B5E5F10FCFF1518
@@ -56,6 +78,8 @@ tipi-v0.0.58-macOS.zip:6797FFFEBAD03BE390012BB3BDB828631C155413
 - fixed issues in cross-platform path lookups on remote nodes in `tipi build ... --sync-build` and `tipi download` commands
 - fixed issues with project subfolder builds
 
+tipi-src: 27b1b24440ccd9f24376d3d703ecf811152b2cad
+
 #### Archives Checksums
 
 tipi-v0.0.57-windows-win64.zip:9BE36BD2CE33EF7B41051482B8D931A02EA63BAF
@@ -77,14 +101,13 @@ tipi-v0.0.57-macOS.zip:53F9B9C0C8B81F6C0E7ECDC7A8CF0A10E51B1DAC
   - `$ENV{CURRENT_TIPI_BINARY}` always contains the valid full path to the tipi binary
 - Fixes tipi-build/cli#75 [tipi . -t linux-cxx17 --test all runs non-test executables]( https://github.com/tipi-build/cli/issues/75 )
 
-tipi-src: 6a7f8c84083f69f9400df003217b70c0e6066484
+ tipi-src: 6a7f8c84083f69f9400df003217b70c0e6066484
 
-##### Archives Checksums
+ ##### Archives Checksums
 
 tipi-v0.0.56-windows-win64.zip:7904EE8BF3C3D3BF16646ACA63F77B0E626997EC
 tipi-v0.0.56-linux-x86_64.zip:14A8347A3E919CCC8FE20C71632F7D2B7EDF6CE9
 tipi-v0.0.56-macOS.zip:A379D622BC1FA564609E98ED7F7A6612B387C0C4
-
 
 ## v0.0.55 - Rocket Rabbit 🚀🐇
 
@@ -119,7 +142,6 @@ tipi-src: 44b29e7078501825630acfa8f5c182a4ab72aec0
 tipi-v0.0.54-windows-win64.zip:14378D40BE0CBAC8B1F8AF7D8A74C46889D80271
 tipi-v0.0.54-linux-x86_64.zip:1B9EF7122A9AEEE8FC390036BCBEFD4EC59AA91D
 tipi-v0.0.54-macOS.zip:7CD63BAA21F1933993E59E81D676727D7D5BADFE
-
 
 ## v0.0.53 - Prolific Pronghorn 🐐
 
@@ -264,15 +286,12 @@ tipi-v0.0.46-linux-x86_64.zip:F76616A3C96749174981127706BA232DEDCA80D5
 tipi-v0.0.46-macOS.zip:F02BF888C33F74D2A68C0B0015BD56C61293845B
 
 
-
 ## v0.0.45 - Hastened Hamster 🐹
 
 ### Bugfix
   - Fix `--sync-build` when proxy settings are in use
   - `.gitignore`d files are properly mirrored
   - Fix last state file synchronization when running remote command with `tipi .run` 
-
-tipi-src : afbd584f60e0eadb4772dee27cda7e7d348e0f0f
 
 ##### Archives Checksums
 tipi-v0.0.45-windows-win64.zip:6C3841156C13F2230CF6B746DDC180E9BC13885A
@@ -297,6 +316,7 @@ tipi-v0.0.44-windows-win64.zip:E87E3A9C443FC051EDA77124A17C3D6CEB5B92F8
 tipi-v0.0.44-linux-x86_64.zip:ACA531A447001FCF38101A5B20A581C0055641D4
 tipi-v0.0.44-macOS.zip:05B1E172CD8B4C46A982D35E59BF17ED0754F595
 
+
 ## v0.0.43 - codename Flamboyant Fox 🦊
 
 ## Features
@@ -305,7 +325,9 @@ tipi-v0.0.44-macOS.zip:05B1E172CD8B4C46A982D35E59BF17ED0754F595
  - Added gcovr in standard tipi linux images for Code Coverage reports
  - Coverage support with llvm-lcov (gcov compatible) on all platforms
  - Support for iptables and raw networking added in linux remote jobs ( i.e. useful for test executions )
- 
+
+tipi-src: 3fb6ecba2ad0d00d9c707fd0cd12737dd46f9806
+
 ##### Archives Checksums
 tipi-v0.0.43-windows-win64.zip:794C5DEE5DA55BB81CAFBD51F13605376B03C123
 tipi-v0.0.43-linux-x86_64.zip:D1486F74396FADF8DBD9D7A4955ABBD483028A71
@@ -323,7 +345,6 @@ tipi-src: fe1dff44985608ca9f80041945e7bbfd6aca5f17
 tipi-v0.0.42-windows-win64.zip:DB79C2279EF9E353F1E212E67A6A17C194C1DBFA
 tipi-v0.0.42-linux-x86_64.zip:E8BE7A26F216C8AED848C11775FEB7C626D89B20
 tipi-v0.0.42-macOS.zip:DF100428ACE210AD4025EAD2E3DBD26C5A4A0772
-
 
 ## v0.0.41 - codename Decisive Dolphin 🐬
 
@@ -359,6 +380,7 @@ tipi-src: 9231ede55a3a24b2755d3311dfa12d63203d159e
 tipi-v0.0.41-windows-win64.zip:A0E8DF4CA67F87238A01894CB75B82453207D6A0
 tipi-v0.0.41-linux-x86_64.zip:FA72E1620EE9949C13B58139CB027861A1A2BAFB
 tipi-v0.0.41-macOS.zip:EAF1B13D04D3D8F320409D1D0B7775078C70BAD0
+
 
 ## v0.0.39 - codename California Condor 🦅
 
@@ -990,6 +1012,4 @@ nxxm-v0.0.7-windows-win64.zip:82CEF705A968B7633A96AA1250B7C8964E62CD0F
 
 ## v0.0.5
 * Initial open release 🎁 🎉 
-
-
 
