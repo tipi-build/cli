@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# tipi docker setup script
+# tipi docker setup script for debian and arch derivativees
 # Copyright 2024 - tipi technologies Ltd (Zürich)
 
 apt-get -y update && apt-get install -y \
