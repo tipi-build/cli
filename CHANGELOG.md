@@ -1,6 +1,6 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.62 - Yappy Yabby 🦞
+## v0.0.62 - Yodelling Yeti 🐾
 
 ### Bug Fixes
 - display warning and error messages only when necessary 
