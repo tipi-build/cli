@@ -59,7 +59,7 @@ export TIPI_DISTRO_MODE=all
 export USER=tipi
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/master/install/install_for_macos_linux.sh)"
 
-mkdir main && echo "int main(){return 0;}" >> ./main/main.cpp \
+su ${USER} && cd /home/${USER} && mkdir main && echo "int main(){return 0;}" >> ./main/main.cpp \
   && /usr/local/bin/tipi --dont-upgrade -v -t linux ./main \
   && rm -rf ./main \
   && rm -rf /usr/local/share/.tipi/downloads/* \
