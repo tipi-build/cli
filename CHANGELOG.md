@@ -1,5 +1,18 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.61 - Xyloid Xerus 🐿️
+
+### Features
+- introduces the local environment built on demand by building and launching a dockerfile
+
+tipi-src: xxx
+
+### Archives Checksums
+tipi-v0.0.61-windows-win64.zip:xxx
+tipi-v0.0.61-linux-x86_64.zip:xxx
+tipi-v0.0.61-macOS.zip:xxx
+
+
 ## v0.0.60 - Witty Woodpecker 🌳
 
 ### Bug Fixes
