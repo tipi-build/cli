@@ -5,13 +5,12 @@
 ### Features
 - introduces the local environment built on demand by building and launching a dockerfile
 
-tipi-src: xxx
+tipi-src: 9c0d9088bb0ba769a356b008f4070aed5755591a
 
 ### Archives Checksums
-tipi-v0.0.61-windows-win64.zip:xxx
-tipi-v0.0.61-linux-x86_64.zip:xxx
-tipi-v0.0.61-macOS.zip:xxx
-
+tipi-v0.0.61-windows-win64.zip:86A27A9D65575B4650134D9526A321CF3D7C5708
+tipi-v0.0.61-linux-x86_64.zip:33DD7DF8A4B296D745E5F28E8D03BFF5F74EC2CA
+tipi-v0.0.61-macOS.zip:C452588FC9F1F8CFC277F7A531DC93C8EBAFB52C
 
 ## v0.0.60 - Witty Woodpecker 🌳
 
