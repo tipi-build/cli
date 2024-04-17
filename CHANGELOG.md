@@ -1,5 +1,17 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.62 - Yappy Yabby 🦞
+
+### Bug Fixes
+- display warning and error messages only when necessary 
+
+tipi-src: 4b04df9b9be6c8a921184ed879c48b4b40649969
+
+### Archives Checksums
+tipi-v0.0.62-windows-win64.zip:1119C014643C31E358CFB96F35BF19B52555405B
+tipi-v0.0.62-linux-x86_64.zip:1216D3A2C77125EC15B308510120AB81D25637CD
+tipi-v0.0.62-macOS.zip:1B6880BDBD7B4D555604C8FC36F3C47EA25DE565
+
 ## v0.0.61 - Xyloid Xerus 🐿️
 
 ### Features
