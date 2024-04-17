@@ -15,6 +15,7 @@ apt-get -y update && apt-get install -y \
 
 # Enable login with tipi generated ssh-rsa on Ubuntu 22 and onwards
 printf "\nPubkeyAcceptedAlgorithms +ssh-rsa\n" > /etc/ssh/sshd_config.d/add-ssh-rsa.conf
+service ssh start # Create /run/sshd privilege separation directory, the docker CMD should still be something like `/usr/sbin/sshd -D -o ListenAddress=0.0.0.0 -e;`
 
 # User id 1001 is the user on Github Default Runner and 123 is the group of the files on the Github Default Runner
 addgroup --gid 123 gh-actions-group
@@ -57,6 +58,7 @@ chsh -s /bin/bash tipi-rbe
 export TIPI_DISTRO_MODE=all
 export USER=tipi
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/master/install/install_for_macos_linux.sh)"
+
 mkdir main && echo "int main(){return 0;}" >> ./main/main.cpp \
   && /usr/local/bin/tipi --dont-upgrade -v -t linux ./main \
   && rm -rf ./main \
