@@ -1,5 +1,32 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.62 - Yodelling Yeti 🐾
+
+### Features
+- :new: `TIPI_LOCAL_CONTAINER_RUNNER=ON` can not only use existing docker but build+tag Dockerfile on demand if they are part of the environment description.
+
+### Bug Fixes
+- `cmake-re` doesn't error mistakenly anymore for forbidden command line paramter on cache restores + populate operations.
+
+tipi-src: 4b04df9b9be6c8a921184ed879c48b4b40649969
+
+### Archives Checksums
+tipi-v0.0.62-windows-win64.zip:1119C014643C31E358CFB96F35BF19B52555405B
+tipi-v0.0.62-linux-x86_64.zip:1216D3A2C77125EC15B308510120AB81D25637CD
+tipi-v0.0.62-macOS.zip:1B6880BDBD7B4D555604C8FC36F3C47EA25DE565
+
+## v0.0.61 - Xyloid Xerus 🐿️
+
+### Features
+- introduces the local environment built on demand by building and launching a dockerfile
+
+tipi-src: 9c0d9088bb0ba769a356b008f4070aed5755591a
+
+### Archives Checksums
+tipi-v0.0.61-windows-win64.zip:86A27A9D65575B4650134D9526A321CF3D7C5708
+tipi-v0.0.61-linux-x86_64.zip:33DD7DF8A4B296D745E5F28E8D03BFF5F74EC2CA
+tipi-v0.0.61-macOS.zip:C452588FC9F1F8CFC277F7A531DC93C8EBAFB52C
+
 ## v0.0.60 - Witty Woodpecker 🌳
 
 ### Bug Fixes
