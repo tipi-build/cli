@@ -2,8 +2,11 @@
 
 ## v0.0.62 - Yodelling Yeti 🐾
 
+### Features
+- :new: `TIPI_LOCAL_CONTAINER_RUNNER=ON` can not only use existing docker but build+tag Dockerfile on demand if they are part of the environment description.
+
 ### Bug Fixes
-- display warning and error messages only when necessary 
+- `cmake-re` doesn't error mistakenly anymore for forbidden command line paramter on cache restores + populate operations.
 
 tipi-src: 4b04df9b9be6c8a921184ed879c48b4b40649969
 
