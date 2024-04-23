@@ -8,7 +8,7 @@ export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
 yum makecache \
  && yum install -y libnsl sudo ca-certificates openssh-server openssh-clients util-linux-ng util-linux-user libuser python3 cmake3 \
  && yum groupinstall -y 'Development Tools' \
- && yum install perl-IPC-Cmd # OpenSSL 3 build system requires this
+ && yum install -y perl-core perl-IPC-Cmd # OpenSSL 3 build system requires this
 
 trust dump --filter "pkcs11:id=%c4%a7%b1%a4%7b%2c%71%fa%db%e1%4b%90%75%ff%c4%15%60%85%89%10" | openssl x509 | sudo tee /etc/pki/ca-trust/source/blacklist/DST-Root-CA-X3.pem
 update-ca-trust extract
