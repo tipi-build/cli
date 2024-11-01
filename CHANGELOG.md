@@ -1,5 +1,23 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.63 - Zappy Zebu ⚡️
+
+### Features
+- :new: `cmake-re` does **hermetic** containerized build by default ( TIPI_LOCAL_CONTAINER_RUNNER is enabled by default unless `--host` is provided )
+- ⚡️ Fast local hermetic build retrieval with bind mounts in `$HOME/.tipi/containers-workdirs`
+- `<toolchain-name>.layers.json` allow for Layered CMake RE Environments and Toolchain specifications for better toolchain composition and cache segregation
+
+### Bug Fixes
+- Fixed intermittent hanging of cmake-re command on `ctrl-c`  on macOS M2
+
+tipi-src: 95be4eaecf9f3dff414fe0bc9413ff7ecfc44a02
+tipi-commit: e3bb016e5b59b6588e234670161948c58625d33f
+
+### Archives Checksums
+tipi-v0.0.63-windows-win64.zip:AEFEC1E93F780E1A04056BD448FBF1B279E256D1
+tipi-v0.0.63-linux-x86_64.zip:4C995EB6452F785B63777A4C3FF0AAAA182120C2
+tipi-v0.0.63-macOS.zip:AAC49D4F63AF42C20D8577B5E6F25B1502CF62F8
+
 ## v0.0.62 - Yodelling Yeti 🐾
 
 ### Features
