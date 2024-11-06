@@ -63,3 +63,8 @@ rm -rf ./main \
   && rm -rf /usr/local/share/.tipi/downloads/* \
   && rm -rf /usr/local/share/.tipi/v*.d/* \
   && rm -rf /usr/local/share/.tipi/v*.w/*
+
+git config --global --add safe.directory *
+su tipi -c "git config --global --add safe.directory *"
+su tipi-large -c "git config --global --add safe.directory *"
+su tipi-rbe -c "git config --global --add safe.directory *"
