@@ -63,6 +63,8 @@ echo "export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem" >>
 echo "export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem" >> /home/tipi-rbe/.bashrc
 echo "export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem" >> /root/.bashrc
 
+git config --system --add safe.directory "*"
+
 export TIPI_DISTRO_MODE=all
 su tipi -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/master/install/install_for_macos_linux.sh)"
 su tipi -c 'cd /home/tipi && mkdir main && echo "int main(){return 0;}" > ./main/main.cpp && /usr/local/bin/tipi --dont-upgrade -v -t linux ./main'
@@ -71,8 +73,3 @@ rm -rf ./main \
   && rm -rf /usr/local/share/.tipi/downloads/* \
   && rm -rf /usr/local/share/.tipi/v*.d/* \
   && rm -rf /usr/local/share/.tipi/v*.w/*
-
-git config --global --add safe.directory *
-su tipi -c "git config --global --add safe.directory *"
-su tipi-large -c "git config --global --add safe.directory *"
-su tipi-rbe -c "git config --global --add safe.directory *"
