@@ -54,6 +54,10 @@ chsh -s /bin/bash tipi
 chsh -s /bin/bash tipi-large
 chsh -s /bin/bash tipi-rbe
 
+git config --global --add safe.directory *
+su tipi -c "git config --global --add safe.directory *"
+su tipi-large -c "git config --global --add safe.directory *"
+su tipi-rbe -c "git config --global --add safe.directory *"
 
 export TIPI_DISTRO_MODE=all
 su tipi -w TIPI_DISTRO_MODE -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/master/install/install_for_macos_linux.sh)"
@@ -63,8 +67,3 @@ rm -rf ./main \
   && rm -rf /usr/local/share/.tipi/downloads/* \
   && rm -rf /usr/local/share/.tipi/v*.d/* \
   && rm -rf /usr/local/share/.tipi/v*.w/*
-
-git config --global --add safe.directory *
-su tipi -c "git config --global --add safe.directory *"
-su tipi-large -c "git config --global --add safe.directory *"
-su tipi-rbe -c "git config --global --add safe.directory *"
