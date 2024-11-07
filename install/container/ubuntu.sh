@@ -54,7 +54,7 @@ chsh -s /bin/bash tipi
 chsh -s /bin/bash tipi-large
 chsh -s /bin/bash tipi-rbe
 
-git config --system --add safe.directory *
+git config --system --add safe.directory "*"
 
 export TIPI_DISTRO_MODE=all
 su tipi -w TIPI_DISTRO_MODE -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/master/install/install_for_macos_linux.sh)"
