@@ -98,7 +98,7 @@ mkdir -p ${CARGO_HOME}
 mkdir -p ${RUSTUP_HOME}
 
 echo -e "Installing rust ${RUSTUP_TOOLCHAIN} using rustup from https://sh.rustup.rs"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --default-toolchain ${RUSTUP_TOOLCHAIN} -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --default-toolchain ${RUSTUP_TOOLCHAIN} ${cli_arg_yes}
 
 if [ -n "$cli_arg_group" ]; then
     echo -e "Setting access rights in ${CARGO_HOME}"
