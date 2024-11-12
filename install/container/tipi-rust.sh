@@ -100,6 +100,32 @@ mkdir -p ${RUSTUP_HOME}
 echo -e "Installing rust ${RUSTUP_TOOLCHAIN} using rustup from https://sh.rustup.rs"
 (curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs || echo "echo 'Failed to download rustup - aborting; exit 1") | sh -s -- --no-modify-path --default-toolchain ${RUSTUP_TOOLCHAIN} ${cli_arg_yes}
 
+# test that the installation "works"...
+echo -e "Testing to run rustc to validate install"
+export PATH="${CARGO_HOME}/bin:${PATH}"
+
+rustc_path=$(which rustc)
+rustc_dir=$(dirname $rustc_path) # this should be in $CARGO_HOME/bin if the install worked
+normalized_cargo_home=$(realpath $CARGO_HOME)/bin
+
+if [ "${rustc_dir}" != "${normalized_cargo_home}" ]; then
+    echo "[error] rustc was not installed into the expected location (${rustc_path} is not in ${CARGO_HOME})"
+    exit 1
+fi
+
+# check that the installed version matches the $RUSTUP_TOOLCHAIN
+rustc_version_info=$(rustc -V)
+if [[ "$rustc_version_info" != *"$RUSTUP_TOOLCHAIN"* ]]; then
+    echo "[error] installation validation failed, rustc -V did not contain the substring '$RUSTUP_TOOLCHAIN'"
+    echo -e "---- START output rustc -V ----"
+    echo -e $rustc_version_info
+    echo -e "---- END output rustc -V ----"
+    exit 1
+fi
+
+# User ran this script with --group <NAME>
+# chmod/chgrp all the installation in a way that the group <NAME> has the same
+# access rights as the owner
 if [ -n "$cli_arg_group" ]; then
     echo -e "Setting access rights in ${CARGO_HOME}"
     chmod --recursive g=u ${CARGO_HOME}
