@@ -63,6 +63,9 @@ echo "export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem" >>
 echo "export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem" >> /home/tipi-rbe/.bashrc
 echo "export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem" >> /root/.bashrc
 
+# This is required because of docker virtiofs on docker on macOS. ( VirtioFS is not handling permissions as expected. All mount permissions are owned by root regardless of chown : https://github.com/docker/for-mac/issues/6243 )
+git config --system --add safe.directory "*"
+
 export TIPI_DISTRO_MODE=all
 su tipi -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/master/install/install_for_macos_linux.sh)"
 su tipi -c 'cd /home/tipi && mkdir main && echo "int main(){return 0;}" > ./main/main.cpp && /usr/local/bin/tipi --dont-upgrade -v -t linux ./main'
