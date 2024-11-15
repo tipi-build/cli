@@ -3,6 +3,7 @@
 Please head up to [our website](https://tipi.build)
 
 ## Features
+- :new: `cmake-re` local **hermetic** and containerized build by default
 - Provides a fully working C++ build environment on any platform
 - tipi speeds up your workflow with autoprovisioned cloud environments : toolchain, compilers, tools.
 - tipi is a dependency manager for C++ which fetches and compile any C++ project.
