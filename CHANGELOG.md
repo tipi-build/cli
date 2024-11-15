@@ -1,5 +1,41 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.64 - Ascending Apollo 🦋🚀
+
+### Features
+- 🆕 Support for linux hermetic+containerized build on Windows 💻 hosts
+
+### Bug Fixes
+- Ensure hermetic+containerized build on macOS allows git cloning operation in build ( _e.g._ FetchContent ) by declaring them as `git safe.directory`  when VirtioFS is not able to synchronize user rights properly. 
+- Proper symlink creation in hermetic build when build dir path has a trailing slash
+- Changed the local_docker_service runner address to ipv4 notation to avoid ipv6 localhost resolution issues
+
+tipi-src: 4fc488aba1abe607ea191d22094c1b6d402f21b5
+tipi-commit: 4fc488aba1abe607ea191d22094c1b6d402f21b5
+
+### Archives Checksums
+tipi-v0.0.64-windows-win64.zip:16B5B7AF665C2EA03F3C4CB49DB8E9133D44DC3C
+tipi-v0.0.64-linux-x86_64.zip:8C0C641D78AE7EB08F14AF5C15564E5EA24BA55F
+tipi-v0.0.64-macOS.zip:E99FFE584BCCE5E1B590359EA9F445B72B188D6E
+
+## v0.0.63 - Zappy Zebu ⚡️
+
+### Features
+- :new: `cmake-re` does **hermetic** containerized build by default ( TIPI_LOCAL_CONTAINER_RUNNER is enabled by default unless `--host` is provided )
+- ⚡️ Fast local hermetic build retrieval with bind mounts in `$HOME/.tipi/containers-workdirs`
+- `<toolchain-name>.layers.json` allow for Layered CMake RE Environments and Toolchain specifications for better toolchain composition and cache segregation
+
+### Bug Fixes
+- Fixed intermittent hanging of cmake-re command on `ctrl-c`  on macOS M2
+
+tipi-src: 95be4eaecf9f3dff414fe0bc9413ff7ecfc44a02
+tipi-commit: e3bb016e5b59b6588e234670161948c58625d33f
+
+### Archives Checksums
+tipi-v0.0.63-windows-win64.zip:AEFEC1E93F780E1A04056BD448FBF1B279E256D1
+tipi-v0.0.63-linux-x86_64.zip:4C995EB6452F785B63777A4C3FF0AAAA182120C2
+tipi-v0.0.63-macOS.zip:AAC49D4F63AF42C20D8577B5E6F25B1502CF62F8
+
 ## v0.0.62 - Yodelling Yeti 🐾
 
 ### Features
