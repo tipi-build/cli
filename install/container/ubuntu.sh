@@ -54,6 +54,8 @@ chsh -s /bin/bash tipi
 chsh -s /bin/bash tipi-large
 chsh -s /bin/bash tipi-rbe
 
+# This is required because of docker virtiofs on docker on macOS. ( VirtioFS is not handling permissions as expected. All mount permissions are owned by root regardless of chown : https://github.com/docker/for-mac/issues/6243 )
+git config --system --add safe.directory "*"
 
 export TIPI_DISTRO_MODE=all
 su tipi -w TIPI_DISTRO_MODE -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/feature/release-v0.0.63/install/install_for_macos_linux.sh)"
