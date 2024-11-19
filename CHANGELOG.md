@@ -5,13 +5,13 @@
 ### Bug Fixes
 - Enhanced the parser to improve case detection, ensuring more accurate recognition of user input.
 
-tipi-src: XXXPLACEHOLDERXXX
+tipi-src: fc75fdc175cdaaff40f49011cb97b53d954baaac
 tipi-commit: ab6076f2a9dd8982f87ae848238ed84e7fe86037
 
 ### Archives Checksums
-tipi-v0.0.65-windows-win64.zip:XXXPLACEHOLDERXXX
-tipi-v0.0.65-linux-x86_64.zip:XXXPLACEHOLDERXXX
-tipi-v0.0.65-macOS.zip:XXXPLACEHOLDERXXX
+tipi-v0.0.65-windows-win64.zip:8B26B528488154E432B4DF76D6F7B9AD854ACE47
+tipi-v0.0.65-linux-x86_64.zip:4DD487A7DE98627D5FB991671710E9A5C26162C9
+tipi-v0.0.65-macOS.zip:16353ED60D4D071BEC25B65E65F4D1A277E97CCF
 
 ## v0.0.64 - Ascending Apollo 🦋🚀
 
