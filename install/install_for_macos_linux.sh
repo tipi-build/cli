@@ -32,7 +32,7 @@ should_install_unzip() {
 # impl.
 ### 
 
-VERSION="${TIPI_INSTALL_VERSION:-v0.0.64}"
+VERSION="${TIPI_INSTALL_VERSION:-v0.0.65}"
 INSTALL_FOLDER=/usr/local
 
 if [[ -z "${TIPI_INSTALL_SOURCE}" ]]; then
