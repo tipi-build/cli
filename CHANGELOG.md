@@ -1,5 +1,18 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.65 - Brisk Bobcat 🐱
+
+### Bug Fixes
+- Enhanced the parser to improve case detection, ensuring more accurate recognition of user input.
+
+tipi-src: XXXPLACEHOLDERXXX
+tipi-commit: ab6076f2a9dd8982f87ae848238ed84e7fe86037
+
+### Archives Checksums
+tipi-v0.0.65-windows-win64.zip:XXXPLACEHOLDERXXX
+tipi-v0.0.65-linux-x86_64.zip:XXXPLACEHOLDERXXX
+tipi-v0.0.65-macOS.zip:XXXPLACEHOLDERXXX
+
 ## v0.0.64 - Ascending Apollo 🦋🚀
 
 ### Features
