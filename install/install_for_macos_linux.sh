@@ -83,10 +83,6 @@ fi
 
 
 if [ -f "/etc/redhat-release" ]; then
-  if [ ! -e /lib64/libnsl.so.1 ]; then
-    ln -s /lib64/libnsl.so.2 /lib64/libnsl.so.1
-  fi
-
   if should_install_unzip; then
     info "The 'unzip' command is required to extract the downloaded file, we are installing unzip with your package manager"
     echo "Could you validate with your password ? 😇 "
