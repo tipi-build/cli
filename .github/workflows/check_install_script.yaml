@@ -25,6 +25,7 @@ jobs:
 
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
+             /usr/local/bin/cmake-re 
              /usr/local/share/.tipi/clang/*/bin/clang
              /usr/local/share/.tipi/cmake/*/bin/cmake
              /usr/local/share/.tipi/emsdk/*/emsdk
@@ -59,6 +60,7 @@ jobs:
 
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
+             /usr/local/bin/cmake-re 
              /usr/local/share/.tipi/environments/*/xcode.cmake
              /usr/local/share/.tipi/python/*/bin/python3
             /usr/local/share/.tipi/elfshaker/*/elfshaker)
@@ -99,6 +101,7 @@ jobs:
           # Test install succeeeded 
 
           pathsToTest=(/usr/local/bin/tipi 
+             /usr/local/bin/cmake-re 
              /usr/local/share/.tipi/clang/*/bin/clang
              /usr/local/share/.tipi/cmake/*/bin/cmake
              /usr/local/share/.tipi/emsdk/*/emsdk
@@ -141,6 +144,7 @@ jobs:
           
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
+             /usr/local/bin/cmake-re 
              /usr/local/share/.tipi/environments/*/xcode.cmake
              /usr/local/share/.tipi/elfshaker/*/elfshaker)
           
@@ -245,9 +249,12 @@ jobs:
 
           # Test install succeeeded 
           $expected_install_folder = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi\tipi.exe"
+          $expected_install_folder_cmake_re = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi\cmake-re.exe"
+
 
           $pathsToTest = @(
             $expected_install_folder
+            $expected_install_folder_cmake_re
             "C:\.tipi\clang\*\bin\clang.exe"  
             "C:\.tipi\cmake\*\bin\cmake.exe"  
             "C:\.tipi\emsdk\*\emsdk.bat"  
@@ -311,10 +318,13 @@ jobs:
 
           # Test install succeeeded 
           $expected_install_folder = "C:\ProgramData\tipi\tipi.exe"
+          $expected_install_folder_cmake_re = "C:\ProgramData\tipi\cmake-re.exe"
+
           echo "::set-output name=EXPECTED_INSTALL_FOLDER::$expected_install_folder"
 
           $pathsToTest = @(
             $expected_install_folder
+            $expected_install_folder_cmake_re
             "C:\.tipi\environments\*\xcode.cmake" 
             "C:\.tipi\openssh\*\ssh.exe"
             "C:\.tipi\python\*\python.exe"  
@@ -453,9 +463,12 @@ jobs:
           # Test install succeeeded 
 
           $expected_install_folder = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi\tipi.exe"
+          $expected_install_folder_cmake_re = Join-Path -Path ([Environment]::GetFolderPath('LocalApplicationData')) -ChildPath "\tipi\cmake-re.exe"
+
 
           $pathsToTest = @(
              $expected_install_folder
+             $expected_install_folder_cmake_re
             "C:\.tipi\environments\*\xcode.cmake" 
             "C:\.tipi\openssh\*\ssh.exe"
             "C:\.tipi\python\*\python.exe"  
@@ -516,6 +529,7 @@ jobs:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
+             /usr/local/bin/cmake-re 
              /usr/local/share/.tipi/clang/*/bin/clang
              /usr/local/share/.tipi/cmake/*/bin/cmake
              /usr/local/share/.tipi/emsdk/*/emsdk
@@ -556,6 +570,7 @@ jobs:
           
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
+             /usr/local/bin/cmake-re 
              /usr/local/share/.tipi/environments/*/xcode.cmake
              /usr/local/share/.tipi/elfshaker/*/elfshaker)
 
@@ -577,3 +592,88 @@ jobs:
               test ! -f $element
           done
 
+
+  install-AlmaLinux-full:
+    name: install-AlmaLinux-full
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME
+      GITHUB_HEAD_REF: $GITHUB_HEAD_REF
+      GITHUB_REF: $GITHUB_REF
+    container: 
+      image: almalinux:8.10
+    steps:
+      - name: test_install_on_linux
+        run: |
+          if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
+            script_source=${GITHUB_HEAD_REF}
+          else 
+            script_source=${GITHUB_REF#refs/heads/}
+          fi
+          echo "Script source : ${script_source}"
+          export TIPI_DISTRO_MODE=all
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+          # Test install succeeeded 
+          pathsToTest=(/usr/local/bin/tipi 
+             /usr/local/bin/cmake-re 
+             /usr/local/share/.tipi/clang/*/bin/clang
+             /usr/local/share/.tipi/cmake/*/bin/cmake
+             /usr/local/share/.tipi/emsdk/*/emsdk
+             /usr/local/share/.tipi/environments/*/xcode.cmake
+             /usr/local/share/.tipi/go/*/bin/go
+             /usr/local/share/.tipi/jdk/*/bin/jar
+             /usr/local/share/.tipi/nodejs/*/bin/node
+             /usr/local/share/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
+             /usr/local/share/.tipi/openapi-generator-script/*/openapi-generator-cli 
+             /usr/local/share/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
+             /usr/local/share/.tipi/elfshaker/*/elfshaker)
+
+          for element in "${pathsToTest[@]}"
+          do
+              echo "[TESTING] $element should be on disk."
+              test -f $element
+          done
+
+  install-AlmaLinux-light:
+    name: install-AlmaLinux-light
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME
+      GITHUB_HEAD_REF: $GITHUB_HEAD_REF
+      GITHUB_REF: $GITHUB_REF
+    container: 
+      image: almalinux:8.10
+    steps:
+      - name: test_install_on_linux
+        run: |
+          if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
+            script_source=${GITHUB_HEAD_REF}
+          else 
+            script_source=${GITHUB_REF#refs/heads/}
+          fi
+          echo "Script source : ${script_source}"
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/${script_source}/install/install_for_macos_linux.sh)"
+          
+          # Test install succeeeded 
+          pathsToTest=(/usr/local/bin/tipi 
+             /usr/local/bin/cmake-re 
+             /usr/local/share/.tipi/environments/*/xcode.cmake
+             /usr/local/share/.tipi/elfshaker/*/elfshaker)
+
+          for element in "${pathsToTest[@]}"
+          do
+              echo "[TESTING] $element should be on disk."
+              test -f $element
+          done
+
+          pathsToTest_negative=(~/.tipi/clang/*/bin/clang
+             /usr/local/share/.tipi/cmake/*/bin/cmake
+             /usr/local/share/.tipi/emsdk/*/emsdk
+             /usr/local/share/.tipi/go/*/bin/go
+             /usr/local/share/.tipi/jdk/*/bin/jar)
+
+          for element in "${pathsToTest_negative[@]}"
+          do
+              echo "[TESTING] $element should be NOT on disk."
+              test ! -f $element
+          done

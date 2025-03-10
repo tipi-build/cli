@@ -28,6 +28,24 @@ should_install_unzip() {
   fi
 }
 
+should_install_which() {
+  if [[ $(command -v which) ]]; then
+    return 1
+  fi
+}
+
+should_install_xz() {
+  if [[ $(command -v xz) ]]; then
+    return 1
+  fi
+}
+
+should_install_bzip2() {
+  if [[ $(command -v bzip2) ]]; then
+    return 1
+  fi
+}
+
 ###
 # impl.
 ### 
@@ -62,6 +80,41 @@ elif command -v doas &> /dev/null; then
 else
   info "Note: no supported priviledge elevation method (sudo or doas) found, trying to install without asking for elevation"
 fi
+
+
+if [ -f "/etc/redhat-release" ]; then
+  if [ ! -e /lib64/libnsl.so.1 ]; then
+    ln -s /lib64/libnsl.so.2 /lib64/libnsl.so.1
+  fi
+
+  if should_install_unzip; then
+    info "The 'unzip' command is required to extract the downloaded file, we are installing unzip with your package manager"
+    echo "Could you validate with your password ? 😇 "
+    $PRIV_ELEV_CMD yum update -y && yum install unzip -y || abort "Error while installing unzip"
+  fi
+
+
+  if should_install_xz; then
+    info "The 'xz' command is required for the installation of some of our tools, we are installing xz with your package manager"
+    echo "Could you validate with your password ? 😇 "
+    $PRIV_ELEV_CMD yum update -y && yum install xz -y || abort "Error while installing xz"
+  fi
+
+  if should_install_bzip2; then
+    info "The 'bzip2' command is required for the installation of some of our tools, we are installing bzip2 with your package manager"
+    echo "Could you validate with your password ? 😇 "
+    $PRIV_ELEV_CMD yum update -y && yum install bzip2 -y || abort "Error while installing bzip2"
+  fi
+
+  if should_install_which; then
+    info "The 'which' command is required for the installation of some of our tools, we are installing which with your package manager"
+    echo "Could you validate with your password ? 😇 "
+    $PRIV_ELEV_CMD yum update -y && yum install which -y || abort "Error while installing which"
+  fi
+
+  export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+fi
+
 
 if [ -f "/etc/arch-release" ]; then
   pacman -Syu --noconfirm
@@ -111,6 +164,9 @@ if [ $? -eq 0 ]; then
         info "tipi has been installed in $INSTALL_FOLDER/bin and can be used now."
         info "----------------------------"
         info "If you are new to tipi you can explore how to use it at: https://tipi.build/explore. If you are currently following the onboarding guide it is now time to get back to your browser: https://tipi.build/onboarding/step4"
+        if [ -f "/etc/redhat-release" ]; then
+          info "If you want tipi or cmake-re to successfully download dependencies, you need to set the SSL certificate file in your environment by running: export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"
+        fi
     else 
         abort "Error while installing the dependencies"
     fi
