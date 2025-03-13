@@ -1,5 +1,33 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.66 - Creative Cougar 🐾
+
+### Bug Fixes
+- CMAKE_TOOLCHAIN_FILE content provided by the user can override cmake-re defaults like CMAKE_FIND_ROOT_PATH_MODE_*
+
+tipi-src: 775c0c20814583223b4542a91c647b6a04a0b06b
+tipi-commit: 09bec64c44ae4da75120f93cd355c745e2dbbb17
+
+### Archives Checksums
+tipi-v0.0.66-windows-win64.zip:5E33F78AE66A13F8B0F474F77CA1309876DD2997
+tipi-v0.0.66-linux-x86_64.zip:70605A11B4F131B49D129DBC1528172552073C43
+tipi-v0.0.66-macOS.zip:E24625E71ECD2FF1322ADFC01C94E46E538BF132
+
+
+## v0.0.65 - Brisk Bobcat 🐱
+
+### Bug Fixes
+- Enhanced the parser to improve case detection, ensuring more accurate recognition of user input.
+
+tipi-src: 1a15bb38577ad3c843429aae12e197eb6c780185
+tipi-commit: eb9465966dba0c4d571a803e1bbbf002744b50ff
+
+### Archives Checksums
+tipi-v0.0.65-windows-win64.zip:3CFA834E79FEC8E74D841C4EF796EEA7015E5855
+tipi-v0.0.65-linux-x86_64.zip:1F5932DD8BB2564F25FC88D159CDD79433D24B82
+tipi-v0.0.65-macOS.zip:721221734F2D595A950A8F196D9E4311D30AAEFD
+
+
 ## v0.0.64 - Ascending Apollo 🦋🚀
 
 ### Features
