@@ -1,5 +1,21 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.67 - Dashing Duck 🦆
+
+### Bug Fixes
+- Allow building for Windows on ARM with Visual Studio.
+- Avoid unconditional appending of --test in cmake-re requests to the tipi backend.
+- Removed dependency on libnsl.so on Linux to improve compatibility and reduce unnecessary linkage.
+- For a containerized build, fix docker launch errors.
+
+tipi-src: a00f961be14aea98b8fbbc6bd898eab7b36d64bc
+tipi-commit: a00f961be14aea98b8fbbc6bd898eab7b36d64bc
+
+### Archives Checksums
+tipi-v0.0.67-windows-win64.zip:7749924980516E46EB1092DA0A7E320AD8FC165F
+tipi-v0.0.67-linux-x86_64.zip:761D77B6C9DDCA3B826BDD8EAF6DBFF73BEC556B
+tipi-v0.0.67-macOS.zip:EFCD65C1ABF08FBFE6F7D9F100B5247FE723364B
+
 ## v0.0.66 - Creative Cougar 🐾
 
 ### Bug Fixes
