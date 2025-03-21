@@ -2,11 +2,13 @@
 
 ## v0.0.67 - Dashing Duck 🦆
 
+### Features
+- Windows on ARM with Visual Studio build support and CMake Visual Studio Toolset Arch argument specification
+
 ### Bug Fixes
-- Allow building for Windows on ARM with Visual Studio.
-- Avoid unconditional appending of --test in cmake-re requests to the tipi backend.
-- Removed dependency on libnsl.so on Linux to improve compatibility and reduce unnecessary linkage.
-- For a containerized build, fix docker launch errors.
+- Fix unconditional test execution in cmake-re containerized and remote build
+- Removed dependency on libnsl.so on Linux to improve compatibility  (#91)
+- Fix local containerized build failing on docker runtime search errors for some projects
 
 tipi-src: a00f961be14aea98b8fbbc6bd898eab7b36d64bc
 tipi-commit: a00f961be14aea98b8fbbc6bd898eab7b36d64bc
