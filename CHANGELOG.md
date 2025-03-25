@@ -1,5 +1,51 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.67 - Dashing Duck 🦆
+
+### Features
+- Windows on ARM with Visual Studio build support and CMake Visual Studio Toolset Arch argument specification
+
+### Bug Fixes
+- Fix unconditional test execution in cmake-re containerized and remote build
+- Removed dependency on libnsl.so on Linux to improve compatibility  (#91)
+- Fix local containerized build failing on docker runtime search errors for some projects
+
+tipi-src: a00f961be14aea98b8fbbc6bd898eab7b36d64bc
+tipi-commit: a00f961be14aea98b8fbbc6bd898eab7b36d64bc
+
+### Archives Checksums
+tipi-v0.0.67-windows-win64.zip:7749924980516E46EB1092DA0A7E320AD8FC165F
+tipi-v0.0.67-linux-x86_64.zip:761D77B6C9DDCA3B826BDD8EAF6DBFF73BEC556B
+tipi-v0.0.67-macOS.zip:EFCD65C1ABF08FBFE6F7D9F100B5247FE723364B
+
+## v0.0.66 - Creative Cougar 🐾
+
+### Bug Fixes
+- CMAKE_TOOLCHAIN_FILE content provided by the user can override cmake-re defaults like CMAKE_FIND_ROOT_PATH_MODE_*
+
+tipi-src: 775c0c20814583223b4542a91c647b6a04a0b06b
+tipi-commit: 09bec64c44ae4da75120f93cd355c745e2dbbb17
+
+### Archives Checksums
+tipi-v0.0.66-windows-win64.zip:5E33F78AE66A13F8B0F474F77CA1309876DD2997
+tipi-v0.0.66-linux-x86_64.zip:70605A11B4F131B49D129DBC1528172552073C43
+tipi-v0.0.66-macOS.zip:E24625E71ECD2FF1322ADFC01C94E46E538BF132
+
+
+## v0.0.65 - Brisk Bobcat 🐱
+
+### Bug Fixes
+- Enhanced the parser to improve case detection, ensuring more accurate recognition of user input.
+
+tipi-src: 1a15bb38577ad3c843429aae12e197eb6c780185
+tipi-commit: eb9465966dba0c4d571a803e1bbbf002744b50ff
+
+### Archives Checksums
+tipi-v0.0.65-windows-win64.zip:3CFA834E79FEC8E74D841C4EF796EEA7015E5855
+tipi-v0.0.65-linux-x86_64.zip:1F5932DD8BB2564F25FC88D159CDD79433D24B82
+tipi-v0.0.65-macOS.zip:721221734F2D595A950A8F196D9E4311D30AAEFD
+
+
 ## v0.0.64 - Ascending Apollo 🦋🚀
 
 ### Features
