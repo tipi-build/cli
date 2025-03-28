@@ -107,8 +107,6 @@ if [ -f "/etc/redhat-release" ]; then
     echo "Could you validate with your password ? 😇 "
     $PRIV_ELEV_CMD yum update -y && yum install which -y || abort "Error while installing which"
   fi
-
-  export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
 fi
 
 
@@ -160,9 +158,6 @@ if [ $? -eq 0 ]; then
         info "tipi has been installed in $INSTALL_FOLDER/bin and can be used now."
         info "----------------------------"
         info "If you are new to tipi you can explore how to use it at: https://tipi.build/explore. If you are currently following the onboarding guide it is now time to get back to your browser: https://tipi.build/onboarding/step4"
-        if [ -f "/etc/redhat-release" ]; then
-          info "If you want tipi or cmake-re to successfully download dependencies, you need to set the SSL certificate file in your environment by running: export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"
-        fi
     else 
         abort "Error while installing the dependencies"
     fi
