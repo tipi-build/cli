@@ -6,7 +6,7 @@
 export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
 
 yum makecache \
- && yum install -y libnsl sudo ca-certificates openssh-server openssh-clients util-linux-ng util-linux-user libuser python3 cmake3 \
+ && yum install -y libnsl sudo ca-certificates openssh-server openssh-clients util-linux-ng util-linux-user libuser python3 cmake3 xz bzip2 which\
  && yum groupinstall -y 'Development Tools' \
  && yum install -y perl-core perl-IPC-Cmd # OpenSSL 3 build system requires this
 
