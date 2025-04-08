@@ -10,9 +10,9 @@ tipi-src:26c25ad888efd24e41963e3a76fddf48049ade78
 tipi-commit:26c25ad888efd24e41963e3a76fddf48049ade78
 
 ### Archives Checksums
-tipi-v0.0.69-windows-win64.zip:PLACEHOLDER
-tipi-v0.0.69-linux-x86_64.zip:PLACEHOLDER
-tipi-v0.0.69-macOS.zip:PLACEHOLDER
+tipi-v0.0.69-windows-win64.zip:A1026C8577D4E5B4CC8CE526FBD607BD35923C33
+tipi-v0.0.69-linux-x86_64.zip:68A9FF01714717D75A53039B1450192E2EA09149
+tipi-v0.0.69-macOS.zip:A5A9A4756E005761ACB3F8153792812EBE68F09E
 
 ## v0.0.68 - Entropic Ermine 🐾
 
