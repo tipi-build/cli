@@ -1,5 +1,19 @@
 # tipi.build cli : CHANGELOG
 
+
+## v0.0.69 - Friendly Falcon 🦅
+
+### Bug Fixes
+- Re-add `--install-prefix` in cmake-re parser
+
+tipi-src:26c25ad888efd24e41963e3a76fddf48049ade78
+tipi-commit:26c25ad888efd24e41963e3a76fddf48049ade78
+
+### Archives Checksums
+tipi-v0.0.69-windows-win64.zip:PLACEHOLDER
+tipi-v0.0.69-linux-x86_64.zip:PLACEHOLDER
+tipi-v0.0.69-macOS.zip:PLACEHOLDER
+
 ## v0.0.68 - Entropic Ermine 🐾
 
 ### Features
