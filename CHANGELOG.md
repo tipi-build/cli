@@ -1,6 +1,19 @@
 # tipi.build cli : CHANGELOG
 
 
+## v0.0.70 - Gentle Grizzly 🐻
+
+### Bug Fixes
+- Fix error when populating autotools cache with hfc and cmake-re
+
+tipi-src:e1b67e50b84038cd4df0d32e3a392722644c9ce1
+tipi-commit:e1b67e50b84038cd4df0d32e3a392722644c9ce1
+
+### Archives Checksums
+tipi-v0.0.70-windows-win64.zip:66F4B037A1AA739235C1507BE1ACF57660A8FFC9
+tipi-v0.0.70-linux-x86_64.zip:D0CC7559AFAF73F0D593EF7DD7675C42001186BE
+tipi-v0.0.70-macOS.zip:BE085C2F27FAFA44AAD27B3DB35DBDBB9C1A84A2
+
 ## v0.0.69 - Friendly Falcon 🦅
 
 ### Bug Fixes

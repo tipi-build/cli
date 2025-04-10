@@ -58,7 +58,7 @@ chsh -s /bin/bash tipi-rbe
 git config --system --add safe.directory "*"
 
 export TIPI_DISTRO_MODE=all
-su tipi -w TIPI_DISTRO_MODE -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/feature/release-v0.0.69/install/install_for_macos_linux.sh)"
+su tipi -w TIPI_DISTRO_MODE -c "$(curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/feature/release-v0.0.70/install/install_for_macos_linux.sh)"
 su tipi -w TIPI_DISTRO_MODE -c 'cd /home/tipi && mkdir main && echo "int main(){return 0;}" > ./main/main.cpp && /usr/local/bin/tipi --dont-upgrade -v -t linux ./main'
 
 rm -rf ./main \
