@@ -1,6 +1,6 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.72 - Iridescent Impala 🐐
+## v0.0.72 - Iridescent Impala 🦌
 
 ### Bug Fixes
 - change `sshd_config` to ensure compatibility across all supported Ubuntu versions.
