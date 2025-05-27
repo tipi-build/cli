@@ -3,13 +3,15 @@
 ## v0.0.71 - Hypnotic Hummingbird 🕊️
 
 ### Features
-- Introduced reclient integration in cmake-re to enable distributed builds, improving build speed and scalability for large projects.
+- :new: Official support for L2 cache and `--distributed` builds using [EngFlow](https://engflow.com) RBE Cluster to scale builds on `-j 1000`+ cores 🎉 
+  - Combinable with `--host`, `--remote` and containerized builds
+- ⏩ optimized cmake-re L1 cache integration with [tipi-build/elfshaker](https://github.com/tipi-build/elfshaker) integrated as static library rather than a separate process
 
 ### Bug Fixes
-- Toolchain and cache names now correctly accept periods (`.`) as valid characters (e.g., `gcc-13.2`, `my.cache.v1`).
-- Enabled ssh-rsa support in sshd for Ubuntu 22.04+ based container images, resolving SSH compatibility issues with clients using RSA keys.
-- cmake-re no longer hangs indefinitely on configure or build failures.
-- cmake-re now correctly returns a non-zero exit code on failure, enabling proper error detection in scripts and CI pipelines.
+- cmake-re now consistently returns a non-zero exit code on configuration+compilation failure
+- Toolchain and cache names can now contain periods `.` (e.g., `gcc-13.2`, `my.cache.v1`)
+- :new: cmake-tipi-provider for FetchContent properly forwards CMAKE_BUILD_TYPE and additional CMake parameter ( tipi `--` flags )
+- Enabled ssh-rsa support in sshd for Ubuntu 22.04+ based container images, resolving SSH compatibility issues with clients using RSA keys
 
 tipi-src:589727cad6a7a8a42f932d3eadcb9f4e7fbc9730
 tipi-commit:589727cad6a7a8a42f932d3eadcb9f4e7fbc9730
