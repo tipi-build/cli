@@ -3,7 +3,7 @@
 ## v0.0.72 - Iridescent Impala 🦌
 
 ### Bug Fixes
-- change `sshd_config` to ensure compatibility across all supported Ubuntu versions.
+- Use compatible SSH options based on sshd version for connectivity to digital-twins ( _i.e._ `PubkeyAcceptedAlgorithms` vs `PubkeyAcceptedKeyTypes` )
 
 tipi-src:9f05031999a41426ab0b9a2f96ccbf590397a985
 tipi-commit:9f05031999a41426ab0b9a2f96ccbf590397a985
