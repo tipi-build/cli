@@ -1,5 +1,18 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.72 - Iridescent Impala 🐐
+
+### Bug Fixes
+- change `sshd_config` to ensure compatibility across all supported Ubuntu versions.
+
+tipi-src:9f05031999a41426ab0b9a2f96ccbf590397a985
+tipi-commit:9f05031999a41426ab0b9a2f96ccbf590397a985
+
+### Archives Checksums
+tipi-v0.0.72-windows-win64.zip:7A52B9724EADA0EE1B559DD2B9DA7098C9E2092B
+tipi-v0.0.72-linux-x86_64.zip:381760A5B40BC92E50FE3569F2F060C26BFD66D7
+tipi-v0.0.72-macOS.zip:AF16DF7D5ED74EFE1F197D679DCDA4E5D647AE28
+
 ## v0.0.71 - Hypnotic Hummingbird 🕊️
 
 ### Features
