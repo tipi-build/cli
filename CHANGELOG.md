@@ -1,5 +1,23 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.71 - Hypnotic Hummingbird 🕊️
+
+### Features
+- Introduced reclient integration in cmake-re to enable distributed builds, improving build speed and scalability for large projects.
+
+### Bug Fixes
+- Toolchain and cache names now correctly accept periods (`.`) as valid characters (e.g., `gcc-13.2`, `my.cache.v1`).
+- Enabled ssh-rsa support in sshd for Ubuntu 22.04+ based container images, resolving SSH compatibility issues with clients using RSA keys.
+- cmake-re no longer hangs indefinitely on configure or build failures.
+- cmake-re now correctly returns a non-zero exit code on failure, enabling proper error detection in scripts and CI pipelines.
+
+tipi-src:589727cad6a7a8a42f932d3eadcb9f4e7fbc9730
+tipi-commit:589727cad6a7a8a42f932d3eadcb9f4e7fbc9730
+
+### Archives Checksums
+tipi-v0.0.71-windows-win64.zip:E78BCF2F1BD36C7311B6A39660E809D356DA1906
+tipi-v0.0.71-linux-x86_64.zip:BF46B01C83F796822F3B3D34107EFEA13909808E
+tipi-v0.0.71-macOS.zip:356440DA9C169FA9EEB3194D08A4F45FE2837A3C
 
 ## v0.0.70 - Gentle Grizzly 🐻
 
