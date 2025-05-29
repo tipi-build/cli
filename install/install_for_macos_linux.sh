@@ -50,7 +50,7 @@ should_install_bzip2() {
 # impl.
 ### 
 
-VERSION="${TIPI_INSTALL_VERSION:-v0.0.70}"
+VERSION="${TIPI_INSTALL_VERSION:-v0.0.72}"
 INSTALL_FOLDER=/usr/local
 
 if [[ -z "${TIPI_INSTALL_SOURCE}" ]]; then
