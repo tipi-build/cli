@@ -35,8 +35,7 @@ jobs:
              /usr/local/share/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
              /usr/local/share/.tipi/openapi-generator-script/*/openapi-generator-cli 
              /usr/local/share/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
-             /usr/local/share/.tipi/python/*/bin/python3
-             /usr/local/share/.tipi/elfshaker/*/elfshaker)
+             /usr/local/share/.tipi/python/*/bin/python3)
           
           for element in "${pathsToTest[@]}"
           do
@@ -60,8 +59,7 @@ jobs:
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
              /usr/local/share/.tipi/environments/*/xcode.cmake
-             /usr/local/share/.tipi/python/*/bin/python3
-            /usr/local/share/.tipi/elfshaker/*/elfshaker)
+             /usr/local/share/.tipi/python/*/bin/python3)
 
           for element in "${pathsToTest[@]}"
           do
@@ -108,8 +106,7 @@ jobs:
              /usr/local/share/.tipi/nodejs/*/bin/node
              /usr/local/share/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
              /usr/local/share/.tipi/openapi-generator-script/*/openapi-generator-cli 
-             /usr/local/share/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
-             /usr/local/share/.tipi/elfshaker/*/elfshaker)
+             /usr/local/share/.tipi/platform/*/cmake/projects/Poco/hunter.cmake)
           
           for element in "${pathsToTest[@]}"
           do
@@ -141,8 +138,7 @@ jobs:
           
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
-             /usr/local/share/.tipi/environments/*/xcode.cmake
-             /usr/local/share/.tipi/elfshaker/*/elfshaker)
+             /usr/local/share/.tipi/environments/*/xcode.cmake)
           
           for element in "${pathsToTest[@]}"
           do
@@ -261,7 +257,6 @@ jobs:
             "C:\.tipi\perl\*\README.txt"  
             "C:\.tipi\platform\*\cmake\projects\Poco\hunter.cmake"  
             "C:\.tipi\python\*\python.exe"  
-            "C:\.tipi\elfshaker\*\elfshaker.exe"  
           )
 
           $success = $true
@@ -318,7 +313,6 @@ jobs:
             "C:\.tipi\environments\*\xcode.cmake" 
             "C:\.tipi\openssh\*\ssh.exe"
             "C:\.tipi\python\*\python.exe"  
-            "C:\.tipi\elfshaker\*\elfshaker.exe"  
           )
 
           $success = $true
@@ -459,7 +453,6 @@ jobs:
             "C:\.tipi\environments\*\xcode.cmake" 
             "C:\.tipi\openssh\*\ssh.exe"
             "C:\.tipi\python\*\python.exe"  
-            "C:\.tipi\elfshaker\*\elfshaker.exe"  
           )
 
           $success = $true
@@ -525,8 +518,7 @@ jobs:
              /usr/local/share/.tipi/nodejs/*/bin/node
              /usr/local/share/.tipi/openapi/*/openapi-generator-cli-5.1.1.jar
              /usr/local/share/.tipi/openapi-generator-script/*/openapi-generator-cli 
-             /usr/local/share/.tipi/platform/*/cmake/projects/Poco/hunter.cmake
-             /usr/local/share/.tipi/elfshaker/*/elfshaker)
+             /usr/local/share/.tipi/platform/*/cmake/projects/Poco/hunter.cmake)
 
           for element in "${pathsToTest[@]}"
           do
@@ -556,8 +548,7 @@ jobs:
           
           # Test install succeeeded 
           pathsToTest=(/usr/local/bin/tipi 
-             /usr/local/share/.tipi/environments/*/xcode.cmake
-             /usr/local/share/.tipi/elfshaker/*/elfshaker)
+             /usr/local/share/.tipi/environments/*/xcode.cmake)
 
           for element in "${pathsToTest[@]}"
           do
