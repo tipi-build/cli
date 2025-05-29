@@ -90,7 +90,7 @@ if [ $? -eq 0 ]; then
     tipi_full_path=$INSTALL_FOLDER/bin/tipi
     cmake_full_path=$INSTALL_FOLDER/bin/cmake-re
 
-    for file in $INSTALL_FOLDER/bin/*; do
+    for file in "$tipi_full_path" "$cmake_full_path"; do
       if [ -f "$file" ]; then
         $PRIV_ELEV_CMD chown "${USER:=$(id -run)}" "$file"
         $PRIV_ELEV_CMD chmod a+x,u+w "$file"
