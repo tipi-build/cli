@@ -23,14 +23,23 @@ service ssh start # Create /run/sshd privilege separation directory, the docker 
 addgroup --gid 123 gh-actions-group
 addgroup --gid 124 wine
 
-addgroup --gid 1001 tipi && useradd --system --uid 1001 --gid 1001 -G gh-actions-group,wine,sudo --create-home --home-dir /home/tipi tipi \
+if [ ! $(getent group 1001) ]; then
+  addgroup --gid 1001 tipi
+fi
+useradd --system --uid 1001 --gid 1001 -G gh-actions-group,wine,sudo --create-home --home-dir /home/tipi tipi \
   && echo 'tipi ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/tipi
 
-addgroup --gid 1000 tipi-large && useradd --system --uid 1000 --gid 1000 -G gh-actions-group,wine,sudo --create-home --home-dir /home/tipi-large tipi-large \
+if [ ! $(getent group 1000) ]; then
+  addgroup --gid 1000 tipi-large
+fi
+useradd --system --uid 1000 --gid 1000 -G gh-actions-group,wine,sudo --create-home --home-dir /home/tipi-large tipi-large \
   && echo 'tipi-large ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/tipi-large
 
+if [ ! $(getent group 108) ]; then
+  addgroup --gid 108 tipi-rbe
+fi
 # https://docs.engflow.com/re/client/bazel-first-time.html#1-prepare-a-docker-container-image-for-remote-actions
-addgroup --gid 108 tipi-rbe && useradd --system --uid 108 --gid 108 -G gh-actions-group,wine,sudo --create-home --home-dir /home/tipi-rbe tipi-rbe \
+useradd --system --uid 108 --gid 108 -G gh-actions-group,wine,sudo --create-home --home-dir /home/tipi-rbe tipi-rbe \
   && echo 'tipi-rbe ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/tipi-rbe
 
 
