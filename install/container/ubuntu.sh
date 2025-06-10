@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # tipi docker setup script for debian and arch derivativees
 # Copyright 2024 - tipi technologies Ltd (Zürich)
 
