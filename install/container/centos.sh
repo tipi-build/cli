@@ -21,6 +21,13 @@ update-ca-trust extract
 ssh-keygen -A
 systemctl enable sshd
 
+if [ -f /etc/almalinux-release ]; then
+  # Enable SHA-1 key exchange
+  mkdir -p /etc/ssh/sshd_config.d/ && \
+      printf "\nPubkeyAcceptedAlgorithms +ssh-rsa\n" > /etc/ssh/sshd_config.d/add-ssh-rsa.conf
+  update-crypto-policies --set LEGACY
+fi
+
 if [ -f /run/nologin ]; then
   rm -f /run/nologin # allow non root users to login
 fi
