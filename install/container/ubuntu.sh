@@ -15,8 +15,9 @@ apt-get -y update && apt-get install -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-# Enable login with tipi generated ssh-rsa on Ubuntu 22 and onwards
-printf "\nPubkeyAcceptedAlgorithms +ssh-rsa\n" > /etc/ssh/sshd_config.d/add-ssh-rsa.conf
+# Enable login with tipi generated ssh-rsa on Ubuntu 22 and onwards, use PubkeyAcceptedKeyTypes vs PubkeyAcceptedAlgorithms as it works on ubuntu 20.04 as well.
+mkdir -p /etc/ssh/sshd_config.d/ && \
+    printf "\nPubkeyAcceptedKeyTypes +ssh-rsa\n" > /etc/ssh/sshd_config.d/add-ssh-rsa.conf
 service ssh start # Create /run/sshd privilege separation directory, the docker CMD should still be something like `/usr/sbin/sshd -D -o ListenAddress=0.0.0.0 -e;`
 
 # User id 1001 is the user on Github Default Runner and 123 is the group of the files on the Github Default Runner
