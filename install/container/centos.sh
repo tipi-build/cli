@@ -10,8 +10,11 @@ yum update -y && yum makecache \
  && yum groupinstall -y 'Development Tools' \
  && yum install -y perl-core perl-IPC-Cmd # OpenSSL 3 build system requires this
 
-mkdir -p /etc/pki/ca-trust/source/blacklist/
-trust dump --filter "pkcs11:id=%c4%a7%b1%a4%7b%2c%71%fa%db%e1%4b%90%75%ff%c4%15%60%85%89%10" | openssl x509 | sudo tee /etc/pki/ca-trust/source/blacklist/DST-Root-CA-X3.pem
+deprecated_X3_Root_CA=`trust dump --filter "pkcs11:id=%c4%a7%b1%a4%7b%2c%71%fa%db%e1%4b%90%75%ff%c4%15%60%85%89%10"`
+if [ ! -z "${deprecated_X3_Root_CA}" ]; then
+  mkdir -p /etc/pki/ca-trust/source/blacklist/
+  trust dump --filter "pkcs11:id=%c4%a7%b1%a4%7b%2c%71%fa%db%e1%4b%90%75%ff%c4%15%60%85%89%10" | openssl x509 | sudo tee /etc/pki/ca-trust/source/blacklist/DST-Root-CA-X3.pem
+fi
 update-ca-trust extract
 
 # INCLUDE+ common/Dockerfile.rhel-remote-build-ssh-access
