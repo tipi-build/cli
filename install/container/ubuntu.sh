@@ -12,9 +12,7 @@ apt-get -y update && apt-get install -y \
   curl \
   unzip \
   build-essential \
-  git \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+  git
 
 source /etc/lsb-release
 DISTRIB_RELEASE_MAJOR=`echo $DISTRIB_RELEASE | sed 's/\([0-9]\+\)\..*/\1/'`
@@ -43,9 +41,7 @@ if [ ${DISTRIB_RELEASE_MAJOR} -le 20 ]; then
     zlib1g-dev \
     byacc \
     bison \
-    freeglut3-dev \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    freeglut3-dev
 
   locale-gen "en_US.UTF-8"
 fi
@@ -78,9 +74,7 @@ fi
 # INCLUDE+ common/Dockerfile.apt-install-required-2204
 if [ ${DISTRIB_RELEASE_MAJOR} -ge 20 ]; then
   apt-get -y update && apt-get install -y \
-    python3 \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    python3
 fi
 
 
@@ -151,4 +145,6 @@ su tipi -w TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE -c "cd ~ && curl -fsSL https://r
 rm -rf ./main \
   && rm -rf /usr/local/share/.tipi/downloads/* \
   && rm -rf /usr/local/share/.tipi/v*.d/* \
-  && rm -rf /usr/local/share/.tipi/v*.w/*
+  && rm -rf /usr/local/share/.tipi/v*.w/* \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
