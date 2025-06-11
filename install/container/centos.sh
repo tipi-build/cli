@@ -20,7 +20,10 @@ update-ca-trust extract
 # INCLUDE+ common/Dockerfile.rhel-remote-build-ssh-access
 ssh-keygen -A
 systemctl enable sshd
-rm /run/nologin # allow non root users to login
+
+if [ -f /run/nologin ]; then
+  rm -f /run/nologin # allow non root users to login
+fi
 
 # INCLUDE+ common/Dockerfile.tipi-non-root-user
 export SUDO_GROUP=${SUDO_GROUP:wheel}
