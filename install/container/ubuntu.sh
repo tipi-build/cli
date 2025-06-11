@@ -70,7 +70,7 @@ chsh -s /bin/bash tipi-rbe
 git config --system --add safe.directory "*"
 
 export TIPI_DISTRO_MODE=${TIPI_DISTRO_MODE:light}
-su tipi -w TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE -c "curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/feature/release-v0.0.72/install/install_for_macos_linux.sh -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh"
+su tipi -w TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE -c "cd ~ && curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/feature/release-v0.0.72/install/install_for_macos_linux.sh -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh"
 
 rm -rf ./main \
   && rm -rf /usr/local/share/.tipi/downloads/* \
