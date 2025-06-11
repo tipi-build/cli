@@ -49,15 +49,15 @@ mkdir -p /home/tipi/.ssh && chown tipi:tipi -R /home/tipi/.ssh
 
 # http_proxy temp folder for IPC & logging for the additional users
 mkdir /run/user/1001 \
- && chown tipi:tipi /run/user/1001 \
+ && chown 1001:1001 /run/user/1001 \
  && chmod 0700 /run/user/1001
 
 mkdir /run/user/1000 \
- && chown tipi-large:tipi-large /run/user/1000 \
+ && chown 1000:1000 /run/user/1000 \
  && chmod 0700 /run/user/1000
 
 mkdir /run/user/108 \
- && chown tipi-rbe:tipi-rbe /run/user/108 \
+ && chown 108:108 /run/user/108 \
  && chmod 0700 /run/user/108
 
 chsh -s /bin/bash root
