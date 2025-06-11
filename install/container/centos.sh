@@ -1,7 +1,8 @@
 #!/bin/bash
-
-# tipi docker setup script for centos
+# tipi docker setup script for redhat derivatives : centos, almalinux, rhel
 # Copyright 2024 - tipi technologies Ltd (Zürich)
+
+set -e
 
 # INCLUDE+ common/Dockerfile.yum-install-required
 yum update -y && yum makecache \
