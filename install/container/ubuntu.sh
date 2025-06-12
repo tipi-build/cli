@@ -85,6 +85,7 @@ service ssh start # Create /run/sshd privilege separation directory, the docker 
 
 # INCLUDE+ common/Dockerfile.tipi-non-root-user
 export SUDO_GROUP=${SUDO_GROUP:sudo}
+echo "Current SUDO_GROUP: ${SUDO_GROUP}"
 # User id 1001 is the user on Github Default Runner and 123 is the group of the files on the Github Default Runner
 groupadd --gid 123 gh-actions-group
 groupadd --gid 124 wine
