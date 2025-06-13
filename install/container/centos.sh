@@ -15,7 +15,9 @@ yum update -y && yum makecache \
   procps-ng \
   shadow-utils \
   passwd \
-  python3
+  python3 \
+  which
+
 
 if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
  # INCLUDE+ common/Dockerfile.yum-install-required
