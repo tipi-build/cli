@@ -7,7 +7,6 @@ set -e
 yum update -y && yum makecache \
   && yum install -y openssh-server \
   sudo \
-  curl \
   unzip \
   git
 
