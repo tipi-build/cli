@@ -15,13 +15,13 @@ yum update -y && yum makecache \
   procps-ng \
   shadow-utils \
   passwd \
+  python3
 
 if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
  # INCLUDE+ common/Dockerfile.yum-install-required
   yum install -y systemd \
     ca-certificates \
     openssh-clients \
-    python3 \
     cmake3 \
     && yum groupinstall -y 'Development Tools' \
     && yum install -y perl-core perl-IPC-Cmd # OpenSSL 3 build system requires this
