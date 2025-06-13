@@ -4,11 +4,34 @@
 
 set -e
 
-# INCLUDE+ common/Dockerfile.yum-install-required
 yum update -y && yum makecache \
- && yum install -y systemd procps-ng sudo shadow-utils passwd git libnsl sudo ca-certificates openssh-server openssh-clients util-linux-ng util-linux-user libuser python3 cmake3 \
- && yum groupinstall -y 'Development Tools' \
- && yum install -y perl-core perl-IPC-Cmd # OpenSSL 3 build system requires this
+  && yum install -y openssh-server \
+  sudo \
+  unzip \
+  git \
+  util-linux-ng \
+  util-linux-user \
+  libuser \
+  procps-ng \
+  shadow-utils \
+  passwd \
+  python3 \
+  which \
+  xz \
+  bzip2
+
+ # python3 which xz bzip2 are required for tipi build system (emsdk)
+
+
+if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
+ # INCLUDE+ common/Dockerfile.yum-install-required
+  yum install -y systemd \
+    ca-certificates \
+    openssh-clients \
+    cmake3 \
+    && yum groupinstall -y 'Development Tools' \
+    && yum install -y perl-core perl-IPC-Cmd # OpenSSL 3 build system requires this
+fi
 
 deprecated_X3_Root_CA=`trust dump --filter "pkcs11:id=%c4%a7%b1%a4%7b%2c%71%fa%db%e1%4b%90%75%ff%c4%15%60%85%89%10"`
 if [ ! -z "${deprecated_X3_Root_CA}" ]; then

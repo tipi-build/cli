@@ -15,7 +15,7 @@ apt-get -y update && apt-get install -y \
 source /etc/lsb-release
 DISTRIB_RELEASE_MAJOR=`echo $DISTRIB_RELEASE | sed 's/\([0-9]\+\)\..*/\1/'`
 
-if [ -n "$TIPI_INSTALL_LEGACY_PACKAGES" ]; then
+if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
   #INCLUDE+ common/Dockerfile.apt-install-required
   apt-get -y update && apt-get install -y \
     locales \
