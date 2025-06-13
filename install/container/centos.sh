@@ -15,11 +15,12 @@ yum update -y && yum makecache \
   procps-ng \
   shadow-utils \
   passwd \
-  # needed for emsdk ship by cmake-re
   python3 \
   which \
   xz \
   bzip2
+
+ # python3 which xz bzip2 are required for tipi build system (emsdk)
 
 
 if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
