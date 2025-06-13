@@ -8,21 +8,19 @@ yum update -y && yum makecache \
   && yum install -y openssh-server \
   sudo \
   unzip \
-  git
+  git \
+  util-linux-ng \
+  util-linux-user \
+  libuser \
+  procps-ng \
+  shadow-utils \
+  passwd \
 
 if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
  # INCLUDE+ common/Dockerfile.yum-install-required
-  yum update -y && yum makecache \
-    && yum install -y systemd \
-    procps-ng \
-    shadow-utils \
-    passwd \
-    libnsl \
+  yum install -y systemd \
     ca-certificates \
     openssh-clients \
-    util-linux-ng \
-    util-linux-user \
-    libuser \
     python3 \
     cmake3 \
     && yum groupinstall -y 'Development Tools' \
