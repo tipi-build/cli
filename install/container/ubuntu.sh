@@ -10,18 +10,16 @@ apt-get -y update && apt-get install -y \
   sudo \
   curl \
   unzip \
-  build-essential \
-  git
+  git \
+  locales \
+  ca-certificates \
 
 source /etc/lsb-release
 DISTRIB_RELEASE_MAJOR=`echo $DISTRIB_RELEASE | sed 's/\([0-9]\+\)\..*/\1/'`
 
-# INCLUDE+ common/Dockerfile.apt-install-required-before-2204
-if [ ${DISTRIB_RELEASE_MAJOR} -le 20 ]; then
+if [ -n "$TIPI_INSTALL_LEGACY_PACKAGES" ]; then
+  #INCLUDE+ common/Dockerfile.apt-install-required
   apt-get -y update && apt-get install -y \
-    python \
-    locales \
-    ca-certificates \
     build-essential \
     autotools-dev \
     autoconf \
@@ -45,6 +43,12 @@ if [ ${DISTRIB_RELEASE_MAJOR} -le 20 ]; then
   locale-gen "en_US.UTF-8"
 fi
 
+# INCLUDE+ common/Dockerfile.apt-install-required-before-2204
+if [ ${DISTRIB_RELEASE_MAJOR} -le 20 ]; then
+  apt-get -y update && apt-get install -y \
+    python 
+fi
+
 # INCLUDE+ common/Dockerfile.update-su
 if [ ${DISTRIB_RELEASE_MAJOR} -le 16 ]; then
   apt-get -y update && apt-get install -y \
@@ -53,7 +57,7 @@ if [ ${DISTRIB_RELEASE_MAJOR} -le 16 ]; then
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-  locale-gen "en_US.UTF-8"
+
 
   wget https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.gz  \
     && tar xvzf util-linux-2.39.tar.gz  \
