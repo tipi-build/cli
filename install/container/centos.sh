@@ -15,8 +15,11 @@ yum update -y && yum makecache \
   procps-ng \
   shadow-utils \
   passwd \
+  # needed for emsdk ship by cmake-re
   python3 \
-  which
+  which \
+  xz \
+  bzip2
 
 
 if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
