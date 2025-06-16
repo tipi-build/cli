@@ -146,7 +146,7 @@ chsh -s /bin/bash tipi-rbe
 # This is required because of docker virtiofs on docker on macOS. ( VirtioFS is not handling permissions as expected. All mount permissions are owned by root regardless of chown : https://github.com/docker/for-mac/issues/6243 )
 git config --system --add safe.directory "*"
 
-export TIPI_DISTRO_MODE=${TIPI_DISTRO_MODE:-light}
+export TIPI_DISTRO_MODE=${TIPI_DISTRO_MODE:-default}
 # INCLUDE+ common/Dockerfile.rustup
 su tipi -w TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE -c "cd ~ && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup.sh && sh rustup.sh -v -y --no-modify-path"
 su tipi -w TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE -c "/home/tipi/.cargo/bin/rustup default stable"
