@@ -148,8 +148,10 @@ git config --system --add safe.directory "*"
 
 export TIPI_DISTRO_MODE=${TIPI_DISTRO_MODE:-default}
 # INCLUDE+ common/Dockerfile.rustup
-su tipi -w TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE -c "cd ~ && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup.sh && sh rustup.sh -v -y --no-modify-path"
-su tipi -w TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE -c "/home/tipi/.cargo/bin/rustup default stable"
+if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
+  su tipi -w TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE -c "cd ~ && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup.sh && sh rustup.sh -v -y --no-modify-path"
+  su tipi -w TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE -c "/home/tipi/.cargo/bin/rustup default stable"
+fi
 
 # INCLUDE+ common/Dockerfile.install-tipi
 su tipi -w TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE -c "cd ~ && curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/feature/release-v0.0.72/install/install_for_macos_linux.sh -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh"
