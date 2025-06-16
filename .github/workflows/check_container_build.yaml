@@ -1,0 +1,43 @@
+# This workflows is a smoke test, checking the documented cmake-re Custom Environment creation https://tipi.build/documentation/0400-environments#custom-environments
+# Creation of the official dockers and full CI for each container with install/container-build happens in nxxm/nxxm-src
+name: check_container_build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  schedule:
+    - cron : '0 0 * * *' # Every midnight check the released version of default branch
+ 
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docker-build-2404:
+    name: docker-build-2404
+    runs-on: ubuntu-latest
+    env:
+      DOCKERHUB_USER: tipibuild 
+      TIPI_DISTRO_MODE: default
+      version_in_development: v0.0.72
+      TIPI_ACCESS_TOKEN: ${{ secrets.CLI_TIPI_TEST_USER_TIPI_ACCESS_TOKEN }}
+      TIPI_REFRESH_TOKEN: ${{ secrets.CLI_TIPI_TEST_USER_TIPI_REFRESH_TOKEN }}
+      TIPI_VAULT_PASSPHRASE: ${{ secrets.CLI_TIPI_TEST_USER_TIPI_VAULT_PASSPHRASE }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+
+      - name: cmake-re build docker image
+        run: |
+          sudo mkdir -p /usr/local/share/.tipi
+          sudo chown -R ${USER:=$(/usr/bin/id -run)} /usr/local/share/.tipi
+          sudo chmod -R 777 /usr/local/share/.tipi
+          curl -fSSL https://github.com/tipi-build/cli/releases/download/${{ env.version_in_development }}/tipi-${{ env.version_in_development }}-linux-x86_64.zip \
+            -o install/container/environments/linux-ubuntu2404.pkr.js/tipi-linux-x86_64.zip
+          cp install/container/ubuntu.sh install/container/environments/linux-ubuntu2404.pkr.js/ubuntu.sh
+          unzip -n install/container/environments/linux-ubuntu2404.pkr.js/tipi-linux-x86_64.zip
+          bin/tipi connect -v --dont-upgrade
+
+          bin/cmake-re -S install/container/ -DCMAKE_TOOLCHAIN_FILE=install/container/environments/linux-ubuntu2404.cmake -B build -vv

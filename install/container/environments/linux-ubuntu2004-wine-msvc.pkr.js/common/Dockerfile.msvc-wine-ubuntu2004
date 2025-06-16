@@ -1,0 +1,178 @@
+
+#
+#
+# Build intercalaire
+#
+#
+FROM tipi-ubuntu-base AS intercalaire-builder
+WORKDIR /home/tipi/
+
+ARG TIPI_ENDPOINT=https://tipi.build
+ARG TIPI_ACCESS_TOKEN
+ARG TIPI_REFRESH_TOKEN
+ARG TIPI_VAULT_PASSPHRASE
+
+# build the application
+ADD --chown=tipi:tipi tipi-wine-msvc-tools/intercalaire /home/tipi/intercalaire
+RUN if [ -n "$TIPI_ACCESS_TOKEN" ] && [ -n "$TIPI_REFRESH_TOKEN" ] && [ -n "$TIPI_VAULT_PASSPHRASE" ]; then tipi connect; else echo "No tipi tokens provided. We might hit rate limits."; fi \
+    && cd /home/tipi/intercalaire \
+    && tipi . -t linux-cxx17 -C Release  -vv \
+    && cp ./build/linux-cxx17/bin/src/intercalaire .
+
+#
+#
+# Build the resulting docker
+#
+# ´´ ''
+
+FROM tipi-ubuntu-base AS tipi-ubuntu-wine-msvc
+# apt - please don't ask stuff while building the docker image
+# > NOTE: as ARG for the env variable to be defined only during build
+# > and not be persistent
+ARG DEBIAN_FRONTEND=noninteractive
+
+# install prerequisites
+RUN sudo apt-get update \
+ && sudo apt-get install -y --no-install-recommends \
+    apt-transport-https \
+    ca-certificates \
+    cabextract \
+    git \
+    gnupg \
+    gosu \
+    gpg-agent \
+    locales \
+    sudo \
+    tzdata \
+    unzip \
+    wget \
+    winbind \
+    python3-pip \
+ && sudo rm -rf /var/lib/apt/lists/*
+
+ARG WINE_BRANCH="stable"
+ARG TIPI_DIR="/usr/local/share/.tipi"
+
+
+# install wine
+RUN wget -nv -O- https://dl.winehq.org/wine-builds/winehq.key | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 sudo apt-key add - \
+    && echo "deb https://dl.winehq.org/wine-builds/ubuntu/ $(grep VERSION_CODENAME= /etc/os-release | cut -d= -f2) main" | sudo tee -a /etc/apt/sources.list > /dev/null \
+    && sudo dpkg --add-architecture i386 \
+    && sudo apt-get update \
+    && sudo apt-get install -y --install-recommends winehq-${WINE_BRANCH} binfmt-support wine-binfmt \
+    && sudo rm -rf /var/lib/apt/lists/*
+
+# create some folder and assign user rights properly for unprivileged access
+RUN sudo mkdir -p /opt/vsdl/logs \
+ && sudo chmod -R 777 /opt/vsdl/logs
+
+# initialize the wine config for user "tipi" by running a command
+# NOTE: there's a wineserver process running beyond the end of the wineboot command
+#
+# As docker kills all processes between the different Dockerfile statements this 
+# basically guarantees we have a corrupted WINEPREFIX which prevents us from using
+# it down the line. So the second command blocks until wineserver exits
+ENV WINEPREFIX="${TIPI_DIR}/.wine"
+RUN wine wineboot --init \
+ && tail --pid=$(pgrep wineserver) -f /dev/null \
+ && chmod +w -R ${WINEPREFIX} \
+ && mkdir -p ${WINEPREFIX}/drive_c/users/root \
+ && mkdir -p ${WINEPREFIX}/drive_c/users/tipi \
+ && mkdir -p ${WINEPREFIX}/drive_c/users/tipi-large \
+ && mkdir -p ${WINEPREFIX}/drive_c/users/tipi-rbe \
+ && chmod -R 777 ${WINEPREFIX}/drive_c/users
+
+RUN sudo ln -s ${WINEPREFIX} /home/tipi/.wine \
+ && sudo ln -s ${WINEPREFIX} /home/tipi-large/.wine \
+ && sudo ln -s ${WINEPREFIX} /home/tipi-rbe/.wine  \
+ && sudo ln -s ${WINEPREFIX} /.wine  
+
+#
+# Prepare python runtime
+ADD --chown=tipi:tipi tipi-wine-msvc-tools/vsdl/requirements.txt /opt/vsdl/
+RUN cd /opt/vsdl \
+    && pip install -r requirements.txt
+
+#
+# add the VSDL scripts
+ADD --chown=tipi:tipi tipi-wine-msvc-tools/vsdl/vsdl.py tipi-wine-msvc-tools/vsdl/genenvironments.py tipi-wine-msvc-tools/vsdl/helpers.py /opt/vsdl/
+
+ARG SHIMS_DIRECTORY="${TIPI_DIR}/tipivsshims"
+
+#
+# Install the vsbuild tools into our wine prefix
+RUN cd /opt/vsdl/ \
+    && mkdir /tmp/vsbuildtools \
+    && mkdir ${SHIMS_DIRECTORY} \
+    && python3 vsdl.py \
+        --dest ${TIPI_DIR}/.wine/drive_c/Program\ Files/Visual\ Studio\ 2019 \
+        --programfiles ${TIPI_DIR}/.wine/drive_c/Program\ Files\ \(x86\)/ \
+        --cache /tmp/vsbuildtools \
+        --envdir ${SHIMS_DIRECTORY}/ \
+    && rm -rf /tmp/vsbuildtools \
+    && sudo chgrp -R wine ${WINEPREFIX} \
+    && sudo chmod -R g+rw ${WINEPREFIX} \
+    && sudo find ${WINEPREFIX} -type d | while read DIR ; do sudo chmod g+rwx "${DIR}" ; done
+
+# 
+# Run the cleanup tasks (creates a bunch of symlinks, merges case-mixed folder trees and makes EXEs executable)
+ADD --chown=tipi:tipi tipi-wine-msvc-tools/vsdl/cleanup.py /opt/vsdl/    
+RUN cd /opt/vsdl/ \
+    && python3 cleanup.py \
+        --dest ${TIPI_DIR}/.wine/drive_c/Program\ Files/Visual\ Studio\ 2019 \
+        --programfiles ${TIPI_DIR}/.wine/drive_c/Program\ Files\ \(x86\)/ \
+    && find ${TIPI_DIR}/.wine/drive_c/ -type f -name "*.exe" -exec chmod +x {} \; 
+
+
+### Q&D installing intercalair
+# note: for the moment this requires manually copying your docker-host-built intercalaire binary
+# to ./intercalaire/intercalaire
+# > this is just a hack required by me working in wsl but running docker from win host and the build
+# > folder symlink not working accross that boundary... -_- 
+#  
+
+COPY --chown=tipi:tipi --from=intercalaire-builder /home/tipi/intercalaire/intercalaire $SHIMS_DIRECTORY/
+COPY --chown=tipi:tipi --chmod=+x --from=intercalaire-builder /home/tipi/intercalaire/mspdbsrv-launch.sh $SHIMS_DIRECTORY/
+ADD --chown=tipi:tipi tipi-wine-msvc-tools/intercalaire/genshims.py /opt/vsdl/
+
+RUN sudo python3 /opt/vsdl/genshims.py --dest $SHIMS_DIRECTORY \
+ && sudo chmod +x $SHIMS_DIRECTORY/*
+
+ENV PATH "$SHIMS_DIRECTORY:$PATH"
+
+# using "intercalaire" we rewrite paths to msvc and winSDK tools selectively
+# namely we "window-y-fy" the paths and prefix "z:" to make use of wine's 
+# z:/ == / mapping
+ENV INTERCALAIRE_TRANSFORM_SEPARATOR=\\
+ENV INTERCALAIRE_TRANSFORM_PATHPREFIX=Z:
+ENV INTERCALAIRE_REWRITE_CL_SHOWINCLUDES=ON
+ENV INTERCALAIRE_LINUX_PATH_WINEPREFIX_DRIVE_C=${TIPI_DIR}/.wine/drive_c/
+ENV INTERCALAIRE_LINUX_PATH_WINEPREFIX_DRIVE_Z=/
+
+# Add startup instructions to register PE executables with the kernel
+RUN echo "\n\n# Register wine as default linux interpreter for PE executable\nsudo update-binfmts --enable wine\nupdate-binfmts --display\n"
+
+
+# add loading the hostx64+targetx64 msvc env settings to .bashrc so we can 
+# get started easily
+# add loading the hostx64+targetx64 msvc env settings to .bash_profile so we can 
+# get started easily with su --login tipi
+#
+# *HACK* Note on the sudo chown part: 
+# > wine is checking that the WINEPREFIX is owned by the user executing the command.
+# > because we need to be flexible on this end between all our environments we
+# > change the ownership (of just the folder, not recursively) to the current
+# > user "on the fly".
+#
+
+ARG LOAD_WINE_MSVC_ENV_SH="\n\n# tipi.build msvc on wine\n# load default tipi wine-msvc environmnt\n. ${SHIMS_DIRECTORY}/wine-msvc-hostx64-targetx64.sh\nexport PATH=$SHIMS_DIRECTORY:\$PATH\nsudo chown $(whoami) ${WINEPREFIX}\nexport INTERCALAIRE_REWRITE_CL_SHOWINCLUDES=ON\nexport INTERCALAIRE_LINUX_PATH_WINEPREFIX_DRIVE_C=${WINEPREFIX}drive_c/\nexport INTERCALAIRE_LINUX_PATH_WINEPREFIX_DRIVE_Z=/"
+RUN echo "${LOAD_WINE_MSVC_ENV_SH}" >> /home/tipi/.bashrc
+RUN echo "${LOAD_WINE_MSVC_ENV_SH}" >> /home/tipi/.bash_profile
+
+RUN echo "${LOAD_WINE_MSVC_ENV_SH}" | sudo tee -a /home/tipi-large/.bashrc > /dev/null 
+RUN echo "${LOAD_WINE_MSVC_ENV_SH}" | sudo tee -a /home/tipi-large/.bash_profile > /dev/null
+RUN echo "${LOAD_WINE_MSVC_ENV_SH}" | sudo tee -a /home/tipi-rbe/.bashrc > /dev/null
+RUN echo "${LOAD_WINE_MSVC_ENV_SH}" | sudo tee -a /home/tipi-rbe/.bash_profile > /dev/null 
+
+RUN sudo cp ${SHIMS_DIRECTORY}/wine-msvc-hostx64-targetx64.sh /etc/profile.d/ 
+RUN echo "${LOAD_WINE_MSVC_ENV_SH}" | sudo tee -a /etc/bash.bashrc > /dev/null
