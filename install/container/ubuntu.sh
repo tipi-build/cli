@@ -80,6 +80,13 @@ if [ ${DISTRIB_RELEASE_MAJOR} -ge 20 ]; then
     python3
 fi
 
+if [ ${DISTRIB_RELEASE_MAJOR} -ge 24 ]; then
+  # Since Ubuntu 24.04 dockers enforce a standard ubuntu user with
+  # uid:1000, but current compatibility strategy for the docker with
+  # Github Large Runners requires tipi-large user to have uid 1000
+  userdel ubuntu
+fi
+
 
 # INCLUDE+ common/Dockerfile.remote-build-ssh-access
 # Enable login with tipi generated ssh-rsa on Ubuntu 22 and onwards, use PubkeyAcceptedKeyTypes vs PubkeyAcceptedAlgorithms as it works on ubuntu 20.04 as well.
