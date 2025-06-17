@@ -38,9 +38,13 @@ jobs:
           sudo chown -R ${USER:=$(/usr/bin/id -run)} /usr/local/share/.tipi
           sudo chmod -R 777 /usr/local/share/.tipi
           curl -fSSL https://github.com/tipi-build/cli/releases/download/${{ env.version_in_development }}/tipi-${{ env.version_in_development }}-linux-x86_64.zip \
-            -o install/container/environments/linux-ubuntu2404.pkr.js/tipi-linux-x86_64.zip
-          cp install/container/ubuntu.sh install/container/environments/linux-ubuntu2404.pkr.js/ubuntu.sh
-          unzip -n install/container/environments/linux-ubuntu2404.pkr.js/tipi-linux-x86_64.zip
+            -o install/container/environments/linux-ubuntu-2404.pkr.js/tipi-linux-x86_64.zip
+          cp install/container/ubuntu.sh install/container/environments/linux-ubuntu-2404.pkr.js/ubuntu.sh
+          unzip -n install/container/environments/linux-ubuntu-2404.pkr.js/tipi-linux-x86_64.zip
           bin/tipi connect -v --dont-upgrade
 
-          bin/cmake-re -S install/container/ -DCMAKE_TOOLCHAIN_FILE=install/container/environments/linux-ubuntu2404.cmake -B build -vv
+          # Forward integrate current ubuntu.sh
+          sed -i 's#RUN curl -fsSL https://.*/ubuntu.sh -o ubuntu.sh#COPY ubuntu.sh /ubuntu.sh \nRUN curl -fsSL file:///ubuntu.sh -o ubuntu.sh#g' install/container/environments/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile
+          cat install/container/environments/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile
+
+          bin/cmake-re -S install/container/ -DCMAKE_TOOLCHAIN_FILE=install/container/environments/linux-ubuntu-2404.cmake -B build -vv
