@@ -1,0 +1,45 @@
+From e6f2f5c1372d1a8354e4dbe47e2bb6405bafb5f1 Mon Sep 17 00:00:00 2001
+From: "Damien Buhl (alias daminetreg)" <damien@tipi.build>
+Date: Tue, 17 Jun 2025 15:10:15 +0200
+Subject: [PATCH] :gear: temporarily FORCE new distro on old version + support
+ the build with the old version placeholder
+
+This commit needs to be reverted on v0.0.73 release with support for tipi_cli_local_version
+---
+ linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile | 6 ++++++
+ linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.pkr.js     | 2 +-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile b/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile
+index d82ba8b..a33b06e 100644
+--- a/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile
++++ b/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile
+@@ -1,6 +1,12 @@
+ ARG UBUNTU_24_04="ubuntu@sha256:04f510bf1f2528604dc2ff46b517dbdbb85c262d62eacc4aa4d3629783036096"
+ FROM ${UBUNTU_24_04}
+ 
++ENV TIPI_DISTRO_MODE=default
++ENV TIPI_DISTRO_JSON=https://raw.githubusercontent.com/tipi-build/distro/442a423e65f09ab0290609bc15f382585e89103e/distro.json
++ENV TIPI_DISTRO_JSON_SHA1=39ace975db0eb1f5a02318130fb425d21731ea5c
++RUN echo "TIPI_DISTRO_MODE=${TIPI_DISTRO_MODE}" >> /etc/environment
++RUN echo "TIPI_DISTRO_JSON=${TIPI_DISTRO_JSON}" >> /etc/environment
++RUN echo "TIPI_DISTRO_JSON_SHA1=${TIPI_DISTRO_JSON_SHA1}" >> /etc/environment
+ ENV TIPI_DISTRO_MODE=default
+ ENV TIPI_INSTALL_LEGACY_PACKAGES=OFF
+ ENV TIPI_INSTALL_SOURCE=file:///tipi-linux-x86_64.zip
+diff --git a/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.pkr.js b/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.pkr.js
+index 2739cb0..45939c3 100644
+--- a/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.pkr.js
++++ b/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.pkr.js
+@@ -3,7 +3,7 @@
+   "builders": [
+     {
+       "type": "docker",
+-      "image": "tipibuild/tipi-ubuntu-2404:{{tipi_cli_local_version}}",
++      "image": "tipibuild/tipi-ubuntu-2404:{{tipi_cli_version}}",
+       "commit": true
+     }
+   ],
+-- 
+2.39.2 (Apple Git-143)
+

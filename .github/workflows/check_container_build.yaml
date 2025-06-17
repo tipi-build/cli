@@ -43,6 +43,11 @@ jobs:
           unzip -n install/container/environments/linux-ubuntu-2404.pkr.js/tipi-linux-x86_64.zip
           bin/tipi connect -v --dont-upgrade
 
+          # Patch for unsupported feature in v0.0.72
+          pushd install/container/environments
+            git apply ../0001-gear-temporarily-FORCE-new-distro-on-old-version-sup.patch
+          popd
+
           # Forward integrate current ubuntu.sh
           sed -i 's#RUN curl -fsSL https://.*/ubuntu.sh -o ubuntu.sh#COPY ubuntu.sh /ubuntu.sh \nRUN curl -fsSL file:///ubuntu.sh -o ubuntu.sh#g' install/container/environments/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile
           cat install/container/environments/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile
