@@ -10,7 +10,9 @@ apt-get -y update && apt-get install -y \
   sudo \
   curl \
   unzip \
-  git 
+  git \
+  xz-utils \
+  bzip2 
 
 source /etc/lsb-release
 DISTRIB_RELEASE_MAJOR=`echo $DISTRIB_RELEASE | sed 's/\([0-9]\+\)\..*/\1/'`
