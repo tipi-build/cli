@@ -30,6 +30,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: '0'
+          submodules: true
 
       - name: cmake-re build docker image
         run: |

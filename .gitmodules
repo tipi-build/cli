@@ -1,3 +1,4 @@
-[submodule "install/container-build/environments/linux-ubuntu2004-wine-msvc.pkr.js/tipi-wine-msvc-tools"]
-	path = install/container/environments/linux-ubuntu2004-wine-msvc.pkr.js/tipi-wine-msvc-tools
-	url = https://github.com/tipi-build/tipi-wine-msvc-tools.git
+[submodule "install/container/environments"]
+	path = install/container/environments
+	url = ../../tipi-build/environments.git
+	branch = feature/environments-new
