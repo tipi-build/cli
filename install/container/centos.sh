@@ -112,7 +112,8 @@ echo "export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem" >>
 git config --system --add safe.directory "*"
 
 export TIPI_DISTRO_MODE=${TIPI_DISTRO_MODE:-default}
-su tipi -w TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE -c "cd ~ && curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/feature/release-v0.0.72/install/install_for_macos_linux.sh -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh"
+export TIPI_ENV_WHITELIST=${TIPI_ENV_WHITELIST:-TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE,TIPI_DISTRO_JSON,TIPI_DISTRO_JSON_SHA1}
+su tipi -w ${TIPI_ENV_WHITELIST} -c "cd ~ && curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/feature/release-v0.0.72/install/install_for_macos_linux.sh -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh"
 
 rm -rf ./main \
   && rm -rf /usr/local/share/.tipi/downloads/* \
