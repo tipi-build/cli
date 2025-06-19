@@ -119,3 +119,36 @@ jobs:
           cat install/container/environments/linux-custom.pkr.js/linux-custom.Dockerfile
 
           bin/cmake-re -S install/container/ -DCMAKE_TOOLCHAIN_FILE=install/container/environments/linux-custom.cmake -B build -vv
+
+
+  docker-build-centos-custom:
+    name: docker-build-centos-custom
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+          submodules: true
+
+      - name: cmake-re build docker image
+        run: |
+          sudo mkdir -p /usr/local/share/.tipi
+          sudo chown -R ${USER:=$(/usr/bin/id -run)} /usr/local/share/.tipi
+          sudo chmod -R 777 /usr/local/share/.tipi
+          curl -fSSL https://github.com/tipi-build/cli/releases/download/${{ env.version_in_development }}/tipi-${{ env.version_in_development }}-linux-x86_64.zip \
+            -o install/container/environments/linux-custom-almalinux-95.pkr.js/tipi-linux-x86_64.zip
+          cp install/container/centos.sh install/container/environments/linux-custom-almalinux-95.pkr.js/centos.sh
+          unzip -n install/container/environments/linux-custom-almalinux-95.pkr.js/tipi-linux-x86_64.zip
+          bin/tipi connect -v --dont-upgrade
+
+          # Patch for unsupported feature in v0.0.72
+          pushd install/container/environments
+            git apply ../0004-gear-temporarily-FORCE-new-distro-on-old-version-sup-custom-centos.patch
+          popd
+
+          # Forward integrate current centos.sh
+          sed -i 's#RUN curl -fsSL https://.*/centos.sh -o centos.sh#COPY centos.sh /centos.sh \nRUN curl -fsSL file:///centos.sh -o centos.sh#g' install/container/environments/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95.Dockerfile
+          cat install/container/environments/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95.Dockerfile
+
+          bin/cmake-re -S install/container/ -DCMAKE_TOOLCHAIN_FILE=install/container/environments/linux-custom-almalinux-95.cmake -B build -vv
+

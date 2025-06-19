@@ -22,7 +22,7 @@ index 2739cb0..45939c3 100644
    "builders": [
      {
        "type": "docker",
--      "image": "tipibuild/tipi-ubuntu-2404:{{tipi_cli_local_version}}",
+-      "image": "tipibuild/tipi-ubuntu-2404:{{cmake_re_source_hash}}",
 +      "image": "tipibuild/tipi-ubuntu-2404:{{tipi_cli_version}}",
        "commit": true
      }

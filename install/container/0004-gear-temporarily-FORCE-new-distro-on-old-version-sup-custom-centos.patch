@@ -1,0 +1,29 @@
+diff --git a/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95.Dockerfile b/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95.Dockerfile
+index 72fec18..0be1a8a 100644
+--- a/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95.Dockerfile
++++ b/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95.Dockerfile
+@@ -6,6 +6,11 @@ ENV TIPI_DISTRO_MODE=default
+ ENV TIPI_INSTALL_LEGACY_PACKAGES=OFF
+ ENV SUDO_GROUP=wheel
+ ENV TIPI_INSTALL_SOURCE=file:///tipi-linux-x86_64.zip
++ENV TIPI_DISTRO_JSON=https://raw.githubusercontent.com/tipi-build/distro/442a423e65f09ab0290609bc15f382585e89103e/distro.json
++ENV TIPI_DISTRO_JSON_SHA1=39ace975db0eb1f5a02318130fb425d21731ea5c
++RUN echo "TIPI_DISTRO_MODE=${TIPI_DISTRO_MODE}" >> /etc/environment
++RUN echo "TIPI_DISTRO_JSON=${TIPI_DISTRO_JSON}" >> /etc/environment
++RUN echo "TIPI_DISTRO_JSON_SHA1=${TIPI_DISTRO_JSON_SHA1}" >> /etc/environment
+ COPY /tipi-linux-x86_64.zip .
+ RUN curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/c14014db11342118f65ef95520a70f43c17ca453/install/container/centos.sh -o centos.sh && /bin/bash centos.sh
+ 
+diff --git a/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95pkr.js b/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95pkr.js
+index d12390f..e0c5679 100644
+--- a/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95pkr.js
++++ b/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95pkr.js
+@@ -3,7 +3,7 @@
+   "builders": [
+     {
+       "type": "docker",
+-      "image": "tipibuild/linux-custom-almalinux-95:{{cmake_re_source_hash}}",
++      "image": "tipibuild/linux-custom-almalinux-95:{{tipi_cli_version}}",
+       "commit": true
+     }
+   ],

@@ -22,7 +22,7 @@ index 6ec216e..14ec3f1 100644
    "builders": [
      {
        "type": "docker",
--      "image": "tipibuild/tipi-almalinux-95:{{tipi_cli_local_version}}",
+-      "image": "tipibuild/tipi-almalinux-95:{{cmake_re_source_hash}}",
 +      "image": "tipibuild/tipi-almalinux-95:{{tipi_cli_version}}",
        "commit": true
      }
