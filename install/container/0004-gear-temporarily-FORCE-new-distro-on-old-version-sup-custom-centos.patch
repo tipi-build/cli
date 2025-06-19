@@ -14,10 +14,10 @@ index 72fec18..0be1a8a 100644
  COPY /tipi-linux-x86_64.zip .
  RUN curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/c14014db11342118f65ef95520a70f43c17ca453/install/container/centos.sh -o centos.sh && /bin/bash centos.sh
  
-diff --git a/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95pkr.js b/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95pkr.js
+diff --git a/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95.pkr.js b/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95.pkr.js
 index d12390f..e0c5679 100644
---- a/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95pkr.js
-+++ b/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95pkr.js
+--- a/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95.pkr.js
++++ b/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95.pkr.js
 @@ -3,7 +3,7 @@
    "builders": [
      {
