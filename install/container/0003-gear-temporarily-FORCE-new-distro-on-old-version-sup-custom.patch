@@ -22,8 +22,8 @@ index 7306ada..ce0e09e 100644
    "builders": [
      {
        "type": "docker",
--      "image": "tipibuild/tipi-linux-custom:{{cmake_re_source_hash}}",
-+      "image": "tipibuild/tipi-linux-custom:{{tipi_cli_version}}",
+-      "image": "linux-custom:{{cmake_re_source_hash}}",
++      "image": "linux-custom:{{tipi_cli_version}}",
        "commit": true
      }
    ],

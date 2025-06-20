@@ -22,8 +22,8 @@ index d12390f..e0c5679 100644
    "builders": [
      {
        "type": "docker",
--      "image": "tipibuild/linux-custom-almalinux-95:{{cmake_re_source_hash}}",
-+      "image": "tipibuild/linux-custom-almalinux-95:{{tipi_cli_version}}",
+-      "image": "linux-custom-almalinux-95:{{cmake_re_source_hash}}",
++      "image": "linux-custom-almalinux-95:{{tipi_cli_version}}",
        "commit": true
      }
    ],
