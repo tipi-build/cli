@@ -1,9 +1,9 @@
-diff --git a/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile b/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile
-index 014ad79..ed0f259 100644
---- a/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile
-+++ b/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile
+diff --git a/linux-custom.pkr.js/linux-custom.Dockerfile b/linux-custom.pkr.js/linux-custom.Dockerfile
+index a72c3b1..54dd3d3 100644
+--- a/linux-custom.pkr.js/linux-custom.Dockerfile
++++ b/linux-custom.pkr.js/linux-custom.Dockerfile
 @@ -4,6 +4,11 @@ FROM ${UBUNTU_24_04}
- ENV TIPI_DISTRO_MODE=all
+ ENV TIPI_DISTRO_MODE=default
  ENV TIPI_INSTALL_LEGACY_PACKAGES=OFF
  ENV TIPI_INSTALL_SOURCE=file:///tipi-linux-x86_64.zip
 +ENV TIPI_DISTRO_JSON=https://raw.githubusercontent.com/tipi-build/distro/442a423e65f09ab0290609bc15f382585e89103e/distro.json
@@ -14,16 +14,16 @@ index 014ad79..ed0f259 100644
  COPY /tipi-linux-x86_64.zip .
  
  ARG DEBIAN_FRONTEND=noninteractive # avoid tzdata asking for configuration
-diff --git a/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.pkr.js b/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.pkr.js
-index 2739cb0..45939c3 100644
---- a/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.pkr.js
-+++ b/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.pkr.js
+diff --git a/linux-custom.pkr.js/linux-custom.pkr.js b/linux-custom.pkr.js/linux-custom.pkr.js
+index 7306ada..ce0e09e 100644
+--- a/linux-custom.pkr.js/linux-custom.pkr.js
++++ b/linux-custom.pkr.js/linux-custom.pkr.js
 @@ -3,7 +3,7 @@
    "builders": [
      {
        "type": "docker",
--      "image": "tipibuild/tipi-ubuntu-2404:{{cmake_re_source_hash}}",
-+      "image": "tipibuild/tipi-ubuntu-2404:{{tipi_cli_version}}",
+-      "image": "linux-custom:{{cmake_re_source_hash}}",
++      "image": "linux-custom:{{tipi_cli_version}}",
        "commit": true
      }
    ],
