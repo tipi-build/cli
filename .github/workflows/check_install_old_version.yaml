@@ -7,6 +7,10 @@ on:
   schedule:
     - cron : '0 0 * * *' # Every midnight check the released version of default branch
 
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   install-macos-version-24:
     name: install-macos-version-24

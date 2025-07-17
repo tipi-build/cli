@@ -1,0 +1,29 @@
+diff --git a/linux-almalinux-95.pkr.js/linux-almalinux-95.Dockerfile b/linux-almalinux-95.pkr.js/linux-almalinux-95.Dockerfile
+index 3c44c79..3b1ad1b 100644
+--- a/linux-almalinux-95.pkr.js/linux-almalinux-95.Dockerfile
++++ b/linux-almalinux-95.pkr.js/linux-almalinux-95.Dockerfile
+@@ -3,6 +3,11 @@ FROM ${ALMALINUX_9_5}
+ 
+ # Install tipi and cmake-re
+ ENV TIPI_DISTRO_MODE=all
++ENV TIPI_DISTRO_JSON=https://raw.githubusercontent.com/tipi-build/distro/442a423e65f09ab0290609bc15f382585e89103e/distro.json
++ENV TIPI_DISTRO_JSON_SHA1=39ace975db0eb1f5a02318130fb425d21731ea5c
++RUN echo "TIPI_DISTRO_MODE=${TIPI_DISTRO_MODE}" >> /etc/environment
++RUN echo "TIPI_DISTRO_JSON=${TIPI_DISTRO_JSON}" >> /etc/environment
++RUN echo "TIPI_DISTRO_JSON_SHA1=${TIPI_DISTRO_JSON_SHA1}" >> /etc/environment
+ ENV TIPI_INSTALL_LEGACY_PACKAGES=ON
+ ENV SUDO_GROUP=wheel
+ ENV TIPI_INSTALL_SOURCE=file:///tipi-linux-x86_64.zip
+diff --git a/linux-almalinux-95.pkr.js/linux-almalinux-95.pkr.js b/linux-almalinux-95.pkr.js/linux-almalinux-95.pkr.js
+index 6ec216e..14ec3f1 100644
+--- a/linux-almalinux-95.pkr.js/linux-almalinux-95.pkr.js
++++ b/linux-almalinux-95.pkr.js/linux-almalinux-95.pkr.js
+@@ -3,7 +3,7 @@
+   "builders": [
+     {
+       "type": "docker",
+-      "image": "tipibuild/tipi-almalinux-95:{{cmake_re_source_hash}}",
++      "image": "tipibuild/tipi-almalinux-95:{{tipi_cli_version}}",
+       "commit": true
+     }
+   ],
