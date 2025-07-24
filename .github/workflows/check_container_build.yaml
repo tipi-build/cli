@@ -22,7 +22,6 @@ env:
   TIPI_ACCESS_TOKEN: ${{ secrets.CLI_TIPI_TEST_USER_TIPI_ACCESS_TOKEN }}
   TIPI_REFRESH_TOKEN: ${{ secrets.CLI_TIPI_TEST_USER_TIPI_REFRESH_TOKEN }}
   TIPI_VAULT_PASSPHRASE: ${{ secrets.CLI_TIPI_TEST_USER_TIPI_VAULT_PASSPHRASE }}
-  TIPI_CONTAINER_BUILD_ADDITIONAL_PARAMETERS: "--build-context tipi=${{ github.workspace }}/install/container/additional-docker-context"
 
 
 jobs:
@@ -40,11 +39,10 @@ jobs:
           sudo mkdir -p /usr/local/share/.tipi
           sudo chown -R ${USER:=$(/usr/bin/id -run)} /usr/local/share/.tipi
           sudo chmod -R 777 /usr/local/share/.tipi
-          mkdir -p ./install/container/additional-docker-context
           curl -fSSL https://github.com/tipi-build/cli/releases/download/${{ env.version_in_development }}/tipi-${{ env.version_in_development }}-linux-x86_64.zip \
-            -o install/container/additional-docker-context/tipi-linux-x86_64.zip
+            -o install/container/environments/linux-ubuntu-2404.pkr.js/tipi-linux-x86_64.zip
           cp install/container/ubuntu.sh install/container/environments/linux-ubuntu-2404.pkr.js/ubuntu.sh
-          unzip -n install/container/additional-docker-context/tipi-linux-x86_64.zip
+          unzip -n install/container/environments/linux-ubuntu-2404.pkr.js/tipi-linux-x86_64.zip
           bin/tipi connect -v --dont-upgrade
 
           # Forward integrate current ubuntu.sh
@@ -69,11 +67,10 @@ jobs:
           sudo mkdir -p /usr/local/share/.tipi
           sudo chown -R ${USER:=$(/usr/bin/id -run)} /usr/local/share/.tipi
           sudo chmod -R 777 /usr/local/share/.tipi
-          mkdir -p install/container/additional-docker-context
           curl -fSSL https://github.com/tipi-build/cli/releases/download/${{ env.version_in_development }}/tipi-${{ env.version_in_development }}-linux-x86_64.zip \
-            -o install/container/additional-docker-context/tipi-linux-x86_64.zip
+            -o install/container/environments/linux-almalinux-95.pkr.js/tipi-linux-x86_64.zip
           cp install/container/centos.sh install/container/environments/linux-almalinux-95.pkr.js/centos.sh
-          unzip -n install/container/additional-docker-context/tipi-linux-x86_64.zip
+          unzip -n install/container/environments/linux-almalinux-95.pkr.js/tipi-linux-x86_64.zip
           bin/tipi connect -v --dont-upgrade
 
           # Forward integrate current centos.sh
@@ -97,11 +94,10 @@ jobs:
           sudo mkdir -p /usr/local/share/.tipi
           sudo chown -R ${USER:=$(/usr/bin/id -run)} /usr/local/share/.tipi
           sudo chmod -R 777 /usr/local/share/.tipi
-          mkdir -p install/container/additional-docker-context
           curl -fSSL https://github.com/tipi-build/cli/releases/download/${{ env.version_in_development }}/tipi-${{ env.version_in_development }}-linux-x86_64.zip \
-            -o install/container/additional-docker-context/tipi-linux-x86_64.zip
+            -o install/container/environments/linux-custom.pkr.js/tipi-linux-x86_64.zip
           cp install/container/ubuntu.sh install/container/environments/linux-custom.pkr.js/ubuntu.sh
-          unzip -n install/container/additional-docker-context/tipi-linux-x86_64.zip
+          unzip -n install/container/environments/linux-custom.pkr.js/tipi-linux-x86_64.zip
           bin/tipi connect -v --dont-upgrade
 
           # Forward integrate current ubuntu.sh
@@ -125,11 +121,10 @@ jobs:
           sudo mkdir -p /usr/local/share/.tipi
           sudo chown -R ${USER:=$(/usr/bin/id -run)} /usr/local/share/.tipi
           sudo chmod -R 777 /usr/local/share/.tipi
-          mkdir -p install/container/additional-docker-context
           curl -fSSL https://github.com/tipi-build/cli/releases/download/${{ env.version_in_development }}/tipi-${{ env.version_in_development }}-linux-x86_64.zip \
-            -o install/container/additional-docker-context/tipi-linux-x86_64.zip
+            -o install/container/environments/linux-custom-almalinux-95.pkr.js/tipi-linux-x86_64.zip
           cp install/container/centos.sh install/container/environments/linux-custom-almalinux-95.pkr.js/centos.sh
-          unzip -n install/container/additional-docker-context/tipi-linux-x86_64.zip
+          unzip -n install/container/environments/linux-custom-almalinux-95.pkr.js/tipi-linux-x86_64.zip
           bin/tipi connect -v --dont-upgrade
 
           # Forward integrate current centos.sh
