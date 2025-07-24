@@ -19,6 +19,9 @@
     - 🆕 `{{cmake_re_source_hash}}` pkr.js placeholder to permit environment rebuild on cmake-re version change
       - Overridable with `env:TIPI_FORCE_CMAKE_RE_SOURCE_HASH`
 
+### BugFix
+🐛 local client for containerized build knows properly link to the build/ folder via proper abi-hash computations when `-DCMAKE_DEFINE=VALUE` are passed  
+
 ### Others
 - ➡️ Automatic tipi upgrade fully disabled to permit better version control
 - ⚖️ Stability work, improved code coverage and test suites
