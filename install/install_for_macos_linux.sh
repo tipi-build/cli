@@ -22,10 +22,19 @@ info() {
   printf "\e[1;32m -> \e[0m $1 \n"
 }
 
-should_install_unzip() {
-  if [[ $(command -v unzip) ]]; then
+should_install() {
+ if [[ $(command -v $1) ]]; then
     return 1
   fi
+  return 0
+}
+
+request_install_permission() {
+  local cmd="$1"
+  local reason="$2"
+
+  info "The '$cmd' command is required ${reason}, we are installing $cmd with your package manager"
+  echo "Could you validate with your password ? 😇 "
 }
 
 ###
@@ -63,6 +72,29 @@ else
   info "Note: no supported priviledge elevation method (sudo or doas) found, trying to install without asking for elevation"
 fi
 
+
+if [ -f "/etc/redhat-release" ]; then
+  if should_install unzip; then
+    request_install_permission  "unzip" "to extract the downloaded file"
+    $PRIV_ELEV_CMD yum update -y && yum install unzip -y || abort "Error while installing unzip"
+  fi
+
+  if should_install xz; then
+    request_install_permission "xz" "for the installation of some of our tools"
+    $PRIV_ELEV_CMD yum update -y && yum install xz -y || abort "Error while installing xz"
+  fi
+
+  if should_install bzip2; then
+    request_install_permission "bzip2" "for the installation of some of our tools"
+    $PRIV_ELEV_CMD yum update -y && yum install bzip2 -y || abort "Error while installing bzip2"
+  fi
+
+  if should_install which; then
+    request_install_permission "which" "for the installation of some of our tools"
+    $PRIV_ELEV_CMD yum update -y && yum install which -y || abort "Error while installing which"
+  fi
+fi
+
 if [ -f "/etc/arch-release" ]; then
   pacman -Syu --noconfirm
   pacman -S --needed --noconfirm python
@@ -71,10 +103,11 @@ if [ -f "/etc/arch-release" ]; then
   pacman -S --needed --noconfirm openssh
 fi
 
-if should_install_unzip; then
-    info "The 'unzip' command is required to extract the downloaded file, we are installing unzip with your package manager"
-    echo "Could you validate with your password ? 😇 "
-    $PRIV_ELEV_CMD apt-get update -y && apt-get install unzip -y || abort "Error while installing unzip"
+if [ -f "/etc/lsb-release" ]; then
+  if should_install unzip; then
+      request_install_permission  "unzip" "to extract the downloaded file"
+      $PRIV_ELEV_CMD apt-get update -y && apt-get install unzip -y || abort "Error while installing unzip"
+  fi
 fi
 
 TMP_DOWNLOAD_PATH=~/tipi-$VERSION.zip
