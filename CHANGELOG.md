@@ -20,11 +20,19 @@
       - Overridable with `env:TIPI_FORCE_CMAKE_RE_SOURCE_HASH`
 
 ### BugFix
-🐛 local client for containerized build knows properly link to the build/ folder via proper abi-hash computations when `-DCMAKE_DEFINE=VALUE` are passed  
+🐛 local client for containerized build now properly link to the build/ folder via abi-hash computations when `-DCMAKE_DEFINE=VALUE` are passed  
 
 ### Others
 - ➡️ Automatic tipi upgrade fully disabled to permit better version control
 - ⚖️ Stability work, improved code coverage and test suites
+
+tipi-src:77d590775a500bb58db65c5f4fee4139347c98f4
+
+### Archives Checksums
+tipi-v0.0.73-windows-win64.zip:686C6090B1FE45B3001ED92F3DBB1A61900AAA87
+tipi-v0.0.73-linux-x86_64.zip:96952505FAA052A0CBE422A60E2B68FC23B5CB47
+tipi-v0.0.73-macOS.zip:BC6D84A317EE98D28F2AA0A53CE7DA77B1A923BD
+
 
 ## v0.0.72 - Iridescent Impala 🦌
 
