@@ -94,7 +94,7 @@ mkdir /run/user/1000 \
  && chown tipi-large:tipi-large /run/user/1000 \
  && chmod 0700 /run/user/1000
 
- RUN mkdir /run/user/108 \
+mkdir /run/user/108 \
  && chown tipi-rbe:tipi-rbe /run/user/108 \
  && chmod 0700 /run/user/108
 
@@ -113,7 +113,7 @@ git config --system --add safe.directory "*"
 
 export TIPI_DISTRO_MODE=${TIPI_DISTRO_MODE:-default}
 export TIPI_ENV_WHITELIST=${TIPI_ENV_WHITELIST:-TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE,TIPI_DISTRO_JSON,TIPI_DISTRO_JSON_SHA1}
-su tipi -w ${TIPI_ENV_WHITELIST} -c "cd ~ && curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/feature/release-v0.0.72/install/install_for_macos_linux.sh -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh"
+su tipi -c "cd ~ && curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/feature/release-v0.0.73/install/install_for_macos_linux.sh -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh"
 
 rm -rf ./main \
   && rm -rf /usr/local/share/.tipi/downloads/* \

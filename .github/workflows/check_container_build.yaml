@@ -18,10 +18,11 @@ env:
   TIPI_DISTRO_MODE: default
   TIPI_DISTRO_JSON_URL: https://raw.githubusercontent.com/tipi-build/distro/442a423e65f09ab0290609bc15f382585e89103e/distro.json
   TIPI_DISTRO_JSON_SHA1: 39ace975db0eb1f5a02318130fb425d21731ea5c
-  version_in_development: v0.0.72
+  version_in_development: v0.0.73
   TIPI_ACCESS_TOKEN: ${{ secrets.CLI_TIPI_TEST_USER_TIPI_ACCESS_TOKEN }}
   TIPI_REFRESH_TOKEN: ${{ secrets.CLI_TIPI_TEST_USER_TIPI_REFRESH_TOKEN }}
   TIPI_VAULT_PASSPHRASE: ${{ secrets.CLI_TIPI_TEST_USER_TIPI_VAULT_PASSPHRASE }}
+
 
 jobs:
   docker-build-2404:
@@ -43,11 +44,6 @@ jobs:
           cp install/container/ubuntu.sh install/container/environments/linux-ubuntu-2404.pkr.js/ubuntu.sh
           unzip -n install/container/environments/linux-ubuntu-2404.pkr.js/tipi-linux-x86_64.zip
           bin/tipi connect -v --dont-upgrade
-
-          # Patch for unsupported feature in v0.0.72
-          pushd install/container/environments
-            git apply ../0001-gear-temporarily-FORCE-new-distro-on-old-version-sup.patch
-          popd
 
           # Forward integrate current ubuntu.sh
           sed -i 's#RUN curl -fsSL https://.*/ubuntu.sh -o ubuntu.sh#COPY ubuntu.sh /ubuntu.sh \nRUN curl -fsSL file:///ubuntu.sh -o ubuntu.sh#g' install/container/environments/linux-ubuntu-2404.pkr.js/linux-ubuntu-2404.Dockerfile
@@ -77,11 +73,6 @@ jobs:
           unzip -n install/container/environments/linux-almalinux-95.pkr.js/tipi-linux-x86_64.zip
           bin/tipi connect -v --dont-upgrade
 
-          # Patch for unsupported feature in v0.0.72
-          pushd install/container/environments
-            git apply ../0002-gear-temporarily-FORCE-new-distro-on-old-version-sup-on-centos.patch
-          popd
-
           # Forward integrate current centos.sh
           sed -i 's#RUN curl -fsSL https://.*/centos.sh -o centos.sh#COPY centos.sh /centos.sh \nRUN curl -fsSL file:///centos.sh -o centos.sh#g' install/container/environments/linux-almalinux-95.pkr.js/linux-almalinux-95.Dockerfile
           cat install/container/environments/linux-almalinux-95.pkr.js/linux-almalinux-95.Dockerfile
@@ -109,11 +100,6 @@ jobs:
           unzip -n install/container/environments/linux-custom.pkr.js/tipi-linux-x86_64.zip
           bin/tipi connect -v --dont-upgrade
 
-          # Patch for unsupported feature in v0.0.72
-          pushd install/container/environments
-            git apply ../0003-gear-temporarily-FORCE-new-distro-on-old-version-sup-custom.patch
-          popd
-
           # Forward integrate current ubuntu.sh
           sed -i 's#RUN curl -fsSL https://.*/ubuntu.sh -o ubuntu.sh#COPY ubuntu.sh /ubuntu.sh \nRUN curl -fsSL file:///ubuntu.sh -o ubuntu.sh#g' install/container/environments/linux-custom.pkr.js/linux-custom.Dockerfile
           cat install/container/environments/linux-custom.pkr.js/linux-custom.Dockerfile
@@ -140,11 +126,6 @@ jobs:
           cp install/container/centos.sh install/container/environments/linux-custom-almalinux-95.pkr.js/centos.sh
           unzip -n install/container/environments/linux-custom-almalinux-95.pkr.js/tipi-linux-x86_64.zip
           bin/tipi connect -v --dont-upgrade
-
-          # Patch for unsupported feature in v0.0.72
-          pushd install/container/environments
-            git apply ../0004-gear-temporarily-FORCE-new-distro-on-old-version-sup-custom-centos.patch
-          popd
 
           # Forward integrate current centos.sh
           sed -i 's#RUN curl -fsSL https://.*/centos.sh -o centos.sh#COPY centos.sh /centos.sh \nRUN curl -fsSL file:///centos.sh -o centos.sh#g' install/container/environments/linux-custom-almalinux-95.pkr.js/linux-custom-almalinux-95.Dockerfile
