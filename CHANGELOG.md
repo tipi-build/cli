@@ -1,5 +1,22 @@
 # tipi.build cli : CHANGELOG
 
+
+## v0.0.75 - Idem​po​tent Icadyptes ❄️🐾
+### Features
+- ISO 646 support: alternative C++ operators and tokens in `--distributed` builds
+- C95 alternative tokens support
+
+### Bug Fix
+- Builds now respect the TIPI_DISTRO_MODE specified in the Dockerfile environment for container builds and remote builds on Linux.
+
+tipi-src:b636058ff74828f4ab49507abc50efa9f9eed85d
+
+### Archives Checksums
+tipi-v0.0.75-windows-win64.zip:028BC37C71A40E4DF85BBE2E6631178F967B41F7
+tipi-v0.0.75-linux-x86_64.zip:F85143D4E9016618E493B501D219913AAB4CFFA3
+tipi-v0.0.75-macOS.zip:807FDEC325F6E98092B7ED00B3A8A7A15A281BFC
+
+
 ## v0.0.74 - Hybrid Hedgehog 🦔
 ### Features
 - `cmake-re [--host] [--distributed]` runs independently of a tipi.build account (no `tipi connect` required)
