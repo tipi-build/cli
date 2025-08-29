@@ -1,5 +1,21 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.76 - Jovial Jaguar 🐆
+### Features
+- Added tipi-linker-driver to support remote linking with the cluster in distributed mode.
+- Improves observability and enables finer analysis of distributed builds.(Actions now include `ActionMnemonic`)
+
+### Bug Fix
+- Avoided cache poisoning caused by absolute paths to the `ar/ranlib driver` in `tipi_cmake_override_ar_ranlib.cmake`.
+- Moved `tipi_cmake_override_ar_ranlib.cmake` to the build folder to avoid cache poisoning
+
+tipi-src:c8ef0342431279b2a5923aa5e0b0f92ebf7754c4
+
+### Archives Checksums
+tipi-v0.0.76-windows-win64.zip:XXXX
+tipi-v0.0.76-linux-x86_64.zip:XXXX
+tipi-v0.0.76-macOS.zip:XXX
+
 
 ## v0.0.75 - Idem​po​tent Icadyptes ❄️🐾
 ### Features
