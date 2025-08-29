@@ -113,7 +113,7 @@ git config --system --add safe.directory "*"
 
 export TIPI_DISTRO_MODE=${TIPI_DISTRO_MODE:-default}
 export TIPI_ENV_WHITELIST=${TIPI_ENV_WHITELIST:-TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE,TIPI_DISTRO_JSON,TIPI_DISTRO_JSON_SHA1}
-su tipi -c "cd ~ && curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/feature/release-v0.0.75/install/install_for_macos_linux.sh -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh"
+su tipi -c "cd ~ && curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/feature/release-v0.0.76/install/install_for_macos_linux.sh -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh"
 
 rm -rf ./main \
   && rm -rf /usr/local/share/.tipi/downloads/* \
