@@ -2,12 +2,11 @@
 
 ## v0.0.76 - Jovial Jaguar 🐆
 ### Features
-- Added tipi-linker-driver to support remote linking with the cluster in distributed mode.
-- Improves observability and enables finer analysis of distributed builds.(Actions now include `ActionMnemonic`)
+- 🆕 `--distributed` linking for executable and shared object enabled by default
+- 📈 RBE Actions report mnemonics (`CcCompile`,`Link`,`Archive`...) improving distribution scheduling and downloadable profiling data of `--distributed` builds
 
 ### Bug Fix
-- Avoided cache poisoning caused by absolute paths to the `ar/ranlib driver` in `tipi_cmake_override_ar_ranlib.cmake`.
-- Moved `tipi_cmake_override_ar_ranlib.cmake` to the build folder to avoid cache poisoning
+- Fixed build-cache entry dependency to cmake-re version caused by absolute paths to the `tipi-ar|ranlib-driver`
 
 tipi-src:c8ef0342431279b2a5923aa5e0b0f92ebf7754c4
 
