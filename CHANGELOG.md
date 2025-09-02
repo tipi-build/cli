@@ -1,5 +1,20 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.76 - Jovial Jaguar 🐆
+### Features
+- 🆕 `--distributed` linking for executable and shared object enabled by default
+- 📈 RBE Actions report mnemonics (`CcCompile`,`Link`,`Archive`...) improving distribution scheduling and downloadable profiling data of `--distributed` builds
+
+### Bug Fix
+- Fixed build-cache entry dependency to cmake-re version caused by absolute paths to the `tipi-ar|ranlib-driver`
+
+tipi-src:c8ef0342431279b2a5923aa5e0b0f92ebf7754c4
+
+### Archives Checksums
+tipi-v0.0.76-windows-win64.zip:A5E6D60D6E0B7D079CBB990B2F07E4C24FA09CA2
+tipi-v0.0.76-linux-x86_64.zip:07AC052A19C10B9E1A21A5B367883F446B60C560
+tipi-v0.0.76-macOS.zip:D2FAEAD0142C08CC8EFECB8851C8151D19FABD8F
+
 
 ## v0.0.75 - Idem​po​tent Icadyptes ❄️🐾
 ### Features
