@@ -1,5 +1,24 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.77 - Kinetic Kingfisher
+### Features
+🆕 updated ninja from 1.11.1 to 1.13.1
+  - Fixes .ninja_log file corruption after reaching a few hundred MB
+  - Ninja now automatically joins a GNU Make jobserver as a client
+  - NINJA_STATUS supports ANSI color escape codes, percentage and ETA
+  - More details in ninja CHANGELOG
+
+🆕 `env:TIPI_SOURCE_MAP` ON by default on `--host` builds, ensuring paths in compiler error points to the sources and not the cmake-re hermetic mirror
+  - Previously clicking on a compiler error would point to the file in the hermetic mirror which gets replaced on each build.
+  - Compiler commands printed when `env:VERBOSE=1` is set are still copy/pastable and pointing to the mirror to re-run individual compilation to diagnose errors. 
+
+tipi-src:acfc2b4e0c9743b5c122afceb6ce5cb3c278dec9
+
+### Archives Checksums
+tipi-v0.0.77-windows-win64.zip:0C00557BD94A4CC7425533A20262BB0E01C51EF3
+tipi-v0.0.77-linux-x86_64.zip:60FAB88BC785A7D59EF24189D11E70B96E1619DA
+tipi-v0.0.77-macOS.zip:7B72CBFCF9656704A68EFD412DD5E091C069FC1C
+
 ## v0.0.76 - Jovial Jaguar 🐆
 ### Features
 - 🆕 `--distributed` linking for executable and shared object enabled by default
