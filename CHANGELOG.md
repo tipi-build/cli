@@ -1,6 +1,6 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.77 - Kinetic Kingfisher
+## v0.0.77 - Kinetic Kingfisher 🪶
 ### Features
 🆕 updated ninja from 1.11.1 to 1.13.1
   - Fixes .ninja_log file corruption after reaching a few hundred MB
