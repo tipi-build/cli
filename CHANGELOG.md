@@ -1,5 +1,25 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.78 - Luminous Lynx ✨🐱
+
+### Features
+
+- 🆕 enabled additional source scan and compiler capability cache for `--distributed` builds to reduce CPU load on repeated builds
+- more flexible handling of `env:RBE_platform` (now allows values other than `container-image` to be provided by the user while retaining `cmake-re` image handling capabilities)
+
+### Bug Fix
+
+- improved shipping of tipi-as-a-launcher on application start to avoid repeated checksum computation
+- improved lifecycle handling of remote execution connector to allow for tear-down operations to complete (profiling info, logs and caches)
+
+tipi-src:3e16b3f42834819672197ce8f7af51ac34374b54
+
+### Archives Checksums
+tipi-v0.0.78-windows-win64.zip:12093156E71DCBBC9D26FAA461B165F1C9EB2BB1
+tipi-v0.0.78-linux-x86_64.zip:561D8171CC5F8068B51C872D8D8D702276D4C28B
+tipi-v0.0.78-macOS.zip:D2C67DFCFB5E53A1E87C1D67D5730F6AC2FCCE71
+
+
 ## v0.0.77 - Kinetic Kingfisher 🪶
 ### Features
 🆕 updated ninja from 1.11.1 to 1.13.1
