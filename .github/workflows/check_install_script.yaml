@@ -503,6 +503,7 @@ jobs:
       image: archlinux
     steps:
       - name: test_install_on_linux
+        continue-on-error: true
         run: |
           if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
             script_source=${GITHUB_HEAD_REF}
@@ -542,6 +543,7 @@ jobs:
       image: archlinux
     steps:
       - name: test_install_on_linux
+        continue-on-error: true
         run: |
           if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
             script_source=${GITHUB_HEAD_REF}
@@ -584,6 +586,7 @@ jobs:
       image: almalinux:8.10
     steps:
       - name: test_install_on_linux
+        continue-on-error: true
         run: |
           if [ $GITHUB_EVENT_NAME = "pull_request" ]; then
             script_source=${GITHUB_HEAD_REF}

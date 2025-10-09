@@ -27,7 +27,7 @@ env:
 jobs:
   docker-build-2404:
     name: docker-build-2404
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-8-cores
     steps:
       - uses: actions/checkout@v2
         with:
@@ -54,8 +54,7 @@ jobs:
 
   docker-build-centos:
     name: docker-build-centos
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-latest-8-cores
     steps:
       - uses: actions/checkout@v2
         with:
@@ -82,7 +81,7 @@ jobs:
 
   docker-build-linux-custom:
     name: docker-build-linux-custom
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-8-cores
     steps:
       - uses: actions/checkout@v2
         with:
@@ -109,7 +108,7 @@ jobs:
 
   docker-build-centos-custom:
     name: docker-build-centos-custom
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-8-cores
     steps:
       - uses: actions/checkout@v2
         with:
