@@ -12,6 +12,7 @@ apt-get -y update && apt-get install -y \
   unzip \
   git \
   xz-utils \
+  ca-certificates \
   bzip2 
 
 source /etc/lsb-release
@@ -21,7 +22,6 @@ if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
   #INCLUDE+ common/Dockerfile.apt-install-required
   apt-get -y update && apt-get install -y \
     locales \
-    ca-certificates \
     build-essential \
     autotools-dev \
     autoconf \

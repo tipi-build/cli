@@ -18,6 +18,7 @@ yum update -y && yum makecache \
   python3 \
   which \
   xz \
+  ca-certificates \
   bzip2
 
  # python3 which xz bzip2 are required for tipi build system (emsdk)
@@ -26,7 +27,6 @@ yum update -y && yum makecache \
 if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
  # INCLUDE+ common/Dockerfile.yum-install-required
   yum install -y systemd \
-    ca-certificates \
     openssh-clients \
     cmake3 \
     && yum groupinstall -y 'Development Tools' \
