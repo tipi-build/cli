@@ -1,5 +1,23 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.79 - Melodic Meerkat 🎵🐾
+
+### Features
+
+- Added automatic generation of `RBE_invocation_id` and tagging of remote actions with `cmake-re` tool name for improved traceability and metrics.
+- The Linux release binaries of tipi and cmake-re are full statically linked now to improve compatibility with older Linux distributions
+
+### Bug Fix
+
+- Optimized scandeps worker pool size to reduce CPU contention and prevent reclient latency under heavy load.
+
+tipi-src:fdc158d46c3c6db2700b67261212f448c88ce3a0
+
+### Archives Checksums
+tipi-v0.0.79-windows-win64.zip:B3E528E27A5906D40CF27CC62179C5672FEDF1AF
+tipi-v0.0.79-linux-x86_64.zip:874FE9C70E0C46F298872E3025C8BC3ADE992B1C
+tipi-v0.0.79-macOS.zip:9F42A25ECD3811F63C0BEEF35EDB5221C415556A
+
 ## v0.0.78 - Luminous Lynx ✨🐱
 
 ### Features
