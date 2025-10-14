@@ -4,11 +4,17 @@
 
 set -e
 
+should_install() {
+ if [[ $(command -v $1) ]]; then
+    return 1
+  fi
+  return 0
+}
+
 yum update -y && yum makecache \
   && yum install -y openssh-server \
   sudo \
   unzip \
-  git \
   util-linux-ng \
   util-linux-user \
   libuser \
@@ -22,6 +28,11 @@ yum update -y && yum makecache \
   bzip2
 
  # python3 which xz bzip2 are required for tipi build system (emsdk)
+
+
+if should_install git; then
+  yum install -y git
+fi
 
 
 if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
