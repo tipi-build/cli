@@ -5,15 +5,29 @@
 set -e
 
 # INCLUDE+ common/Dockerfile.apt-install-required
+
+should_install() {
+ if [[ $(command -v $1) ]]; then
+    return 1
+  fi
+  return 0
+}
+
 apt-get -y update && apt-get install -y \
   openssh-server \
   sudo \
   curl \
   unzip \
-  git \
   xz-utils \
   ca-certificates \
   bzip2 
+
+
+
+if should_install git; then
+  apt-get install -y git
+fi
+
 
 source /etc/lsb-release
 DISTRIB_RELEASE_MAJOR=`echo $DISTRIB_RELEASE | sed 's/\([0-9]\+\)\..*/\1/'`
