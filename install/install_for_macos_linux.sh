@@ -41,7 +41,7 @@ request_install_permission() {
 # impl.
 ### 
 
-VERSION="${TIPI_INSTALL_VERSION:-v0.0.79}"
+VERSION="${TIPI_INSTALL_VERSION:-v0.0.80}"
 INSTALL_FOLDER=/usr/local
 
 if [[ -z "${TIPI_INSTALL_SOURCE}" ]]; then
