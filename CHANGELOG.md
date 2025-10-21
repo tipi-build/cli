@@ -1,5 +1,24 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.80 - Nimble Newt 🦎
+
+### Features
+
+- Upgraded bundled CMake from 3.27.6 to 3.31.9
+
+### Bug Fix
+
+- Removed unnecessary Github API calls to fetch cmake-re release versions during `--distributed` environments generalization.
+  - These data were used to expand old placeholders that aren't used anymore like `{{tipi_version_hash}}`
+
+tipi-src:66d2866abe84e5bbe15c42b5743d627ff45fc420
+
+### Archives Checksums
+tipi-v0.0.80-windows-win64.zip:3DAE0C7DE3A7DB21E1547F48647F8CA024D88368
+tipi-v0.0.80-linux-x86_64.zip:2189683AC53413F5D6746763F404AB71E8CA5C42
+tipi-v0.0.80-macOS.zip:71EC17808CE78F28A175AF282B7A6C3ACD485193
+
+
 ## v0.0.79 - Melodic Meerkat 🎵🐾
 
 ### Features
