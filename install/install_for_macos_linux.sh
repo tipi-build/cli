@@ -118,13 +118,15 @@ curl -fSL $TIPI_URL --output $TMP_DOWNLOAD_PATH || wget -q $TIPI_URL -O $TMP_DOW
 
 info "Installing tipi in $INSTALL_FOLDER"
 $PRIV_ELEV_CMD unzip -o $TMP_DOWNLOAD_PATH -d $INSTALL_FOLDER -x LICENSE
+info "unzip done"
 
 if [ $? -eq 0 ]; then
     tipi_full_path=$INSTALL_FOLDER/bin/tipi
     cmake_full_path=$INSTALL_FOLDER/bin/cmake-re
-
     for file in "$tipi_full_path" "$cmake_full_path"; do
       if [ -f "$file" ]; then
+      info "work on $file"
+
         $PRIV_ELEV_CMD chown "${USER:=$(id -run)}" "$file"
         $PRIV_ELEV_CMD chmod a+x,u+w "$file"
       fi
