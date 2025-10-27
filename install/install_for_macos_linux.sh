@@ -117,6 +117,8 @@ info "Saving archive to: $TMP_DOWNLOAD_PATH"
 curl -fSL $TIPI_URL --output $TMP_DOWNLOAD_PATH || wget -q $TIPI_URL -O $TMP_DOWNLOAD_PATH || abort "Could not download tipi"
 
 info "Installing tipi in $INSTALL_FOLDER with TMP_DOWNLOAD_PATH $TMP_DOWNLOAD_PATH and INSTALL_FOLDER $INSTALL_FOLDER "
+
+info "command is $PRIV_ELEV_CMD unzip -o $TMP_DOWNLOAD_PATH -d $INSTALL_FOLDER -x LICENSE"
 $PRIV_ELEV_CMD unzip -o $TMP_DOWNLOAD_PATH -d $INSTALL_FOLDER -x LICENSE
 info "unzip done"
 
