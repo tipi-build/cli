@@ -4,7 +4,8 @@
 
 ### Features
 
-- 🆕 `linux-ubuntu-musl-2404` toolchain allows fully static builds for linux binaries without dependency to the system's C runtime library 
+- 🆕 [`linux-ubuntu-musl-2404`](https://github.com/tipi-build/environments/commit/973fcec09f28d0599dda338f36ffe6a1138ecb4a) : New CMake RE environment enabling fully static, system libc independent Linux builds. 
+  - With musl no more GLIBC mismatch errors like `libc.so.6: version 'GLIBC_2.14' not found`.
 
 ### Bug Fix
 
