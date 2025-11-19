@@ -1,5 +1,23 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.81 - Opalescent Otter 🦦
+
+### Features
+
+- 🆕 [`linux-ubuntu-musl-2404`](https://github.com/tipi-build/environments/commit/973fcec09f28d0599dda338f36ffe6a1138ecb4a) : New CMake RE environment enabling fully static, system libc independent Linux builds. 
+  - With musl no more GLIBC mismatch errors like `libc.so.6: version 'GLIBC_2.14' not found`.
+
+### Bug Fix
+
+- Improved SSL certificate discovery to support Amazon Linux 2, Amazon Linux 2003, and additional Linux distributions.
+
+tipi-src:56ab93570aa00d0a17149657d473bbc67c1c1318
+
+### Archives Checksums
+tipi-v0.0.81-windows-win64.zip:36C6FCA9E48B553D6D396F1DC304D6751053F203
+tipi-v0.0.81-linux-x86_64.zip:138A101ECBB85777DAC6270671A928B19223AD9F
+tipi-v0.0.81-macOS.zip:4237D5D888661FA45684E925AA518B64B09B38BD
+
 ## v0.0.80 - Nimble Newt 🦎
 
 ### Features
