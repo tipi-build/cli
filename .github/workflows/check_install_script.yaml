@@ -73,7 +73,10 @@ jobs:
           pathsToTest_negative=(~/.tipi/clang/*/bin/clang
              /usr/local/share/.tipi/emsdk/*/emsdk
              /usr/local/share/.tipi/go/*/bin/go
-             /usr/local/share/.tipi/jdk/*/bin/jar)
+             /usr/local/share/.tipi/jdk/*/bin/jar
+             /usr/local/lib/cmake-re.cpp.o
+             /usr/local/lib/libz.a
+             /usr/local/lib/*.a)
 
           for element in "${pathsToTest_negative[@]}"
           do
@@ -151,7 +154,10 @@ jobs:
           pathsToTest_negative=(~/.tipi/clang/*/bin/clang
              /usr/local/share/.tipi/emsdk/*/emsdk
              /usr/local/share/.tipi/go/*/bin/go
-             /usr/local/share/.tipi/jdk/*/Contents/Home/bin/jar)
+             /usr/local/share/.tipi/jdk/*/Contents/Home/bin/jar
+             /usr/local/lib/cmake-re.cpp.o
+             /usr/local/lib/libz.a
+             /usr/local/lib/*.a)
 
           for element in "${pathsToTest_negative[@]}"
           do
