@@ -11,8 +11,7 @@ should_install() {
   return 0
 }
 
-yum update -y && yum makecache \
-  && yum install -y openssh-server \
+yum install -y openssh-server \
   sudo \
   unzip \
   util-linux-ng \
