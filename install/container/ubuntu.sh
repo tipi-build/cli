@@ -171,7 +171,7 @@ if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
 fi
 
 # INCLUDE+ common/Dockerfile.install-tipi
-su tipi -c 'cd ~ && curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/bc36dfbb973d7ae1f7fe6aa8f548b54cb2c25016/install/install_for_macos_linux.sh -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh'
+su tipi -c 'cd ~ && curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/b84b0d9b3cb667d365dfb0d974bda8ad5fb5c2e9/install/install_for_macos_linux.sh -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh'
 
 rm -rf ./main \
   && rm -rf /usr/local/share/.tipi/downloads/* \
