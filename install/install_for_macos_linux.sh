@@ -76,22 +76,22 @@ fi
 if [ -f "/etc/redhat-release" ]; then
   if should_install unzip; then
     request_install_permission  "unzip" "to extract the downloaded file"
-    $PRIV_ELEV_CMD yum update -y && yum install unzip -y || abort "Error while installing unzip"
+    $PRIV_ELEV_CMD yum install unzip -y || abort "Error while installing unzip"
   fi
 
   if should_install xz; then
     request_install_permission "xz" "for the installation of some of our tools"
-    $PRIV_ELEV_CMD yum update -y && yum install xz -y || abort "Error while installing xz"
+    $PRIV_ELEV_CMD yum install xz -y || abort "Error while installing xz"
   fi
 
   if should_install bzip2; then
     request_install_permission "bzip2" "for the installation of some of our tools"
-    $PRIV_ELEV_CMD yum update -y && yum install bzip2 -y || abort "Error while installing bzip2"
+    $PRIV_ELEV_CMD yum install bzip2 -y || abort "Error while installing bzip2"
   fi
 
   if should_install which; then
     request_install_permission "which" "for the installation of some of our tools"
-    $PRIV_ELEV_CMD yum update -y && yum install which -y || abort "Error while installing which"
+    $PRIV_ELEV_CMD yum install which -y || abort "Error while installing which"
   fi
 fi
 
