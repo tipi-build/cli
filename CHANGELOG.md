@@ -1,5 +1,18 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.82 - Phantom Panter 👻🐆
+
+### Features
+- 🆕 Introducing a **portable** release package `cmake-re-portable-v0.0.82-<platform>.zip` that contains all required binaries from the minimal cmake-re distro (compiler launchers for remote caching and execution) directly.
+
+tipi-src: 61e9cf147c208b11d56e303833ab73b318d4c2e7
+
+### Archives Checksums
+tipi-v0.0.82-windows-win64.zip:5D29B60940539392CF9E0F461A0E1D7208915486
+tipi-v0.0.82-linux-x86_64.zip:B6BC950AB72A4AA4ED1116432716B385CD48773F
+tipi-v0.0.82-macOS.zip:8BBD2EFE1EC512330B491A2BD612C21C868A9797
+
+
 ## v0.0.81 - Opalescent Otter 🦦
 
 ### Features
