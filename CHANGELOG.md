@@ -1,5 +1,25 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.83 - Quirky Quokka 🐾
+
+### Features
+
+- Configurable tipi home directory by using the environment variable in host build: `TIPI_HOME_DIR`. 
+- Disable automatic download of tools from the distro feature using the environment variable: `TIPI_DISTRO_MODE=none`. Tools are instead found in your host `PATH`. 
+
+### Bug Fix
+
+- reclient properly reports file not found errors
+- reclient forwards the build metadata to the RBE cluster when remote headers are used
+- cmake-re reports an error when re-using a non-empty build folder target instead of a symlink.
+
+tipi-src: 77aa7eba8e9ec3b915f0d7b0eeddae06599fc9e5
+
+### Archives Checksums
+tipi-v0.0.83-windows-win64.zip:3E12B36B57BD93A361070EB22965BE16851139ED
+tipi-v0.0.83-linux-x86_64.zip:826E81CD87C3BE7B4EFF867CE5717F97A5ECCAA6
+tipi-v0.0.83-macOS.zip:285759D237EBD72BCA5BB3F0DF307F1C05FA8E7A
+
 ## v0.0.82 - Phantom Panter 👻🐆
 
 ### Features
