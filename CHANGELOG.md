@@ -1,5 +1,24 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.84 - Radiant Raccoon 🦝
+
+### Features
+
+- 🆕 `export TIPI_REPO_MIRROR_NEW_PATH=ON`: Enables significantly faster source mirroring operations (auto-hermeticity). 
+- 🆕 `export TIPI_FAST_TIPIIGNORE_SEARCH=ON`: Enables better .tipiignore matching, improving drastically source mirroring of [HFC](https://github.com/tipi-build/hfc) thirdparty source cache and of ignored build folders
+
+- Better defaults for `--distributed` builds for remote execution + connection reliability, that drastically improves performance with EngFlow RBE.
+  - Ensure high compression rates for binary cache downloads/upload (`RBE_compression_threshold=0, RBE_use_batches=false`)
+  - Reliable connection management with Keepalives as HTTP2 Pings and TCP_USER_TIMEOUT (`RBE_grpc_keepalive_timeout=5s`)
+  - Cancellation of long running operations (e.g. Compilation, Linking) now happens at the application level and not at the protocol level (`RBE_rpc_timeouts="BatchUpdateBlobs=0,BatchReadBlobs=0,Read=0,Write=0,GetTree=0,default=0"`)
+
+tipi-src: 543c0439b3b08c071f49f0e8d4313d0c0cb0d779
+
+### Archives Checksums
+tipi-v0.0.84-windows-win64.zip:E8E47213522D91711997F7E4322C3F6045F9EE54
+tipi-v0.0.84-linux-x86_64.zip:BD6C17B8742BDCF3675F0D2ECCA18A054A129D07
+tipi-v0.0.84-macOS.zip:2C8164E232B2064AADCCFB862E11A402D1C34C7B
+
 ## v0.0.83 - Quirky Quokka 🐾
 
 ### Features
