@@ -1,5 +1,24 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.85 - Sunny Seal ☀️🦭
+
+### Features
+
+- enable by default `TIPI_REPO_MIRROR_NEW_PATH` (TIPI-1753)
+- enable by default `TIPI_FAST_TIPIIGNORE_SEARCH` (TIPI-1753)
+
+### Bug Fix
+
+- Prevent misleading “No such file or directory” errors when files are removed during mirroring (TIPI-1753)
+- Improve reliability of repo mirroring by avoiding conflicts with concurrent git gc processes (TIPI-1713)
+
+tipi-src: 312078a2580fc5fbb63a632678bee857cd5e8bc4
+
+### Archives Checksums
+tipi-v0.0.85-windows-win64.zip:343CDE2CF1E6A7B094F22A434AC7397258F2531D
+tipi-v0.0.85-linux-x86_64.zip:1CAC819ADFD9C5CF3B77D13A71D8794C6F49BFA0
+tipi-v0.0.85-macOS.zip:84FE5F0DA54EB8C6554E66BE4C6FC51FAF5358B6
+
 ## v0.0.84 - Radiant Raccoon 🦝
 
 ### Features
