@@ -74,8 +74,8 @@ if [ ${DISTRIB_RELEASE_MAJOR} -le 16 ]; then
     && rm -rf /var/lib/apt/lists/*
 
 
-
-  wget https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.gz  \
+  TIPI_UTIL_LINUX_SOURCES_MIRROR=${TIPI_UTIL_LINUX_SOURCES_MIRROR:-https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/v2.39/util-linux-2.39.tar.gz}
+  wget "${TIPI_UTIL_LINUX_SOURCES_MIRROR}" \
     && tar xvzf util-linux-2.39.tar.gz  \
     && cd util-linux-2.39/  \
     && ./configure \
@@ -164,6 +164,7 @@ git config --system --add safe.directory "*"
 
 export TIPI_DISTRO_MODE=${TIPI_DISTRO_MODE:-default}
 export TIPI_ENV_WHITELIST=${TIPI_ENV_WHITELIST:-TIPI_INSTALL_SOURCE,TIPI_DISTRO_MODE,TIPI_DISTRO_JSON,TIPI_DISTRO_JSON_SHA1}
+
 # INCLUDE+ common/Dockerfile.rustup
 if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
   su tipi -w ${TIPI_ENV_WHITELIST} -c "cd ~ && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup.sh && sh rustup.sh -v -y --no-modify-path"
@@ -171,7 +172,8 @@ if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
 fi
 
 # INCLUDE+ common/Dockerfile.install-tipi
-su tipi -c 'cd ~ && curl -fsSL https://raw.githubusercontent.com/tipi-build/cli/v0.0.85/install/install_for_macos_linux.sh -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh'
+TIPI_CLIENT_INSTALL_SCRIPT_SOURCE=${TIPI_CLIENT_INSTALL_SCRIPT_SOURCE:-https://raw.githubusercontent.com/tipi-build/cli/v0.0.85/install/install_for_macos_linux.sh}
+su tipi -c "cd ~ && curl -fsSL ${TIPI_CLIENT_INSTALL_SCRIPT_SOURCE} -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh"
 
 rm -rf ./main \
   && rm -rf /usr/local/share/.tipi/downloads/* \
