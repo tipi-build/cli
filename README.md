@@ -29,6 +29,9 @@ Available as command line tool or vscode plugin !
 
 Paste that in a Linux shell prompt or in a macOS Terminal.
 
+### Install from a self-hosted installation mirror setup without outbound internet access
+See [Providing a self-hosted installation mirror for `cmake-re`](./INSTALL_LOCAL_MIRROR.md)
+
 ### Install on Windows 10
 ```
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls, [Net.SecurityProtocolType]::Tls11, [Net.SecurityProtocolType]::Tls12, [Net.SecurityProtocolType]::Ssl3
