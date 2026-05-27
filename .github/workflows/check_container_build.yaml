@@ -157,6 +157,8 @@ jobs:
 
       - name: cmake-re offline mirror build
         run: |
+          set -euo pipefail
+
           # Manually copy our installs script to test the current version
           TOOLS_MIRROR_FOLDER=$PWD/local_tipi_install_mirrror/
           mkdir -p $TOOLS_MIRROR_FOLDER
@@ -184,13 +186,12 @@ jobs:
 
           cat install/container/environments/linux-offline.pkr.js/linux-offline.Dockerfile
 
-          BUILD_CONTAINER_OUTPUT=$(awk '
-            /^### Build Container$/ { in_section=1; next }
-            in_section && /^```bash$/ { in_code=1; next }
-            in_code && /^```$/ { exit }
-            in_code { print } ' INSTALL_LOCAL_MIRROR.md | bash)
+          # build the container
+          docker build --platform linux/amd64 install/container/environments/linux-offline.pkr.js/ -f install/container/environments/linux-offline.pkr.js/linux-offline.Dockerfile -t linux-offline:latest --network=host
 
-          echo -n $BUILD_CONTAINER_OUTPUT
+          # stop the server once you're done
+          docker stop -t0 package-mirroring-example-server
+
 
   docker-build-linux-offline-almalinux-95:
     name: docker-build-linux-offline-almalinux-95
@@ -203,6 +204,8 @@ jobs:
 
       - name: cmake-re offline mirror build almalinux-95 
         run: |
+          set -euo pipefail
+
           # Manually copy our installs script to test the current version
           TOOLS_MIRROR_FOLDER=$PWD/local_tipi_install_mirrror/
           mkdir -p $TOOLS_MIRROR_FOLDER
@@ -228,10 +231,8 @@ jobs:
 
           cat install/container/environments/linux-offline-almalinux-95.pkr.js/linux-offline-almalinux-95.Dockerfile
 
-          BUILD_CONTAINER_OUTPUT=$(awk '
+          awk '
             /^### Build Container$/ { in_section=1; next }
             in_section && /^```bash$/ { in_code=1; next }
             in_code && /^```$/ { exit }
-            in_code { print } ' INSTALL_LOCAL_MIRROR.md | bash)
-
-          echo -n $BUILD_CONTAINER_OUTPUT
+            in_code { print } ' INSTALL_LOCAL_MIRROR.md | bash

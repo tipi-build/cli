@@ -65,7 +65,7 @@ A locally usable version of TIPI_DISTRO_JSON can be downloaded with all the requ
     TIPI_DISTRO_MODE - (default: "default")
     TIPI_INSTALL_SOURCE - url to release package (default: latest from offical cmake-re release)
     TIPI_CLIENT_INSTALL_SCRIPT_SOURCE - url to client install script (default: latest from offical cmake-re release)
-    TIPI_CONTAINER_INSTALL_SCRIPT - url to container install script (default: latest from offical cmake-re release)
+    TIPI_CONTAINER_INSTALL_SCRIPT - url to container install script (default: centos.sh latest from offical cmake-re release)
 ```
 
 ## Working Example: Build a docker from an offline mirror
@@ -92,7 +92,7 @@ docker run --name package-mirroring-example-server -d --rm -v ${TOOLS_MIRROR_FOL
 ### Build Container
 ```bash
 # build the container
-docker build --platform linux/amd64 install/container/environments/linux-offline.pkr.js/ -f install/container/environments/linux-offline.pkr.js/linux-offline.Dockerfile -t linux-offline:latest --network=host
+docker build --platform linux/amd64 install/container/environments/linux-offline-almalinux-95.pkr.js/ -f install/container/environments/linux-offline-almalinux-95.pkr.js/linux-offline-almalinux-95.Dockerfile -t linux-offline-almalinux-95:latest --network=host
 
 # stop the server once you're done
 docker stop -t0 package-mirroring-example-server
