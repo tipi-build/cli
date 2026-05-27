@@ -162,6 +162,9 @@ jobs:
           mkdir -p $TOOLS_MIRROR_FOLDER
           cp -v install/install_for_macos_linux.sh ${TOOLS_MIRROR_FOLDER}
           cp -v install/container/*.sh ${TOOLS_MIRROR_FOLDER}
+          
+          # Ubuntu Mode (our local copy will still be used as the script doesn't overwrite)
+          export TIPI_CONTAINER_INSTALL_SCRIPT=https://raw.githubusercontent.com/tipi-build/cli/master/install/container/ubuntu.sh
 
           DISTRO_DOWNLOAD_OUTPUT=$(awk '
             /^### Setup local mirror$/ { in_section=1; next }
@@ -189,4 +192,46 @@ jobs:
 
           echo -n $BUILD_CONTAINER_OUTPUT
 
+  docker-build-linux-offline-almalinux-95:
+    name: docker-build-linux-offline-almalinux-95
+    runs-on: ubuntu-latest-8-cores
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+          submodules: true
 
+      - name: cmake-re offline mirror build almalinux-95 
+        run: |
+          # Manually copy our installs script to test the current version
+          TOOLS_MIRROR_FOLDER=$PWD/local_tipi_install_mirrror/
+          mkdir -p $TOOLS_MIRROR_FOLDER
+          cp -v install/install_for_macos_linux.sh ${TOOLS_MIRROR_FOLDER}
+          cp -v install/container/*.sh ${TOOLS_MIRROR_FOLDER}
+
+          # Centos / RHEL Mode (our local copy will still be used as the script doesn't overwrite)
+          export TIPI_CONTAINER_INSTALL_SCRIPT=https://raw.githubusercontent.com/tipi-build/cli/master/install/container/centos.sh
+
+          DISTRO_DOWNLOAD_OUTPUT=$(awk '
+            /^### Setup local mirror$/ { in_section=1; next }
+            in_section && /^```bash$/ { in_code=1; next }
+            in_code && /^```$/ { exit }
+            in_code { print } ' INSTALL_LOCAL_MIRROR.md | bash)
+
+          echo -n $DISTRO_DOWNLOAD_OUTPUT
+
+          # Patch the Dockerfile with ENV values from download_distro.sh output
+          DOCKERFILE=install/container/environments/linux-offline-almalinux-95.pkr.js/linux-offline-almalinux-95.Dockerfile
+          echo "$DISTRO_DOWNLOAD_OUTPUT" | grep '^\s*ENV ' | sed 's/^\s*//' | while IFS='=' read -r key value; do
+            sed -i "s|${key}=.*|${key}=${value}|" "$DOCKERFILE"
+          done
+
+          cat install/container/environments/linux-offline-almalinux-95.pkr.js/linux-offline-almalinux-95.Dockerfile
+
+          BUILD_CONTAINER_OUTPUT=$(awk '
+            /^### Build Container$/ { in_section=1; next }
+            in_section && /^```bash$/ { in_code=1; next }
+            in_code && /^```$/ { exit }
+            in_code { print } ' INSTALL_LOCAL_MIRROR.md | bash)
+
+          echo -n $BUILD_CONTAINER_OUTPUT
