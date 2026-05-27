@@ -33,7 +33,7 @@ The `install/container/*.sh` containers initialization scripts provide customiza
 
 ## cmake-re installation Customization
 You will need to provide :
-- `ENV TIPI_INSTALL_SOURCE` (_i.e._ override for the cmake-re client binaries release package, override for https://github.com/tipi-build/cli/releases/download/v0.0.85/tipi-v0.0.85-linux-x86_64.zip)
+- `ENV TIPI_INSTALL_SOURCE` (_i.e._ override for the cmake-re client binaries release package, override for https://github.com/tipi-build/cli/releases/download/v0.0.86/tipi-v0.0.86-linux-x86_64.zip)
 
 ### Local Mirroring of `TIPI_DISTRO_JSON`, `TIPI_DISTRO_JSON_SHA1` 
 

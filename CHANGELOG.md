@@ -1,5 +1,20 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.86 - Tough Tamarin 🐒
+
+### Bug Fix
+
+- Fix `git_gc` lock acquisition failing on submodule paths where `.git` is a gitlink file instead of a directory (TIPI-1795)
+- Fix nested submodule path duplication during mirroring submodule (TIPI-1778)
+- Fix distro-less mode (`TIPI_DISTRO_MODE=none`) failing to find `rewrapper` and `bootstrap` in `--distributed` builds (TIPI-1734)
+
+tipi-src: 5658a73f4555d2ed851d3a02f17a2ee2bd538961
+
+### Archives Checksums
+tipi-v0.0.86-windows-win64.zip:5B5C21A7FFE0C7C20F8CC462D2E30D5A4930FB8E
+tipi-v0.0.86-linux-x86_64.zip:9C2E0B7AD26B760E8D63A2855031C3F4A7C65FA5
+tipi-v0.0.86-macOS.zip:3FE9AA364FE49CD6E3B17859CD4E52D8039E1C26
+
 ## v0.0.85 - Sunny Seal ☀️🦭
 
 ### Features

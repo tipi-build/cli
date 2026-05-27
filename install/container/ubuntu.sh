@@ -172,7 +172,7 @@ if [ "$TIPI_INSTALL_LEGACY_PACKAGES" = "ON" ]; then
 fi
 
 # INCLUDE+ common/Dockerfile.install-tipi
-TIPI_CLIENT_INSTALL_SCRIPT_SOURCE=${TIPI_CLIENT_INSTALL_SCRIPT_SOURCE:-https://raw.githubusercontent.com/tipi-build/cli/v0.0.85/install/install_for_macos_linux.sh}
+TIPI_CLIENT_INSTALL_SCRIPT_SOURCE=${TIPI_CLIENT_INSTALL_SCRIPT_SOURCE:-https://raw.githubusercontent.com/tipi-build/cli/v0.0.86/install/install_for_macos_linux.sh}
 su tipi -c "cd ~ && curl -fsSL ${TIPI_CLIENT_INSTALL_SCRIPT_SOURCE} -o install_for_macos_linux.sh && /bin/bash install_for_macos_linux.sh"
 
 rm -rf ./main \
