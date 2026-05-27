@@ -1,6 +1,11 @@
 # tipi.build cli : CHANGELOG
 
-## v0.0.86 - Tough Tamarin 🐒
+## v0.0.86 - Tonic Tamarin 🐒
+
+### Features
+
+- 🆕 Tooling enabling easier fully mirrored offline installation of cmake-re without dependency to github.com (TIPI-1807) 
+  - [Usage instructions](https://github.com/tipi-build/cli/blob/master/INSTALL_LOCAL_MIRROR.md)
 
 ### Bug Fix
 
