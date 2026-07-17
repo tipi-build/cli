@@ -37,7 +37,7 @@ DISTRO_LOCAL="${TOOLS_DIR}/distro.local.json"
 BASE_URL=${2:-"file://${TOOLS_DIR}"}
 BASE_URL="${BASE_URL%/}" # drop any trailing slashes
 
-TIPI_INSTALL_SOURCE="${TIPI_INSTALL_SOURCE:-https://github.com/tipi-build/cli/releases/download/v0.0.86/tipi-v0.0.86-linux-x86_64.zip}"
+TIPI_INSTALL_SOURCE="${TIPI_INSTALL_SOURCE:-https://github.com/tipi-build/cli/releases/download/v0.0.87/tipi-v0.0.87-linux-x86_64.zip}"
 TIPI_CLIENT_INSTALL_SCRIPT_SOURCE="${TIPI_CLIENT_INSTALL_SCRIPT_SOURCE:-https://raw.githubusercontent.com/tipi-build/cli/refs/heads/master/install/install_for_macos_linux.sh}"
 TIPI_CONTAINER_INSTALL_SCRIPT="${TIPI_CONTAINER_INSTALL_SCRIPT:-https://raw.githubusercontent.com/tipi-build/cli/master/install/container/centos.sh}"
 
