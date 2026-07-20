@@ -1,5 +1,27 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.87 - Unit-Testing Uinta 🐿️
+
+### Features
+
+- 🆕 ctest-re : CMake CTest test runner with distributed execution support ⚡️
+- 🆕 [Ubuntu 24.04 environment with clang20 and sanitizers with fully instrumentable std libs for MSAN](https://github.com/tipi-build/environments/tree/main/linux-ubuntu-2404-clang20.pkr.js) 
+  - Example use on https://github.com/tipi-build/example-cmake-re-sanitizers
+- ⚙️ `cmake-re --info [plain|json]` flag to provide information on cmake-re versions, workdir locations and more data useful for CI integration.
+
+### Bug Fix
+
+- reclient now properly resolves include paths that are using relative paths from folders without input source files as in `-I/path/to/src/dir-without-sources/../include` in `cmake-re --distributed` mode
+- `cmake-re --distributed` containerized builds fixed on macOS default docker mount filesystem driver.
+
+tipi-src: df5e44353773fe492ebfa05d1bca58a4f4c94adc
+
+### Archives Checksums
+tipi-v0.0.87-windows-win64.zip:31C9CF26B96F65A458892BF8C4CB61AB400FA46D
+tipi-v0.0.87-linux-x86_64.zip:6D58E3AC7F32119AE31C9F107B35A257CEEC546A
+tipi-v0.0.87-macOS.zip:B303499C56A811A0732D6A09375B314FD9429406
+
+
 ## v0.0.86 - Tonic Tamarin 🐒
 
 ### Features
