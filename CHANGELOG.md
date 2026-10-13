@@ -1,5 +1,24 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.88 - Vivid Viper 🐍
+
+### Features
+
+- 🆕 Support for user-provided `CMAKE_<LANG>_COMPILER_LAUNCHER`, `CMAKE_<LANG>_LINKER_LAUNCHER` and `CMAKE_TEST_LAUNCHER`: a launcher passed on the command line is now chained with the tipi compiler driver instead of being overridden.
+
+### Bug Fix
+
+- Fix `--distributed` containerized builds failing with `Too many levels of symbolic links` for repositories whose origin URL has 3+ path levels, a trailing slash, or nested groups.
+- reclient updated to retry on transient `owner not found` errors during remote execution.
+
+tipi-src: c66f3b6a7f08d1226635375ac69aba91d9774b66
+
+### Archives Checksums
+tipi-v0.0.88-windows-win64.zip:1CBDC501AD941F47DDAB9C9A6C6DD209AF89CD29
+tipi-v0.0.88-linux-x86_64.zip:87BFBA91047D5B05C1F0D26B237AA1E69F3DA915
+tipi-v0.0.88-macOS.zip:92E77E24ED0583990BF2D633E72FAA054F68056A
+
+
 ## v0.0.87 - Unit-Testing Uinta 🐿️
 
 ### Features
