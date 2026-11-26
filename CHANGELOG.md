@@ -1,5 +1,22 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.89 - Wily Wombat
+
+### Features
+
+- 🆕 `cmake-re` and `ctest-re` now ship the environment every user was exporting by hand: `TIPI_DISABLE_AR_RANLIB_DRIVER=ON`, `TIPI_CACHE_CONSUME_ONLY=ON` and `TIPI_CACHE_FORCE_ENABLE=OFF` (joining the `TIPI_DISABLE_SET_MTIME=ON` and `TIPI_DISABLE_REWRITE=ON` defaults `cmake-re` already applied, which `ctest-re` now applies too). A value set in the environment stays authoritative, so the previous behaviour is restored by exporting `TIPI_DISABLE_AR_RANLIB_DRIVER=OFF`, `TIPI_CACHE_CONSUME_ONLY=OFF` or `TIPI_CACHE_FORCE_ENABLE=ON`.
+  - ⚠️ This means `cmake-re` no longer populates the binary cache by default, and no longer enables the cache of the nested `tipi` builds it drives. Builds meant to fill the cache now have to ask for it explicitly with `TIPI_CACHE_CONSUME_ONLY=OFF`.
+  - `cmake-re --cache populate` is unaffected: an explicit population request outranks the `TIPI_CACHE_CONSUME_ONLY` default, so it still populates without having to export anything.
+  - `cmake-re --info` and `cmake-re --info=json` report the effective value of each of those variables.
+  - `tipi` itself is unaffected: its cache and `ar`/`ranlib` behaviour is unchanged.
+- 🆕 The `cmake-re-portable-<version>-<os>.zip` portable archives for Linux and macOS now include `ctest-re` next to `cmake-re` and `tipi`.
+
+### Bug Fix
+
+- reclient, used by `cmake-re --distributed` and `ctest-re` for remote execution, updated to a newer release.
+
+tipi-src: 32680e8a48ce326c14189d50c634237f566a3b9f
+
 ## v0.0.88 - Vivid Viper 🐍
 
 ### Features
