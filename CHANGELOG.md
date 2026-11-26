@@ -1,5 +1,53 @@
 # tipi.build cli : CHANGELOG
 
+## v0.0.89 - Whimsical Woodpecker 🌲
+
+### Features
+
+- 🆕 `cmake-re` and `ctest-re` (`tipi` defaults are however unaffected) now have the production defaults: `TIPI_DISABLE_AR_RANLIB_DRIVER=ON`, `TIPI_CACHE_CONSUME_ONLY=ON` and `TIPI_CACHE_FORCE_ENABLE=OFF`.
+  - L1 Cache filling now has to ask for it explicitly with `TIPI_CACHE_CONSUME_ONLY=OFF`.
+  - `cmake-re --cache populate` is unaffected: an explicit population request outranks the `TIPI_CACHE_CONSUME_ONLY` default, so it still populates without having to export anything.
+  - `cmake-re --info` and `cmake-re --info=json` report the effective value of each of those variables.
+
+
+### Bug Fix
+
+- 🐛 RE-API Handle Trees without a root in FlattenTree (PLAT-3667)
+- 🛡️ RE-API close 31 security advisories:
+  - CVE-2026-39830 (critical): Invoking client can cause server deadlock on unexpected responses
+  - CVE-2026-39831 (critical): FIDO/U2F security key physical presence check can be bypassed
+  - CVE-2026-39832 (critical): doesn't drop invoking agent constraints when forwarding keys
+  - CVE-2026-39833 (critical): doesn't enforce invoking key constraints
+  - CVE-2026-39834 (critical): vulnerable to infinite loop on large channel writes
+  - CVE-2026-42508 (critical): vulnerable to auth bypass via unenforced @revoked status
+  - CVE-2026-46595 (critical): Invoking VerifiedPublicKeyCallback permissions skip enforcement
+  - CVE-2026-116587 (high): JOSE: DoS when parsing JWKs that contain RSA keys
+  - CVE-2026-24051 (high): OpenTelemetry SDK Vulnerable to Arbitrary Code Execution via PATH Hijacking
+  - CVE-2026-29181 (high): OpenTelemetry: multi-value `baggage` header extraction causes excessive allocations (remote dos amplification)
+  - CVE-2026-34986 (high): JOSE Panics in JWE decryption
+  - CVE-2026-39829 (high): Invoking pathological RSA/DSA parameters may cause DoS
+  - CVE-2026-39883 (high): opentelemetry: BSD kenv command not using absolute path enables PATH hijacking
+  - CVE-2026-42154 (high): Prometheus: Remote read endpoint allows denial of service via crafted snappy payload
+  - CVE-2026-46597 (high): Invoking byte arithmetic causes underflow and panic
+  - CVE-2026-63209 (high): Compress/s2: Integer Overflow or Wraparound and Out-of-bounds Write in compress
+  - CVE-2026-84304 (high): Heap Memory Exhaustion (OOM) via HTTP/2 DATA Frame Fragmentation
+  - CVE-2026-84445 (high): xDS servers: Denial of Service (DoS) via crash due to missing `:authority` and `Host` headers
+  - GHSA-hrxh-6v49-42gf (high): gRPC: xDS RBAC and HTTP/2 Vulnerabilities
+  - CVE-2026-116585 (medium): JOSE: Panic during CBC-HMAC processing
+  - CVE-2026-116586 (medium): JOSE: Panics in JSON parsing
+  - CVE-2026-128085 (medium): opentelemetry AttributeValueLengthLimit is fully bypassed by attribute values composed of valid U+FFFD runes
+  - CVE-2026-25680 (medium): Net HTML parser is vulnerable to denial of service
+  - CVE-2026-39827 (medium): Invoking memory leak when rejecting channels can lead to DoS
+  - CVE-2026-39828 (medium): vulnerable to invoking bypass of certificate restrictions
+  - CVE-2026-39835 (medium): is vulnerable to invoking server panic during CheckHostKey/Authenticate flow
+  - CVE-2026-40179 (medium): Prometheus has Stored XSS via metric names and label values in Prometheus web UI tooltips and metrics explorer
+  - CVE-2026-44903 (medium): Prometheus vulnerable to stored XSS via crafted histogram bucket label values in the old web UI heatmap display
+  - CVE-2026-46598 (medium): Invoking pathological inputs can lead to client panic
+  - CVE-2026-84303 (medium): xDS RBAC HTTP Filter bypass via mixed-case Header Matching and gRFC A41 validation evasion
+  - CVE-2026-81870 (low): OpenTelemetry Exporter config logging may leak endpoint URLs in info logs
+
+tipi-src: 32680e8a48ce326c14189d50c634237f566a3b9f
+
 ## v0.0.88 - Vivid Viper 🐍
 
 ### Features
